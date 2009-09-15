@@ -1,0 +1,45 @@
+# "-*- sh -*-"
+
+function each()
+{
+    for item; do
+	$item
+    done
+}
+
+function run()
+{
+    if [ $# -lt 2 ]; then
+	echo 'Usage: run <program> [options] \; [arguments]' >&2
+	return 1
+    fi
+
+    program=$1
+    shift
+
+    while [ $# -gt 1 ] && [ "$1" != ";" ]; do
+	program=($program $1)
+	shift
+    done
+
+    if [ $# -eq 0 ]; then
+	return
+    fi
+
+    shift
+
+    for item; do
+	$program $item
+    done
+}
+
+alias diapo="run xv -shrink \; *.jpg"
+
+function runin()
+{
+    pushd
+    cd $1
+    shift
+    $@
+    popd
+}

@@ -1,0 +1,15 @@
+emacs +<line>[:column] file pour ouvrir a une certaine ligne
+C-u M-q pour mettre a 80 colonnes
+M-X C-x f pour regler la largeur
+M-( pour faire les deux parentheses d'un coup
+C-x r m Enter  _  Pose un bookmark ? l'endroit o? se trouve le point
+C-x r m <nom> Enter M-x bookmark-set Pose un bookmark et lui donne un nom
+M-x bookmark-delete <nom> D?truit le bookmark <nom>
+C-x r b <nom> M-x bookmark-jump Aller au bookmark <nom>
+C-x r l M-x bookmark-list Lister tous les bookmarks
+M-x bookmark-file Sauve les bookmarks
+name-last-kbd-macro
+insert-kbd-macro
+C-x C-x remet le transient-mark-mode sur la derniere seletion
+M+= comptes les lignes et les caracteres selectionnes
+M y apres C y passse en revue les differentes copies

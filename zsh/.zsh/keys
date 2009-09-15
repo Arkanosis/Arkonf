@@ -1,0 +1,126 @@
+# "-*- sh -*-"
+
+###############################
+#      Raccourcis clavier     #
+###############################
+
+# Raccourcis Emacs
+bindkey -e
+
+###############################
+#  Redefinition des touches   #
+###############################
+
+# Déplacement dans les menus
+bindkey '^o' accept-and-infer-next-history
+bindkey '^[o' accept-and-menu-complete
+
+# Del pour effacer le caractere qui suit le curseur
+bindkey "\e[3~" delete-char
+
+# Home/end pour aller en debut/fin de ligne
+bindkey "^[OF" end-of-line
+bindkey "^[OH" beginning-of-line
+
+# Insert pour ecraser
+bindkey '^[[2~' overwrite-mode
+
+# Pageup/pagedown pour naviguer dans l'historique
+bindkey '^[[6~' history-search-forward
+bindkey '^[[5~' history-search-backward
+
+# Stocke la commande tappee pour la restaurer apres
+bindkey '^[p' push-input
+
+# Ctrl + T pour copier le dernier argument
+bindkey -s '^T' '!#$'
+
+# Ctrl + \ pour remonter d'un niveau
+bindkey -s '^[\' '^[pcd ..\n'
+
+# Ctrl + ] pour retourner dans le repertoire precedent
+bindkey -s '^[]' '^[pcd - >&-\n'
+
+# Alt + entree pour valider et lister le répertoire
+bindkey -s '^[j' '^j^jll\n'
+
+# Alt + c pour remettre un programme en avant plan
+bindkey -s '^[c' '^[pfg\n'
+
+# Alt + p pour empiler le repertoire courant
+#bindkey -s '^[p' 'pushd\n'
+
+# Alt + = pour depiler un repertoire
+bindkey -s '^[=' '^[ppopd >&-\n'
+
+# Alt + g pour aller dans /goinfre/
+bindkey -s '^[g' '^[pcd /goinfre/\n'
+
+# Alt + r pour aller modifier la commande precedente
+bindkey -s '^[r' "!!:gs///^b^b"
+bindkey -s '^[h' "history\n"
+
+# Alt + l pour lister le contenu d'un repertoire
+bindkey -s '^[l' '^[pll\n'
+
+# Alt + ; pour lister les modifications par raport au dernier commit SVN
+bindkey -s '^[;' '^[pst\n'
+
+# Alt + ' pour lister les modifications par raport au dernier commit SVN
+bindkey -s "^['" '^[pdf\n'
+
+# Alt + u pour telecharger la derniere version du SVN
+#bindkey -s '^[u' 'hg up\n'
+
+# Alt + m pour make all
+#bindkey -s '^[m' 'gmake all\n'
+
+# Alt + d pour make distclean
+#bindkey -s '^[d' 'gmake distclean\n'
+
+# Alt + b pour dsss build
+#bindkey -s '^[b' 'dsss build\n'
+
+# Alt + e pour voir le boulot restant
+#bindkey -s '^[e' 'rem\n'
+
+# Alt + s pour sourcer le dernier .zshrc
+bindkey -s '^[s' '^[p. ~/.zshrc\n'
+
+# Alt + t pour voir le boulot restant
+bindkey -s '^[t' '^[ptd\n'
+
+# Alt + e pour transformer une commande en chemin complet
+bindkey '^[e' expand-cmd-path
+
+# Shift + tab pour parcourir l'autocompletion a l'envers
+bindkey '^[[Z' reverse-menu-complete
+
+# Alt + e pour editer la ligne de commande dans un editeur de texte
+#bindkey '^[e' edit-command-line
+
+# Alt + i pour inserer le dernier argument de la commande precedente
+bindkey '^[i' insert-last-word
+
+# Alt + fleche vers le haut pour repeter la dernière commande
+bindkey -s ';3A' '^[p!!\n'
+
+# Alt + fleche vers le bas pour repeter l'avant dernière commande
+bindkey -s ';3B' '^[p!-2\n'
+
+# Alt + ? pour voir l'aide
+bindkey -s '^[?' "^[pless $ZARKONF_DIR/NOTES\n"
+
+# Alt + . pour etendre une abbreviation
+bindkey "^[[[," abbrev-expand # Je ne crois pas que cette touche existe, et tant mieux :p
+bindkey -s "^[." '^[[[,^?'
+
+# Alt + e pour appliquer un coup de sed sur la ligne de commande
+bindkey "^[e" regex-edit
+
+function kbd()
+{
+    setxkbmap us
+    xmodmap ~/.Xmodmap
+}
+

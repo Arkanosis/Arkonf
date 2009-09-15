@@ -1,0 +1,39 @@
+# "-*- sh -*-"
+
+# Calculatrice qui dechire
+autoload zcalc
+
+alias zc=zcalc
+
+function comp()
+{
+    file=`tempfile`.d
+    cat > $file <<EOF
+		import std.stdio;
+		import std.math;
+
+		int main()
+		{
+		  double compute()
+		  {
+EOF
+
+    echo $* \; >> $file
+
+    cat >> $file <<EOF
+		  }
+
+		  std.stdio.writefln(compute());
+
+		  return 0;
+		}
+EOF
+
+    `which dmd2` -run $file
+}
+
+# Hexadecimal de la forme 0x.. plutot que 16#...
+setopt C_BASES
+
+# Octal de la forme 0.. plutot que 8#...
+setopt OCTAL_ZEROES

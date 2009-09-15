@@ -1,0 +1,52 @@
+- Révision / branche du dans le prompt pour CVS et Git aussi (enfin surtout Git :p)
+
+- Finir tree() : doit être compatible avec toutes les options de gls
+
+- Binder ls sur tab lorsque la ligne est vide (comme dans tcsh), le coder à la main si ça n'existe vraiment pas
+
+- Bookmarks
+ - Ajouter une fonction qui liste les bookmarks courants et une autre pour supprimer un bookmark
+ - Autocomplétion
+
+- Arc plus complet :
+ - factorisation du code
+ - plus de formats supportés
+ - correction de la gestion de l'absence de dossier racine
+ - compression intelligente (LZMA avec les bonnes options, PPMd pour le texte)
+ - Autocompletion sans respect de la casse
+
+- LS_COLOR généré avec dircolors, plutôt qu'à la main
+
+- Zsh à la sauce ViM
+
+- Raccouci 'suivant' symétrique à popd
+
+- Installeur :
+ - Téléchargement de la dernière version si internet dispo (http://zarkonf.arkanosis.net/latest) avec wget
+ - Affichage de 'zArkonf N.M, (C) 200...'
+ - La configuration locale est stockée dans ~/.zshrc
+ - Au début du ~/.zshrc il y a un 'source le_chemin_qui_va_bien/zarkonf'
+ - Dans zarkonf, on teste ~/.zshrc, s'il n'existe pas, on rentre en mode de création interactif
+ - Le répertoire 'modules' est parcouru, et si un module est installé, son script 'install' est lancé
+ - Chaque module installé ajoute sa ligne 'source' dans ~/.zshrc
+ - Choix du binding clavier (+ fonction pour passer rapidement en mode clavier pour le développement)
+
+- Gestion de version
+ - Le tout versionné avec un VCS
+ - confdf : diff avec la version stable, conflg, confst, confci, confpush...
+ - Seul le répertoire ~/.zsh est versionné (ne comprend pas de login, mot de passe...)
+ - confup : fetch la dernière version et re-source le ~/.zshrc
+
+- Notes :
+ - alt+? fait un less du fichier de notes (aide de zArkonf + aide zsh)
+ - tuto rapide du globbing (soustraction *et* répertoires avec attributs des fichiers...)
+ - récapitulatif des raccourcis claviers
+ - Version actuelle de zArkonf
+ - Note temporaires
+
+- Notes temporaires :
+ - note <arg> ajoute arg dans les notes temporaires ~/.znotes
+ - ^[? affiche les notes temporaires numérotées
+ - rmnote <num> supprime la note num de ~/.znotes
+
+- zApt-get : installation rapide d'un serveur http, de la dernière version de zsh, vim... seulement les trucs indispensables, et les Arkonfs associées

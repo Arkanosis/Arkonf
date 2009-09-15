@@ -1,0 +1,59 @@
+# "-*- sh -*-"
+
+# Pas de doublons dans la liste des autocompletions
+typeset -U fpath
+
+setopt auto_list
+setopt complete_in_word
+setopt HASH_LIST_ALL # Hache la commande : plus lent la premiere fois, plus rapide les suivantes
+setopt LIST_TYPES # Affiche le type de fichier dans les propositions
+
+# Les completions peuvent etre lentes, on les garde en cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcache/zsh"
+
+# Correction de la frappe
+setopt correct
+
+# Globbing etendu
+setopt EXTENDED_GLOB
+
+# Extensions non prises en compte pour la completion, sauf s'il n'y a aucune ambiguite
+fignore=(.aux .toc .bak .sav .old .o .trace \~)
+
+fpath=("$ZARKONF_DIR/completions" ~/zsh_completions $fpath)
+
+autoload -U compinit
+compinit
+
+# Coloration de la completion
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Completion sans distinction de la casse
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Ajoute un menu pour l'autocompletion
+zstyle ':completion:*' menu select
+
+zstyle ':completion:*' verbose yes
+
+
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*:*echo*' hosts preston lost
+
+compctl -g '[^.]*(-/) *.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z)' + -f x
+
+function zcl()
+{
+    if [ $# -ne 1 ]; then
+	echo 'Usage: zcl <command>' >&2
+	return 1
+    fi
+
+    rm -f "$ZARKONF_CACHE/$1"
+}

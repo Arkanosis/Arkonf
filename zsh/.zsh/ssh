@@ -1,0 +1,4 @@
+# "-*- sh -*-"
+
+alias se="ssh ${LOGIN}@ssh.epita.fr"
+alias se="ssh ${LOGIN}@gw.exalead.com"

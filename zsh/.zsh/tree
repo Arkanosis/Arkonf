@@ -1,0 +1,17 @@
+# "-*- sh -*-"
+
+#######################################
+# Listage arborescent des répertoires #
+#######################################
+
+function tree()
+{
+    roots=`pwd`
+    if [ $# -ne 0 ]; then
+	roots=$@
+    fi
+
+    for root in $roots; do
+	ls $root
+    done
+}

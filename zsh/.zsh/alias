@@ -1,0 +1,25 @@
+# "-*- sh -*-"
+
+# Emacs en mode console
+alias e="emacs -nw"
+# ViM
+alias v="vim"
+
+# Grep avec les expressions rationnelles par defaut
+alias grep="egrep"
+alias cgrep="egrep --color"
+
+# GNU Profiler
+alias pf="gprof -b"
+
+alias cx="chmod +x"
+
+# Deplacement verbeux sans risque d'ecrasement
+alias mv="mv -iv"
+
+# Copie verbeuse sans risque d'ecrasement
+alias cp="cp -iv"
+
+alias zmv="zmv -M"
+alias zcp="zmv -C"
+alias zln="zmv -L"

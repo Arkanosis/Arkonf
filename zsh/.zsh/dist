@@ -1,0 +1,42 @@
+# "-*- sh -*-"
+
+# Pas de doublons dans la liste des clients pour les commandes distribuées
+typeset -U DIST_HOSTS
+
+function dist()
+{
+    # Exécution distribuée v1.2
+    # (C) 2009 Arkanosis
+    # arkanosis@gmail.com
+    if [ $# -lt 1 ]; then
+	echo 'Usage: dist <cmd> [arg [...]]' >&2
+	return 1
+    fi
+
+    if [ ${#DIST_HOSTS} -lt 1 ]; then
+	echo 'No host defined in DIST_HOSTS' >&2
+	return 2
+    fi
+
+    for host in $DIST_HOSTS; do
+	if [ -z `ssh $host who` ]; then
+	    if [ "$host" != "$DIST_HOSTS[0]" ]; then
+		DIST_HOSTS=($host $DIST_HOSTS)
+	    fi
+
+	    print "\033[32mRunning \"\033[1m$*\033[0;32m\" on \033[1m$host\033[0m"
+	    ssh $host "echo 'source ~/.zshrc
+                           cd \"`pwd`\" && $@' | zsh"
+	    return $?
+	else
+	    echo "\033[1;31m$host\033[0;31m is already in use\033[0m"
+	fi
+    done
+
+    echo 'No available host found. Run locally?'
+    read y
+    if [ "$y" = 'y' ] || [ "$y" = 'Y' ]; then
+	echo "source ~/.zshrc
+                  cd "`pwd`" && $@" | zsh
+    fi
+}

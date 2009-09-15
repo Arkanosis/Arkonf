@@ -1,0 +1,29 @@
+# "-*- sh -*-"
+
+# Affichage de la duree d'execution des programmes > 10 secondes
+export REPORTTIME=10
+
+# Autorise les boucles de la forme "for i (*.o) rm $i"
+setopt SHORTLOOPS
+
+limit coredumpsize 0
+
+# Insère des quotes lorsqu'un url est collée, backslashe les "?"...
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# Permet d'editer la ligne de commande avec un editeur de texte
+autoload -U edit-command-line
+zle -N edit-command-line
+
+# Déplacement multiple, plus d'infos dans ${^fpath}/zmv(N)
+autoload zmv
+
+# Editeur de texte dans le shell
+autoload -U zed
+
+# ("=prog" <=> "`which prog`")
+setopt equals
+
+# Empeche la redirection vers un fichier existant
+setopt noclobber

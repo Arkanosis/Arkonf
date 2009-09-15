@@ -1,0 +1,21 @@
+#compdef ze
+
+local modules
+
+modules=()
+
+for module in "$ZARKONF_DIR"/*(:t); do
+    modules=($modules $module)
+done
+
+if [[ $service == "ze" ]]; then
+    _arguments -C -A "-*" \
+    '*::command:->subcmd' && return 0
+
+    if (( CURRENT == 1 )); then
+        _wanted commands expl 'ze command' compadd -a modules
+        return
+    fi
+    service="$words[1]"
+    curcontext="${curcontext%:*}=$service:"
+fi

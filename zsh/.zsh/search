@@ -1,0 +1,65 @@
+# "-*- sh -*-"
+
+# Recherche d'une expression dans les fichiers d'un repertoire
+function search()
+{
+    dist=0
+
+    if [ "$#" -lt 1 ]; then
+	echo 'Usage: search [-d] [dir] <exp>' >&2
+	return 1
+    fi
+
+    if [ "$#" -eq 2  ] && [ "$1" = "-d" ]; then
+	dist=1
+	shift
+
+	if [ "$#" -lt 1 ]; then
+	    echo 'Usage: search [-d] [dir] <exp>' >&2
+	    return 1
+	fi
+    fi
+
+    if [ "$#" -eq 2 ]; then
+	dir="$1"
+	exp="$2"
+	shift
+    else
+	dir="."
+	exp="$1"
+    fi
+
+    shift
+
+    if [ $dist -ne 0 ]; then
+	egrep -nRI "$exp" "$dir" $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp" --color
+    else
+	egrep -nRI "$exp" "$dir" $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp" --color
+    fi
+}
+
+alias rs="search"
+
+function rsl()
+{
+    rs $@ | less
+}
+
+alias td="search 'TODO|FIXME|HACK'"
+
+function rd()
+{
+    if [ $# -ne 0 ]; then
+	if test -f "$1/README"; then
+	    < "$1/README"
+	    return 0
+	fi
+    else
+	if test -f "./README"; then
+	    < "./README"
+	    return 0
+	fi
+    fi
+    echo 'No README file in this directory' >&2
+    return 1
+}

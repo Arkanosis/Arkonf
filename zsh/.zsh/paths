@@ -1,0 +1,5 @@
+# "-*- sh -*-"
+
+export PATH="${HOME}/local/bin/:$PATH"
+export PYTHONPATH="${HOME}/local/lib/python:${HOME}/local/lib/python2.4/site-packages:$PYTHONPATH/"
+export CONFIG_SITE="$HOME/config.site"

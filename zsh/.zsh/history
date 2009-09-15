@@ -1,0 +1,19 @@
+# "-*- sh -*-"
+
+# Historique permanent
+HISTFILE=~/.history
+
+# Taille de l'historique
+HISTSIZE=300
+
+# Sauvegarde toutes les 5 minutes
+SAVEHIST=300
+
+# Reglage effectif des parametres
+export HISTFILE HISTSIZE SAVEHIST
+
+# Ajout a l'historique deja existant
+setopt INC_APPEND_HISTORY
+
+# Suppression des doublons
+setopt HIST_IGNORE_ALL_DUPS

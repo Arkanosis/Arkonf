@@ -1,0 +1,67 @@
+#compdef ngscons
+
+local curcontext="$curcontext" state line
+typeset -A opt_args
+local subcmds
+
+subcmds=(
+
+)
+
+if [[ $service == "ngscons" ]]; then
+    _arguments -C -A "-*" \
+    '-h[Display help]' \
+    '--help[Display help]' \
+    '-q[Quiet mode]' \
+    '--quiet[Quiet mode]' \
+    '-v[Verbose mode]' \
+    '--verbose[Verbose mode]' \
+    '-d[Build in debug]' \
+    '--debug[Build in debug]' \
+    '--debug-build[Build in debug]' \
+    '--debug-script[Enable verbose scons run]' \
+    '*::command:->subcmd' && return 0
+
+    if (( CURRENT == 1 )); then
+        _wanted commands expl 'ngscons options targets' compadd -a subcmds
+        return
+    fi
+    service="$words[1]"
+    curcontext="${curcontext%:*}=$service:"
+fi
+
+#   --tree                Dump dependency tree at end of run
+#   --arch=ARCH           Force arch
+#   -t TARGET, --target=TARGET
+#                         Add to the list of additional targets
+#   -p, --disable-parallel
+#                         Disable parallel build
+#   -f, --fancy           Fancy build
+#   -C, --clear-cache     Clean build environment, remove scons cache
+#   -c, --clean           Clean mode: don't build, just remove targets
+#   -s STRICT, --strict=STRICT
+#                         Activate strict compilation flags
+#   --warn-inline         Warn over inlining limits
+#   --no-warn-inline      Don't warn over inlining limits
+#   --warnings            Treat warnings as warnings
+#   --no-warnings         Treat warnings as errors
+#   --security-checks     Enable available code security checks
+#   --no-security-checks  Disable security checks
+#   --strip               Strip symbols from built objects
+#   --no-strip            Don't strip symbols from built objects
+#   --gcc-dbg             Generate gcc-dbg debugging files
+#   --no-gcc-dbg          Don't generates gcc-dbg debugging files
+#   --static-libgcc       Statically link against libgcc
+#   --shared-libgcc       Dynamically link agains libgcc
+#   --profile-feedback    Enable profile feedback aware builds
+#   --no-profile-feedback
+#                         Disable profile feedback aware builds
+#   --clean-exports       Enable clean exports (NGPUBLIC)
+#   --no-clean-exports    Disable clean export (NGPUBLIC)
+#   --parallel-factor=PARALLEL_FACTOR
+#                         Number of jobs per processors when using clever build
+#   --init-wc             Initialize the working copy before the build
+#   --java-compatibility-version=JAVA_COMPATIBILITY_VERSION
+#                         Minimum supported version of java
+#   --show-buildenv       Show the content of the environment the builders are
+#                         run with

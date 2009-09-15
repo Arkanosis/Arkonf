@@ -1,0 +1,15 @@
+# "-*- sh -*-"
+
+autoload -U read-from-minibuffer
+
+# asyd@asyd.net
+regex-edit () {
+   local REPLY words
+   words=(${=BUFFER})
+   read-from-minibuffer "Regexp:"
+   if [ -n $REPLY ]; then
+      BUFFER="$words[1] $(echo $words[2,${#words}] | sed ${REPLY})"
+   fi
+}
+
+zle -N regex-edit

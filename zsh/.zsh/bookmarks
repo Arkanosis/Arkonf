@@ -1,0 +1,22 @@
+# "-*- sh -*-"
+
+typeset -A bookmarks
+# Sauvegarde le répertoire courant
+function s()
+{
+    bookmarks["$1"]=`pwd`
+}
+
+# Retourne dans un répertoire sauvegardé
+function r()
+{
+    cd $bookmarks["$1"]
+}
+
+function bk()
+{
+    # Est-il possible d'itérer sur les clefs d'un tableau associatif ?
+    for bookmark in $bookmarks; do
+	echo $bookmark
+    done
+}

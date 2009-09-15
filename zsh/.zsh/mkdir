@@ -1,0 +1,50 @@
+# "-*- sh -*-"
+
+# Creation de repertoire public
+alias mkdir="mkdir -m 755"
+
+# Creation de repertoire securisee
+alias mksec="mkdir -m 700"
+
+
+function mkcd()
+{
+    mkdir -m700 "$1"
+    cd "$1"
+}
+
+function mkcmd()
+{
+    cmd="$1"
+    shift
+
+    if [ $# -eq 1 ] && [ "$1" = '--help' ]; then
+	$cmd --help
+	return
+    fi
+
+    if [ $# -lt 2 ]; then
+	echo "mk$cmd: missing file operand" >&2
+	echo 'Try `'"mk$cmd"' --help'"'"' for more information.' >&2
+	return 1
+    fi
+
+    args=()
+    while [ $# -gt 1 ]; do
+	args=($args "$1")
+	shift
+    done
+
+    mkdir -p "$1"
+    $cmd $args "$1"
+}
+
+function mkcp()
+{
+    mkcmd cp $@
+}
+
+function mkmv()
+{
+    mkcmd mv $@
+}

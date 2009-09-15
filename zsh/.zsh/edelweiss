@@ -1,0 +1,5 @@
+# "-*- sh -*-"
+
+source ./capricorn
+
+PYTHONPATH="$PYTHONPATH:/home/arkanosis/Documents/Programmation/django-trunk/"

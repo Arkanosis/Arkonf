@@ -1,0 +1,12 @@
+# "-*- sh -*-"
+
+# Liens symboliques
+function sln()
+{
+    ln -s `pwd` $@
+}
+
+function rln()
+{
+    ln -snf $@
+}

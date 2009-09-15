@@ -1,0 +1,51 @@
+#compdef exatest
+
+# Exatest completion
+# contact: Jérémie Roquet <jroquet@exalead.com>
+
+local packages classes
+
+packages=()
+classes=()
+
+roots=("/ng/src/$USER/svn/edk/edk/trunk" "/ng/src/$USER/svn/platform/semantic/trunk")
+cache="$ZARKONF_CACHE/exatest"
+
+if test -f "$cache"; then
+    source "$cache"
+else
+    for root in $roots; do
+	for file in `ls $root/**/*ut/*.exa `; do
+	    package=`echo $file | sed "s_${root}/\(.*\)/[^/]\+\.exa_\1_ ; s_/_._g"`
+	    packages=($packages "$package")
+	    for class in `sed -n 's/.*class[ \t]\+\(.\+\)[ \t]\+extends .*TestCase.*/\1/p' "$file"`; do
+		classes=($classes "$package.$class")
+	    done
+	done
+    done
+
+    echo "packages=($packages)" > "$cache"
+    echo "classes=($classes)" >> "$cache"
+fi
+
+# HACK (because completion does not work yet for options arguments)
+packages=($packages $classes)
+
+if [[ $service == "exatest" ]]; then
+    _arguments -C -A "-*" \
+    '-c[Test a given class]' \
+    '-j[Run on JVM]' \
+    '*::command:->subcmd' && return 0 # HACK should be -c[Test a given class]:class
+
+    if (( CURRENT == 1 )); then
+	_wanted package expl 'package' compadd -a packages
+        return
+    fi
+    service="$words[2]"
+fi
+
+case $service in
+    (-c)
+      _wanted class expl 'class path' compadd -a classes
+    ;;
+esac

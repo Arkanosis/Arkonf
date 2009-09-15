@@ -1,0 +1,23 @@
+# "-*- sh -*-"
+
+# Ouvre une page dans firefox
+function fx()
+{
+    if [ "$#" -lt 1 ]; then
+	echo "Usage: fx page.htm" >&2
+	return 1
+    else
+	for i; do
+	    firefox "`pwd`/$i"
+	done
+    fi
+}
+
+# Tue firefox
+function kf()
+{
+    killall firefox-bin firefox
+}
+
+# Firefox
+alias rmlock="find ~/.mozilla/firefox \( -name 'lock' -o -name '.parentlock' \) -exec rm -f {} \;"

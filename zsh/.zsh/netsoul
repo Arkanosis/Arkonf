@@ -1,0 +1,38 @@
+# "-*- sh -*-"
+
+# ns_who sans devoir taper le login en entier
+function nsw()
+{
+    if [ $# -ne 0 ]; then
+	for i; do
+	    ns_who | grep "$i"
+	done
+    else
+	ns_who
+    fi
+}
+
+# ns_hwho sans devoir taper le nom en entier
+function nshw()
+{
+    if [ $# -ne 0 ]; then
+	for i; do
+	    ns_hwho | grep "$i"
+	done
+    else
+	ns_hwho
+    fi
+}
+
+# Autres
+function say_to()
+{
+    login="$1"
+
+    shift
+
+    ns_send_msg "login" "$*"
+}
+
+# Soulmebaby
+alias ns="${HOME}/local/bin/soulmebaby&; sleep 15; kdestroy"

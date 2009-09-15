@@ -1,0 +1,8 @@
+# "-*- sh -*-"
+
+alias ez="e ~/.zshrc"
+
+function ze()
+{
+    e $ZARKONF_DIR/$@
+}

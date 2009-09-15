@@ -1,0 +1,44 @@
+^-L : Effacer l'ecran
+^-R : Chercher dans l'historique
+^-x : Executer une commande zsh
+^-_ : Undo
+M-a : Valider la commande mais la garder tapée
+<cmd> !:<n>[-<m>] : Execute cmd avec le n argument de la commande precedente (jusqu'au m)
+<cmd> arg1 arg2 !#:<n> : Recopie l'argument n de la ligne courante une deuxieme fois
+!! : Derniere commande
+!!:[g]s/<from>/<to>/ : Derniere commande avec substitution
+!<n> : Execute la n eme commande de l'historique
+<glob>~<glob> : Soustraction des resultats
+=<cmd> : équivalent à `which <cmd>`
+
+cd <a> <b> : remplace <a> par <b> dans pwd. L'autocomplétion marche sur <b>
+
+zmv au lieu de mv pour faire des déplacements / renommages complexes, plus d'infos dans ${^fpath}/zmv(N)
+idem zcp et zln
+
+lsof pour lister les fichiers ouverts (dont les bibliotheques)
+lsusb pour lister les périphériques usb connectés
+dmesg pour voir les derniers évènements
+
+trap <code> <signal> : executera <code> a chaque <signal>
+
+vared : pour éditer une variable d'environnement
+zed -f : pour éditer une fonction
+
+$var:gs/<from>/<to> : pour modifier une variable à la volée
+$var:u : majuscule
+$var:l : minuscule
+$var:h : chemin uniquement
+$var:r : fichier uniquement
+$var:e : extension uniquement
+
+--
+
+zstyle ':completion:*:rm:*' ignore-line yes # évite que le même fichier soit autocomplété deux fois (ici pour rm)
+compdef _toto tata # utilise l'autocompletion de toto pour tata
+compdef _gnu_generic toto # utiliser la completion intelligente quand --help fonctionne
+
+
+Autocompletion super rapide :
+function laFonction { reply=(mot1 mot2 mot3); }
+compctl -K laFonction laCommande

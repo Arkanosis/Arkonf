@@ -1,0 +1,38 @@
+# "-*- sh -*-"
+
+# Compilation classique
+alias cpl=" gcc -Wall -Wextra -std=c89 -pedantic"
+alias cpo=" gcc -Wall -Wextra -std=c99 -pedantic"
+alias gpp=" g++ -Wall -Wextra -Wabi -std=c++98 -pedantic"
+alias dgpp="g++ -Wall -Wextra -Wabi -std=c++98 -pedantic -pg -ggdb"
+alias cf="./configure"
+alias m="gmake"
+alias cl="gmake clean"
+alias mca="gmake clean all"
+
+function tcp()
+{
+    name=`mktemp`
+    print '\033[1;33m*** Compiling ***\033[0m'
+    echo `which gpp` $@
+    gpp $@ -o $name
+
+    ret=$?
+
+    if [ $ret -ne 0 ] || ! test -x $name; then
+	return $ret
+    fi
+
+    print '\033[1;33m*** Running ***\033[0m'
+    $name
+}
+
+# Compilation autotools
+alias ca="./configure && gmake clean all"
+alias arf="autoreconf -if"
+alias acm="autoreconf -if >- && ./configure >- && echo && echo && echo '-----------------------------------' && echo && echo && gmake clean all >-"
+
+# Compilation SDL/OpenGL
+if which sdl-config >&-; then
+    alias cplg="cpl `sdl-config --libs`  -I/usr/pkg/include/ -I/usr/pkg/include/GL -lGL -lGLU -lglut -lSDL_ttf -lSDL_image `sdl-config --cflags`"
+fi

@@ -1,0 +1,21 @@
+# "-*- sh -*-"
+
+# Ouverture automatique de fichiers
+alias -s README=less
+alias -s INSTALL=less
+if which okular >&-; then
+    alias -s pdf=acroread
+elif which acroread >&-; then
+    alias -s pdf=acroread
+else
+    alias -s pdf=xpdf
+fi
+alias -s cc=e
+alias -s cpp=e
+alias -s cxx=e
+alias -s hh=e
+alias -s hpp=e
+alias -s hxx=e
+alias -s c=e
+alias -s Makefile=e
+alias -s jpg=xv

@@ -1,0 +1,20 @@
+# "-*- sh -*-"
+
+# Suppression violente
+function rmbrute()
+{
+    for arg; do
+	chmod -R 700 $arg
+	rm -rvf $arg
+    done
+}
+
+function clean()
+{
+    rm -f *.o
+    rm -f *.aux
+    rm -f *.log
+    rm -f *.toc
+    rm -f *~
+    rm -f \#*\#
+}

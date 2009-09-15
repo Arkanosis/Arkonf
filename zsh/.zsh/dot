@@ -1,0 +1,40 @@
+# "-*- sh -*-"
+
+# Cree une image png a partir d'un fichier dot
+function png()
+{
+    if [ "$#" -lt 1 ]; then
+	echo 'Usage: png <files.dot>' >&2
+	return 1
+    else
+	for i; do
+	    dot -Tpng "$i" -o `echo "$i" | sed -E s/dot$/png/g`
+	done
+    fi
+}
+
+# Cree une image jpeg a partir d'un fichier dot
+function jpg()
+{
+    if [ "$#" -lt 1 ]; then
+	echo 'Usage: jpg <files.dot>' >&2
+	return 1
+    else
+	for i; do
+	    dot -Tjpg "$i" -o `echo "$i" | sed -E s/dot$/jpg/g`
+	done
+    fi
+}
+
+# Cree une image svg a partir d'un fichier dot
+function svg()
+{
+    if [ "$#" -lt 1 ]; then
+	echo 'Usage: svg <files.dot>' >&2
+	return 1
+    else
+	for i; do
+	    dot -Tsvg "$i" -o `echo "$i" | sed -E s/dot$/svg/g`
+	done
+    fi
+}

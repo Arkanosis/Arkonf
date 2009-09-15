@@ -1,0 +1,30 @@
+# "-*- sh -*-"
+
+function ma
+{
+    if [ $# -lt 1 ]; then
+	echo 'Usage: ma <files>' >&2
+	return 1
+    fi
+
+    if ! test -d mnt; then
+	mkdir mnt
+    fi
+
+    for i in $@; do
+        if ! test -d "mnt/$i"; then
+	   mkdir "mnt/$i"
+	fi
+	truecrypt "$i" "mnt/$i"
+    done
+}
+
+function addnode
+{
+    if [ $# -ne 1 ]; then
+        echo 'Usage: addnode <nodeNumber>' >&2
+	return 1
+    fi
+
+    sudo mknod -m660 /dev/loop$1 b 7 $1
+}

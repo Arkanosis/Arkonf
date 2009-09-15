@@ -1,0 +1,33 @@
+# "-*- sh -*-"
+
+typeset -Ag abbrev
+abbrev=(
+    "l"    "| less"
+    "h"    "| head"
+    "t"    "| tail"
+
+    "m"    ">&-"
+
+    "s"    "| sort"
+    "u"    "| sort -u"
+
+    "g"    "| cgrep"
+
+    "w"    "| wc -l"
+
+    "x"    "| xargs"
+
+    "f"    "find . -type f -name "
+    "t"    "-type"
+    "e"    "-exec echo {} \;"
+)
+
+abbrev-expand() {
+    local MATCH
+    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
+    LBUFFER+=${abbrev[$MATCH]:-$MATCH}
+    zle self-insert
+}
+
+zle -N abbrev-expand
+

@@ -1,0 +1,5 @@
+# "-*- sh -*-"
+
+hash -d bin=~/local/bin
+hash -d lib=~/local/lib
+hash -d share=~/local/share

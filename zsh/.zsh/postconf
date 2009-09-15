@@ -1,0 +1,22 @@
+# "-*- sh -*-"
+
+if [ -z "$LOGIN" ]; then
+    LOGIN="$USER"
+fi
+
+export MALLOC_OPTIONS="J"
+export EMAIL=$EMAIL
+export REPLYTO=$EMAIL
+export NNTPSERVER=$NNTPSERVER
+export PAGER="less"
+export TSOCKS_PASSWORD="$SOCKS_PASSWORD"
+
+if which vim >&-; then
+   export EDITOR="vim"
+else
+   export EDITOR="vi"
+fi
+
+if ! test -d "$ZARKONF_CACHE"; then
+    mkdir -p "$ZARKONF_CACHE"
+fi

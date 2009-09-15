@@ -1,0 +1,10 @@
+# "-*- sh -*-"
+
+if [ `uname -s` = 'FreeBSD' ]; then
+    alias quota="\fs quota"
+    alias fs="du -hd1"
+    alias fsm="du -hd1 | egrep '[0-9][MGT]' | sort -n"
+else
+    alias fs="du -h --max-depth=1"
+    alias fsm="du -h --max-depth=1 | egrep '[0-9][MGT]' | sort -n"
+fi

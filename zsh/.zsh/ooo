@@ -1,0 +1,37 @@
+# "-*- sh -*-"
+
+function install_ooo()
+{
+    if ! test -d "/goinfre/$USER/"; then
+	mkdir -m 700 "/goinfre/$USER/"
+    fi
+
+    if test -O "/goinfre/$USER"; then
+	chmod 700 "/goinfre/$USER"
+
+	if ! test -d "/goinfre/$USER/openoffice"; then
+	    cd /goinfre/$USER/
+	    x ~/pub/openoffice.7z
+	    cd -
+	fi
+    else
+	print "\033[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
+	return 1
+    fi
+}
+
+function writer()
+{
+    if install_ooo; then
+	/goinfre/$USER/openoffice/openoffice.org3/program/swriter $@
+    fi
+}
+
+function calc()
+{
+    if install_ooo; then
+	/goinfre/$USER/openoffice/openoffice.org3/program/scalc $@
+    fi
+}
+
+alias oo="oowriter"

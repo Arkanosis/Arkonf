@@ -1,0 +1,52 @@
+# "-*- sh -*-"
+
+setopt prompt_subst
+
+function precmd()
+{
+    vcs=''
+    if [[ -d .svn ]] ; then
+        vcs="[svn:`svn info | grep Revision | sed 's/.* \(.*\)/\1/g'`]"
+    fi
+    base_dir='.'
+    while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ `readlink -f "$base_dir"` = '/' ]; do
+	base_dir="$base_dir/.."
+    done
+    if [ -d "$base_dir/.hg/" ]; then
+	if [ -f "$base_dir/.hg/branch" ]; then
+            vcs="${vcs}[hg:`< $base_dir/.hg/branch`:`hg id -n`]"
+	else
+            vcs="${vcs}[hg:default:`hg id -n`]"
+	fi
+    fi
+
+    case "$TERM" in
+ 	*xterm*|*rxvt*|Eterm)
+	    echo -ne "\033]0;${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\007"
+ 	    ;;
+ 	screen)
+	    echo -ne "\033_${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\033\\"
+ 	    ;;
+    esac
+
+PROMPT='%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $fg['black']$vcs$fg[$PROMPT_COLOR]
+%!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
+}
+
+autoload -U colors
+colors
+
+#     BA="\033[1;${PROMPT_COLOR}m"
+#     NA="\033[0;${PROMPT_COLOR}m"
+#     NO="\033[0m"
+#     GREEN="\033[32m"
+#     RED="\033[31m"
+#     RET="%(?.$GREEN%?.$RED%?)"
+#     LVL="%(2L.:%L.)"
+
+#     PS1=$(print "$BA%m$NA$LVL%~ ($RET$NA)\n\$$NO ")
+#     export PS1
+RPROMPT='%(1j.[%j].)'
+
+# Affiche le texte, meme s'il n'y a pas de retour a la ligne
+setopt NOPROMPTCR

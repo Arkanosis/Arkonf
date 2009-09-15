@@ -1,0 +1,25 @@
+# "-*- sh -*-"
+
+function prefix()
+{
+    zle beginning-of-line;
+    zle -U "$1 "
+}
+
+function sudoit()
+{
+    prefix sudo
+}
+zle -N s sudoit
+
+function distit()
+{
+    prefix dist
+}
+zle -N d distit
+
+function xit()
+{
+    prefix x
+}
+zle -N x xit

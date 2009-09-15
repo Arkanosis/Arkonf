@@ -1,0 +1,46 @@
+# "-*- sh -*-"
+
+pushd `dirname $0` >&-
+
+source ./postconf
+source ./paths
+
+source ./abbrev
+source ./alias
+source ./arc
+source ./bookmarks
+source ./cd
+source ./compile
+source ./ls # Avant completion !
+source ./completion
+source ./conf
+source ./dist
+source ./dot
+source ./files
+source ./firefox
+source ./hash
+source ./history
+source ./keys
+source ./less
+source ./ln
+source ./math
+source ./mkdir
+source ./mute
+source ./options
+source ./prefix
+source ./prompt
+source ./proxy
+source ./rm
+source ./run
+source ./quota
+source ./search
+source ./ssh
+source ./stats
+#source ./stderr
+source ./truecrypt
+source ./usb
+source ./vcs
+source ./watch
+source ./zle
+
+popd

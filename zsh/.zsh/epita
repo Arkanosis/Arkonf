@@ -1,0 +1,11 @@
+# "-*- sh -*-"
+
+source ./goinfre
+source ./netsoul
+
+# Zlock automatique
+alias zlock="zlock -immed -user root -notime -text '-=# $PSEUDO #=-' -pwtext 'Hj$!bVfRz&'"
+
+# Connection a une machine du PIE
+alias sb="ssh bam"
+alias so="ssh odrad"

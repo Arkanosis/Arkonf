@@ -1,0 +1,16 @@
+# "-*- sh -*-"
+
+function mute()
+{
+    ($@) >-
+}
+
+function emute()
+{
+    ($@) 2>-
+}
+
+function amute()
+{
+    ($@) >&-
+}
