@@ -3,13 +3,15 @@
 # Ouverture automatique de fichiers
 alias -s README=less
 alias -s INSTALL=less
+
 if which okular >&-; then
-    alias -s pdf=acroread
+    alias -s pdf=okular
 elif which acroread >&-; then
     alias -s pdf=acroread
 else
     alias -s pdf=xpdf
 fi
+
 alias -s cc=e
 alias -s cpp=e
 alias -s cxx=e
@@ -17,5 +19,18 @@ alias -s hh=e
 alias -s hpp=e
 alias -s hxx=e
 alias -s c=e
+
 alias -s Makefile=e
-alias -s jpg=xv
+
+if which gwenview >&-; then
+    viewer=gwenview
+elif which xv >&-; then
+    viewer=xv
+else
+    viewer=display
+fi
+
+alias -s bmp=$viewer
+alias -s jpg=$viewer
+alias -s jpeg=$viewer
+alias -s png=$viewer
