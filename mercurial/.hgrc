@@ -2,19 +2,19 @@
 username = Arkanosis <arkanosis@gmail.com>
 
 [extensions]
-hgext/hbisect= !
-hgext/alias=
-hgext/bookmarks=
-hgext/churn=
-hgext/color=
-hgext/convert=
-hgext/extdiff=
-hgext/fetch=
-hgext/graphlog=
-hgext/hgk=
-hgext/purge=
-hgext/rebase=
-hgext/record=
+hgext.hbisect= !
+hgext.alias=
+hgext.bookmarks=
+hgext.churn=
+hgext.color=
+hgext.convert=
+hgext.extdiff=
+hgext.fetch=
+hgext.graphlog=
+hgext.hgk=
+hgext.purge=
+hgext.rebase=
+hgext.record=
 
 [alias]
 b = branch

@@ -204,7 +204,7 @@ If region contains less than 2 lines, lines are left untouched."
 (icomplete-mode t) ;; Auto completion des commandes
 (ido-mode t)
 (iswitchb-mode)
-(menu-bar-mode nil)
+(menu-bar-mode -1)
 (normal-erase-is-backspace-mode 0)
 (show-paren-mode t)
 (tool-bar-mode nil)
@@ -252,25 +252,28 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "~/.emacs.d/exa-mode.el")
-(autoload 'exa-mode "exa-mode" "" t)
-(autoload 'exa-export-all-packages "exa-mode" "" t)
-(setq auto-mode-alist
-      (cons '("\\.exa$" . exa-mode) auto-mode-alist))
-(defun my-exa-hook ()
-  (setq indent-tabs-mode nil)
-  (setq compilation-error-regexp-alist
-	(append
-	 compilation-error-regexp-alist
-	 (list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))
-	 ))
-  (setq compilation-error-regexp-alist
-	(append
-	 compilation-error-regexp-alist
-	 (list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4))))
-  )
-(add-hook 'exa-mode-hook 'my-exa-hook)
-(set-face-foreground 'exa-keyword-face "#00eeee")
+(if (file-readable-p "~/.emacs.d/exa-mode.el")
+    (progn (load "~/.emacs.d/exa-mode.el")
+	   (autoload 'exa-mode "exa-mode" "" t)
+	   (autoload 'exa-export-all-packages "exa-mode" "" t)
+	   (setq auto-mode-alist
+		 (cons '("\\.exa$" . exa-mode) auto-mode-alist))
+	   (defun my-exa-hook ()
+	     (setq indent-tabs-mode nil)
+	     (setq compilation-error-regexp-alist
+		   (append
+		    compilation-error-regexp-alist
+		    (list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))
+		    ))
+	     (setq compilation-error-regexp-alist
+		   (append
+		    compilation-error-regexp-alist
+		    (list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4))))
+	     )
+	   (add-hook 'exa-mode-hook 'my-exa-hook)
+	   (set-face-foreground 'exa-keyword-face "#00eeee")
+    )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Old stuff
