@@ -21,7 +21,7 @@ setopt EXTENDED_GLOB
 # Extensions non prises en compte pour la completion, sauf s'il n'y a aucune ambiguite
 fignore=(.aux .toc .bak .sav .old .o .trace \~)
 
-fpath=("$ZARKONF_DIR/completions" ~/zsh_completions $fpath)
+fpath=("$ZARKONF_DIR/.zsh/completions" $fpath)
 
 autoload -U compinit
 compinit

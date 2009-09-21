@@ -13,3 +13,4 @@ insert-kbd-macro
 C-x C-x remet le transient-mark-mode sur la derniere seletion
 M+= comptes les lignes et les caracteres selectionnes
 M y apres C y passse en revue les differentes copies
+C-c C-l pour activer / désactiver l'indentation automatique

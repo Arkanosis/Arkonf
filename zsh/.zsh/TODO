@@ -1,4 +1,6 @@
-- Révision / branche du dans le prompt pour CVS et Git aussi (enfin surtout Git :p)
+- Révision / branche du dans le prompt pour CVS
+- vcsroot pour hg et git
+- Support complet de git dans les commances vcs
 
 - Finir tree() : doit être compatible avec toutes les options de gls
 
@@ -24,15 +26,11 @@
 - Installeur :
  - Téléchargement de la dernière version si internet dispo (http://zarkonf.arkanosis.net/latest) avec wget
  - Affichage de 'zArkonf N.M, (C) 200...'
- - La configuration locale est stockée dans ~/.zshrc
- - Au début du ~/.zshrc il y a un 'source le_chemin_qui_va_bien/zarkonf'
- - Dans zarkonf, on teste ~/.zshrc, s'il n'existe pas, on rentre en mode de création interactif
  - Le répertoire 'modules' est parcouru, et si un module est installé, son script 'install' est lancé
  - Chaque module installé ajoute sa ligne 'source' dans ~/.zshrc
  - Choix du binding clavier (+ fonction pour passer rapidement en mode clavier pour le développement)
 
 - Gestion de version
- - Le tout versionné avec un VCS
  - confdf : diff avec la version stable, conflg, confst, confci, confpush...
  - Seul le répertoire ~/.zsh est versionné (ne comprend pas de login, mot de passe...)
  - confup : fetch la dernière version et re-source le ~/.zshrc

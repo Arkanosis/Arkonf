@@ -15,10 +15,10 @@ if [ "$HOST" != 'gate-ssh' ]; then
     #PROMPT_COLOR="3`echo $(($RANDOM*6/32767+1))`"
     PROMPT_COLOR='cyan'
 
-    ZARKONF_DIR="$HOME/Arkonf/zsh/.zsh"
+    ZARKONF_DIR="$HOME/Arkonf/zsh"
     ZARKONF_CACHE="$HOME/.zcache"
 
-    pushd "$ZARKONF_DIR" >&-
+    pushd "$ZARKONF_DIR/.zsh" >&-
 
     source ./zshrc
 

@@ -4,7 +4,7 @@ local modules
 
 modules=()
 
-for module in "$ZARKONF_DIR"/*(:t); do
+for module in "$ZARKONF_DIR/.zsh"/*(:t); do
     modules=($modules $module)
 done
 

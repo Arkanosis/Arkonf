@@ -1,11 +1,31 @@
 # "-*- sh -*-"
 
+function whichvcs()
+{
+    if test -d '.svn'; then
+	echo svn
+    elif test -d 'CVS'; then
+	echo cvs
+    else
+	base_dir='.'
+	while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ `readlink -f "$base_dir"` != '/' ]; do
+	    base_dir="$base_dir/.."
+	done
+	if [ -d "$base_dir/.hg/" ]; then
+	    echo hg
+	elif [ -d "$base_dir/.git/" ]; then
+	    echo git
+	fi
+    fi
+}
+
 function vcsroot()
 {
     cmd="$1"
     shift
 
     base_dir='.'
+    # TODO FIXME for hg / git
     while [ -d "$base_dir/../.svn" ] || [ -d "$base_dir/../CVS" ]; do
 	base_dir="$base_dir/.."
     done
@@ -16,6 +36,7 @@ function vcsroot()
 # Checkout
 function co()
 {
+    # TODO FIXME for git
     hg id >& /dev/null
     if [ $? -eq 255 ]; then
 	svn co $@
@@ -23,7 +44,7 @@ function co()
 	    cvs -d $1 co $2
 	fi
     else
-	hg co $@
+	hg clone $@
     fi
 }
 
@@ -37,15 +58,20 @@ function colorizeAdd()
 
 function add()
 {
-    if [ -d '.svn' ]; then
-	svn add $@ | colorizeAdd
-    elif [ -d 'CVS' ]; then
-	for path; do
-	    find "$path" -exec cvs add {} | colorizeAdd \;
-	done
-    else
-	hg add $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	svn)
+	    svn add $@ | colorizeAdd
+	;;
+	cvs)
+	    for path; do
+		find "$path" -exec cvs add {} | colorizeAdd \;
+	    done
+	;;
+	hg|git)
+	    "$vcs" add $@
+	;;
+    esac
 }
 
 # Revert
@@ -63,13 +89,26 @@ function revert()
 # Commit
 function ci()
 {
-    if [ -d '.svn' ]; then
-	svn ci $@
-    elif [ -d 'CVS' ]; then
-	cvs ci $@
-    else
-	hg ci -v $@
-    fi
+    # TODO FIXME when vcsroot will be fixed, make so that :
+    # - ci commit the current directory or the given arguments, if there are some (to be fixed for hg, git)
+    # - rci commit the whole project (to be fixed for hg, git)
+    # same for df / rdf / dfl / rdfl / st / rst...
+    vcs=`whichvcs`
+    case "$vcs" in
+	svn|cvs)
+	    "$vcs" ci $@
+	;;
+	hg)
+	    hg ci -v $@
+	;;
+	git)
+	    if [ $# -eq 0 ]; then
+		git commit -a
+	    else
+		git commit $@
+	    fi
+	;;
+    esac
 }
 function rci()
 {
@@ -79,7 +118,12 @@ function rci()
 # Push
 function push()
 {
-    hg push $@
+    vcs=`whichvcs`
+    case "$vcs" in
+	hg|git)
+	    "$vcs" push $@
+	;;
+    esac
 }
 
 # Status
@@ -92,13 +136,18 @@ function colorizeStatus()
 
 function st()
 {
-    if [ -d '.svn' ]; then
-	svn st $@ | colorizeStatus
-    elif [ -d 'CVS' ]; then
-	cvs st $@ | colorizeStatus
-    else
-	hg st $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	svn|cvs)
+	    "$vcs" st $@ | colorizeStatus
+	;;
+	hg)
+	    hg st $@ .
+	;;
+	git)
+	    git status $@ .
+	;;
+    esac
 }
 function rst()
 {
@@ -108,13 +157,18 @@ function rst()
 # Update
 function up()
 {
-    if [ -d '.svn' ]; then
-	svn up $@
-    elif [ -d 'CVS' ]; then
-	cvs up $@
-    else
-	hg fetch $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	svn|cvs)
+	    "$vcs" up $@
+	;;
+	hg)
+	    hg fetch $@
+	;;
+	git)
+	    git pull $@
+	;;
+    esac
 }
 function rup()
 {
@@ -124,21 +178,29 @@ function rup()
 # Diff
 function df()
 {
-    if [ -d '.svn' ]; then
-	svn diff --diff-cmd=colordiff $@
-    elif [ -d 'CVS' ]; then
-	cvs diff $@
-    else
-	base_dir='.'
-	while [ ! -d "$base_dir/.hg" ]; do
-	    base_dir="$base_dir/.."
-	done
-	for file in `hg st | sed -n '/^M/ s/^M //p'`; do
-	    echo
-	    print '\033[1;33m***' $file '***\033[0m'
-	    hg df $@ "$base_dir/$file"
-	done
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	svn)
+	    svn diff --diff-cmd=colordiff $@
+	;;
+	cvs)
+	    cvs diff $@
+	;;
+	hg)
+	    base_dir='.'
+	    while [ ! -d "$base_dir/.hg" ]; do
+		base_dir="$base_dir/.."
+	    done
+	    for file in `hg st | sed -n '/^M/ s/^M //p'`; do
+		echo
+		print '\033[1;33m***' $file '***\033[0m'
+		hg df $@ "$base_dir/$file"
+	    done
+	;;
+	git)
+	    git diff --color $@
+	;;
+    esac
 }
 function rdf()
 {
@@ -188,6 +250,7 @@ function dla()
     cmd=$1
     shift
 
+    # TODO FIXME for git
     for file in `$cmd st | sed -n '/^M/ s/^M //p'`; do
 	printf "$file\t"
 	dlf $cmd $@ $file
@@ -199,13 +262,12 @@ function dla()
 
 function dl()
 {
-    if [ -d '.svn' ]; then
-	dla svn $@
-    elif [ -d 'CVS' ]; then
-	dla cvs $@
-    else
-	dla hg $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	*)
+	    dla "$vcs" $@
+	;;
+    esac
 }
 
 function dll()
@@ -216,25 +278,27 @@ function dll()
 # Revert
 function rv()
 {
-    if [ -d '.svn' ]; then
-	svn revert $@
-    elif [ -d 'CVS' ]; then
-	cvs revert $@
-    else
-	hg revert $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+       svn|cvs|hg)
+	    "$vcs" revert $@
+	;;
+	git)
+	    # git checkout would do the same thing, without saving the current state
+	    git stash $@
+	;;
+    esac
 }
 
 # Log
 function lg()
 {
-    if [ -d '.svn' ]; then
-	svn log $@
-    elif [ -d 'CVS' ]; then
-	cvs log $@
-    else
-	hg log $@
-    fi
+    vcs=`whichvcs`
+    case "$vcs" in
+	*)
+	    "$vcs" log $@
+	;;
+    esac
 }
 function rlg()
 {

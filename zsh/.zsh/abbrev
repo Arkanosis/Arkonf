@@ -8,7 +8,7 @@ abbrev=(
 
     "m"    ">&-"
 
-    "s"    "| sort"
+    "r"    "| sort"
     "u"    "| sort -u"
 
     "g"    "| cgrep"
@@ -16,6 +16,8 @@ abbrev=(
     "w"    "| wc -l"
 
     "x"    "| xargs"
+
+    "s"    "| sed 's///'"
 
     "f"    "find . -type f -name "
     "t"    "-type"

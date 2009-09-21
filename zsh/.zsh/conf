@@ -1,8 +1,9 @@
 # "-*- sh -*-"
 
-alias ez="e ~/.zshrc"
+alias ez="e $ZARKONF_DIR/.zshrc"
+alias cz="cd $ZARKONF_DIR"
 
 function ze()
 {
-    e $ZARKONF_DIR/$@
+    e $ZARKONF_DIR/.zsh/$@
 }

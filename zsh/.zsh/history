@@ -1,7 +1,7 @@
 # "-*- sh -*-"
 
 # Historique permanent
-HISTFILE=~/.history
+HISTFILE="$HOME/.zcache/history"
 
 # Taille de l'historique
 HISTSIZE=300

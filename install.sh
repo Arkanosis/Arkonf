@@ -7,14 +7,15 @@ done
 
 install()
 {
-    test -f "$2" && echo "\033[31m$2 already exist, skipped\033[0m" || ( ln -s "$installPath/$1" "$2" && echo "\033[32m$2 succefully installed\033[0m" )
+    test -e "$2" && printf "\033[31m$2 already exist, skipped\033[0m\n" || ( ln -s "$installPath/$1" "$2" && printf "\033[32m$2 succefully installed\033[0m\n" )
 }
 
-echo '\033[33mArkinstall v0.1'
-echo '(C) 2009 - Arkanosis'
-echo 'arkanosis@gmail.com'
+printf '\033[33mArkinstall v0.1\n'
+printf '(C) 2009 - Arkanosis\n'
+printf 'arkanosis@gmail.com\n'
+printf 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m\n'
+
 echo
-echo 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m'
 
 install zsh/.zshrc ~/.zshrc
 install mercurial/.hgrc ~/.hgrc
@@ -24,3 +25,11 @@ install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
 install vim/.vimrc ~/.vimrc
 install xorg/.Xmodmap ~/.Xmodmap
+
+echo
+
+echo 'Edit the configuration file? [yN]'
+read y
+if [ "$y" = 'Y' ] || [ "$y" = 'y' ]; then
+    vi ~/.zshrc
+fi

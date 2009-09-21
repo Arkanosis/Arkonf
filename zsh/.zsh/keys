@@ -109,7 +109,7 @@ bindkey -s ';3A' '^[p!!\n'
 bindkey -s ';3B' '^[p!-2\n'
 
 # Alt + ? pour voir l'aide
-bindkey -s '^[?' "^[pless $ZARKONF_DIR/NOTES\n"
+bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
 
 # Alt + . pour etendre une abbreviation
 bindkey "^[[[," abbrev-expand # Je ne crois pas que cette touche existe, et tant mieux :p
