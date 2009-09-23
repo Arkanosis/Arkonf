@@ -42,3 +42,5 @@ compdef _gnu_generic toto # utiliser la completion intelligente quand --help fon
 Autocompletion super rapide :
 function laFonction { reply=(mot1 mot2 mot3); }
 compctl -K laFonction laCommande
+
+ctrl+shift+vernum : active/désactive le numpad (sinon en mode souris)
