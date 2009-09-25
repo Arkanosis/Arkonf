@@ -29,8 +29,16 @@ compinit
 # Coloration de la completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Completion sans distinction de la casse ou des accents
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# Coloration de certaines completions spécifiques
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# Completion sans distinction de la casse ou des accents (ça marche très mal, on est obligé de le faire en plusieurs fois)
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z}={A-Za-z}' \
+  '+m:{a}={á}' '+m:{e}={é}' \
+  '+m:{a}={à}' '+m:{e}={è}' '+m:{u}={ù}' \
+  '+m:{a}={â}' '+m:{e}={ê}' '+m:{i}={î}' '+m:{o}={ô}' '+m:{u}={û}' \
+  '+m:{e}={ë}'
 
 # Description des groupes de completion
 s=`echo "\033[1;40m%d\033[0m"`
@@ -48,7 +56,8 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-zstyle ':completion:*:*:x:*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z):archive\ files *(-/):directories'
+# Completion pour le gestionnaire d'archives universel
+zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z):files *(-/):directories'
 
 function zcl()
 {

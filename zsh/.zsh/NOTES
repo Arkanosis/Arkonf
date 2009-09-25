@@ -2,6 +2,7 @@
 ^-R : Chercher dans l'historique
 ^-x : Executer une commande zsh
 ^-_ : Undo
+M-^_ : Recopie l'argument précédent une deuxième fois
 M-a : Valider la commande mais la garder tapée
 <cmd> !:<n>[-<m>] : Execute cmd avec le n argument de la commande precedente (jusqu'au m)
 <cmd> arg1 arg2 !#:<n> : Recopie l'argument n de la ligne courante une deuxieme fois

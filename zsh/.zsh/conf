@@ -2,13 +2,19 @@
 
 alias ez="e $ZARKONF_DIR/.zshrc"
 alias cz="cd $ZARKONF_DIR"
+alias czz="cd $ZARKONF_DIR/.zsh"
+alias czc="cd $ZARKONF_DIR/.zsh/completions"
 
 function ze()
 {
     files=()
 
     for module in $@; do
-	files=($files "$ZARKONF_DIR/.zsh/$module")
+	if [ $module[1] = '_' ]; then
+	    files=($files "$ZARKONF_DIR/.zsh/completions/$module")
+	else
+	    files=($files "$ZARKONF_DIR/.zsh/$module")
+	fi
     done
 
     e $files

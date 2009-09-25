@@ -1,4 +1,7 @@
-- Support des caractères accentués pour zstyle (exemple: Pre<tab> autocomplète Présentation.pdf, ce qui n'est pas le cas actuellement ; checher du cote de matcherlist, comme pour le case-insensitive)
+- Completion pour javatest, ngtest + MàJ exa, exatest à distribuer
+
+- Améliorer le support des caractères accentués pour zstyle (au besoin, patcher ZSH qui supporte ça très mal)
+- Dans la coloration des options (-<nomOption>), colorer en rouge l'option (et laisser la description en blanc)
 
 - Révision / branche dans le prompt pour CVS
 - vcsroot pour hg et git

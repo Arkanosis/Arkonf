@@ -49,7 +49,7 @@ if [[ $service == "clone" ]]; then
     '*::command:->subcmd' && return 0
 
     if (( CURRENT == 1 )); then
-        _wanted commands expl '7za command' compadd -a subcmds
+        _wanted repository expl 'repository' compadd -M 'r:|-=* r:|=*' -a subcmds
         return
     fi
     service="$words[1]"
