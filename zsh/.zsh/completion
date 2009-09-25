@@ -29,8 +29,12 @@ compinit
 # Coloration de la completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Completion sans distinction de la casse
+# Completion sans distinction de la casse ou des accents
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Description des groupes de completion
+s=`echo "\033[1;40m%d\033[0m"`
+zstyle '*:descriptions' format $s
 
 # Ajoute un menu pour l'autocompletion
 zstyle ':completion:*' menu select
@@ -44,9 +48,7 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-zstyle ':completion:*:*echo*' hosts preston lost
-
-compctl -g '[^.]*(-/) *.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z)' + -f x
+zstyle ':completion:*:*:x:*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z):archive\ files *(-/):directories'
 
 function zcl()
 {

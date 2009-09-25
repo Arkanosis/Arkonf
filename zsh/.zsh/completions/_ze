@@ -1,21 +1,27 @@
 #compdef ze
 
 local modules
+local notes
+local completions
 
 modules=()
 
-for module in "$ZARKONF_DIR/.zsh"/*(:t); do
+for module in "$ZARKONF_DIR/.zsh"/*[a-z]*(:t); do
     modules=($modules $module)
 done
 
-if [[ $service == "ze" ]]; then
-    _arguments -C -A "-*" \
-    '*::command:->subcmd' && return 0
+notes=()
 
-    if (( CURRENT == 1 )); then
-        _wanted commands expl 'ze command' compadd -a modules
-        return
-    fi
-    service="$words[1]"
-    curcontext="${curcontext%:*}=$service:"
-fi
+for note in "$ZARKONF_DIR/.zsh"/*[A-Z]*(:t); do
+    notes=($notes $note)
+done
+
+completions=()
+
+for completion in "$ZARKONF_DIR/.zsh/completions"/_*(:t); do
+    completions=($completions $completion)
+done
+
+_wanted module expl 'module' compadd -a modules
+_wanted note expl 'note' compadd -a notes
+_wanted completion expl 'completion' compadd -a completions

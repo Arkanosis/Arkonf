@@ -25,7 +25,6 @@ function vcsroot()
     shift
 
     base_dir='.'
-    # TODO FIXME for hg / git
     while [ -d "$base_dir/../.svn" ] || [ -d "$base_dir/../CVS" ]; do
 	base_dir="$base_dir/.."
     done
@@ -72,18 +71,6 @@ function add()
 	    "$vcs" add $@
 	;;
     esac
-}
-
-# Revert
-function revert()
-{
-    if [ -d '.svn' ]; then
-	svn revert $@
-    elif [ -d 'CVS' ]; then
-	cvs revert $@
-    else
-	hg revert $@
-    fi
 }
 
 # Commit

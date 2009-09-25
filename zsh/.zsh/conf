@@ -5,5 +5,11 @@ alias cz="cd $ZARKONF_DIR"
 
 function ze()
 {
-    e $ZARKONF_DIR/.zsh/$@
+    files=()
+
+    for module in $@; do
+	files=($files "$ZARKONF_DIR/.zsh/$module")
+    done
+
+    e $files
 }

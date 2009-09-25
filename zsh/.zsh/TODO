@@ -1,6 +1,7 @@
-- Révision / branche du dans le prompt pour CVS
+- Support des caractères accentués pour zstyle (exemple: Pre<tab> autocomplète Présentation.pdf, ce qui n'est pas le cas actuellement ; checher du cote de matcherlist, comme pour le case-insensitive)
+
+- Révision / branche dans le prompt pour CVS
 - vcsroot pour hg et git
-- Support complet de git dans les commances vcs
 
 - Finir tree() : doit être compatible avec toutes les options de gls
 

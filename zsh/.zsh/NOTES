@@ -44,3 +44,4 @@ function laFonction { reply=(mot1 mot2 mot3); }
 compctl -K laFonction laCommande
 
 ctrl+shift+vernum : active/désactive le numpad (sinon en mode souris)
+mod+shift+q : tue le WM (metacity ou xmonad)
