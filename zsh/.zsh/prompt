@@ -9,7 +9,7 @@ function precmd()
         vcs="[svn:`svn info | grep Revision | sed 's/.* \(.*\)/\1/g'`]"
     fi
     base_dir='.'
-    while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ `readlink -f "$base_dir"` != '/' ]; do
+    while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ "`readlink -f "$base_dir"`" != '/' ]; do
 	base_dir="$base_dir/.."
     done
     if [ -d "$base_dir/.hg/" ]; then
