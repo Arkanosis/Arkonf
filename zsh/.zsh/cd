@@ -38,4 +38,3 @@ rationalise-dot() {
   fi
 }
 zle -N rationalise-dot
-bindkey . rationalise-dot

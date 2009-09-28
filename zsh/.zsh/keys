@@ -11,6 +11,9 @@ bindkey -e
 #  Redefinition des touches   #
 ###############################
 
+# À partir du troisième point, insère les points deux par deux séparès par des slashes
+bindkey . rationalise-dot
+
 # Déplacement dans les menus
 bindkey '^o' accept-and-infer-next-history
 bindkey '^[o' accept-and-menu-complete
