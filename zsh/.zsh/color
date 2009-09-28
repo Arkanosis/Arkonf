@@ -1,0 +1,4 @@
+function nocolor()
+{
+    $@ | sed 's/\x1b\[[0-7;]\+m//g'
+}

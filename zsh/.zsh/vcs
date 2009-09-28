@@ -310,13 +310,13 @@ alias lcv='lgv -r committed'
 function purge()
 {
     echo 'Will purge the following files:'
-    for i in `st | sed -r 's/^[\?] +(.+)$/\1/'`; do
+    for i in `nocolor st | sed -r 's/^[\?] +(.+)$/\1/'`; do
 	echo "  $i"
     done
     echo 'Proceed?'
     read y
     if [ "$y" = 'y' ] || [ "$y" = 'Y' ]; then
-	for i in `st | sed -r 's/^[\?] +(.+)$/\1/'`; do
+	for i in `nocolor st | sed -r 's/^[\?] +(.+)$/\1/'`; do
 	    rm -r "$i"
 	done
 	return 0

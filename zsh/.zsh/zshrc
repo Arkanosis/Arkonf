@@ -10,6 +10,7 @@ source ./alias
 source ./arc
 source ./bookmarks
 source ./cd
+source ./color
 source ./compile
 source ./ls # Avant completion !
 source ./completion
