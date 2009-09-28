@@ -19,3 +19,17 @@ function ze()
 
     e $files
 }
+
+function cdo()
+{
+    pushd $ZARKONF_DIR >&-
+    $@
+    popd >&-
+}
+
+alias cst="cdo st"
+alias cdf="cdo df"
+alias cdfl="cdo dfl"
+alias cci="cdo ci"
+alias cpush="cdo push"
+alias cup="cdo up"
