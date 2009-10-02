@@ -12,7 +12,7 @@ bindkey -e
 ###############################
 
 # À partir du troisième point, insère les points deux par deux séparès par des slashes
-bindkey . rationalise-dot
+bindkey . magic-dot
 
 # Déplacement dans les menus
 bindkey '^o' accept-and-infer-next-history
@@ -27,6 +27,9 @@ bindkey "^[OH" beginning-of-line
 
 # Insert pour ecraser
 bindkey '^[[2~' overwrite-mode
+
+# Ctrl + R pour rechercher avec du globbing dans les dernières commandes
+bindkey '^r' history-globbing-search-backward
 
 # Pageup/pagedown pour naviguer dans l'historique
 bindkey '^[[6~' history-search-forward

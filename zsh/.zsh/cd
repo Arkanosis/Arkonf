@@ -29,12 +29,20 @@ alias rl="cd -P ."
 setopt AUTO_CD
 setopt AUTO_PUSHD
 
-# ZSH-LOVERS
-rationalise-dot() {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+=/..
-  else
-    LBUFFER+=.
-  fi
+function magic-dot()
+{
+    if [[ $LBUFFER = *.. ]]; then
+	LBUFFER+=/..
+    else
+	zle .self-insert $@
+    fi
 }
-zle -N rationalise-dot
+zle -N magic-dot
+
+function history-globbing-search-backward()
+{
+    bindkey . self-insert
+    zle .history-incremental-pattern-search-backward
+    bindkey . magic-dot
+}
+zle -N history-globbing-search-backward
