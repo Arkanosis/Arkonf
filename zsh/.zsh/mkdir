@@ -1,10 +1,10 @@
 # "-*- sh -*-"
 
 # Creation de repertoire public
-alias mkdir="mkdir -m 755"
+alias mkdir="mkdir -m 755 -p"
 
 # Creation de repertoire securisee
-alias mksec="mkdir -m 700"
+alias mksec="mkdir -m 700 -p"
 
 
 function mkcd()

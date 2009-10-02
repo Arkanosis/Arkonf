@@ -3,3 +3,5 @@
 hash -d bin=~/local/bin
 hash -d lib=~/local/lib
 hash -d share=~/local/share
+hash -d arkonf="$ARKONF_DIR"
+hash -d zarkonf="$ZARKONF_DIR"

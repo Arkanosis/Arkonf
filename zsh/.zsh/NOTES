@@ -50,3 +50,5 @@ mod+shift+q : tue le WM (metacity ou xmonad)
 
 curlftpfs ftp://ftp.sunet.se/ sunet/
 fusermount -u sunet/
+
+write <username> # envoie un message à l'utilisateur (dans le genre net send sous windows, pourrit la console et tout)

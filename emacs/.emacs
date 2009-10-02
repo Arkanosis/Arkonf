@@ -190,6 +190,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (setq write-file-hooks 'delete-trailing-whitespace)
 
+(add-hook 'emacs-startup-hook 'delete-other-windows) ;; Ras le bol de cet écran splitté au démarrage
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

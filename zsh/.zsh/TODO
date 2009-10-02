@@ -1,3 +1,9 @@
+- Apprendre la syntaxe complète de zstyle
+
+- Réparer abbrev, ../../ et C-r (régler le problème des caractères rebindés ; ../../ sur . et abbrev sur espace)
+
+- Bookmarks permanents (utiliser un fichier), avec listage, avertissement en cas de doublon, suppression, hash -d...
+
 - Completion pour javatest, ngtest + MàJ exa, exatest à distribuer
 
 - Améliorer le support des caractères accentués pour zstyle (au besoin, patcher ZSH qui supporte ça très mal)
@@ -23,7 +29,7 @@
 
 - LS_COLOR généré avec dircolors, plutôt qu'à la main
 
-- Zsh à la sauce ViM
+- Zsh à la sauce ViM (raccourcis, indication du mode...)
 
 - Raccouci 'suivant' symétrique à popd
 

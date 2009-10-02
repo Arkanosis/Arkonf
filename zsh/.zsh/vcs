@@ -334,3 +334,4 @@ function purge()
 alias fetch="up"
 alias hin="hg in"
 alias out="hg out"
+alias cu="svn cleanup"
