@@ -28,7 +28,6 @@ abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
     LBUFFER+=${abbrev[$MATCH]:-$MATCH}
-    zle self-insert
 }
 
 zle -N abbrev-expand

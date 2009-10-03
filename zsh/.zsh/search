@@ -38,11 +38,32 @@ function search()
     fi
 }
 
-alias rs="search"
-
-function rsl()
+alias /="search"
+function /l()
 {
-    rs $@ | less
+    search $@ | less -r
+}
+function /f()
+{
+    dir=.
+
+    if [ $# -gt 0 ]; then
+	dir="$1"
+	shift
+    fi
+
+    find "$dir" -type f $@
+}
+function /d()
+{
+    dir=.
+
+    if [ $# -gt 0 ]; then
+	dir="$1"
+	shift
+    fi
+
+    find "$dir" -type f $@
 }
 
 alias td="search 'TODO|FIXME|HACK'"
