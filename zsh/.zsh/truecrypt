@@ -11,7 +11,7 @@ function ma
 	mkdir mnt
     fi
 
-    for i in $@; do
+    for i; do
         if ! test -d "mnt/$i"; then
 	   mkdir "mnt/$i"
 	fi

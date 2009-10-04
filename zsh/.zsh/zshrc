@@ -16,6 +16,7 @@ source ./ls # Avant completion !
 source ./completion
 source ./conf
 source ./dist
+source ./duplicates
 source ./dot
 source ./files
 source ./firefox

@@ -9,7 +9,7 @@ function ze()
 {
     files=()
 
-    for module in $@; do
+    for module; do
 	if [ $module[1] = '_' ]; then
 	    files=($files "$ZARKONF_DIR/.zsh/completions/$module")
 	else

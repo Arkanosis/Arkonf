@@ -1,13 +1,30 @@
 - Apprendre la syntaxe complète de zstyle
 
-- Rebinder abbrev sur espace
+- Rebinder abbrev sur espace (sans casser history-search-backward), avec un self-insert
+
+- zm / zc / zt, nouveau module, comme zmv et zcp, mais avec la syntaxe de sed :
+  zm 's/[[:lower:]]/[[:upper:]]/g'
+  zm '/\.mp3$/ s/ /_/g'
+  zt affiche les modifications potentielles sans les effectuer
+
+- zf : autocomplétion sur les fonctions, alias, bindkeys... de zArkonf, ouvre le bon fichier à la bonne ligne
+  Alternative à zed -f en plus complet et avec un vrai éditeur de texte
+
+- magic-slash : taper '/' déclenche automatiquement l'auto-complétion (sans devoir en plus appuyer sur tab)
+  *sauf* si c'est le seul caractère de la ligne de commande (auquel cas, on pourrait pouvoir utiliser la recherche '/')
+
+- magic-dot : en plus d'ajouter '/..', affiche (à la Vim) le nom du répertoire correspondant (readlink ?)
 
 - /r fait comme / (search), mais prend en premier argument une regexp sur le nom des fichiers dans lesquels checher
 - /g idem, mais globbing au lieu de regexp
 
 - Bookmarks permanents (utiliser un fichier), avec listage, avertissement en cas de doublon, suppression, hash -d...
 
+- Ne pas charger ZARKONF si mode non interactif, résoud (probablement) les problèmes de scp
+
 - Completion pour javatest, ngtest + MàJ exa, exatest à distribuer
+- autocomplétion ngscons
+- bindkey ngscons -df
 
 - Améliorer le support des caractères accentués pour zstyle (au besoin, patcher ZSH qui supporte ça très mal)
 - Dans la coloration des options (-<nomOption>), colorer en rouge l'option (et laisser la description en blanc)
@@ -18,6 +35,8 @@
 - Finir tree() : doit être compatible avec toutes les options de gls
 
 - Binder ls sur tab lorsque la ligne est vide (comme dans tcsh), le coder à la main si ça n'existe vraiment pas
+
+- Colorer le prompt suivant root / local / ssh / user@ssh / su (rouge, cyan, vert, rose, jaune)
 
 - Bookmarks
  - Ajouter une fonction qui liste les bookmarks courants et une autre pour supprimer un bookmark
@@ -42,6 +61,7 @@
  - Le répertoire 'modules' est parcouru, et si un module est installé, son script 'install' est lancé
  - Chaque module installé ajoute sa ligne 'source' dans ~/.zshrc
  - Choix du binding clavier (+ fonction pour passer rapidement en mode clavier pour le développement)
+ - Passer un coup de sed -i sur le .zshrc pour changer $ARKONF_DIR
 
 - Gestion de version
  - confdf : diff avec la version stable, conflg, confst, confci, confpush...
