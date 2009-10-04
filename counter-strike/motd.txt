@@ -1,0 +1,74 @@
+<HTML><HEAD><TITLE>Home - TA4F, le site du clan</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content=NOTEPAD name=GENERATOR>
+<META content=ALL name=ROBOTS>
+<META content="Site du clan TA4F" name=TITLE>
+<META content="Jeux vidéos" name=SUBJECT>
+<META content="Site du clan TA4F" name=DESCRIPTION>
+<META content="ta4f, TA4F, [TA4F], clan, jeu, jeux, video, osiris, fonkhead, vandame, gratuit, telechargement, francais, cs, dod, ut2k3, aok, aom, war3" name=KEYWORDS>
+<META content="Osiris Da Fonkhead" name=AUTHOR>
+<META content=www.ta4f.tk name=COPYRIGHT>
+<META content="2 days" name=REVISIT-AFTER><LINK href="images/logos/icone.ico" rel="shortcut icon"><LINK href="includes/style.css" type=text/css rel=stylesheet></HEAD>
+<BODY style="FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#000000', EndColorStr='#EE0023')">
+<DIV class=titre>
+<DIV class=page>- Home - </DIV></DIV>
+<DIV class=centre>
+<DIV class=navigateur>
+<DIV class=nav_section>
+<DIV class=nav_titre>Le clan</DIV><A class=nav_bouton href="index.php?indexpage=inscription">Inscription</A> <A class=nav_bouton href="index.php?indexpage=membres">Membres</A> <A class=nav_bouton href="index.php?indexpage=historique">Historique</A> <A class=nav_bouton href="index.php?indexpage=serveurs">Serveurs</A></DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Le site</DIV><A class=nav_bouton href="index.php?indexpage=home">Home</A> <A class=nav_bouton href="index.php?indexpage=forum">Forum</A> <A class=nav_bouton href="index.php?indexpage=tactiques">Tactiques</A> <A class=nav_bouton href="index.php?indexpage=matchs">Matchs</A> <A class=nav_bouton href="index.php?indexpage=infos">Infos</A> </DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Ressources</DIV><A class=nav_bouton href="index.php?indexpage=telechargements">Téléchargements</A> <A class=nav_bouton href="index.php?indexpage=screenshots">Screenshots</A> <A class=nav_bouton href="index.php?indexpage=replays">Replays</A> <A class=nav_bouton href="index.php?indexpage=boutique">Boutique</A> </DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Les teams</DIV><A class=nav_bouton href="index.php?indexpage=home&amp;team=kns">Knife Skouad</A> <A class=nav_bouton href="index.php?indexpage=home&amp;team=atk">Able To Kill</A> <A class=nav_bouton href="index.php?indexpage=home&amp;team=gt">Gold Team</A> <A class=nav_bouton href="index.php?indexpage=home&amp;team=nag">Not A Game</A> </DIV></DIV>
+<DIV class=flash>
+<DIV class=nav_section>
+<DIV class=nav_titre>Top 10 Posteurs</DIV>
+<DIV class=nav_flash>No posts <BR>No posts <BR>No posts </DIV></DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Derniers Posts</DIV>
+<DIV class=nav_flash>No posts <BR>No posts <BR>No posts </DIV></DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Top 10 Posts</DIV>
+<DIV class=nav_flash>No posts <BR>No posts <BR>No posts </DIV></DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Derniers Articles</DIV>
+<DIV class=nav_flash>No articles <BR>No articles <BR>No articles </DIV></DIV>
+<DIV class=nav_section>
+<DIV class=nav_titre>Top 10 Articles</DIV>
+<DIV class=nav_flash>No articles <BR>No articles <BR>No articles </DIV></DIV></DIV>
+<DIV class=principal>
+<DIV class=niouzes_tete>
+<H2 align=center><U>Niouzes :</U> </H2>
+<MARQUEE class=niouzes_scrolling scrollAmount=4 hspace=20 scrollDelay=100>Voici les dernières niouzes ...</MARQUEE>
+<DIV class=niouzes_actions>
+<DIV class=niouzes_nouvelle><A class=nav_bouton href="index.php?indexpage=home&amp;action=nouvelle">Nouvelle niouze</A> </DIV>
+<DIV class=niouzes_date>Nous sommes le 26/06/04</DIV></DIV></DIV>
+<DIV class=niouzes_affichage>
+<DIV class=niouzes_titre>#35 - ... - Le 17/12/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Au fait, on peut voir le nombre de réponses et de lectures dans le forum ! ¤tourne¤</DIV>
+<DIV class=niouzes_titre>#34 - Hep ! - Le 17/12/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>J’oubliais :<BR>-La zone Infos<BR>-La fin de la zone membre</DIV>
+<DIV class=niouzes_titre>#33 - Screenshots en force ! - Le 17/12/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Ca y est, la zone screenshots est terminée. :-) ¤trinque¤<BR><BR>Prochains objectifs :<BR>-La zone téléchargements<BR>-La zone tournois<BR>-La zone tactiques<BR>-Et la liste des smileys ! ¤police¤<BR><BR>@+<BR>¤sommeil¤</DIV>
+<DIV class=niouzes_titre>#32 - Screenshots ! - Le 05/12/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Ca y est, la zone screenshots affiche des screenshots ! Dingue !!! ¤fou¤<BR>On peut pas encore en envoyer, mais ça viendra ;-)</DIV>
+<DIV class=niouzes_titre>#31 - Amélioration du menu contextuel - Le 21/11/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Le menu contextuel ne bugue plus !<BR><BR>On peut accéder à n’importe quelle page et toujours dans la bonne frame ! ;-))<BR><BR>¤sautent¤<BR><BR>¤langue2¤</DIV>
+<DIV class=niouzes_titre>#30 - Coucou - Le 31/10/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Coucou c’est moi ¤coucou¤</DIV>
+<DIV class=niouzes_titre>#29 - Et le forum ... - Le 12/10/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Le forum est fini !!! ¤trescool¤<BR>C’est trop fort ! ¤sautent¤<BR><BR>Je vais mettre kan même les avatars, les profils et l’admin, mais sinon ça marche !!!<BR><BR>++ ¤coucou¤</DIV>
+<DIV class=niouzes_titre>#28 - Forum - Le 04/10/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Le forum fonctionne !!! ¤langue2¤<BR><BR>Enfin, on peut pas encore écrire ... Mais ça avance, koi !</DIV>
+<DIV class=niouzes_titre>#27 - Membres - Le 04/10/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Les profils des membres s’affichent.<BR>C’est pas très beau je sais, mais c’est fonctionnel, c’est l’essentiel.<BR>;-))</DIV>
+<DIV class=niouzes_titre>#26 - Une avancée historique - Le 21/09/03 par Osiris Da Fonkhead</DIV>
+<DIV class=niouzes_texte>Ca y est, on peut éditer l’historique !<BR><BR>¤sautent¤ ¤ivrogne¤ ¤trescool¤<BR><BR>¤coucou¤</DIV></DIV>
+<DIV class=niouzes_pied>
+<DIV class=niouzes_precedentes><A class=bouton href="index.php?indexpage=home&amp;niouzedebut=10">&lt;&lt; Niouzes précédentes</A></DIV>
+<DIV class=niouzes_suivantes></DIV>
+<DIV class=niouzes_page>Page 1 sur 4</DIV></DIV></DIV></DIV>
+<DIV class=statut>
+<P align=center>Clansite2.0b1.5m <BR>© Copyright - <A href="http://www.ta4f.tk" target=_parent>www.ta4f.tk</A> - 2004 <BR>Webmaster : Osiris Da Fonkhead <A href="mailto:webmaster@ta4f.tk">webmaster@ta4f.tk</A> </P></DIV></NOFRAMES></FRAMESET></BODY></HTML>
