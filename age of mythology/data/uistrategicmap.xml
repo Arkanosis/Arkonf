@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+
+<!--
+AoM EliteConfig 2.0 pour The Titans
+Par [TA4F] Osiris Da Fonkhead
+www.ta4f.tk
+  -->
+  
+	<gadget name="strategicmap-screen" type="gadget" size1024="446 316 586 452" background="" tilebackground="" texturereplace="" hidden="">
+		<gadget name="AStrategicMap" type="gadget" size1024="2 2 766 766" z="15" transparent=""></gadget>
+		<gadget texturereplace="" name="strategicmap-flareButton" type="stateButton" z="20" size1024="771 690 803 722" mouseovertext="$$18424$$Click this button, and then click in the world to send a flare to all other players." clampforeground="" clampbackground="" statebuttonuseinternalstates="" activateondown="">
+			<stateentry background="icons\ui minimap flare"></stateentry>
+			<stateentry background="icons\ui minimap flare in"></stateentry>
+			<stateentry background="icons\ui minimap flare"></stateentry>
+			<stateentry background="icons\ui minimap flare"></stateentry>
+			<command>editMode("flare") uiSetProtoCursor("Waypoint Flag")</command>
+		</gadget>
+		<gadget name="BottomPanel" type="gadget" size1024="412 613 621 768" z="18">
+			<gadget name="OKButton" type="stateButton" size1024="814 649 974 681" bevelbutton="" z="94" statebuttonuseinternalstates="" textfont="IngameButtons" textfontsize="18" textcolor="0 0 0" textcenterhoriz="" textcentervert="" texturecoords="0 0 .625 1" mouseovertext="$$24253$$Close the Strategic Map.">$$18457$$Close
+				<stateentry background="ui\ui button long 160x32"></stateentry>
+				<stateentry background="ui\ui button long 160X32 clicked"></stateentry>
+				<stateentry background="ui\ui button long 160X32 rollover"></stateentry>
+				<stateentry background=""></stateentry>
+				<command>gadgetUnreal("AStrategicMap")</command>
+			</gadget>
+		</gadget>
+	</gadget>
+</layout>

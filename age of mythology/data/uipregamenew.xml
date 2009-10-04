@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+
+<!--
+AoM EliteConfig 2.0 pour The Titans
+Par [TA4F] Osiris Da Fonkhead
+www.ta4f.tk
+  -->
+  
+  <gadget name="AoMpp" type="formatText" textfont="AboutBoxVersion" textfontsize="18" textcolor="255 208 0" size1024="800 745 1034 773" textwrapon="" formattextusedatareplace="">AoM++ beta (AoT {gameVersion})</gadget> 
+  <gadget name="MainMenu" type="gadget" size1024="0 0 1024 768" background="">
+    <gadget name="BordersRightTop" type="gadget" background="ui\ui pregame right top" size1024="512 0 768 256" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersLeftTop" type="gadget" background="ui\ui pregame left top" size1024="256 0 512 256" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersRightTopLogo" type="gadget" background="ui\ui pregame AOM Titan Logo Right" size1024="512 0 768 256" z="4" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersLeftTopLogo" type="gadget" background="ui\ui pregame AOM Titan Logo Left" size1024="256 0 512 256" z="4" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersRight" type="gadget" background="ui\ui pregame right middle" size1024="512 256 768 552" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersLeft" type="gadget" background="ui\ui pregame left middle" size1024="256 256 512 552" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersRightBottom" type="gadget" background="ui\ui pregame right bottom" size1024="512 552 768 808" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersLeftBottom" type="gadget" background="ui\ui pregame left bottom" size1024="256 552 512 808" z="3" transparent="" clampbackground=""></gadget>
+    <gadget name="BordersBackground" type="gadget" size1024="395 300 620 680" background="ui\ui pregame transparency background" z="1" tilebackground="" transparent="" clampbackground=""></gadget>
+    <gadget name="MainMenuOptions" type="gadget" size1024="400 310 620 620">
+      <gadget name="RandomMapButton" type="stateButton" size1024="417 325 591 357" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19836$$Random Map
+        <command>modeEnter("SinglePlayerSetup")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+      </gadget>
+      <gadget name="LANButton" type="stateButton" size1024="417 365 591 397" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$22074$$LAN/Direct IP        
+        <command>doMPSetup(false)</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+		 <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="OnlineButton" type="stateButton" size1024="417 405 591 437" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$22073$$Online          
+        <command>doMPSetup(true)</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+		 <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="RecordButton" type="stateButton" size1024="417 445 591 477" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19838$$Recorded Games          
+        <command>uiOpenRecordGameBrowser()</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+		 <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="DownloadUpdatesButton" type="stateButton" size1024="417 485 591 517" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$20111$$Update AoM          
+        <command>startAutoPatcher</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+		 <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="OptionsButton" type="stateButton" size1024="417 525 591 557" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19829$$Options          
+        <command>subModeEnter("PreGame","Options")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+      </gadget>
+      <gadget name="MoreButton" type="stateButton" size1024="417 565 591 597" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19830$$More          
+        <command>gadgetReal("MoreSubMenu") gadgetUnReal("MainMenuOptions")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+      </gadget>	  
+	   <gadget name="ExitButton" type="stateButton" size1024="417 613 591 645" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19831$$Exit          
+        <command>exit(false)</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background="ui\ui pregame button glow"></stateentry>
+      </gadget>
+    </gadget>
+    <gadget name="SinglePlayerSubMenu" type="gadget" size1024="400 280 591 505" hidden="">
+      <gadget name="RandomMapButton" type="stateButton" size1024="417 325 591 357" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19836$$Random Map
+        <command>modeEnter("SinglePlayerSetup")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="SinglePlayer-CampaignButton" type="stateButton" size1024="417 365 591 397" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23593$$AOM Campaign        
+        <command>modeEnter("Campaign") campaignSetHackyLoadScenarioMode(0) campaignStart("main campaign.cpn")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="SinglePlayer-TitansCampaignButton" type="stateButton" size1024="417 405 591 437" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23594$$Titans Campaign
+        <command>modeEnter("Campaign") campaignSetHackyLoadScenarioMode(0) campaignStart("xpack campaign.cpx")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="LoadScenarioButton" type="stateButton" size1024="417 445 591 477" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$18441$$Load Scenario
+        <command>modeEnter("Campaign") campaignSetHackyLoadScenarioMode(1)</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="LoadSaveGameButton" type="stateButton" size1024="417 485 591 517" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19837$$Load Saved Game
+        <command>uiOpenSavedGameBrowser</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="SinglePlayer-RecordButton" type="stateButton" size1024="417 525 591 557" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19838$$Recorded Games        
+        <command>uiOpenRecordGameBrowser()</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="SinglePlayerBackButton" type="stateButton" size1024="417 573 591 605" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$18458$$Back
+        <command>gadgetReal("MoreSubMenu") gadgetUnReal("SinglePlayerSubMenu")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+    </gadget>
+    <gadget name="MoreSubMenu" type="gadget" size1024="400 280 591 505" hidden="">
+      <gadget name="SinglePlayerButton" type="stateButton" size1024="417 325 591 357" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19827$$Single Player        
+        <command>gadgetReal("SinglePlayerSubMenu") gadgetUnReal("MoreSubMenu")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="EditorButton" type="stateButton" size1024="417 365 591 397" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19839$$Editor        
+        <command>startRandomGame() subModeClear("Simulation") subModeEnter("Simulation", "Editor")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="HistoryButton" type="stateButton" size1024="417 405 591 437" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$19789$$History        
+        <command>uiTopicDetailHelp("history")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoviesButton" type="stateButton" size1024="417 445 591 477" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23595$$Movies
+        <command>gadgetReal("MoviesSubMenu") gadgetUnReal("MoreSubMenu")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="AboutButton" type="stateButton" size1024="417 485 591 517" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$18447$$About AOM        
+        <command>gadgetReal("AboutBox")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+	   <gadget name="AboutAoMppButton" type="stateButton" size1024="417 525 591 557" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">____ À propos de AoM++        
+        <command>gadgetReal("AboutAoMppBox")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="DownloadUpdatesButton" type="stateButton" size1024="417 565 591 597" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$20111$$Update AoM
+        <command>startAutoPatcher</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoreMainMenuButton" type="stateButton" size1024="417 613 591 645" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$18582$$Main Menu        
+        <command>gadgetReal("MainMenuOptions") gadgetUnReal("MoreSubMenu")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+    </gadget>
+    <gadget name="MoviesSubMenu" type="gadget" size1024="400 280 591 505" hidden="">
+      <gadget name="MoviesAOMCinematicButton" type="stateButton" size1024="417 325 591 357" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23600$$AOM Cinematic
+        <command>playMovie("AOMCinematic.aom")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoviesTitansCinematicButton" type="stateButton" size1024="417 365 591 397" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23601$$Titans Cinematic
+        <command>playMovie("AOMXCinematic.aom")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoviesAOMCreditsButton" type="stateButton" size1024="417 405 591 437" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23602$$AOM Credits
+        <command>playMovie("credits.aom")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoviesTitansCreditsButton" type="stateButton" size1024="417 445 591 477" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$23603$$Titans Credits
+        <command>playMovie("XCredits.aom")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+      <gadget name="MoviesBackButton" type="stateButton" size1024="417 573 591 605" bevelbutton="" z="10" statebuttonuseinternalstates="" textfont="MainMenuButtons" textfontsize="18" textcolor="18 44 66" texturecoords="0 0.5 0.68 1">$$18458$$Back
+        <command>gadgetReal("MoreSubMenu") gadgetUnReal("MoviesSubMenu")</command>
+        <stateentry background="ui\ui pregame button"></stateentry>
+        <stateentry background="ui\ui pregame button clicked"></stateentry>
+        <stateentry background="ui\ui pregame button rollover"></stateentry>
+        <stateentry background=""></stateentry>
+      </gadget>
+    </gadget>
+    <gadget name="Login" type="dialog" size1024="350 275 673 450" background="Egypt God Background" hidden="">
+      <gadget name="UserName" type="textField" textfont="Arial nobold nodrop" textfontsize="12" textcolor="256 256 256" textcenterhoriz="" textcentervert="" size1024="370 305 653 325">User Name:</gadget>
+      <gadget name="Password" type="textField" textfont="Arial nobold nodrop" textfontsize="12" textcolor="256 256 256" textcenterhoriz="" textcentervert="" size1024="370 335 653 355">Password:</gadget>
+      <gadget name="LoginButton" type="button" foreground="Egypt Button Background" textfont="Arial nobold nodrop" textfontsize="12" textcolor="256 256 256" textcenterhoriz="" textcentervert="" bevelbutton="" size1024="461 425 561 445">Log In
+        <command>gadgetUnReal("Login")</command>
+      </gadget>
+    </gadget>
+  </gadget>
+  <gadget name="VersionString" type="textBox" size1024="0 700 200 740" background="" transparent="" textcolor="255 255 255" hidden=""></gadget>
+  <gadget name="AboutAoMppBox" type="gadget" windowzstyle="" size1024="154 56 871 709" hidden="" closeonesc="">
+    <gadget name="AboutAoMppBox-Background" type="gadget" size1024="162 23 863 744" background="ui\ui background opaque 1" tilebackground="" z="1">
+      <gadget tilebackgroundhoriz="" name="objectivesdialog-BordersTop" type="gadget" background="ui\ui border greek top middle" size1024="185 8 840 24"></gadget>
+      <gadget tilebackgroundhoriz="" name="objectivesdialog-BordersBottom" type="gadget" background="ui\ui border greek bottom middle" size1024="186 732 841 748"></gadget>
+      <gadget tilebackgroundvert="" name="objectivesdialog-BordersLeft" type="gadget" background="ui\ui border greek left middle" size1024="154 41 162 715"></gadget>
+      <gadget tilebackgroundvert="" name="objectivesdialog-BordersRight" type="gadget" background="ui\ui border greek right middle" size1024="864 40 872 715"></gadget>
+      <gadget name="objectivesdialog-BordersLeftTop" type="gadget" background="ui\ui border greek top left corner" size1024="154 8 186 40" z="11"></gadget>
+      <gadget name="objectivesdialog-BordersLeftBottom" type="gadget" background="ui\ui border greek bottom left corner" size1024="154 716 186 748" z="12"></gadget>
+      <gadget name="objectivesdialog-BordersRightBottom" type="gadget" background="ui\ui border greek bottom right corner" size1024="840 716 872 748" z="12"></gadget>
+      <gadget name="objectivesdialog-BordersRightTop" type="gadget" background="ui\ui border greek top right corner" size1024="840 8 872 40" z="12"></gadget>
+    </gadget>
+    <gadget name="AboutAoMppBox-Close" type="stateButton" size1024="441 694 601 726" bevelbutton="" z="101" statebuttonuseinternalstates="" textfont="PregameButtons" textfontsize="18" textcolor="18 44 66" textcenterhoriz="" textcentervert="" texturecoords="0 0 .625 1">$$18458$$Back
+      <stateentry background="ui\ui button long 160x32"></stateentry>
+      <stateentry background="ui\ui button long 160X32 clicked"></stateentry>
+      <stateentry background="ui\ui button long 160X32 rollover"></stateentry>
+      <stateentry background=""></stateentry>
+      <command>gadgetReal("MoreSubMenu") gadgetUnReal("AboutAoMppBox")</command>
+    </gadget>
+   	<gadget name="AboutAoMppBox-versiontext" type="formatText" textfont="AboutBoxVersion" textfontsize="18" textcolor="255 208 0" size1024="181 45 834 73" textwrapon="" formattextusedatareplace="">AoM++ beta (AoT {gameVersion})</gadget>
+    <gadget name="AboutAoMppBox-copyrighttext" textwrapon="" type="formatText" textfont="AboutBoxCopyright" textfontsize="18" textcolor="255 208 0" size1024="181 79 834 106">© 2004 - www.ta4f.tk</gadget>
+    <gadget name="AboutAoMppBox-warningtext" textwrapon="" type="formatText" textfont="AboutBoxWarning" textfontsize="16" textcolor="255 208 0" size1024="182 216 836 306">Vous devez posséder Age of Mythology et The Titans expansion pour utiliser AoM++.</gadget>
+    <gadget name="AboutAoMppBox-longlegaltext" textwrapon="" type="formatText" textfont="AboutBoxWarning" textfontsize="16" textcolor="255 208 0" size1024="181 111 837 201">AoM++ est une réalisation de [TA4F] Osiris Da Fonkhead.</gadget>
+    <gadget name="AboutAoMppBox-Grannytext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 340 836 392">Usage réservé aux membres du clan [TA4F].</gadget>
+    <gadget name="AboutAoMppBox-Divxtext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 393 836 445">Certains éléments ont été inspirés par les travaux de MrFixItOnline, MicroSlave, PeteVasi et Xentelian.</gadget>
+    <gadget name="AboutAoMppBox-libjpegtext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 499 836 551"></gadget>
+    <gadget name="AboutAoMppBox-Miles1" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 446 836 498">La dernière version est toujours disponnible sur www.ta4f.tk</gadget>
+    <gadget name="AboutAoMppBox-Miles2" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 552 836 624"></gadget>
+    <gadget name="AboutAoMppBox-PID" textwrapon="" type="formatText" textfont="AboutBoxPID" textfontsize="14" textcolor="255 208 0" size1024="182 629 835 681" formattextusedatareplace="">Build 0.1.20041216</gadget>
+    <gadget name="AboutAoMppBox-ScreenSeparator" type="gadget" size1024="178 627 846 628" background="ui\ui line yellow" z="11"></gadget>
+    <gadget name="AboutAoMppBox-ScreenSeparator2" type="gadget" size1024="181 320 849 321" background="ui\ui line yellow" z="11"></gadget>
+  </gadget>
+  <gadget name="AboutBox" type="gadget" windowzstyle="" size1024="154 56 871 709" hidden="" closeonesc="">
+    <gadget name="AboutBox-Background" type="gadget" size1024="162 23 863 744" background="ui\ui background opaque 1" tilebackground="" z="1">
+      <gadget tilebackgroundhoriz="" name="objectivesdialog-BordersTop" type="gadget" background="ui\ui border greek top middle" size1024="185 8 840 24"></gadget>
+      <gadget tilebackgroundhoriz="" name="objectivesdialog-BordersBottom" type="gadget" background="ui\ui border greek bottom middle" size1024="186 732 841 748"></gadget>
+      <gadget tilebackgroundvert="" name="objectivesdialog-BordersLeft" type="gadget" background="ui\ui border greek left middle" size1024="154 41 162 715"></gadget>
+      <gadget tilebackgroundvert="" name="objectivesdialog-BordersRight" type="gadget" background="ui\ui border greek right middle" size1024="864 40 872 715"></gadget>
+      <gadget name="objectivesdialog-BordersLeftTop" type="gadget" background="ui\ui border greek top left corner" size1024="154 8 186 40" z="11"></gadget>
+      <gadget name="objectivesdialog-BordersLeftBottom" type="gadget" background="ui\ui border greek bottom left corner" size1024="154 716 186 748" z="12"></gadget>
+      <gadget name="objectivesdialog-BordersRightBottom" type="gadget" background="ui\ui border greek bottom right corner" size1024="840 716 872 748" z="12"></gadget>
+      <gadget name="objectivesdialog-BordersRightTop" type="gadget" background="ui\ui border greek top right corner" size1024="840 8 872 40" z="12"></gadget>
+    </gadget>
+    <gadget name="AboutBox-Close" type="stateButton" size1024="441 694 601 726" bevelbutton="" z="101" statebuttonuseinternalstates="" textfont="PregameButtons" textfontsize="18" textcolor="18 44 66" textcenterhoriz="" textcentervert="" texturecoords="0 0 .625 1">$$18458$$Back
+      <stateentry background="ui\ui button long 160x32"></stateentry>
+      <stateentry background="ui\ui button long 160X32 clicked"></stateentry>
+      <stateentry background="ui\ui button long 160X32 rollover"></stateentry>
+      <stateentry background=""></stateentry>
+      <command>gadgetReal("MoreSubMenu") gadgetUnReal("AboutBox")</command>
+    </gadget>
+    <gadget name="AboutBox-versiontext" type="formatText" textfont="AboutBoxVersion" textfontsize="18" textcolor="255 208 0" size1024="181 45 834 73" textwrapon="" formattextusedatareplace="">$$18459$$Age of Mythology, version {gameVersion}</gadget>
+    <gadget name="AboutBox-copyrighttext" textwrapon="" type="formatText" textfont="AboutBoxCopyright" textfontsize="18" textcolor="255 208 0" size1024="181 79 834 106">$$18460$$</gadget>
+    <gadget name="AboutBox-warningtext" textwrapon="" type="formatText" textfont="AboutBoxWarning" textfontsize="16" textcolor="255 208 0" size1024="182 216 836 306">$$19290$$Warning:  This computer program is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this program, or any portion of it, may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.</gadget>
+    <gadget name="AboutBox-longlegaltext" textwrapon="" type="formatText" textfont="AboutBoxWarning" textfontsize="16" textcolor="255 208 0" size1024="181 111 837 201">$$22724$$ Microsoft, Age of Mythology, Ensemble, the Microsoft Games Studio logo, the .Net logo, Windows, and Windows NT are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries.</gadget>
+    <gadget name="AboutBox-Grannytext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 340 836 392">$$18463$$</gadget>
+    <gadget name="AboutBox-Divxtext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 393 836 445">$$18462$$Uses Bink Video. Copyright (C) 1997-2002 by RAD Game Tools, Inc.</gadget>
+    <gadget name="AboutBox-libjpegtext" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 499 836 551">$$20113$$This software is based in part on the work of the Independent JPEG Group.</gadget>
+    <gadget name="AboutBox-Miles1" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 446 836 498">$$20114$$Uses Miles Sound System. Copyright © 1991-2002 by RAD Game Tools, Inc</gadget>
+    <gadget name="AboutBox-Miles2" textwrapon="" type="formatText" textfont="AboutBoxEntry" textfontsize="14" textcolor="255 208 0" size1024="183 552 836 624">$$20115$$MPEG Layer-3 playback supplied with the Miles Sound System from RAD Game Tools, Inc.  MPEG Layer-3 audio compression technology licensed by Fraunhofer IIS and THOMSON multimedia</gadget>
+    <gadget name="AboutBox-PID" textwrapon="" type="formatText" textfont="AboutBoxPID" textfontsize="14" textcolor="255 208 0" size1024="182 629 835 681" formattextusedatareplace="">$$20116$$Product ID {ProductID}</gadget>
+    <gadget name="AboutBox-ScreenSeparator" type="gadget" size1024="178 627 846 628" background="ui\ui line yellow" z="11"></gadget>
+    <gadget name="AboutBox-ScreenSeparator2" type="gadget" size1024="181 320 849 321" background="ui\ui line yellow" z="11"></gadget>
+  </gadget>
+</layout>
