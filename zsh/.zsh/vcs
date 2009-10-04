@@ -8,7 +8,7 @@ function whichvcs()
 	echo cvs
     else
 	base_dir='.'
-	while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ `readlink -f "$base_dir"` != '/' ]; do
+	while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ "`readlink -f "$base_dir"`" != '/' ]; do
 	    base_dir="$base_dir/.."
 	done
 	if [ -d "$base_dir/.hg/" ]; then
