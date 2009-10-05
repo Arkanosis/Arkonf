@@ -15,7 +15,7 @@ function install_ooo()
 	    cd -
 	fi
     else
-	print "\033[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
+	print "\e[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
 	return 1
     fi
 }

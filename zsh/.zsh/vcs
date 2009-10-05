@@ -51,7 +51,7 @@ function co()
 function colorizeAdd()
 {
     while read line; do
-	echo `echo $line | sed -e 's/^A[ 	].\+/\\\\033[1;32m&\\\\033[0m/'`
+	echo `echo $line | sed -e 's/^A[ 	].\+/\\\\e[1;32m&\\\\e[0m/'`
     done
 }
 
@@ -117,7 +117,7 @@ function push()
 function colorizeStatus()
 {
     while read line; do
-	echo `echo $line | sed -e 's/^A[ 	].\+/\\\\033[1;32m&\\\\033[0m/' -e 's/^D[ 	].\+/\\\\033[1;31m&\\\\033[0m/' -e 's/^M[ 	].\+/\\\\033[1;34m&\\\\033[0m/' -e 's/^?[ 	].\+/\\\\033[1;35m&\\\\033[0m/' -e 's/35\(m?[ 	].\+\.\\(log\|bak\|local\)\)/90\1/'`
+	echo `echo $line | sed -e 's/^A[ 	].\+/\\\\e[1;32m&\\\\e[0m/' -e 's/^D[ 	].\+/\\\\e[1;31m&\\\\e[0m/' -e 's/^M[ 	].\+/\\\\e[1;34m&\\\\e[0m/' -e 's/^?[ 	].\+/\\\\e[1;35m&\\\\e[0m/' -e 's/35\(m?[ 	].\+\.\\(log\|bak\|local\)\)/90\1/'`
     done
 }
 
@@ -180,7 +180,7 @@ function df()
 	    done
 	    for file in `hg st | sed -n '/^M/ s/^M //p'`; do
 		echo
-		print '\033[1;33m***' $file '***\033[0m'
+		print '\e[1;33m***' $file '***\e[0m'
 		hg df $@ "$base_dir/$file"
 	    done
 	;;
@@ -226,9 +226,9 @@ function dlf()
     removed=`$cmd diff $@ | sed -n '/^-/p' | wc -l`
     difference=$((added-removed))
     if [ $difference -gt 0 ]; then
-	echo "+$added\t-$removed\t(\033[32m+$difference\033[0m)"
+	echo "+$added\t-$removed\t(\e[32m+$difference\e[0m)"
     else
-	echo "+$added\t-$removed\t(\033[31m$difference\033[0m)"
+	echo "+$added\t-$removed\t(\e[31m$difference\e[0m)"
     fi
 }
 

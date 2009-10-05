@@ -24,12 +24,12 @@ function dist()
 		DIST_HOSTS=($host $DIST_HOSTS)
 	    fi
 
-	    print "\033[32mRunning \"\033[1m$*\033[0;32m\" on \033[1m$host\033[0m"
+	    print "\e[32mRunning \"\e[1m$*\e[0;32m\" on \e[1m$host\e[0m"
 	    ssh $host "echo 'source ~/.zshrc
                            cd \"`pwd`\" && $@' | zsh"
 	    return $?
 	else
-	    echo "\033[1;31m$host\033[0;31m is already in use\033[0m"
+	    echo "\e[1;31m$host\e[0;31m is already in use\e[0m"
 	fi
     done
 

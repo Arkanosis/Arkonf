@@ -25,14 +25,14 @@ function precmd()
 
     case "$TERM" in
  	*xterm*|*rxvt*|Eterm)
-	    echo -ne "\033]0;${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\007"
+	    echo -ne "\e]0;${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\007"
  	    ;;
  	screen)
-	    echo -ne "\033_${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\033\\"
+	    echo -ne "\e_${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\e\\"
  	    ;;
     esac
 
-gray=`print "\033[90m"`
+gray=`print "\e[90m"`
 PROMPT='%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$vcs$fg[$PROMPT_COLOR]
 %!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
 }
@@ -40,16 +40,6 @@ PROMPT='%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.
 autoload -U colors
 colors
 
-#     BA="\033[1;${PROMPT_COLOR}m"
-#     NA="\033[0;${PROMPT_COLOR}m"
-#     NO="\033[0m"
-#     GREEN="\033[32m"
-#     RED="\033[31m"
-#     RET="%(?.$GREEN%?.$RED%?)"
-#     LVL="%(2L.:%L.)"
-
-#     PS1=$(print "$BA%m$NA$LVL%~ ($RET$NA)\n\$$NO ")
-#     export PS1
 RPROMPT='%(1j.[%j].)'
 
 # Affiche le texte, meme s'il n'y a pas de retour a la ligne

@@ -5,8 +5,8 @@ typeset -U fpath
 
 setopt auto_list
 setopt complete_in_word
-setopt HASH_LIST_ALL # Hache la commande : plus lent la premiere fois, plus rapide les suivantes
-setopt LIST_TYPES # Affiche le type de fichier dans les propositions
+setopt hash_list_all # Hache la commande : plus lent la premiere fois, plus rapide les suivantes
+setopt list_types # Affiche le type de fichier dans les propositions
 
 # Les completions peuvent etre lentes, on les garde en cache
 zstyle ':completion:*' use-cache on
@@ -16,7 +16,7 @@ zstyle ':completion:*' cache-path "$HOME/.zcache/zsh"
 setopt correct
 
 # Globbing etendu
-setopt EXTENDED_GLOB
+setopt extended_glob
 
 # Extensions non prises en compte pour la completion, sauf s'il n'y a aucune ambiguite
 fignore=(.aux .toc .bak .sav .old .o .trace \~)
@@ -41,7 +41,7 @@ zstyle ':completion:*' matcher-list \
   '+m:{e}={ë}'
 
 # Description des groupes de completion
-s=`echo "\033[1;40m%d\033[0m"`
+s=`echo "\e[1;40m%d\e[0m"`
 zstyle '*:descriptions' format $s
 
 # Ajoute un menu pour l'autocompletion
