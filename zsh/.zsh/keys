@@ -11,9 +11,6 @@ bindkey -e
 #  Redefinition des touches   #
 ###############################
 
-# À partir du troisième point, insère les points deux par deux séparès par des slashes
-bindkey . magic-dot
-
 # Déplacement dans les menus
 bindkey '^o' accept-and-infer-next-history
 bindkey '^[o' accept-and-menu-complete
@@ -41,8 +38,9 @@ bindkey '^[p' push-input
 # Ctrl + T pour copier le dernier argument
 bindkey -s '^T' '!#$'
 
-# Ctrl + \ pour remonter d'un niveau
+# Alt + \ ou Alt + . pour remonter d'un niveau
 bindkey -s '^[\' '^[pcd ..\n'
+bindkey -s '^[.' '^[pcd ..\n'
 
 # Ctrl + ] pour retourner dans le repertoire precedent
 bindkey -s '^[]' '^[pcd - >&-\n'
@@ -117,9 +115,6 @@ bindkey -s ';3B' '^[p!-2\n'
 # Alt + ? pour voir l'aide
 bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
 
-# Alt + . pour etendre une abbreviation
-bindkey "^[." abbrev-expand
-
 # Alt + e pour appliquer un coup de sed sur la ligne de commande
 bindkey "^[e" regex-edit
 
@@ -129,3 +124,23 @@ function kbd()
     xmodmap ~/.Xmodmap
 }
 
+function no-magic-keys()
+{
+    bindkey . self-insert
+    bindkey / self-insert
+    bindkey ' ' self-insert
+}
+
+function magic-keys()
+{
+    # À partir du troisième point, insère les points deux par deux séparès par des slashes
+    bindkey . magic-dot
+
+    # Sauf si c'est le seul caractère, slash déclenche l'auto-complétion
+    #bindkey / magic-slash
+
+    # Alt + . pour etendre une abbreviation
+    bindkey ' ' abbrev-expand
+}
+
+magic-keys

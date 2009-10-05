@@ -33,16 +33,19 @@ function magic-dot()
 {
     if [[ $LBUFFER = *.. ]]; then
 	LBUFFER+=/..
+	newpath="`pwd`/`echo $LBUFFER | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`"
+	echo -n "\e7\n\e[40m`readlink -f $newpath`\e[0m\e[0K\e8"
     else
-	zle .self-insert $@
+	zle self-insert
     fi
 }
 zle -N magic-dot
 
-function history-globbing-search-backward()
+function magic-slash()
 {
-    bindkey . self-insert
-    zle .history-incremental-pattern-search-backward
-    bindkey . magic-dot
+    zle self-insert
+    if ! [ $LBUFFER = / ]; then
+	zle complete-word
+    fi
 }
-zle -N history-globbing-search-backward
+zle -N magic-slash

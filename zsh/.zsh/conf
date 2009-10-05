@@ -22,7 +22,7 @@ function ze()
 
 function cdo()
 {
-    pushd $ZARKONF_DIR >&-
+    pushd $ARKONF_DIR >&-
     $@
     popd >&-
 }

@@ -19,16 +19,17 @@ abbrev=(
 
     "s"    "| sed 's///'"
 
-    "f"    "find . -type f -name "
+    "f"    "find . -type f -name"
     "t"    "-type"
     "e"    "-exec echo {} \;"
 )
 
-abbrev-expand() {
+function abbrev-expand()
+{
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
     LBUFFER+=${abbrev[$MATCH]:-$MATCH}
+    zle self-insert
 }
-
 zle -N abbrev-expand
 

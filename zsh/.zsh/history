@@ -17,3 +17,11 @@ setopt INC_APPEND_HISTORY
 
 # Suppression des doublons
 setopt HIST_IGNORE_ALL_DUPS
+
+function history-globbing-search-backward()
+{
+    no-magic-keys
+    zle .history-incremental-pattern-search-backward
+    magic-keys
+}
+zle -N history-globbing-search-backward
