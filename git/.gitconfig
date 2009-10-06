@@ -1,3 +1,23 @@
 [user]
-	name = Jérémie Roquet
-	email = arkanosis@gmail.com
+name = Jérémie Roquet
+email = arkanosis@gmail.com
+
+[push]
+default = current
+
+[color]
+diff = auto
+status = auto
+branch = auto
+
+[color "status"]
+added = green
+changed = blue
+untracked = magenta
+
+[alias]
+st = status
+df = diff
+b = branch
+ci = commit -a
+co = checkout
