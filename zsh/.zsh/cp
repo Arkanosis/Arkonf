@@ -1,0 +1,9 @@
+# "-*- sh -*-"
+
+alias cp="cp -iv"
+alias zcp="zmv -C"
+
+function cpi()
+{
+    cp "$1" "`dirname "$1"`/$2"
+}

@@ -3,8 +3,32 @@
 if [ `uname -s` = 'FreeBSD' ]; then
     alias quota="\fs quota"
     alias fs="du -hd1"
-    alias fsm="du -hd1 | egrep '[0-9][MGT]' | sort -n"
+    alias dud="du -d1"
 else
     alias fs="du -h --max-depth=1"
-    alias fsm="du -h --max-depth=1 | egrep '[0-9][MGT]' | sort -n"
+    alias dud="du --max-depth=1"
 fi
+
+function fsm()
+{
+    (
+	\ls -gS **(.) | sed -n 's/.\{17\}\( *\)\([0-9]\+\)[0-9]\{3\} .\{17\}/\2  \1/p' | tail -n +2
+	;
+	dud
+    ) |
+    sort -nr |
+    awk '
+    {
+        split("k M G T", unitName);
+        unit = 1;
+        while ($1 > 1024)
+        {
+            $1 /= 1024;
+            ++unit;
+        }
+        if ($1 > 0)
+            print int($1) " " unitName[unit] "\t" $2;
+    }'
+}
+
+alias sz="du -hs"

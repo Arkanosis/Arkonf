@@ -18,10 +18,17 @@ setopt INC_APPEND_HISTORY
 # Suppression des doublons
 setopt HIST_IGNORE_ALL_DUPS
 
+in_history=0
 function history-globbing-search-backward()
 {
-    no-magic-keys
-    zle .history-incremental-pattern-search-backward
-    magic-keys
+    if [ $in_history -eq 0 ]; then
+	no-magic-keys
+	in_history=1
+	zle history-incremental-pattern-search-backward
+	in_history=0
+	magic-keys
+    else
+	zle history-incremental-pattern-search-backward
+    fi
 }
 zle -N history-globbing-search-backward

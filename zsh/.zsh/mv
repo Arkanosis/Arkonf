@@ -1,0 +1,9 @@
+# "-*- sh -*-"
+
+alias mv="mv -iv"
+alias zmv="zmv -M"
+
+function mvi()
+{
+    mv "$1" "`dirname "$1"`/$2"
+}

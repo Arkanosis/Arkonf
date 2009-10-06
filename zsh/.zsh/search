@@ -65,6 +65,14 @@ function /d()
 
     find "$dir" -type f $@
 }
+function /z()
+{
+    runin "$ZARKONF_DIR" search $@
+}
+function /a()
+{
+    runin "$ARKONF_DIR" search $@
+}
 
 alias td="search 'TODO|FIXME|HACK'"
 

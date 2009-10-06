@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-alias ez="e $ZARKONF_DIR/.zshrc"
+alias ca="cd $ARKONF_DIR"
 alias cz="cd $ZARKONF_DIR"
 alias czz="cd $ZARKONF_DIR/.zsh"
 alias czc="cd $ZARKONF_DIR/.zsh/completions"
@@ -12,6 +12,8 @@ function ze()
     for module; do
 	if [ $module[1] = '_' ]; then
 	    files=($files "$ZARKONF_DIR/.zsh/completions/$module")
+	elif [ $module[1] = '.' ]; then
+	    files=($files "$ZARKONF_DIR/$module")
 	else
 	    files=($files "$ZARKONF_DIR/.zsh/$module")
 	fi
@@ -33,3 +35,4 @@ alias cdfl="cdo dfl"
 alias cci="cdo ci"
 alias cpush="cdo push"
 alias cup="cdo up"
+alias cadd="cdo add"

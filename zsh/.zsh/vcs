@@ -132,7 +132,7 @@ function st()
 	    hg st $@ .
 	;;
 	git)
-	    git status $@ .
+	    git st $@
 	;;
     esac
 }
@@ -185,7 +185,7 @@ function df()
 	    done
 	;;
 	git)
-	    git diff --color $@
+	    git df --color $@
 	;;
     esac
 }

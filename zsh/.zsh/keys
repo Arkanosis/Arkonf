@@ -25,9 +25,6 @@ bindkey "^[OH" beginning-of-line
 # Insert pour ecraser
 bindkey '^[[2~' overwrite-mode
 
-# Ctrl + R pour rechercher avec du globbing dans les dernières commandes
-bindkey '^r' history-globbing-search-backward
-
 # Pageup/pagedown pour naviguer dans l'historique
 bindkey '^[[6~' history-search-forward
 bindkey '^[[5~' history-search-backward
@@ -129,18 +126,15 @@ function no-magic-keys()
     bindkey . self-insert
     bindkey / self-insert
     bindkey ' ' self-insert
+    bindkey '^r' history-incremental-pattern-search-backward
 }
 
 function magic-keys()
 {
-    # À partir du troisième point, insère les points deux par deux séparès par des slashes
     bindkey . magic-dot
-
-    # Sauf si c'est le seul caractère, slash déclenche l'auto-complétion
     #bindkey / magic-slash
-
-    # Alt + . pour etendre une abbreviation
     bindkey ' ' abbrev-expand
+    bindkey '^r' history-globbing-search-backward
 }
 
 magic-keys
