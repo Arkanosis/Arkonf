@@ -32,4 +32,3 @@ function abbrev-expand()
     zle self-insert
 }
 zle -N abbrev-expand
-

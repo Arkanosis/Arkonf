@@ -8,6 +8,7 @@ source ./paths
 source ./abbrev
 source ./alias
 source ./arc
+source ./arch
 source ./backup
 source ./bookmarks
 source ./cd

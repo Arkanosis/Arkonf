@@ -2,6 +2,8 @@
 
 function whichvcs()
 {
+    local base_dir
+
     if test -d '.svn'; then
 	echo svn
     elif test -d 'CVS'; then
@@ -21,6 +23,8 @@ function whichvcs()
 
 function vcsroot()
 {
+    local cmd base_dir
+
     cmd="$1"
     shift
 
@@ -32,11 +36,9 @@ function vcsroot()
 }
 
 
-# Checkout
 function co()
 {
-    # TODO FIXME for git
-    hg id >& /dev/null
+    hg id >&-
     if [ $? -eq 255 ]; then
 	svn co $@
 	if [ $? -eq 1 ]; then
@@ -47,7 +49,6 @@ function co()
     fi
 }
 
-# Add
 function colorizeAdd()
 {
     while read line; do
@@ -73,9 +74,10 @@ function add()
     esac
 }
 
-# Commit
 function ci()
 {
+    local vcs
+
     # TODO FIXME when vcsroot will be fixed, make so that :
     # - ci commit the current directory or the given arguments, if there are some (to be fixed for hg, git)
     # - rci commit the whole project (to be fixed for hg, git)
@@ -102,9 +104,10 @@ function rci()
     vcsroot ci $@
 }
 
-# Push
 function push()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
 	hg|git)
@@ -113,7 +116,6 @@ function push()
     esac
 }
 
-# Status
 function colorizeStatus()
 {
     while read line; do
@@ -123,6 +125,8 @@ function colorizeStatus()
 
 function st()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
 	svn|cvs)
@@ -141,9 +145,10 @@ function rst()
     vcsroot st $@
 }
 
-# Update
 function up()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
 	svn|cvs)
@@ -162,9 +167,10 @@ function rup()
     vcsroot up $@
 }
 
-# Diff
 function df()
 {
+    local vcs base_dir
+
     vcs=`whichvcs`
     case "$vcs" in
 	svn)
@@ -219,6 +225,8 @@ function lcd()
 
 function dlf()
 {
+    local cmd added removed difference
+
     cmd=$1
     shift
 
@@ -234,10 +242,11 @@ function dlf()
 
 function dla()
 {
+    local cmd
+
     cmd=$1
     shift
 
-    # TODO FIXME for git
     for file in `$cmd st | sed -n '/^M/ s/^M //p'`; do
 	printf "$file\t"
 	dlf $cmd $@ $file
@@ -249,6 +258,8 @@ function dla()
 
 function dl()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
 	*)
@@ -262,24 +273,25 @@ function dll()
     dl $@ | less
 }
 
-# Revert
 function rv()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
        svn|cvs|hg)
 	    "$vcs" revert $@
 	;;
 	git)
-	    # git checkout would do the same thing, without saving the current state
 	    git stash $@
 	;;
     esac
 }
 
-# Log
 function lg()
 {
+    local vcs
+
     vcs=`whichvcs`
     case "$vcs" in
 	*)
@@ -306,9 +318,10 @@ function gl()
 alias lc='lg -r committed'
 alias lcv='lgv -r committed'
 
-# Purge
 function purge()
 {
+    local files
+
     files=()
 
     for file in `nocolor st | sed -n 's/^? \+\(.\+\)$/\1/p'`; do

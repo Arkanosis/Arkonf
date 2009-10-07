@@ -1,6 +1,5 @@
 # "-*- sh -*-"
 
-# Pas de doublons dans la liste des clients pour les commandes distribuées
 typeset -U DIST_HOSTS
 
 function dist()

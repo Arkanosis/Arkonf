@@ -4,6 +4,8 @@ setopt prompt_subst
 
 function precmd()
 {
+    local base_dir branch
+
     vcs=''
     if [[ -d .svn ]] ; then
         vcs="[svn:`svn info | grep Revision | sed 's/.* \(.*\)/\1/g'`]"
@@ -43,4 +45,4 @@ colors
 RPROMPT='%(1j.[%j].)'
 
 # Affiche le texte, meme s'il n'y a pas de retour a la ligne
-setopt NOPROMPTCR
+setopt nopromptcr

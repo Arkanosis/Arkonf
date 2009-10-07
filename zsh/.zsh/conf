@@ -7,6 +7,8 @@ alias czc="cd $ZARKONF_DIR/.zsh/completions"
 
 function ze()
 {
+    local files
+
     files=()
 
     for module; do

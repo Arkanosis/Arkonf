@@ -1,10 +1,5 @@
 # "-*- sh -*-"
 
-# Tout le monde sauf l'utilisateur
 watch=(notme)
-
-# Toutes les minutes
 LOGCHECK=60
-
-# Format de la notification
 WATCHFMT='%n %a %l from %m at %t.'

@@ -1,13 +1,13 @@
 # "-*- sh -*-"
 
-if [ `uname -s` = 'FreeBSD' ]; then
+if [ "`uname -s`" = 'FreeBSD' ]; then
     alias quota="\fs quota"
-    alias fs="du -hd1"
     alias dud="du -d1"
 else
-    alias fs="du -h --max-depth=1"
     alias dud="du --max-depth=1"
 fi
+
+alias fs="dud -h"
 
 function fsm()
 {

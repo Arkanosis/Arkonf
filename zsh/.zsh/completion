@@ -5,20 +5,15 @@ typeset -U fpath
 
 setopt auto_list
 setopt complete_in_word
-setopt hash_list_all # Hache la commande : plus lent la premiere fois, plus rapide les suivantes
+setopt hash_list_all
 setopt list_types # Affiche le type de fichier dans les propositions
+setopt correct
+setopt extended_glob
 
 # Les completions peuvent etre lentes, on les garde en cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zcache/zsh"
 
-# Correction de la frappe
-setopt correct
-
-# Globbing etendu
-setopt extended_glob
-
-# Extensions non prises en compte pour la completion, sauf s'il n'y a aucune ambiguite
 fignore=(.aux .toc .bak .sav .old .o .trace \~)
 
 fpath=("$ZARKONF_DIR/.zsh/completions" $fpath)
@@ -26,13 +21,9 @@ fpath=("$ZARKONF_DIR/.zsh/completions" $fpath)
 autoload -U compinit
 compinit
 
-# Coloration de la completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# Coloration de certaines completions spécifiques
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# Completion sans distinction de la casse ou des accents (ça marche très mal, on est obligé de le faire en plusieurs fois)
 zstyle ':completion:*' matcher-list \
   'm:{a-zA-Z}={A-Za-z}' \
   '+m:{a}={á}' '+m:{e}={é}' \
@@ -43,21 +34,16 @@ zstyle ':completion:*' matcher-list \
 # Description des groupes de completion
 s=`echo "\e[1;40m%d\e[0m"`
 zstyle '*:descriptions' format $s
+zstyle ':completion:*' group-name ''
 
-# Ajoute un menu pour l'autocompletion
 zstyle ':completion:*' menu select
-
 zstyle ':completion:*' verbose yes
-
 
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Completion pour le gestionnaire d'archives universel
-zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|zip|Z):files *(-/):directories'
+zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|xz|zip|Z):files *(-/):directories'
 
 function zcl()
 {

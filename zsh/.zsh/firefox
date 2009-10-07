@@ -1,6 +1,5 @@
 # "-*- sh -*-"
 
-# Ouvre une page dans firefox
 function fx()
 {
     if [ "$#" -lt 1 ]; then
@@ -13,11 +12,9 @@ function fx()
     fi
 }
 
-# Tue firefox
 function kf()
 {
     killall firefox-bin firefox
 }
 
-# Firefox
 alias rmlock="find ~/.mozilla/firefox \( -name 'lock' -o -name '.parentlock' \) -exec rm -f {} \;"

@@ -18,18 +18,27 @@ printf 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m\n'
 echo
 
 install zsh/.zshrc ~/.zshrc
+install zsh/.zsh ~/.zsh
+
 install mercurial/.hgrc ~/.hgrc
 install git/.gitconfig ~/.gitconfig
+
 install fluxbox ~/.fluxbox
+
 install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
+
 install vim/.vimrc ~/.vimrc
+install vim/.vim ~/.vim
+
 install xorg/.Xmodmap ~/.Xmodmap
 
 echo
 
-echo 'Edit the configuration file? [yN]'
+echo 'Edit the configuration files? [yN]'
 read y
 if [ "$y" = 'Y' ] || [ "$y" = 'y' ]; then
     vi ~/.zshrc
+    vi ~/.hgrc
+    vi ~/.gitconfig
 fi

@@ -17,10 +17,7 @@ alias ll="l -A"
 alias lS="ll -S"
 alias lll="ll | less -r"
 
-# Liste uniquement les dossiers
 alias lp='ls -ld *(-/DN)'
-
-# Liste uniquement les fichiers
 alias lf='ls -l **(.)'
 
 source ./tree

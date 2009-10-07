@@ -23,5 +23,3 @@ function disable_proxy()
     export ftp_proxy=
     export RSYNC_PROXY=
 }
-
-#enable_proxy

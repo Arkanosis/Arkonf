@@ -1,34 +1,16 @@
 # "-*- sh -*-"
 
-# Historique permanent
-HISTFILE="$HOME/.zcache/history"
+export HISTFILE="$HOME/.zcache/history"
+export HISTSIZE=300
+export SAVEHIST=300 # 5 minutes
 
-# Taille de l'historique
-HISTSIZE=300
+setopt inc_append_history
+setopt hist_ignore_all_dups
 
-# Sauvegarde toutes les 5 minutes
-SAVEHIST=300
-
-# Reglage effectif des parametres
-export HISTFILE HISTSIZE SAVEHIST
-
-# Ajout a l'historique deja existant
-setopt INC_APPEND_HISTORY
-
-# Suppression des doublons
-setopt HIST_IGNORE_ALL_DUPS
-
-in_history=0
 function history-globbing-search-backward()
 {
-    if [ $in_history -eq 0 ]; then
-	no-magic-keys
-	in_history=1
-	zle history-incremental-pattern-search-backward
-	in_history=0
-	magic-keys
-    else
-	zle history-incremental-pattern-search-backward
-    fi
+    no-magic-keys
+    zle history-incremental-pattern-search-backward
+    magic-keys
 }
 zle -N history-globbing-search-backward

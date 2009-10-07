@@ -1,5 +1,11 @@
 # "-*- sh -*-"
 
+srcnames="\( "
+for srcext in $srcexts; do
+    srcnames="$srcnames-name '*.$srcext' -o "
+done
+srcnames="$srcnames[0,-4]\)"
+
 function ct()
 {
     echo $#
@@ -22,10 +28,12 @@ function files()
 function lines()
 {
     if [ $# -eq 0 ]; then
-	find . \( -name '*.hxx' -o  -name '*.hh' -o -name '*.cpp' -o  -name '*.cc' -o -name '*.hxx' -o -name '*.cxx' \) -exec cat {} \; | wc -l
+	echo -n ".\t"
+	eval "find . $srcnames -exec cat {} \;" | wc -l
     else
 	for directory; do
-	    find "$directory" \( -name '*.hxx' -o  -name '*.hh' -o -name '*.cpp' -o  -name '*.cc' -o -name '*.hxx' -o -name '*.cxx' \) -exec cat {} \; | wc -l
+	    echo -n "$directory\t"
+	    eval "find \"$directory\" $srcnames -exec cat {} \;" | wc -l
 	done
     fi
 }

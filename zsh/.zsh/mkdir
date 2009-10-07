@@ -1,20 +1,12 @@
 # "-*- sh -*-"
 
-# Creation de repertoire public
 alias mkdir="mkdir -m 755 -p"
-
-# Creation de repertoire securisee
 alias mksec="mkdir -m 700 -p"
-
-
-function mkcd()
-{
-    mkdir -m700 "$1"
-    cd "$1"
-}
 
 function mkcmd()
 {
+    local cmd args
+
     cmd="$1"
     shift
 
@@ -23,7 +15,7 @@ function mkcmd()
 	return
     fi
 
-    if [ $# -lt 2 ]; then
+    if [ $# -lt 2 ] && [ $cmd != "cd" ]; then
 	echo "mk$cmd: missing file operand" >&2
 	echo 'Try `'"mk$cmd"' --help'"'"' for more information.' >&2
 	return 1
@@ -35,16 +27,10 @@ function mkcmd()
 	shift
     done
 
-    mkdir -p "$1"
+    mkdir "$1"
     $cmd $args "$1"
 }
 
-function mkcp()
-{
-    mkcmd cp $@
-}
-
-function mkmv()
-{
-    mkcmd mv $@
-}
+alias mkcd="mkcmd cd"
+alias mkcp="mkcmd cp"
+alias mkmv="mkcmd mv"

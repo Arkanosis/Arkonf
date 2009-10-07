@@ -2,6 +2,8 @@
 
 function cmdg()
 {
+    local cmd
+
     cmd="$1"
     shift
 

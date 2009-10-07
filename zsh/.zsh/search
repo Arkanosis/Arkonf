@@ -1,8 +1,9 @@
 # "-*- sh -*-"
 
-# Recherche d'une expression dans les fichiers d'un repertoire
 function search()
 {
+    local dist dir exp
+
     dist=0
 
     if [ "$#" -lt 1 ]; then
@@ -45,6 +46,8 @@ function /l()
 }
 function /f()
 {
+    local dir
+
     dir=.
 
     if [ $# -gt 0 ]; then
