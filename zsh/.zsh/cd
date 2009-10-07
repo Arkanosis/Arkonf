@@ -31,11 +31,12 @@ setopt AUTO_PUSHD
 
 function magic-dot()
 {
+    local newpath
+
     if [[ $LBUFFER = *.. ]]; then
 	LBUFFER+=/..
 	newpath="`pwd`/`echo $LBUFFER | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`"
-	# Note : le +3 correspond à la taille du prompt ; au delà de la commande 999, ça doit casser (chercher une meilleure solution)
-	echo -n "\n\e[A\e[$((`echo -n $LBUFFER | wc -c` + 3))C\e7\n\e[40m`readlink -f $newpath`\e[0m\e[0K\e8"
+	echo -n "\e7\n\e[40m`readlink -f $newpath`\e[0m\e[0K\e8\e[B\e[A"
     else
 	zle self-insert
     fi

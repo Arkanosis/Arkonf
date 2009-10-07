@@ -1,8 +1,6 @@
 - Completion intelligente pour toutes les commandes de VCS, y compris celles de conf (rediriger les autocomplétions qui vont bien, suivant le VCS en question)
 - Autocompletion pour les commandes en runin ou en dist (redirection de l'autocomplétion), ainsi que pour mvi et cpi
 
-- Solution plus robuste au status de cd (../) lorsqu'on est en bas du terminal (actuellement, la taille du prompt est en dur... bof, bof)
-
 - Mod + entrée => cd + ll
 
 - Apprendre la syntaxe complète de zstyle
@@ -45,9 +43,10 @@
 - Arc plus complet :
  - factorisation du code
  - plus de formats supportés
- - correction de la gestion de l'absence de dossier racine
+ - correction de la gestion de l'absence de dossier racine (trouver une méthode robuste aux changements de binaires)
  - compression intelligente (LZMA avec les bonnes options, PPMd pour le texte)
  - Autocompletion sans respect de la casse
+ - Mise en cache des listages (notamment pour le tar.xz)
 
 - LS_COLOR généré avec une fonction, plutôt qu'à la main
 
