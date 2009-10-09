@@ -1,8 +1,9 @@
 # "-*- sh -*-"
 
-# Recherche d'une expression dans les fichiers d'un repertoire
 function search()
 {
+    local dist dir exp
+
     dist=0
 
     if [ "$#" -lt 1 ]; then
@@ -45,6 +46,8 @@ function /l()
 }
 function /f()
 {
+    local dir
+
     dir=.
 
     if [ $# -gt 0 ]; then
@@ -64,6 +67,14 @@ function /d()
     fi
 
     find "$dir" -type f $@
+}
+function /z()
+{
+    runin "$ZARKONF_DIR" search $@
+}
+function /a()
+{
+    runin "$ARKONF_DIR" search $@
 }
 
 alias td="search 'TODO|FIXME|HACK'"

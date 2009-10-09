@@ -1,13 +1,12 @@
 # "-*- sh -*-"
 
 typeset -A bookmarks
-# Sauvegarde le répertoire courant
+
 function s()
 {
     bookmarks["$1"]=`pwd`
 }
 
-# Retourne dans un répertoire sauvegardé
 function r()
 {
     cd $bookmarks["$1"]

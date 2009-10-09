@@ -277,6 +277,13 @@ If region contains less than 2 lines, lines are left untouched."
     )
 )
 
+(defun ht()
+  (interactive)
+  (highlight-regexp "VlHMM: Next: token is '.+', [0-9]+ path(es) left" 'hi-red-b)
+  (highlight-regexp "VlHMM: Order: >> switching to order [0-9+]" 'hi-green-b)
+  (highlight-regexp "nextProbability of [01]\\(\\.[0-9]+\\)? was [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)?" 'hi-blue-b)
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Old stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

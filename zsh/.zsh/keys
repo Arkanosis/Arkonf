@@ -11,9 +11,6 @@ bindkey -e
 #  Redefinition des touches   #
 ###############################
 
-# À partir du troisième point, insère les points deux par deux séparès par des slashes
-bindkey . magic-dot
-
 # Déplacement dans les menus
 bindkey '^o' accept-and-infer-next-history
 bindkey '^[o' accept-and-menu-complete
@@ -28,9 +25,6 @@ bindkey "^[OH" beginning-of-line
 # Insert pour ecraser
 bindkey '^[[2~' overwrite-mode
 
-# Ctrl + R pour rechercher avec du globbing dans les dernières commandes
-bindkey '^r' history-globbing-search-backward
-
 # Pageup/pagedown pour naviguer dans l'historique
 bindkey '^[[6~' history-search-forward
 bindkey '^[[5~' history-search-backward
@@ -41,8 +35,9 @@ bindkey '^[p' push-input
 # Ctrl + T pour copier le dernier argument
 bindkey -s '^T' '!#$'
 
-# Ctrl + \ pour remonter d'un niveau
+# Alt + \ ou Alt + . pour remonter d'un niveau
 bindkey -s '^[\' '^[pcd ..\n'
+bindkey -s '^[.' '^[pcd ..\n'
 
 # Ctrl + ] pour retourner dans le repertoire precedent
 bindkey -s '^[]' '^[pcd - >&-\n'
@@ -75,21 +70,6 @@ bindkey -s '^[;' '^[pst\n'
 # Alt + ' pour lister les modifications par raport au dernier commit SVN
 bindkey -s "^['" '^[pdf\n'
 
-# Alt + u pour telecharger la derniere version du SVN
-#bindkey -s '^[u' 'hg up\n'
-
-# Alt + m pour make all
-#bindkey -s '^[m' 'gmake all\n'
-
-# Alt + d pour make distclean
-#bindkey -s '^[d' 'gmake distclean\n'
-
-# Alt + b pour dsss build
-#bindkey -s '^[b' 'dsss build\n'
-
-# Alt + e pour voir le boulot restant
-#bindkey -s '^[e' 'rem\n'
-
 # Alt + s pour sourcer le dernier .zshrc
 bindkey -s '^[s' '^[p. ~/.zshrc\n'
 
@@ -97,7 +77,7 @@ bindkey -s '^[s' '^[p. ~/.zshrc\n'
 bindkey -s '^[t' '^[ptd\n'
 
 # Alt + e pour transformer une commande en chemin complet
-bindkey '^[e' expand-cmd-path
+#bindkey '^[e' expand-cmd-path
 
 # Shift + tab pour parcourir l'autocompletion a l'envers
 bindkey '^[[Z' reverse-menu-complete
@@ -117,9 +97,6 @@ bindkey -s ';3B' '^[p!-2\n'
 # Alt + ? pour voir l'aide
 bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
 
-# Alt + . pour etendre une abbreviation
-bindkey "^[." abbrev-expand
-
 # Alt + e pour appliquer un coup de sed sur la ligne de commande
 bindkey "^[e" regex-edit
 
@@ -129,3 +106,20 @@ function kbd()
     xmodmap ~/.Xmodmap
 }
 
+function no-magic-keys()
+{
+    bindkey . self-insert
+    bindkey / self-insert
+    bindkey ' ' self-insert
+    bindkey '^r' history-incremental-pattern-search-backward
+}
+
+function magic-keys()
+{
+    bindkey . magic-dot
+    #bindkey / magic-slash
+    bindkey ' ' abbrev-expand
+    bindkey '^r' history-globbing-search-backward
+}
+
+magic-keys

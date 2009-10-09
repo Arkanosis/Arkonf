@@ -13,3 +13,11 @@ regex-edit () {
 }
 
 zle -N regex-edit
+
+# Insère des quotes lorsqu'un url est collée, backslashe les "?"...
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# Permet d'editer la ligne de commande avec un editeur de texte
+autoload -U edit-command-line
+zle -N edit-command-line

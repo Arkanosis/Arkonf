@@ -44,10 +44,12 @@ if [ "$HOST" != 'gate-ssh' ]; then
     esac
 
     popd >&-
+
+    #enable_proxy
 else
-    printf "\033[91;1m>>>> You are on gate-ssh, forwarding you to freebsd\033[0m\n"
+    printf "\e[91;1m>>>> You are on gate-ssh, forwarding you to freebsd\e[0m\n"
     ssh freebsd
-    printf "\033[91;1m>>>> Back on gate-ssh... EXIT NOW \!\!\!\033[0m\n"
+    printf "\e[91;1m>>>> Back on gate-ssh... EXIT NOW \!\!\!\e[0m\n"
     exit
 fi
 

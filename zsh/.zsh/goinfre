@@ -2,6 +2,8 @@
 
 function cmdg()
 {
+    local cmd
+
     cmd="$1"
     shift
 
@@ -13,7 +15,7 @@ function cmdg()
 	chmod 700 "/goinfre/$USER"
 	"$cmd" $@ "/goinfre/$USER/"
     else
-	print "\033[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
+	print "\e[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
 	return 1
     fi
 }

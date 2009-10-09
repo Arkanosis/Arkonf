@@ -8,11 +8,13 @@ source ./paths
 source ./abbrev
 source ./alias
 source ./arc
+source ./arch
+source ./backup
 source ./bookmarks
 source ./cd
+source ./cp
 source ./color
 source ./compile
-source ./ls # Avant completion !
 source ./completion
 source ./conf
 source ./dist
@@ -25,8 +27,10 @@ source ./history
 source ./keys
 source ./less
 source ./ln
+source ./ls
 source ./math
 source ./mkdir
+source ./mv
 source ./mute
 source ./options
 source ./prefix

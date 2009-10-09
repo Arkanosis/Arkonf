@@ -9,6 +9,8 @@ function each()
 
 function run()
 {
+    local program
+
     if [ $# -lt 2 ]; then
 	echo 'Usage: run <program> [options] \; [arguments]' >&2
 	return 1
@@ -37,9 +39,9 @@ alias diapo="run xv -shrink \; *.jpg"
 
 function runin()
 {
-    pushd
-    cd $1
+    pushd >&-
+    cd $1 >&-
     shift
     $@
-    popd
+    popd >&-
 }

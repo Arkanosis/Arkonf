@@ -1,7 +1,9 @@
 # "-*- sh -*-"
 
 hash -d bin=~/local/bin
+hash -d abin=~/local/bin_$arch
 hash -d lib=~/local/lib
+hash -d alib=~/local/lib_$arch
 hash -d share=~/local/share
 hash -d arkonf="$ARKONF_DIR"
 hash -d zarkonf="$ZARKONF_DIR"

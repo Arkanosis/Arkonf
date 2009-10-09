@@ -2,6 +2,8 @@
 
 function duplicates()
 {
+    local files hash
+
     typeset -A files
     for dir; do
 	for file in `find "$dir" -type f`; do
