@@ -24,6 +24,7 @@ install fluxbox ~/.fluxbox
 install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
 install vim/.vimrc ~/.vimrc
+install xmonad ~/.xmonad
 install xorg/.Xmodmap ~/.Xmodmap
 
 echo
