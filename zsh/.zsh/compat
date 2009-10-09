@@ -1,0 +1,19 @@
+# "-*- sh -*-"
+
+if readlink -f . >& /dev/null; then
+    alias canonicalize="readlink -f"
+elif ! which canonicalize >&-; then
+    echo 'Unable to find canonicalize, consider installing it with "arkinstall canonicalize"' >&2
+fi
+
+if which gsed >&-; then
+    alias sed="gsed"
+fi
+
+if which gawk >&-; then
+    alias awk="gawk"
+fi
+
+if which gmake >&-; then
+    alias make="gmake"
+fi

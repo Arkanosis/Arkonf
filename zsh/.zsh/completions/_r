@@ -1,0 +1,3 @@
+#compdef r
+
+_describe -t bookmark 'bookmarks' bookmarkcompletions

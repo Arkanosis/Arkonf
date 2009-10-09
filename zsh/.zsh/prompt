@@ -2,6 +2,10 @@
 
 setopt prompt_subst
 
+if [ $EUID -eq 0 ]; then
+    PROMPT_COLOR='red'
+fi
+
 function precmd()
 {
     local base_dir branch

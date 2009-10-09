@@ -1,0 +1,3 @@
+#compdef arkinstall
+
+_describe -t package 'packages' packages

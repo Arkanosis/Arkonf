@@ -2,20 +2,42 @@
 
 typeset -A bookmarks
 
+bookmarkentries=()
+bookmarkcompletions=()
+
 function s()
 {
-    bookmarks["$1"]=`pwd`
+    bookmarkentries+=("$1")
+    bookmarks[$1]=`pwd`
+    bookmarkcompletions+=("$1:$bookmarks[$1]")
 }
 
 function r()
 {
-    cd $bookmarks["$1"]
+    cd $bookmarks[$1]
+}
+
+function d()
+{
+    newbookmarkentries=()
+    newbookmarkcompletions=()
+
+    for bookmark in $bookmarkentries; do
+	if [ "$bookmark" != "$1" ]; then
+	    newbookmarkentries+=("$bookmark")
+	    newbookmarkcompletions+=("$bookmark:$bookmarks[$bookmark]")
+	fi
+    done
+
+    bookmarkentries=$newbookmarkentries
+    bookmarkcompletions=$newbookmarkcompletions
+
+    unset $bookmarks[$1]
 }
 
 function bk()
 {
-    # Est-il possible d'itérer sur les clefs d'un tableau associatif ?
-    for bookmark in $bookmarks; do
-	echo $bookmark
+    for bookmark in $bookmarkentries; do
+	echo "$bookmark\t$bookmarks[$bookmark]"
     done
 }

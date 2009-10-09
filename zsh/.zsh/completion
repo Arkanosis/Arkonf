@@ -1,16 +1,14 @@
 # "-*- sh -*-"
 
-# Pas de doublons dans la liste des autocompletions
 typeset -U fpath
 
 setopt auto_list
 setopt complete_in_word
 setopt hash_list_all
-setopt list_types # Affiche le type de fichier dans les propositions
+setopt list_types
 setopt correct
 setopt extended_glob
 
-# Les completions peuvent etre lentes, on les garde en cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zcache/zsh"
 
@@ -54,3 +52,12 @@ function zcl()
 
     rm -f "$ZARKONF_CACHE/$1"
 }
+
+function magic-tab()
+{
+    if [ -z $LBUFFER ]; then
+	LBUFFER+=./
+    fi
+    zle expand-or-complete
+}
+zle -N magic-tab
