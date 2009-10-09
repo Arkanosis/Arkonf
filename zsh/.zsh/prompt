@@ -22,7 +22,11 @@ function precmd()
 	fi
     elif [ -d "$base_dir/.git/" ]; then
 	branch=`git branch`
+	oldvcs="$vcs"
         vcs="${vcs}[git:$branch[3,-1]:`git describe |& sed "s/.*'\([0-9a-z]\{6\}\)[0-9a-z]\{34\}'/\1/"`]"
+	if ! $?; then
+        vcs="${oldvcs}[git:uncommited]"
+	fi
     fi
 
     case "$TERM" in
