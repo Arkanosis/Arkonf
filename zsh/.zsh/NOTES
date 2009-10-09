@@ -13,6 +13,7 @@ M-a : Valider la commande mais la garder tapée
 =<cmd> : équivalent à `which <cmd>`
 
 base#valeur : correspond à valeur en base base, à utiliser : $((16#ff)) <=> $((0xff))
+$(([#base]valeur)) : affiche valeur en base base
 
 cd <a> <b> : remplace <a> par <b> dans pwd. L'autocomplétion marche sur <b>
 

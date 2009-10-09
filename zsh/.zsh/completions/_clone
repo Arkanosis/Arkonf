@@ -1,8 +1,6 @@
 #compdef clone
 
-local curcontext="$curcontext" state line
-typeset -A opt_args
-local subcmds
+local curcontext="$curcontext" subcmds
 
 subcmds=(
 	assembleur

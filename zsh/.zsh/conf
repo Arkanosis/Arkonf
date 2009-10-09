@@ -38,3 +38,5 @@ alias cci="cdo ci"
 alias cpush="cdo push"
 alias cup="cdo up"
 alias cadd="cdo add"
+
+alias ctd="e $ZARKONF_DIR/.zsh/TODO"

@@ -1,10 +1,6 @@
 # "-*- sh -*-"
 
-alias e="emacs -nw"
-alias v="vim"
-
-alias grep="egrep --color"
-
-alias pf="gprof -b"
-
 alias cx="chmod +x"
+alias grep="grep --color"
+alias hx="hexdump -C"
+alias pf="gprof -b"

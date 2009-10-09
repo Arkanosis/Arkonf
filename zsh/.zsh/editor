@@ -1,0 +1,15 @@
+# "-*- sh -*-"
+
+if which vim >&-; then
+   export EDITOR="vim"
+else
+   export EDITOR="vi"
+fi
+
+alias v="$EDITOR"
+
+if which emacs >&-; then
+    alias e="emacs -nw"
+else
+    alias e="$EDITOR"
+fi

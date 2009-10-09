@@ -1,0 +1,11 @@
+# "-*- sh -*-"
+
+packages=(
+    "bdiff:An utility to compare huge files"
+    "canonicalize:An utility that return the canonical path to a file"
+)
+
+function arkinstall()
+{
+    # TODO
+}

@@ -23,19 +23,19 @@ function search()
 
     if [ "$#" -eq 2 ]; then
 	dir="$1"
-	exp="$2"
 	shift
     else
 	dir="."
-	exp="$1"
     fi
+
+    exp="$1"
 
     shift
 
     if [ $dist -ne 0 ]; then
-	egrep -nRI "$exp" "$dir" $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp" --color
+	grep -nRI "$exp" "$dir" $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp"
     else
-	egrep -nRI "$exp" "$dir" $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp" --color
+	grep -nRI "$exp" "$dir" $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | grep "$exp"
     fi
 }
 
@@ -75,6 +75,30 @@ function /z()
 function /a()
 {
     runin "$ARKONF_DIR" search $@
+}
+function /r()
+{
+    local dir files exp
+
+    if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+	echo 'Usage: /r [dir] <files pattern> <exp>' >&2
+	return 1
+    fi
+
+    if [ "$#" -eq 3 ]; then
+	dir="$1"
+	shift
+    else
+	dir="."
+    fi
+
+    files="$1"
+    exp="$2"
+
+    shift
+    shift
+
+    find "$dir" -name "$files" -exec grep --color "$exp" {} \; -print
 }
 
 alias td="search 'TODO|FIXME|HACK'"

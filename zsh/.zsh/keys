@@ -100,6 +100,9 @@ bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
 # Alt + e pour appliquer un coup de sed sur la ligne de commande
 bindkey "^[e" regex-edit
 
+# Tab pour lister le répertoire courant, insérer une tabulation, ou auto-compléter
+bindkey "^i" magic-tab
+
 function kbd()
 {
     setxkbmap us

@@ -32,20 +32,13 @@
 
 - Finir tree() : doit être compatible avec toutes les options de gls
 
-- Binder ls sur tab lorsque la ligne est vide (comme dans tcsh), le coder à la main si ça n'existe vraiment pas
-
 - Colorer le prompt suivant root / local / ssh / user@ssh / su (rouge, cyan, vert, rose, jaune)
-
-- Bookmarks
- - Ajouter une fonction qui liste les bookmarks courants et une autre pour supprimer un bookmark
- - Autocomplétion
 
 - Arc plus complet :
  - factorisation du code
  - plus de formats supportés
  - correction de la gestion de l'absence de dossier racine (trouver une méthode robuste aux changements de binaires)
  - compression intelligente (LZMA avec les bonnes options, PPMd pour le texte)
- - Autocompletion sans respect de la casse
  - Mise en cache des listages (notamment pour le tar.xz)
 
 - LS_COLOR généré avec une fonction, plutôt qu'à la main
@@ -62,13 +55,7 @@
  - Choix du binding clavier (+ fonction pour passer rapidement en mode clavier pour le développement)
  - Passer un coup de sed -i sur le .zshrc pour changer $ARKONF_DIR
 
-- Gestion de version
- - confdf : diff avec la version stable, conflg, confst, confci, confpush...
- - Seul le répertoire ~/.zsh est versionné (ne comprend pas de login, mot de passe...)
- - confup : fetch la dernière version et re-source le ~/.zshrc
-
 - Notes :
- - alt+? fait un less du fichier de notes (aide de zArkonf + aide zsh)
  - tuto rapide du globbing (soustraction *et* répertoires avec attributs des fichiers...)
  - récapitulatif des raccourcis claviers
  - Version actuelle de zArkonf
@@ -79,4 +66,12 @@
  - ^[? affiche les notes temporaires numérotées
  - rmnote <num> supprime la note num de ~/.znotes
 
-- zApt-get : installation rapide d'un serveur http, de la dernière version de zsh, vim... seulement les trucs indispensables, et les Arkonfs associées
+- Développements spécifiques
+ - Nombres de mails non lus dans le prompt (GMail, Hotmail, Facebook, page de discussion Wikipédia, Exalead, BuildBot...)
+ - Nombre en rouge foncé lorsqu'il a changé depuis le dernier prompt, en gris sinon (pour ne pas attirer inutilement l'attention)
+ - Possibilité de forcer une couleur (par exemple, les messages du buildbot restent en rouge)
+ - Fonction pour afficher les objets des mails nons lus sans avoir à switcher avec Firefox
+ - Utilisation d'un programme externe (Python ?) tournant en tâche de fond pour ne pas ralentir le shell
+
+  Cyclamen:4~zarkonf/.zsh (0) [git:master:7321ac] [G:2 W:1 E:1 B:6]
+  511 $

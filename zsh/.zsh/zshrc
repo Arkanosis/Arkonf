@@ -3,12 +3,14 @@
 pushd `dirname $0` >&-
 
 source ./postconf
+source ./arch
 source ./paths
+source ./compat
 
 source ./abbrev
 source ./alias
 source ./arc
-source ./arch
+source ./arkinstall
 source ./backup
 source ./bookmarks
 source ./cd
@@ -20,6 +22,7 @@ source ./conf
 source ./dist
 source ./duplicates
 source ./dot
+source ./editor
 source ./files
 source ./firefox
 source ./hash
