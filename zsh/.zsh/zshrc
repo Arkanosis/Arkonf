@@ -6,6 +6,7 @@ source ./postconf
 source ./arch
 source ./paths
 source ./compat
+source ./editor
 
 source ./abbrev
 source ./alias
@@ -22,7 +23,6 @@ source ./conf
 source ./dist
 source ./duplicates
 source ./dot
-source ./editor
 source ./files
 source ./firefox
 source ./hash

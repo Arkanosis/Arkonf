@@ -55,3 +55,20 @@ curlftpfs ftp://ftp.sunet.se/ sunet/
 fusermount -u sunet/
 
 write <username> # envoie un message à l'utilisateur (dans le genre net send sous windows, pourrit la console et tout)
+
+*.txt<tab> -> toto.txt titi.txt
+*.txt<shift+tab> -> menu de sélection dans les .txt
+
+En ZSH, inutile de mettre des quotes autour des variables : elles sont quotées implicitement (contrairement a avec sh).
+a="toto lol" => $a n'est *pas* un tableau (utiliser $=a pour transformer en tableau à deux éléments)
+
+Pour évaluer du globbing stocké dans une variable, utiliser $~var.
+Exemple :
+ echo $a => *.txt
+ echo $~a => toto.txt tutu.txt
+
+Utiliser [[ ]] plutôt que [ ]. Avantages :
+ - Robuste aux variables vides : [ $x = "toto" ] casse si $x est vide, pas [[ $x = "toto" ]]
+ - [[ toto && titi ]] est supporté (|| aussi)
+
+Pour les tests arithmétiques, utiliser (( )), exemple : if ((x > 5)); then

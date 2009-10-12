@@ -160,6 +160,12 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control t)] 'indent-region)
 (global-set-key [(control tab)] 'other-window)
 
+(global-set-key "\C-j" 'backward-char)
+(global-set-key "\C-k" 'next-line)
+(global-set-key "\C-l" 'previous-line)
+;(global-set-key "\C-;" 'forward-char)
+(global-set-key "\C-b" 'kill-line)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

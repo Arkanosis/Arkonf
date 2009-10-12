@@ -13,3 +13,5 @@ if which emacs >&-; then
 else
     alias e="$EDITOR"
 fi
+
+PAGER=less

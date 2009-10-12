@@ -75,3 +75,9 @@
 
   Cyclamen:4~zarkonf/.zsh (0) [git:master:7321ac] [G:2 W:1 E:1 B:6]
   511 $
+
+- Xorg : remapper caps_lock : au lieu de backspace, peut servir de nouvelle touche modale (déplacement sur la home-row, backspace...), ou y placer ctrl ?
+         ou sur echap, pour les bindings vi
+- Bindings clavier :
+ - utiliser loadkeys plutôt que xkb ou xmodmap (fonctionne en console, ssh...)
+ - /usr/share/keymaps/i386/qwerty/us-acentos.map.gz ...
