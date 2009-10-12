@@ -26,8 +26,8 @@ function precmd()
 	fi
     elif [ -d "$base_dir/.git/" ]; then
 	branch=`git branch`
-	if git describe 2>&-; then
-            vcs="${vcs}[git:$branch[3,-1]:`git describe |& sed "s/.*'\([0-9a-z]\{6\}\)[0-9a-z]\{34\}'/\1/"`]"
+	if git describe --always >& /dev/null; then
+            vcs="${vcs}[git:$branch[3,-1]:`git describe --always`]"
 	else
             vcs="${vcs}[git:uncommited]"
 	fi
