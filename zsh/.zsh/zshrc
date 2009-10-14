@@ -51,5 +51,6 @@ source ./usb
 source ./vcs
 source ./watch
 source ./zle
+source ./zm
 
 popd

@@ -5,6 +5,26 @@ alias cz="cd $ZARKONF_DIR"
 alias czz="cd $ZARKONF_DIR/.zsh"
 alias czc="cd $ZARKONF_DIR/.zsh/completions"
 
+configuration_files=(
+    'emacs/.emacs'
+    'git/.gitconfig'
+    'mercurial/.hgrc'
+    'vim/.vimrc'
+    'xmonad/xmonad.hs'
+    'xorg/.Xmodmap'
+    'zsh/.zshrc'
+)
+
+typeset -A configuration_files_pathes
+
+configuration=()
+
+for configuration_file in $configuration_files; do
+    file="`echo $configuration_file | sed 's_\(.*/\)\?\([^/]\+\)$_\2_'`"
+    configuration+=("$file")
+    configuration_files_pathes[$file]="$ARKONF_DIR/$configuration_file"
+done
+
 function ze()
 {
     local files
@@ -12,12 +32,15 @@ function ze()
     files=()
 
     for module; do
-	if [ $module[1] = '_' ]; then
-	    files=($files "$ZARKONF_DIR/.zsh/completions/$module")
-	elif [ $module[1] = '.' ]; then
-	    files=($files "$ZARKONF_DIR/$module")
+	configuration_file_path=$configuration_files_pathes[$module]
+	if [ -n "$configuration_file_path" ]; then
+	    files+=($configuration_file_path)
 	else
-	    files=($files "$ZARKONF_DIR/.zsh/$module")
+	    if [ $module[1] = '_' ]; then
+		files+=("$ZARKONF_DIR/.zsh/completions/$module")
+	    else
+		files+=("$ZARKONF_DIR/.zsh/$module")
+	    fi
 	fi
     done
 
