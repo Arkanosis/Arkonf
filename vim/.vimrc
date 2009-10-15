@@ -6,8 +6,8 @@ set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
-
-set virtualedit=all
+set list
+set listchars=tab:⇒ ,trail:¶
 
 set history=50
 

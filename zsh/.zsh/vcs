@@ -2,23 +2,23 @@
 
 function whichvcs()
 {
-    local base_dir
+	local base_dir
 
-    if test -d '.svn'; then
-	echo svn
-    elif test -d 'CVS'; then
-	echo cvs
-    else
-	base_dir='.'
-	while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ "`readlink -f "$base_dir"`" != '/' ]; do
-	    base_dir="$base_dir/.."
-	done
-	if [ -d "$base_dir/.hg/" ]; then
-	    echo hg
-	elif [ -d "$base_dir/.git/" ]; then
-	    echo git
+	if test -d '.svn'; then
+		echo svn
+	elif test -d 'CVS'; then
+		echo cvs
+	else
+		base_dir='.'
+		while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ "`readlink -f "$base_dir"`" != '/' ]; do
+			base_dir="$base_dir/.."
+		done
+		if [ -d "$base_dir/.hg/" ]; then
+		    echo hg
+		elif [ -d "$base_dir/.git/" ]; then
+		    echo git
+		fi
 	fi
-    fi
 }
 
 function vcsroot()
