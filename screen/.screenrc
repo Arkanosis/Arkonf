@@ -1,0 +1,67 @@
+#####################
+# Configuration
+#####################
+
+shell -$SHELL
+
+hardstatus on
+hardstatus alwayslastline
+
+caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%? %= %D %d %M %c"
+
+#####################
+# Raccourcis clavier
+#####################
+
+escape ^\\
+# escape %'
+
+bind l windowlist -b
+bind \\ windowlist -b
+#bind ' windowlist -b
+
+#bind \\ select
+
+bind n title
+
+bind t screen
+
+bind j prev
+bind ; next
+
+bind s split
+bind v vertical_split
+bind S remove
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+
+bind @ silence
+
+#####################
+# Notes
+#####################
+
+# Utiliser CTRL+\ pour les commandes de screen :
+#  - t ou c : nouvelle fenêtre
+#  - l ou ': lister les fenêtres
+#  - [0-9] : aller à la fenêtre N
+#  - <backspace> ou j : aller à la fenêtre précédente
+#  - <space> ou ; : aller à la fenêtre suivante
+#  - <tab> : aller à la zone suivante (écran splitté)
+#  - CTRL+\ : aller à la dernière fenêtre utilisée
+#  - z : arrière-plan
+#  - [ : mode copie
+#  - <space> : début ou fin de sélection (en mode copie)
+#  - ] : colle
+#  - @ : surveille une fenêtre et afficher un message lorsqu'elle est inactive pendant 15 secondes
+
+#####################
+# TODO
+#####################
+
+# Compiler une version de screen qui supporte le split vertical
+# Lorsque toutes les touches seront accessibles (correction de loadkeys) :
+#  - Utiliser ' comme échappement (moins loin que \)
