@@ -33,6 +33,8 @@ install fluxbox ~/.fluxbox
 install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
 
+install screen/.screenrc ~/.screenrc
+
 install vim/.vimrc ~/.vimrc
 install vim/.vim ~/.vim
 
