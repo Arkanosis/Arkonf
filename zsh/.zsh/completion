@@ -10,11 +10,11 @@ setopt correct
 setopt extended_glob
 
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$HOME/.zcache/zsh"
+zstyle ':completion:*' cache-path $HOME/.zcache/zsh
 
 fignore=(.aux .toc .bak .sav .old .o .trace \~)
 
-fpath=("$ZARKONF_DIR/.zsh/completions" $fpath)
+fpath=($ZARKONF_DIR/.zsh/completions $fpath)
 
 autoload -U compinit
 compinit
@@ -53,12 +53,12 @@ function zcl()
 	return 1
     fi
 
-    rm -f "$ZARKONF_CACHE/$1"
+    rm -f $ZARKONF_CACHE/$1
 }
 
 function magic-tab()
 {
-    if [ -z $LBUFFER ]; then
+    if [[ -z $LBUFFER && -z $RBUFFER ]]; then
 	LBUFFER+=./
     fi
     zle expand-or-complete

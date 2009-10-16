@@ -2,8 +2,8 @@
 
 setopt prompt_subst
 
-if [ $EUID -eq 0 ]; then
-    PROMPT_COLOR='red'
+if ((EUID == 0)); then
+    PROMPT_COLOR=red
 fi
 
 function precmd()
@@ -15,16 +15,16 @@ function precmd()
         vcs="[svn:`svn info | grep Revision | sed 's/.* \(.*\)/\1/g'`]"
     fi
     base_dir='.'
-    while [ ! -d "$base_dir/.hg" ] && [ ! -d "$base_dir/.git" ] && [ "`readlink -f "$base_dir"`" != '/' ]; do
-	base_dir="$base_dir/.."
+    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && `readlink -f $base_dir` != / ]]; do
+	base_dir=$base_dir/..
     done
-    if [ -d "$base_dir/.hg/" ]; then
-	if [ -f "$base_dir/.hg/branch" ]; then
+    if [[ -d $base_dir/.hg/ ]]; then
+	if [[ -f $base_dir/.hg/branch ]]; then
             vcs="${vcs}[hg:`< $base_dir/.hg/branch`:`hg id -n`]"
 	else
             vcs="${vcs}[hg:default:`hg id -n`]"
 	fi
-    elif [ -d "$base_dir/.git/" ]; then
+    elif [[ -d $base_dir/.git/ ]]; then
 	branch=`git branch`
 	if git describe --always >& /dev/null; then
             vcs="${vcs}[git:$branch[3,-1]:`git describe --always`]"
@@ -33,13 +33,13 @@ function precmd()
 	fi
     fi
 
-    case "$TERM" in
+    case $TERM in
  	*xterm*|*rxvt*|Eterm)
-	    echo -ne "\e]0;${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\007"
- 	    ;;
- 	screen)
-	    echo -ne "\e_${HOSTNAME%%.*}${PWD/$HOME/~} $vcs\e\\"
- 	    ;;
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007"
+ 	;;
+ 	screen*)
+	    echo -ne "\033]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007\033k`basename $PWD`\033\\"
+ 	;;
     esac
 
 reset=`print "\e(B\e)B\e*B\e+B"`

@@ -73,9 +73,6 @@ bindkey -s "^['" '^[pdf\n'
 # Alt + s pour sourcer le dernier .zshrc
 bindkey -s '^[s' '^[p. ~/.zshrc\n'
 
-# Alt + t pour voir le boulot restant
-bindkey -s '^[t' '^[ptd\n'
-
 # Alt + e pour transformer une commande en chemin complet
 #bindkey '^[e' expand-cmd-path
 
@@ -120,7 +117,7 @@ function no-magic-keys()
 function magic-keys()
 {
     bindkey . magic-dot
-    #bindkey / magic-slash
+    bindkey / magic-slash
     bindkey ' ' abbrev-expand
     bindkey '^r' history-globbing-search-backward
 }

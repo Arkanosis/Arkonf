@@ -2,6 +2,7 @@
 
 alias ca="cd $ARKONF_DIR"
 alias cz="cd $ZARKONF_DIR"
+alias cv="cd $ARKONF_DIR/vim"
 alias czz="cd $ZARKONF_DIR/.zsh"
 alias czc="cd $ZARKONF_DIR/.zsh/completions"
 
@@ -10,6 +11,7 @@ configuration_files=(
     'git/.gitconfig'
     'mercurial/.hgrc'
     'vim/.vimrc'
+    'screen/.screenrc'
     'xmonad/xmonad.hs'
     'xorg/.Xmodmap'
     'zsh/.zshrc'

@@ -31,7 +31,10 @@ zle -N magic-dot
 function magic-slash()
 {
     zle self-insert
-    if ! [ $LBUFFER = / ]; then
+
+    if [[ $LBUFFER = / ]]; then
+	LBUFFER+=' '
+    else
 	zle complete-word
     fi
 }

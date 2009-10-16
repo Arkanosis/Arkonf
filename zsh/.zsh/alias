@@ -1,6 +1,21 @@
 # "-*- sh -*-"
 
-alias cx="chmod +x"
-alias grep="grep --color"
-alias hx="hexdump -C"
-alias pf="gprof -b"
+function cx()
+{
+    chmod +x $@
+}
+
+function grep()
+{
+    command grep --color $@
+}
+
+function hx()
+{
+    hexdump -C $@
+}
+
+function pf()
+{
+    gprof -b $@
+}
