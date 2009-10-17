@@ -7,3 +7,8 @@ function mvi()
 {
     mv "$1" "`dirname "$1"`/$2"
 }
+
+function mvcd()
+{
+    # TODO
+}
