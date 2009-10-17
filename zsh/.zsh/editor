@@ -9,7 +9,15 @@ fi
 alias v="$EDITOR"
 
 if which emacs >&-; then
-    alias e="emacs -nw"
+    function e()
+    {
+	emacs -nw $@
+    }
 else
-    alias e="$EDITOR"
+    function e()
+    {
+	$EDITOR $@
+    }
 fi
+
+PAGER=less

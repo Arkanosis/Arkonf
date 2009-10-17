@@ -39,8 +39,7 @@ alias diapo="run xv -shrink \; *.jpg"
 
 function runin()
 {
-    pushd >&-
-    cd $1 >&-
+    pushd $1 >&-
     shift
     $@
     popd >&-

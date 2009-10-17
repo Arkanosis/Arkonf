@@ -1,16 +1,17 @@
 # "-*- sh -*-"
 
-if [ -z "$LOGIN" ]; then
+if [[ -z $LOGIN ]]; then
     LOGIN="$USER"
 fi
 
-export MALLOC_OPTIONS="J"
+export MALLOC_OPTIONS=J
 export EMAIL=$EMAIL
 export REPLYTO=$EMAIL
 export NNTPSERVER=$NNTPSERVER
-export PAGER="less"
-export TSOCKS_PASSWORD="$SOCKS_PASSWORD"
+export TSOCKS_PASSWORD=$SOCKS_PASSWORD
 
-if ! test -d "$ZARKONF_CACHE"; then
-    mkdir -p "$ZARKONF_CACHE"
+export SHELL=zsh
+
+if ! [[ -d $ZARKONF_CACHE ]]; then
+    mkdir -p $ZARKONF_CACHE
 fi

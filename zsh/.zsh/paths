@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+typeset -U PATH
+
 export PATH="$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH"
 export LD_LIBRARY_PATH="$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$PATH"
 export PYTHONPATH="$HOME/local/lib/python:$HOME/local/lib/python2.4/site-packages:$PYTHONPATH/"

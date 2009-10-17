@@ -6,40 +6,43 @@ function search()
 
     dist=0
 
-    if [ "$#" -lt 1 ]; then
+    if ((# < 1)); then
 	echo 'Usage: search [-d] [dir] <exp>' >&2
 	return 1
     fi
 
-    if [ "$#" -eq 2  ] && [ "$1" = "-d" ]; then
+    if ((# == 2)) && [[ $1 = -d ]]; then
 	dist=1
 	shift
 
-	if [ "$#" -lt 1 ]; then
+	if ((# < 1)); then
 	    echo 'Usage: search [-d] [dir] <exp>' >&2
 	    return 1
 	fi
     fi
 
-    if [ "$#" -eq 2 ]; then
-	dir="$1"
+    dir=.
+
+    if ((# == 2)); then
+	dir=$1
 	shift
-    else
-	dir="."
     fi
 
-    exp="$1"
+    exp=$1
 
     shift
 
-    if [ $dist -ne 0 ]; then
-	grep -nRI "$exp" "$dir" $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep "$exp"
+    if ((dist)); then
+	grep -nRI $exp $dir $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep $exp
     else
-	grep -nRI "$exp" "$dir" $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | grep "$exp"
+	grep -nRI $exp $dir $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | grep $exp
     fi
 }
 
-alias /="search"
+function /()
+{
+    search $@
+}
 function /l()
 {
     search $@ | less -r
@@ -50,69 +53,87 @@ function /f()
 
     dir=.
 
-    if [ $# -gt 0 ]; then
-	dir="$1"
+    if ((#)); then
+	dir=$1
 	shift
     fi
 
-    find "$dir" -type f $@
+    find $dir -type f $@
 }
 function /d()
 {
     dir=.
 
-    if [ $# -gt 0 ]; then
-	dir="$1"
+    if ((#)); then
+	dir=$1
 	shift
     fi
 
-    find "$dir" -type f $@
+    find $dir -type f $@
 }
 function /z()
 {
-    runin "$ZARKONF_DIR" search $@
+    runin $ZARKONF_DIR search $@
 }
 function /a()
 {
-    runin "$ARKONF_DIR" search $@
+    runin $ARKONF_DIR search $@
 }
 function /r()
 {
-    local dir files exp
+    local i dir files exp
 
-    if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
-	echo 'Usage: /r [dir] <files pattern> <exp>' >&2
+    if [[ $1 = -i ]]; then
+	i=-i
+	shift
+    fi
+
+    if ((# < 2 || # > 3)); then
+	echo 'Usage: /r [-i] [dir] <files pattern> <exp>' >&2
 	return 1
     fi
 
-    if [ "$#" -eq 3 ]; then
-	dir="$1"
+    dir=.
+
+    if ((# == 3)); then
+	dir=$1
 	shift
-    else
-	dir="."
     fi
 
-    files="$1"
-    exp="$2"
+    files=$1
+    exp=$2
 
     shift
     shift
 
-    find "$dir" -name "$files" -exec grep --color "$exp" {} \; -print
+    for file in `find $dir -type f`; do
+	if [[ $file = $~files ]]; then
+	    res=`grep -n $i $exp $file`
+	    if ! ((?)); then
+		echo "\033[1;33m$file\033[0m"
+		echo $res | grep $i $exp
+	    else
+	    fi
+	fi
+    done
 }
+alias /r="noglob /r"
 
-alias td="search 'TODO|FIXME|HACK'"
+function /t()
+{
+    search 'TODO|FIXME|HACK'
+}
 
 function rd()
 {
-    if [ $# -ne 0 ]; then
-	if test -f "$1/README"; then
-	    < "$1/README"
+    if ((#)); then
+	if [[ -f $1/README ]]; then
+	    < $1/README
 	    return 0
 	fi
     else
-	if test -f "./README"; then
-	    < "./README"
+	if [[ -f ./README ]]; then
+	    < ./README
 	    return 0
 	fi
     fi

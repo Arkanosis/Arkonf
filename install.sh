@@ -33,13 +33,13 @@ install fluxbox ~/.fluxbox
 install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
 
+install screen/.screenrc ~/.screenrc
+
 install vim/.vimrc ~/.vimrc
-<<<<<<< HEAD:install.sh
-install xmonad ~/.xmonad
-=======
 install vim/.vim ~/.vim
 
->>>>>>> 7321acf14d1cc0131f8be1813dc2525a5ccec24d:install.sh
+install xmonad ~/.xmonad
+
 install xorg/.Xmodmap ~/.Xmodmap
 
 echo

@@ -1,8 +1,6 @@
 #compdef ze
 
-local configuration modules notes completions
-
-configuration=(.zshrc)
+local modules notes completions
 
 modules=()
 

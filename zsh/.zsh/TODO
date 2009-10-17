@@ -1,5 +1,7 @@
 - mvcd, cpcd, lncd
 
+- Rebinder les déplacements sur jklm comme dans vim, screen, xmonad et rebinder gmail et google reader de la même façon
+
 - Completion intelligente pour toutes les commandes de VCS, y compris celles de conf (rediriger les autocomplétions qui vont bien, suivant le VCS en question)
 - Autocompletion pour les commandes en runin ou en dist (redirection de l'autocomplétion), ainsi que pour mvi et cpi
 
@@ -77,3 +79,9 @@
 
   Cyclamen:4~zarkonf/.zsh (0) [git:master:7321ac] [G:2 W:1 E:1 B:6]
   511 $
+
+- Xorg : remapper caps_lock : au lieu de backspace, peut servir de nouvelle touche modale (déplacement sur la home-row, backspace...), ou y placer ctrl ?
+         ou sur echap, pour les bindings vi
+- Bindings clavier :
+ - utiliser loadkeys plutôt que xkb ou xmodmap (fonctionne en console, ssh...)
+ - /usr/share/keymaps/i386/qwerty/us-acentos.map.gz ...
