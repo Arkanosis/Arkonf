@@ -77,6 +77,32 @@
   (interactive)
   (unhighlight-regexp "\\[\\[[^]]+]]"))
 
+;; Switch between headers and sources
+;; (C) 2009 - Arkanosis
+
+(defun switch-or-open(filename)
+  (let ((buff (get-file-buffer filename)))
+    (if buff
+	(switch-to-buffer buff)
+        (if (file-exists-p filename)
+	    (find-file filename)
+	    nil))))
+(defun switch-or-open-corresponding(ext)
+  (switch-or-open
+    (concat
+     (file-name-sans-extension
+      (buffer-file-name))
+     ext)))
+(defun switch-or-open-header()
+  (interactive)
+  (switch-or-open-corresponding ".hpp"))
+(defun switch-or-open-inline()
+  (interactive)
+  (switch-or-open-corresponding ".hxx"))
+(defun switch-or-open-source()
+  (interactive)
+  (switch-or-open-corresponding ".cpp"))
+
 ;; Duplicate line
 ;; Non-custom function
 
@@ -165,6 +191,10 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key "\C-l" 'previous-line)
 ;(global-set-key "\C-;" 'forward-char)
 (global-set-key "\C-b" 'kill-line)
+
+(global-set-key "\M-h" 'switch-or-open-header)
+(global-set-key "\M-i" 'switch-or-open-inline)
+(global-set-key "\M-o" 'switch-or-open-source)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
@@ -319,7 +349,7 @@ If region contains less than 2 lines, lines are left untouched."
 
 (fset 'auto_brac_colon
    " {\C-mpublic:\C-j\C-jprivate:\C-j};\C-i\C-[OA\C-[OA\C-i")
-(global-set-key "\M-o" 'auto_brac_colon)
+;;(global-set-key "\M-o" 'auto_brac_colon)
 
 (fset 'auto_std
    "std::")
