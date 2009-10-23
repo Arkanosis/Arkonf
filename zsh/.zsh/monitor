@@ -1,0 +1,30 @@
+# "-*- sh -*-"
+
+typeset -A pagehashes
+
+function monitor_pages()
+{
+    local id url
+
+    mail=''
+
+    for page in $MONITORED_PAGES; do
+	id=$page[(ws/|/)1]
+	url=$page[(ws/|/)2]
+
+	newhash=`wget $url -O - 2> /dev/null | md5sum`
+
+	if [[ -n $pagehashes[$id] && $newhash != $pagehashes[$id] ]]; then
+	    mail+=" $id:1"
+	fi
+
+	pagehashes[$id]=$newhash
+    done
+
+    if [[ -n $mail ]]; then
+	mail=" [✉$mail]"
+    fi
+}
+
+
+

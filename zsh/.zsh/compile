@@ -2,7 +2,7 @@
 
 csrcexts=(
     "h" "c"
-    "hpp" "hxx" "ipp" "C" "cpp" "cxx"
+    "hh" "hpp" "hxx" "ipp" "C" "cc" "cpp" "cxx"
 )
 
 puresrcexts=(
@@ -25,11 +25,11 @@ srcexts=(
     "sh" "zsh"
 )
 
-csrcexp="\( "
+csrcexp='\( '
 for csrcext in $csrcexts; do
-    csrcexp="$csrcexp\|$csrcext"
+    csrcexp+="\|$csrcext"
 done
-csrcexp="$csrcexp\)"
+csrcexp+='\)'
 
 function colorizeGCC()
 {
@@ -67,7 +67,7 @@ function tcp()
 
     ret=$?
 
-    if [ $ret -ne 0 ] || ! test -x $name; then
+    if ((ret)) || ! [[ -x $name ]]; then
 	return $ret
     fi
 

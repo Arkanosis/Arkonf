@@ -33,6 +33,7 @@ source ./ln
 source ./ls
 source ./math
 source ./mkdir
+source ./monitor
 source ./mv
 source ./mute
 source ./options

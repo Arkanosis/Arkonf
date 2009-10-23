@@ -8,6 +8,6 @@ function bak()
     fi
 
     for file; do
-	cp --backup=numbered "$file" "$file-`date +%Y-%M-%d.bak`"
+	cp -r --backup=numbered "$file" "$file-`date +%Y-%M-%d.bak`"
     done
 }
