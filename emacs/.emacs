@@ -290,6 +290,12 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun host-name ()
+  "Returns the name of the current host minus the domain."
+  (let ((hostname (downcase (system-name))))
+    (save-match-data
+      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
+
 (if (file-readable-p "~/.emacs.d/exa-mode.el")
     (progn (load "~/.emacs.d/exa-mode.el")
 	   (autoload 'exa-mode "exa-mode" "" t)
@@ -318,6 +324,8 @@ If region contains less than 2 lines, lines are left untouched."
   (highlight-regexp "VlHMM: Next: token is '.+', [0-9]+ path(es) left" 'hi-red-b)
   (highlight-regexp "VlHMM: Order: >> switching to order [0-9+]" 'hi-green-b)
   (highlight-regexp "nextProbability of [01]\\(\\.[0-9]+\\)? was [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)?" 'hi-blue-b)
+  (highlight-regexp "fetching for state [0-9]+" 'linum)
+  (highlight-regexp "looking for [a-z]+ in context '.+" 'font-lock-keyword-face)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
