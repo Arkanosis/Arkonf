@@ -36,6 +36,9 @@ set wrap
 
 set guioptions-=T
 
+set cursorline
+highlight CursorLine cterm=NONE ctermbg=Black
+
 syntax on
 
 " Raccourcis clavier

@@ -172,6 +172,8 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [f11] 'previous-error)
 (global-set-key [f12] 'next-error)
 
+(global-set-key [(control f10)] 'kill-compilation)
+
 (global-set-key "\C-c\C-c" 'comment-region)
 (global-set-key "\C-c\C-v" 'uncomment-region)
 (global-set-key "\M- " 'hippie-expand)
@@ -186,15 +188,15 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control t)] 'indent-region)
 (global-set-key [(control tab)] 'other-window)
 
-(global-set-key "\C-j" 'backward-char)
-(global-set-key "\C-k" 'next-line)
-(global-set-key "\C-l" 'previous-line)
-;(global-set-key "\C-;" 'forward-char)
-(global-set-key "\C-b" 'kill-line)
+(global-set-key [(control j)] 'backward-char)
+(global-set-key [(control k)] 'next-line)
+(global-set-key [(control l)] 'previous-line)
+(global-set-key [(control \;)] 'forward-char)
+(global-set-key [(control b)] 'kill-line)
 
-(global-set-key "\M-h" 'switch-or-open-header)
-(global-set-key "\M-i" 'switch-or-open-inline)
-(global-set-key "\M-o" 'switch-or-open-source)
+(global-set-key [(meta h)] 'switch-or-open-header)
+(global-set-key [(meta i)] 'switch-or-open-inline)
+(global-set-key [(meta o)] 'switch-or-open-source)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
