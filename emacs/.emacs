@@ -173,6 +173,7 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [f12] 'next-error)
 
 (global-set-key [(control f10)] 'kill-compilation)
+(global-set-key [(control f12)] 'previous-error)
 
 (global-set-key "\C-c\C-c" 'comment-region)
 (global-set-key "\C-c\C-v" 'uncomment-region)

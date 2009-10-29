@@ -1,0 +1,58 @@
+Index: src/option.c
+===================================================================
+--- src/option.c	(revision 1626)
++++ src/option.c	(working copy)
+@@ -6847,6 +6847,7 @@
+ 	{&lcs_ext,	"extends"},
+ 	{&lcs_nbsp,	"nbsp"},
+ 	{&lcs_prec,	"precedes"},
++	{&lcs_space,	"space"},
+ 	{&lcs_tab2,	"tab"},
+ 	{&lcs_trail,	"trail"},
+     };
+Index: src/screen.c
+===================================================================
+--- src/screen.c	(revision 1626)
++++ src/screen.c	(working copy)
+@@ -3886,6 +3886,29 @@
+ #endif
+ 	    }
+ 
++	    /* 'list' : change space to lcs_space. */
++	    if (wp->w_p_list && c == ' ' && lcs_space && ptr <= line + trailcol)
++	    {
++		c = lcs_space;
++		if (area_attr == 0 && search_attr == 0)
++		{
++		    n_attr = 1;
++		    extra_attr = hl_attr(HLF_8);
++		    saved_attr2 = char_attr; /* save current attr */
++		}
++#ifdef FEAT_MBYTE
++		mb_c = c;
++		if (enc_utf8 && (*mb_char2len)(c) > 1)
++		{
++		    mb_utf8 = TRUE;
++		    u8cc[0] = 0;
++		    c = 0xc0;
++		}
++		else
++		    mb_utf8 = FALSE;
++#endif
++	    }
++
+ 	    if (extra_check)
+ 	    {
+ #ifdef FEAT_SPELL
+Index: src/globals.h
+===================================================================
+--- src/globals.h	(revision 1626)
++++ src/globals.h	(working copy)
+@@ -1146,6 +1146,7 @@
+ EXTERN int	lcs_tab1 INIT(= NUL);
+ EXTERN int	lcs_tab2 INIT(= NUL);
+ EXTERN int	lcs_trail INIT(= NUL);
++EXTERN int	lcs_space INIT(= NUL);
+ 
+ #if defined(FEAT_WINDOWS) || defined(FEAT_WILDMENU) || defined(FEAT_STL_OPT) \
+ 	|| defined(FEAT_FOLDING)

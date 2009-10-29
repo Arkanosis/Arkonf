@@ -1,0 +1,2 @@
+bdiff: diff huge files (several gigabytes, if needed), compile with -Wno-long-long
+canonicalize: canonical path to a file from a non-canonical one
