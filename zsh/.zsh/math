@@ -2,7 +2,10 @@
 
 autoload zcalc
 
-alias zc=zcalc
+function zc()
+{
+    zcalc $@
+}
 
 function comp()
 {

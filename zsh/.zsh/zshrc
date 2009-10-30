@@ -26,6 +26,7 @@ source ./dot
 source ./files
 source ./firefox
 source ./hash
+source ./highlight
 source ./history
 source ./keys
 source ./less
@@ -33,6 +34,7 @@ source ./ln
 source ./ls
 source ./math
 source ./mkdir
+source ./monitor
 source ./mv
 source ./mute
 source ./options

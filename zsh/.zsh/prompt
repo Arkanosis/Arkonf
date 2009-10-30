@@ -2,13 +2,15 @@
 
 setopt prompt_subst
 
-if ((EUID == 0)); then
+if ! ((EUID)); then
     PROMPT_COLOR=red
 fi
 
 function precmd()
 {
     local base_dir branch
+
+    monitor_pages &!
 
     vcs=''
     if [[ -d .svn ]] ; then
@@ -38,13 +40,13 @@ function precmd()
 	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007"
  	;;
  	screen*)
-	    echo -ne "\033]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007\033k`basename $PWD`\033\\"
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007\ek`basename $PWD`\e\\"
  	;;
     esac
 
 reset=`print "\e(B\e)B\e*B\e+B"`
 gray=`print "\e[90m"`
-PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$vcs$fg[$PROMPT_COLOR]
+PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$vcs$mail$fg[$PROMPT_COLOR]
 %!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
 }
 
@@ -55,3 +57,17 @@ RPROMPT='%(1j.[%j].)'
 
 # Affiche le texte, meme s'il n'y a pas de retour a la ligne
 setopt nopromptcr
+
+function exec()
+{
+    case $TERM in
+	*xterm*|*rxvt*|Eterm)
+            echo -ne "\e]0;$1\007"
+	;;
+	screen*)
+            echo -ne "\e]0;$*\007\ek$1\e\\"
+	;;
+    esac
+
+    builtin exec $@
+}

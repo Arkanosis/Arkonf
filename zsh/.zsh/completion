@@ -35,7 +35,7 @@ zstyle '*:descriptions' format $s
 zstyle ':completion:*' group-name ''
 
 # Autocomplète le globbing au lieu de l'étendre (utiliser shift+tab pour passer outre magic-tab, qui ne fait que l'expansion)
-zstyle ':completion:*' completer _expand _complete
+zstyle ':completion:*' completer _expand _complete _ignored
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
@@ -48,7 +48,7 @@ zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|r
 
 function zcl()
 {
-    if [ $# -ne 1 ]; then
+    if ((# != 1)); then
 	echo 'Usage: zcl <command>' >&2
 	return 1
     fi

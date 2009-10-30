@@ -11,7 +11,7 @@ function run()
 {
     local program
 
-    if [ $# -lt 2 ]; then
+    if ((# < 2)); then
 	echo 'Usage: run <program> [options] \; [arguments]' >&2
 	return 1
     fi
@@ -19,12 +19,12 @@ function run()
     program=$1
     shift
 
-    while [ $# -gt 1 ] && [ "$1" != ";" ]; do
-	program=($program $1)
+    while ((# > 1)) && [[ $1 != \; ]]; do
+	program+=($1)
 	shift
     done
 
-    if [ $# -eq 0 ]; then
+    if ! ((#)); then
 	return
     fi
 

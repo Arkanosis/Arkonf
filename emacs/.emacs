@@ -77,6 +77,32 @@
   (interactive)
   (unhighlight-regexp "\\[\\[[^]]+]]"))
 
+;; Switch between headers and sources
+;; (C) 2009 - Arkanosis
+
+(defun switch-or-open(filename)
+  (let ((buff (get-file-buffer filename)))
+    (if buff
+	(switch-to-buffer buff)
+        (if (file-exists-p filename)
+	    (find-file filename)
+	    nil))))
+(defun switch-or-open-corresponding(ext)
+  (switch-or-open
+    (concat
+     (file-name-sans-extension
+      (buffer-file-name))
+     ext)))
+(defun switch-or-open-header()
+  (interactive)
+  (switch-or-open-corresponding ".hpp"))
+(defun switch-or-open-inline()
+  (interactive)
+  (switch-or-open-corresponding ".hxx"))
+(defun switch-or-open-source()
+  (interactive)
+  (switch-or-open-corresponding ".cpp"))
+
 ;; Duplicate line
 ;; Non-custom function
 
@@ -146,6 +172,9 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [f11] 'previous-error)
 (global-set-key [f12] 'next-error)
 
+(global-set-key [(control f10)] 'kill-compilation)
+(global-set-key [(control f12)] 'previous-error)
+
 (global-set-key "\C-c\C-c" 'comment-region)
 (global-set-key "\C-c\C-v" 'uncomment-region)
 (global-set-key "\M- " 'hippie-expand)
@@ -154,17 +183,22 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key "" 'goto-line)
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c b") 'kill-whole-line)
 
 (global-set-key [(meta g)] 'goto-line)
 (global-set-key [(control space)] ' dabbrev-expand)
 (global-set-key [(control t)] 'indent-region)
 (global-set-key [(control tab)] 'other-window)
 
-(global-set-key "\C-j" 'backward-char)
-(global-set-key "\C-k" 'next-line)
-(global-set-key "\C-l" 'previous-line)
-;(global-set-key "\C-;" 'forward-char)
-(global-set-key "\C-b" 'kill-line)
+(global-set-key [(control j)] 'backward-char)
+(global-set-key [(control k)] 'next-line)
+(global-set-key [(control l)] 'previous-line)
+(global-set-key [(control \;)] 'forward-char)
+(global-set-key [(control b)] 'kill-line)
+
+(global-set-key [(meta h)] 'switch-or-open-header)
+(global-set-key [(meta i)] 'switch-or-open-inline)
+(global-set-key [(meta o)] 'switch-or-open-source)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
@@ -260,6 +294,12 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun host-name ()
+  "Returns the name of the current host minus the domain."
+  (let ((hostname (downcase (system-name))))
+    (save-match-data
+      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
+
 (if (file-readable-p "~/.emacs.d/exa-mode.el")
     (progn (load "~/.emacs.d/exa-mode.el")
 	   (autoload 'exa-mode "exa-mode" "" t)
@@ -288,6 +328,8 @@ If region contains less than 2 lines, lines are left untouched."
   (highlight-regexp "VlHMM: Next: token is '.+', [0-9]+ path(es) left" 'hi-red-b)
   (highlight-regexp "VlHMM: Order: >> switching to order [0-9+]" 'hi-green-b)
   (highlight-regexp "nextProbability of [01]\\(\\.[0-9]+\\)? was [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)?" 'hi-blue-b)
+  (highlight-regexp "fetching for state [0-9]+" 'linum)
+  (highlight-regexp "looking for [a-z]+ in context '.+" 'font-lock-keyword-face)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -319,7 +361,7 @@ If region contains less than 2 lines, lines are left untouched."
 
 (fset 'auto_brac_colon
    " {\C-mpublic:\C-j\C-jprivate:\C-j};\C-i\C-[OA\C-[OA\C-i")
-(global-set-key "\M-o" 'auto_brac_colon)
+;;(global-set-key "\M-o" 'auto_brac_colon)
 
 (fset 'auto_std
    "std::")

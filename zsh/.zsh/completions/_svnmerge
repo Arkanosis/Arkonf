@@ -1,0 +1,121 @@
+#compdef svnmerge
+
+# Zsh completion script for svnmerge.  Rename this file to _svnmerge and copy
+# it into your zsh function path (/usr/share/zsh/site-functions for
+# instance)
+#
+# (C) 2009 Jérémie Roquet
+# arkanosis@gmail.com
+#
+# This work is in the public domain
+#
+
+local curcontext="$curcontext" state line
+typeset -A opt_args
+local subcmds repos tags newFiles addedFiles includeExclude
+
+subcmds=(`svnmerge help | sed -n 's/^  \([a-z]\+\) \+.\+/\1/p'`)
+
+if [[ $service == "svnmerge" ]]; then
+    _arguments -C -A  "-*" \
+    '(--force)-F[force operation even if the working copy is not clean, or there are pending updates]' \
+    '(-F)--force[force operation even if the working copy is not clean, or there are pending updates]' \
+    '(--dry-run)-n[do not actually change anything, just pretend; implies --show-changes]' \
+    '(-n)--dry-run[do not actually change anything, just pretend; implies --show-changes]' \
+    '(--show-changes)-s[show subversion commands that make changes]' \
+    '(-s)--show-changes[show subversion commands that make changes]' \
+    '(--verbose)-v[verbose mode: output more information about progress]' \
+    '(-v)--verbose[verbose mode: output more information about progress]' \
+    '(--username)-u[invoke subversion commands with the supplied username]:username:' \
+    '(-u)--username[invoke subversion commands with the supplied username]:username:' \
+    '(--password)-p[invoke subversion commands with the supplied password]:password:' \
+    '(-p)--password[invoke subversion commands with the supplied password]:password:' \
+    '(--config-dir)-c[cause subversion commands to consult runtime config directory DIR]:config directory:_files -/' \
+    '(-c)--config-dir[cause subversion commands to consult runtime config directory DIR]:config directory:_files -/' \
+    '(--help)-h[show help for this command and exit]' \
+    '(-h)--help[show help for this command and exit]' \
+    '(--version)-V[show version info and exit]' \
+    '(-V)--version[show version info and exit]' \
+    '*::command:->subcmd' && return 0
+
+    if (( CURRENT == 1 )); then
+        _wanted commands expl 'svnmerge command' compadd -a subcmds
+        return
+    fi
+    service="$words[1]"
+    curcontext="${curcontext%:*}=$service:"
+fi
+
+case $service in
+    (avail)
+        _arguments \
+	    '(-A)--all[show both available and blocked revisions (aka ignore blocked revisions)]' \
+	    '(--all)-A[show both available and blocked revisions (aka ignore blocked revisions)]' \
+            '(-b)--bidirectional[remove reflected and initialized revisions from merge candidates. Not required but may be specified to speed things up slightly]' \
+            '(--bidirectional)-b[remove reflected and initialized revisions from merge candidates. Not required but may be specified to speed things up slightly]' \
+            '(-B)--blocked[show the blocked revision list (see svnmerge block)]' \
+            '(--blocked)-B[show the blocked revision list (see svnmerge block)]' \
+            '(-d)--diff[show corresponding diff instead of revision list]' \
+            '(--diff)-d[show corresponding diff instead of revision list]' \
+            '--summarize[show summarized diff instead of revision list]' \
+            '(-l)--log[show corresponding log history instead of revision list]' \
+            '(--log)-l[show corresponding log history instead of revision list]' \
+            '(-r)--revision[specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]' \
+            '(--revision)-r[specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]' \
+            '(-S)--source[specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]' \
+            '(--source)-S[specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]' \
+            '--head[specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+    ;;
+
+    (block)
+#   -f [--commit-file] FILE       : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -r [--revision] REVLIST       : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+    ;;
+
+    (help)
+        _wanted commands expl 'svnmerge command' compadd -a subcmds
+    ;;
+
+    (init)
+#   -f [--commit-file] FILE : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -r [--revision] REVLIST : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+    ;;
+
+    (integrated)
+#   -d [--diff]                   : show corresponding diff instead of revision list]'
+#   -l [--log]                    : show corresponding log history instead of revision list]'
+#   -r [--revision] REVLIST       : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+    ;;
+
+    (merge)
+#   -b [--bidirectional]          : remove reflected and initialized revisions from merge candidates. Not required but may be specified to speed things up slightly]'
+#   -f [--commit-file] FILE       : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -r [--revision] REVLIST       : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+#   -M [--record-only]            : do not perform an actual merge of the changes, yet record that a merge happened]'
+    ;;
+
+    (rollback)
+#   -f [--commit-file] FILE       : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -r [--revision] REVLIST       : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+#   -M [--record-only]            : do not perform an actual merge of the changes, yet record that a merge happened]'
+    ;;
+
+    (unblock)
+#   -f [--commit-file] FILE       : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -r [--revision] REVLIST       : specify a revision list, consisting of revision numbers and ranges separated by commas, e.g., "534,537-539,540"]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+    ;;
+
+    (uninit)
+#   -f [--commit-file] FILE       : set the name of the file where the suggested log message is written to (default: svnmerge-commit-message.txt)]'
+#   -S [--source] [--head] SOURCE : specify a merge source for this branch. It can be either a path, a full URL, or an unambiguous substring of one of the paths for which merge tracking was already initialized. Needed only to disambiguate in case of multiple merge sources]'
+    ;;
+
+    (*)
+        _message "unknown svnmerge command completion: $service"
+    ;;
+esac

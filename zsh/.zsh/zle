@@ -2,17 +2,15 @@
 
 autoload -U read-from-minibuffer
 
-# asyd@asyd.net
-regex-edit () {
-   local REPLY words
-   words=(${=BUFFER})
-   read-from-minibuffer "Regexp:"
-   if [ -n $REPLY ]; then
-      BUFFER="$words[1] $(echo $words[2,${#words}] | sed ${REPLY})"
+sed-line ()
+{
+   read-from-minibuffer 'Sed: '
+   if [[ -n $REPLY ]]; then
+      BUFFER=`echo $BUFFER | sed $REPLY`
    fi
 }
 
-zle -N regex-edit
+zle -N sed-line
 
 # Insère des quotes lorsqu'un url est collée, backslashe les "?"...
 autoload -U url-quote-magic

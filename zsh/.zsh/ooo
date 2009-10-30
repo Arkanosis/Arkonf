@@ -2,14 +2,14 @@
 
 function install_ooo()
 {
-    if ! test -d "/goinfre/$USER/"; then
-	mkdir -m 700 "/goinfre/$USER/"
+    if ! [[ -d /goinfre/$USER/ ]]; then
+	mkdir -m 700 /goinfre/$USER/
     fi
 
-    if test -O "/goinfre/$USER"; then
-	chmod 700 "/goinfre/$USER"
+    if [[ -O /goinfre/$USER ]]; then
+	chmod 700 /goinfre/$USER
 
-	if ! test -d "/goinfre/$USER/openoffice"; then
+	if ! [[ -d /goinfre/$USER/openoffice ]]; then
 	    cd /goinfre/$USER/
 	    x ~/pub/openoffice.7z
 	    cd -

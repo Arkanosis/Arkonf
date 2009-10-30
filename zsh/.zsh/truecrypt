@@ -2,26 +2,26 @@
 
 function ma
 {
-    if [ $# -lt 1 ]; then
+    if ! ((#)); then
 	echo 'Usage: ma <files>' >&2
 	return 1
     fi
 
-    if ! test -d mnt; then
+    if ! [[ -d mnt ]]; then
 	mkdir mnt
     fi
 
     for i; do
-        if ! test -d "mnt/$i"; then
-	   mkdir "mnt/$i"
+        if ! [[ -d mnt/$i ]]; then
+	   mkdir mnt/$i
 	fi
-	truecrypt "$i" "mnt/$i"
+	truecrypt $i mnt/$i
     done
 }
 
 function addnode
 {
-    if [ $# -ne 1 ]; then
+    if ((# != 1)); then
         echo 'Usage: addnode <nodeNumber>' >&2
 	return 1
     fi

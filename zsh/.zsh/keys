@@ -95,10 +95,17 @@ bindkey -s ';3B' '^[p!-2\n'
 bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
 
 # Alt + e pour appliquer un coup de sed sur la ligne de commande
-bindkey "^[e" regex-edit
+bindkey "^[e" sed-line
 
 # Tab pour lister le répertoire courant, insérer une tabulation, ou auto-compléter
 bindkey "^i" magic-tab
+
+bindkey \) highlight-paren
+bindkey \] highlight-paren
+bindkey \} highlight-paren
+bindkey \' highlight-paren
+bindkey \" highlight-paren
+bindkey \` highlight-paren
 
 function kbd()
 {
@@ -109,7 +116,7 @@ function kbd()
 function no-magic-keys()
 {
     bindkey . self-insert
-    bindkey / self-insert
+    bindkey '^[/' self-insert
     bindkey ' ' self-insert
     bindkey '^r' history-incremental-pattern-search-backward
 }
@@ -117,7 +124,7 @@ function no-magic-keys()
 function magic-keys()
 {
     bindkey . magic-dot
-    bindkey / magic-slash
+    bindkey '^[/' magic-slash
     bindkey ' ' abbrev-expand
     bindkey '^r' history-globbing-search-backward
 }

@@ -2,12 +2,12 @@
 
 function bak()
 {
-    if [ $# -lt 1 ]; then
+    if ! ((#)); then
 	echo 'Usage: bak <files>' >&2
 	return 1
     fi
 
     for file; do
-	cp --backup=numbered "$file" "$file-`date +%Y-%M-%d.bak`"
+	cp -riv --backup=numbered $file $file-`date +%Y-%m-%d.bak`
     done
 }

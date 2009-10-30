@@ -4,16 +4,16 @@ function cmdg()
 {
     local cmd
 
-    cmd="$1"
+    cmd=$1
     shift
 
-    if ! test -d "/goinfre/$USER/"; then
-	mkdir -m 700 "/goinfre/$USER/"
+    if ! [[ -d /goinfre/$USER/ ]]; then
+	mkdir -m 700 /goinfre/$USER/
     fi
 
-    if test -O "/goinfre/$USER"; then
-	chmod 700 "/goinfre/$USER"
-	"$cmd" $@ "/goinfre/$USER/"
+    if [[ -O /goinfre/$USER ]]; then
+	chmod 700 /goinfre/$USER
+	$cmd $@ /goinfre/$USER/
     else
 	print "\e[31mHacking attempt!\n\"/goinfre/$USER\" does not belong to $USER" >&2
 	return 1
@@ -29,7 +29,10 @@ function cpg()
 {
     cmdg cp -r $@
 }
-alias cpr="cpg"
+function cpr()
+{
+    cpg $@
+}
 
 function mvg()
 {

@@ -7,19 +7,19 @@ function dist()
     # Exécution distribuée v1.2
     # (C) 2009 Arkanosis
     # arkanosis@gmail.com
-    if [ $# -lt 1 ]; then
+    if ! ((#)); then
 	echo 'Usage: dist <cmd> [arg [...]]' >&2
 	return 1
     fi
 
-    if [ ${#DIST_HOSTS} -lt 1 ]; then
+    if ! ((#DIST_HOSTS)); then
 	echo 'No host defined in DIST_HOSTS' >&2
 	return 2
     fi
 
     for host in $DIST_HOSTS; do
-	if [ -z `ssh $host who` ]; then
-	    if [ "$host" != "$DIST_HOSTS[0]" ]; then
+	if [[ -z `ssh $host who` ]]; then
+	    if [[ $host != $DIST_HOSTS[0] ]]; then
 		DIST_HOSTS=($host $DIST_HOSTS)
 	    fi
 
@@ -34,7 +34,7 @@ function dist()
 
     echo 'No available host found. Run locally?'
     read y
-    if [ "$y" = 'y' ] || [ "$y" = 'Y' ]; then
+    if [[ $y = (y|Y) ]]; then
 	echo "source ~/.zshrc
                   cd "`pwd`" && $@" | zsh
     fi

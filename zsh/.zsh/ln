@@ -10,4 +10,7 @@ function rln()
     ln -snf $@
 }
 
-alias zln="zmv -L"
+function zln()
+{
+    zmv -L $@
+}

@@ -1,0 +1,14 @@
+@-moz-document
+  url-prefix("http://www.google.com/reader/view/"),
+  url-prefix("https://www.google.com/reader/view/")
+{
+  #entries.list .collapsed:hover, #entries.list .read .collapsed:hover
+  {
+    background-color: #99FFCC !important;
+  }
+
+  #entries.list .read .collapsed
+  {
+    background-color: #CCCCFF !important;
+  }
+}

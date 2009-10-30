@@ -1,5 +1,17 @@
 # "-*- sh -*-"
 
+csrcexts_pattern='*.('
+for csrcext in $csrcexts; do
+    csrcexts_pattern+="|$csrcext"
+done
+csrcexts_pattern+=')'
+
+srcexts_pattern='*.('
+for srcext in $srcexts; do
+    srcexts_pattern+="|$srcext"
+done
+srcexts_pattern+=')'
+
 function search()
 {
     local dist dir exp
@@ -11,14 +23,9 @@ function search()
 	return 1
     fi
 
-    if ((# == 2)) && [[ $1 = -d ]]; then
+    if ((# > 1)) && [[ $1 = -d ]]; then
 	dist=1
 	shift
-
-	if ((# < 1)); then
-	    echo 'Usage: search [-d] [dir] <exp>' >&2
-	    return 1
-	fi
     fi
 
     dir=.
@@ -33,9 +40,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $exp $dir $@ | grep -v '\.\(svn|git|hg|deps|mk:|log:|output:|cache:|lo:|status:|m4:\)|Makefile\.in|libtool:|autom4te\.cache|configure:|README|NOTES|INSTALL|NEWS|ChangeLog|TODO|Makefile|.*~: |.*~:[0-9]+:[ M] ' | egrep $exp
+	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|README\|NOTES\|INSTALL\|NEWS\|ChangeLog\|TODO\|Makefile\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
     else
-	grep -nRI $exp $dir $@ | grep -v '\.svn|\.git|\.hg|\.deps|\.mk:|Makefile\.in|\.log:|\.output:|\.cache:|libtool:|\.lo:|\.status:|aclocal\.m4:|autom4te\.cache|.*~: |.*~:[0-9]+:[ M] ' | grep $exp
+	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
     fi
 }
 
@@ -102,6 +109,15 @@ function /r()
 
     files=$1
     exp=$2
+
+    case $files in
+	cpp)
+	    files=$csrcexts_pattern
+	;;
+	src)
+	    files=$srcexts_pattern
+	;;
+    esac
 
     shift
     shift
