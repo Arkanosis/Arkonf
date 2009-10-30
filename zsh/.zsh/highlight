@@ -1,0 +1,49 @@
+# "-*- sh -*-"
+
+# (C) Oliver Kiddle, modifications by Arkanosis
+function highlight-paren()
+{
+    local i nested=1
+
+    typeset -A match
+
+    match=(
+	\) \(
+	\] \[
+	\} \{
+	\" \"
+	\' \'
+	\` \`
+     )
+
+    zle self-insert
+
+    for ((i=$((CURSOR - 1)); i; --i)) {
+	[[ $BUFFER[$i] = $match[$KEYS] ]] && (( ! --nested )) && break
+	[[ $BUFFER[$i] == $KEYS ]] && (( ++nested ))
+    }
+
+    region_highlight=("$((i-1)) $i standout")
+    zle -R
+    read -kt 1 && zle -U "$REPLY"
+    region_highlight=()
+}
+zle -N highlight-paren
+
+# function highlight-keyword()
+# {
+#     local keywords
+
+#     keywords=(if then fi for in while do done case esac)
+
+#     for keyword in $keywords; do
+# 	keyword+=$KEYS
+# 	keywordpos=$((#keyword - 1))
+# 	for ((bufferpos=$((CURSOR - 1)); bufferpos && keywordpos; --bufferpos && --keywordpos)); do
+# 	    if [[ $BUFFER[$bufferpos] != $keyword[$keywordpos] ]] then
+# 		continue 2
+# 	    fi
+# 	done
+#     done
+# }
+# zle -N highlight-keyword

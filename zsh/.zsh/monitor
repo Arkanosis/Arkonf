@@ -4,27 +4,34 @@ typeset -A pagehashes
 
 function monitor_pages()
 {
-    local id url
+    local id url cachestring cache
+
+    cache=$ZARKONF_CACHE/monitor
+
+    if [[ -f $cache ]]; then
+	source $cache
+    fi
 
     mail=''
+    cachestring='pagehashes=('
 
     for page in $MONITORED_PAGES; do
 	id=$page[(ws/|/)1]
 	url=$page[(ws/|/)2]
 
-	newhash=`wget $url -O - 2> /dev/null | md5sum`
+	newhash=`wget $url -O - 2> /dev/null | md5sum | cut -d ' ' -f 1`
 
 	if [[ -n $pagehashes[$id] && $newhash != $pagehashes[$id] ]]; then
 	    mail+=" $id:1"
 	fi
 
 	pagehashes[$id]=$newhash
+	cachestring+=" $id $newhash"
     done
 
     if [[ -n $mail ]]; then
 	mail=" [✉$mail]"
     fi
+
+    echo $cachestring \) >| $cache
 }
-
-
-

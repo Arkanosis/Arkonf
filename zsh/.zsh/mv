@@ -1,11 +1,19 @@
 # "-*- sh -*-"
 
-alias mv="mv -iv"
+function mv()
+{
+    command mv -iv $@
+}
+
+# TODO replace with a function
+# problem: zmv is *already* a function
+# so it cause a recursive call that
+# cannot be avoided using `builtin' or `command'
 alias zmv="zmv -M"
 
 function mvi()
 {
-    mv "$1" "`dirname "$1"`/$2"
+    mv $1 `dirname $1`/$2
 }
 
 function mvcd()

@@ -1,36 +1,51 @@
 # "-*- sh -*-"
 
-alias mkdir="mkdir -m 755 -p"
-alias mksec="mkdir -m 700 -p"
+function mkdir()
+{
+    command mkdir -m 755 -p $@
+}
+function mksec()
+{
+    mkdir -m 700 -p $@
+}
 
 function mkcmd()
 {
     local cmd args
 
-    cmd="$1"
+    cmd=$1
     shift
 
-    if [ $# -eq 1 ] && [ "$1" = '--help' ]; then
+    if ((# == 1)) && [[ $1 = '--help' ]]; then
 	$cmd --help
 	return
     fi
 
-    if [ $# -lt 2 ] && [ $cmd != "cd" ]; then
+    if ((# < 2)) && [[ $cmd != cd ]]; then
 	echo "mk$cmd: missing file operand" >&2
 	echo 'Try `'"mk$cmd"' --help'"'"' for more information.' >&2
 	return 1
     fi
 
     args=()
-    while [ $# -gt 1 ]; do
-	args=($args "$1")
+    while ((# > 1)); do
+	args=($args $1)
 	shift
     done
 
-    mkdir "$1"
-    $cmd $args "$1"
+    mkdir $1
+    $cmd $args $1
 }
 
-alias mkcd="mkcmd cd"
-alias mkcp="mkcmd cp"
-alias mkmv="mkcmd mv"
+function mkcd()
+{
+    mkcmd cd $@
+}
+function mkcp()
+{
+    mkcmd cp $@
+}
+function mkmv()
+{
+    mkcmd mv $@
+}

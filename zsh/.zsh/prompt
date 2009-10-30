@@ -2,7 +2,7 @@
 
 setopt prompt_subst
 
-if ((EUID == 0)); then
+if ! ((EUID)); then
     PROMPT_COLOR=red
 fi
 

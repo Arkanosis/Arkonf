@@ -4,19 +4,28 @@ function dotf()
 {
     local format
 
-    format="$1"
+    format=$1
     shift
 
-    if [ "$#" -lt 1 ]; then
+    if ! ((#)); then
 	echo "Usage: $format <files.dot>" >&2
 	return 1
     else
 	for file; do
-	    dot -T$format "$file" -o `echo "$file" | sed s/dot$/$format/`
+	    dot -T$format $file -o `echo $file | sed s/dot$/$format/`
 	done
     fi
 }
 
-alias png="dotf png"
-alias jpg="dotf jpg"
-alias svg="dotf svg"
+function png()
+{
+    dotf png $@
+}
+function jpg()
+{
+    dotf jpg $@
+}
+function svg()
+{
+    dotf svg $@
+}

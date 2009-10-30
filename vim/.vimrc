@@ -39,6 +39,9 @@ set guioptions-=T
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=Black
 
+set encoding=utf8
+set fileencoding=utf8
+
 syntax on
 
 " Raccourcis clavier
@@ -49,6 +52,11 @@ imap <C-S-tab> <Esc>:tabprevious<CR>i
 map <C-tab> :tabnext<CR>
 imap <C-tab> <Esc>:tabnext<CR>i
 map <C-w> :tabclose<CR>
+
+map <C-s> :w<CR>
+imap <C-s> <Esc>:w<CR>i
+map <C-S-s> :wa<CR>
+imap <C-S-s> <Esc>:wa<CR>i
 
 map <A-o> :e %:p:s/.hpp$/.XX-XX/:s/.cpp$/.hpp/:s/.hxx$/.YY-YY/:s/.XX-XX$/.hxx/:s/.YY-YY$/.cpp/<CR>
 
@@ -68,6 +76,14 @@ com Df vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 autocmd BufWritePre * :%g!/^-- $/ s/\s\+$//e
 
 " TODO
+" - Corriger les problèmes de texte non visible sur la ligne courante (comme : TODO)
+" - Corriger le delete trailing whitespaces qui envoie en fin de fichier à chaque enregistrement
+" - Raccourcis clavier pour
+"   - Enregistrer
+"   - Passer en mode commande
+"   - Se déplacer
+"   - Changer de split (haut, bas, gauche, droite)
+"   - Changer d'extrémité de la sélection
 " - Déplacement avec jkl; alt+jkl; pour du mot par mot ou du bloc par bloc, ctrl+jkl; pour du caractère par caractère ou ligne par ligne en mode insertion ctrl+alt+jkl; pour changer de buffer...
 " - Début / fin de ligne / bloc / fichier facilement accessible
 " - Faire en sorte que les raccourcis avec alt fonctionnent

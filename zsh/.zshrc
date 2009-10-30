@@ -21,7 +21,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 
     MONITORED_PAGES=(
 	'W|http://fr.wikipedia.org/wiki/Discussion_utilisateur:Arkanosis'
-	'B|http://fr.wikipedia.org/wiki/Wikipédia:Le_Bistro/23_octobre_2009'
+	'B|http://fr.wikipedia.org/wiki/Wikipédia:Le_Bistro/30_octobre_2009'
     )
 
     pushd "$ZARKONF_DIR/.zsh" >&-

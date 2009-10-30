@@ -5,7 +5,7 @@ function tree()
     local roots
 
     roots=`pwd`
-    if [ $# -ne 0 ]; then
+    if ((#)); then
 	roots=$@
     fi
 

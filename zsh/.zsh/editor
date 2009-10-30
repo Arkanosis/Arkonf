@@ -6,7 +6,10 @@ else
    export EDITOR="vi"
 fi
 
-alias v="$EDITOR"
+function v()
+{
+    $EDITOR $@
+}
 
 if which emacs >&-; then
     function e()

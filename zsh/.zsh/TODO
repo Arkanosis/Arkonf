@@ -1,3 +1,8 @@
+- Traduire les modules ls, conf, compile... en zsh
+- Remplacer tous les alias par des fonctions
+
+- Réindenter tout le code proprement
+
 - mvcd, cpcd, lncd
 
 - Rebinder les déplacements sur jklm comme dans vim, screen, xmonad et rebinder gmail et google reader de la même façon
@@ -6,6 +11,8 @@
 - Autocompletion pour les commandes en runin ou en dist (redirection de l'autocomplétion), ainsi que pour mvi et cpi
 
 - Mod + entrée => cd + ll
+
+- coloration syntaxique basique (module highlight)
 
 - Apprendre la syntaxe complète de zstyle
 

@@ -2,12 +2,12 @@
 
 function fx()
 {
-    if [ "$#" -lt 1 ]; then
+    if ! ((#)); then
 	echo "Usage: fx page.htm" >&2
 	return 1
     else
 	for i; do
-	    firefox "`pwd`/$i"
+	    firefox `pwd`/$i
 	done
     fi
 }
@@ -17,4 +17,7 @@ function kf()
     killall firefox-bin firefox
 }
 
-alias rmlock="find ~/.mozilla/firefox \( -name 'lock' -o -name '.parentlock' \) -exec rm -f {} \;"
+function rmlock()
+{
+    find ~/.mozilla/firefox \( -name 'lock' -o -name '.parentlock' \) -exec rm -f {} \;
+}

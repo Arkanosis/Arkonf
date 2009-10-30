@@ -1,10 +1,10 @@
 # "-*- sh -*-"
 
-srcnames="\( "
+srcnames=()
 for srcext in $srcexts; do
-    srcnames="$srcnames-name '*.$srcext' -o "
+    srcnames+=(-name \*.$srcext -o)
 done
-srcnames="$srcnames[0,-4]\)"
+srcnames=$srcnames[0,-2]
 
 function ct()
 {
@@ -13,27 +13,27 @@ function ct()
 
 function files()
 {
-    if [ "$1" = "-s" ]; then
+    if [[ $1 = '-s' ]]; then
 	shift
 	for directory; do
 	    echo `find $directory | wc -l` "($directory)"
 	done | sort -nr
     else
 	for directory; do
-	    echo "$directory" `find $directory | wc -l`
+	    echo $directory `find $directory | wc -l`
 	done
     fi
 }
 
 function lines()
 {
-    if [ $# -eq 0 ]; then
+    if ! ((#)); then
 	echo -n ".\t"
-	eval "find . $srcnames -exec cat {} \;" | wc -l
+	find . \( $=srcnames \) -exec cat {} \; | wc -l
     else
 	for directory; do
 	    echo -n "$directory\t"
-	    eval "find \"$directory\" $srcnames -exec cat {} \;" | wc -l
+	    find $directory \( $=srcnames \) -exec cat {} \; | wc -l
 	done
     fi
 }

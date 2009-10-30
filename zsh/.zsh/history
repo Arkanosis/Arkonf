@@ -1,8 +1,8 @@
 # "-*- sh -*-"
 
-export HISTFILE="$HOME/.zcache/history"
+export HISTFILE=$HOME/.zcache/history
 export HISTSIZE=300
-export SAVEHIST=300 # 5 minutes
+export SAVEHIST=300
 
 setopt inc_append_history
 setopt hist_ignore_all_dups

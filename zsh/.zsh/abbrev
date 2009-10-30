@@ -2,28 +2,28 @@
 
 typeset -Ag abbrev
 abbrev=(
-    "le"    "| less"
-    "h"     "| head"
-    "ta"    "| tail"
+    le    "| less"
+    he    "| head"
+    ta    "| tail"
 
-    "m"     ">&-"
+    mu    ">&-"
 
-    "sr"    "| sort"
-    "sru"   "| sort -u"
+    sr    "| sort"
+    sru   "| sort -u"
 
-    "g"     "| cgrep"
+    gr    "| cgrep"
 
-    "w"     "| wc -l"
+    wl    "| wc -l"
 
-    "xa"    "| xargs"
+    xa    "| xargs"
 
-    "se"    "| sed 's///'"
+    se    "| sed 's///'"
 
-    "fi"    "find . -type f -name"
-    "ty"    "-type"
-    "ex"    "-exec echo {} \;"
+    fn    "find . -type f -name"
+    ty    "-type"
+    ex    "-exec echo {} \;"
 
-    ">>>"   ">&|"
+    ">>>" ">&|"
 )
 
 function abbrev-expand()

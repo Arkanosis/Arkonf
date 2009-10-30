@@ -2,9 +2,9 @@
 
 function nsw()
 {
-    if [ $# -ne 0 ]; then
+    if ((#)); then
 	for i; do
-	    ns_who | grep "$i"
+	    ns_who | grep $i
 	done
     else
 	ns_who
@@ -13,9 +13,9 @@ function nsw()
 
 function nshw()
 {
-    if [ $# -ne 0 ]; then
+    if ((#)); then
 	for i; do
-	    ns_hwho | grep "$i"
+	    ns_hwho | grep $i
 	done
     else
 	ns_hwho

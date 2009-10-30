@@ -183,6 +183,7 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key "" 'goto-line)
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c b") 'kill-whole-line)
 
 (global-set-key [(meta g)] 'goto-line)
 (global-set-key [(control space)] ' dabbrev-expand)

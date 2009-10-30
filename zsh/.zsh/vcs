@@ -139,9 +139,17 @@ function st()
 	;;
     esac
 }
+function stl()
+{
+    st $@ | less
+}
 function rst()
 {
     vcsroot st $@
+}
+function rstl()
+{
+    vcsroot stl $@
 }
 
 function up()
@@ -284,8 +292,11 @@ function rv()
 
     vcs=`whichvcs`
     case $vcs in
-       svn|cvs|hg)
+	cvs|hg)
 	    $vcs revert $@
+	;;
+	svn)
+	    svn revert -R $@
 	;;
 	git)
 	    git stash $@

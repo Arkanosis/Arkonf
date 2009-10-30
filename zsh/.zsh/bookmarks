@@ -7,9 +7,9 @@ bookmarkcompletions=()
 
 function s()
 {
-    bookmarkentries+=("$1")
+    bookmarkentries+=($1)
     bookmarks[$1]=`pwd`
-    bookmarkcompletions+=("$1:$bookmarks[$1]")
+    bookmarkcompletions+=($1:$bookmarks[$1])
 }
 
 function r()
@@ -23,9 +23,9 @@ function d()
     newbookmarkcompletions=()
 
     for bookmark in $bookmarkentries; do
-	if [ "$bookmark" != "$1" ]; then
-	    newbookmarkentries+=("$bookmark")
-	    newbookmarkcompletions+=("$bookmark:$bookmarks[$bookmark]")
+	if [[ $bookmark != $1 ]]; then
+	    newbookmarkentries+=($bookmark)
+	    newbookmarkcompletions+=($bookmark:$bookmarks[$bookmark])
 	fi
     done
 

@@ -1,15 +1,24 @@
 # "-*- sh -*-"
 
-alias '..'='cd ..'
-alias ,="cd -"
+function ,()
+{
+    cd - $@
+}
 
 function cdir()
 {
-    cd `\ls -l  "$1" | cut -d ' ' -f 10 | sed 's_^\(.\+/\).\+$_\1_'`
+    cd `\ls -l  $1 | cut -d ' ' -f 10 | sed 's_^\(.\+/\).\+$_\1_'`
 }
 
-alias popd="popd >&-"
-alias rl="cd -P ."
+function popd()
+{
+    builtin popd >&-
+}
+
+function rl
+{
+    cd -P . $@
+}
 
 setopt auto_cd
 setopt auto_pushd

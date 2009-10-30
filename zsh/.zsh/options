@@ -2,7 +2,6 @@
 
 export REPORTTIME=10
 
-# "for i (*.o) rm $i"
 setopt shortloops
 
 limit coredumpsize 0
@@ -10,7 +9,6 @@ limit coredumpsize 0
 autoload zmv
 autoload -U zed
 
-# ("=prog" <=> "`which prog`")
 setopt equals
 
 setopt noclobber

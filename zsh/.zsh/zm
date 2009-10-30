@@ -3,27 +3,27 @@
 function zt()
 {
     pattern='**'
-    if [[ $# -eq 3 && $1 = '-R' ]]; then
+    if ((# == 3)) && [[ $1 = '-R' ]]; then
 	pattern='**/**'
 	shift
     fi
 
-    if [[ $# -lt 2 ]]; then
+    if ((# < 2)); then
 	echo 'Usage: zt [-R] <source> <destination>' >&2
 	return 1
     fi
 
     setopt dotglob
 
-    if [[ $# -gt 2 ]]; then # TODO FIXME il n'y a souvent que deux arguments aussi quand on gere a la main
+    if ((# > 2)); then # TODO FIXME il n'y a souvent que deux arguments aussi quand on gere a la main
 	for source in $~pattern; do
-	    destination=`echo $source | sed "$*"`
+	    destination=`echo $source | sed $*`
 	    echo "$source => $destination"
 	done
 
     else
 
-	seps=('/' '_' '@' '+' '-' ':' '[' ']' '^' '=' '*' '~' `seq 0 9`)
+	seps=(/ _ @ + - : [ ] \^ = \* \~ `seq 0 9`)
 	for sep in $seps; do
 	    separator=$sep
 	    if [[ $1 != *$sep* && $2 != *$sep* ]]; then

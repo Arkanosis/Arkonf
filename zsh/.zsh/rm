@@ -3,8 +3,8 @@
 function rmbrute()
 {
     for arg; do
-	chmod -R 700 "$arg"
-	rm -rvf "$arg"
+	chmod -R 700 $arg
+	rm -rvf $arg
     done
 }
 

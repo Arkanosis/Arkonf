@@ -26,6 +26,7 @@ source ./dot
 source ./files
 source ./firefox
 source ./hash
+source ./highlight
 source ./history
 source ./keys
 source ./less
