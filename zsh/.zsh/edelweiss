@@ -5,3 +5,4 @@ source ./capricorn
 PYTHONPATH="$PYTHONPATH:/home/arkanosis/Documents/Programmation/django-trunk/"
 
 alias apache="sudo /etc/init.d/apache2 restart"
+alias cdb="sudo aptitude update && sudo aptitude full-upgrade"
