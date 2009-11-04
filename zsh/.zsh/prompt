@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+source vcs
+
 setopt prompt_subst
 
 if ! ((EUID)); then
@@ -12,41 +14,23 @@ function precmd()
 
     monitor_pages &!
 
-    vcs=''
-    if [[ -d .svn ]] ; then
-        vcs="[svn:`svn info | grep Revision | sed 's/.* \(.*\)/\1/g'`]"
-    fi
-    base_dir='.'
-    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && `readlink -f $base_dir` != / ]]; do
-	base_dir=$base_dir/..
-    done
-    if [[ -d $base_dir/.hg/ ]]; then
-	if [[ -f $base_dir/.hg/branch ]]; then
-            vcs="${vcs}[hg:`< $base_dir/.hg/branch`:`hg id -n`]"
-	else
-            vcs="${vcs}[hg:default:`hg id -n`]"
-	fi
-    elif [[ -d $base_dir/.git/ ]]; then
-	branch=`git branch`
-	if git describe --always >& /dev/null; then
-            vcs="${vcs}[git:$branch[3,-1]:`git describe --always`]"
-	else
-            vcs="${vcs}[git:uncommited]"
-	fi
+    if [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
+	PREVIOUS_PWD=$PWD
+	update_vcs_information
     fi
 
     case $TERM in
  	*xterm*|*rxvt*|Eterm)
-	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007"
- 	;;
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007"
+ 	    ;;
  	screen*)
-	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $vcs\007\ek`basename $PWD`\e\\"
- 	;;
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007\ek`basename $PWD`\e\\"
+ 	    ;;
     esac
 
 reset=`print "\e(B\e)B\e*B\e+B"`
 gray=`print "\e[90m"`
-PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$vcs$mail$fg[$PROMPT_COLOR]
+PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.)%~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$VCS$mail$fg[$PROMPT_COLOR]
 %!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
 }
 

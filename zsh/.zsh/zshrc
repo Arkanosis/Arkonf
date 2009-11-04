@@ -50,7 +50,6 @@ source ./stats
 #source ./stderr
 source ./truecrypt
 source ./usb
-source ./vcs
 source ./watch
 source ./zle
 source ./zm

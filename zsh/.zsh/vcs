@@ -21,6 +21,32 @@ function whichvcs()
 	fi
 }
 
+function update_vcs_information()
+{
+    VCS=''
+    if [[ -d .svn ]] ; then
+        VCS="[svn:`svn info | sed -n '/Revision/ s/.* \(.*\)/\1/p'`]"
+    fi
+    base_dir='.'
+    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && `readlink -f $base_dir` != / ]]; do
+	base_dir=$base_dir/..
+    done
+    if [[ -d $base_dir/.hg/ ]]; then
+	if [[ -f $base_dir/.hg/branch ]]; then
+	    VCS="${VCS}[hg:`< $base_dir/.hg/branch`:`hg id -n`]"
+	else
+	    VCS="${VCS}[hg:default:`hg id -n`]"
+	fi
+    elif [[ -d $base_dir/.git/ ]]; then
+	branch=`git branch`
+	if git describe --always >& /dev/null; then
+	    VCS="${VCS}[git:$branch[3,-1]:`git describe --always`]"
+	else
+	    VCS="${VCS}[git:uncommited]"
+	fi
+    fi
+}
+
 function vcsroot()
 {
     local cmd base_dir
@@ -97,6 +123,8 @@ function ci()
 	    fi
 	;;
     esac
+
+    update_vcs_information
 }
 function rci()
 {
@@ -168,6 +196,8 @@ function up()
 	    git pull $@
 	;;
     esac
+
+    update_vcs_information
 }
 function rup()
 {
