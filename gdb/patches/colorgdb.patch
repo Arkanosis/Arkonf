@@ -1,0 +1,130 @@
+diff --git a/gdb/stack.c b/gdb/stack.c
+index 4aad34c..6872873 100644
+--- a/gdb/stack.c
++++ b/gdb/stack.c
+@@ -144,7 +144,7 @@ print_stack_frame (struct frame_info *frame, int print_level,
+   args.print_args = 1;
+ 
+   catch_errors (print_stack_frame_stub, &args, "", RETURN_MASK_ERROR);
+-}  
++}
+ 
+ struct print_args_args
+ {
+@@ -342,7 +342,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
+ 	  fprintf_symbol_filtered (stb->stream, SYMBOL_PRINT_NAME (sym),
+ 				   SYMBOL_LANGUAGE (sym),
+ 				   DMGL_PARAMS | DMGL_ANSI);
++	  ui_out_text (uiout, "\033[95m");
+ 	  ui_out_field_stream (uiout, "name", stb);
++	  ui_out_text (uiout, "\033[0m");
+ 	  annotate_arg_name_end ();
+ 	  ui_out_text (uiout, "=");
+ 
+@@ -375,7 +377,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
+ 		  opts.deref_ref = 0;
+ 		  opts.summary = summary;
+ 		  common_val_print (val, stb->stream, 2, &opts, language);
++		  ui_out_text (uiout, "\033[92m");
+ 		  ui_out_field_stream (uiout, "value", stb);
++		  ui_out_text (uiout, "\033[0m");
+ 	        }
+ 	      else
+ 		ui_out_text (uiout, "???");
+@@ -513,7 +517,7 @@ do_gdb_disassembly (struct gdbarch *gdbarch,
+ /* Print information about frame FRAME.  The output is format according
+    to PRINT_LEVEL and PRINT_WHAT and PRINT ARGS.  The meaning of
+    PRINT_WHAT is:
+-   
++
+    SRC_LINE: Print only source line.
+    LOCATION: Print only location.
+    LOC_AND_SRC: Print location and source line.
+@@ -585,7 +589,7 @@ print_frame_info (struct frame_info *frame, int print_level,
+      to get the line containing FRAME->pc.  */
+   find_frame_sal (frame, &sal);
+ 
+-  location_print = (print_what == LOCATION 
++  location_print = (print_what == LOCATION
+ 		    || print_what == LOC_AND_ADDRESS
+ 		    || print_what == SRC_AND_LOC);
+ 
+@@ -614,8 +618,8 @@ print_frame_info (struct frame_info *frame, int print_level,
+       if (!done)
+ 	{
+ 	  if (deprecated_print_frame_info_listing_hook)
+-	    deprecated_print_frame_info_listing_hook (sal.symtab, 
+-						      sal.line, 
++	    deprecated_print_frame_info_listing_hook (sal.symtab,
++						      sal.line,
+ 						      sal.line + 1, 0);
+ 	  else
+ 	    {
+@@ -727,7 +731,7 @@ find_frame_funname (struct frame_info *frame, char **funname,
+     }
+   else
+     {
+-      struct minimal_symbol *msymbol = 
++      struct minimal_symbol *msymbol =
+ 	lookup_minimal_symbol_by_pc (get_frame_address_in_block (frame));
+ 
+       if (msymbol != NULL)
+@@ -762,9 +766,11 @@ print_frame (struct frame_info *frame, int print_level,
+ 
+   if (print_level)
+     {
++      ui_out_text (uiout, "\033[36m");
+       ui_out_text (uiout, "#");
+       ui_out_field_fmt_int (uiout, 2, ui_left, "level",
+ 			    frame_relative_level (frame));
++      ui_out_text (uiout, "\033[0m");
+     }
+   get_user_print_options (&opts);
+   if (opts.addressprint)
+@@ -777,12 +783,14 @@ print_frame (struct frame_info *frame, int print_level,
+ 	ui_out_text (uiout, " in ");
+       }
+   annotate_frame_function_name ();
++  ui_out_text (uiout, "\033[1;31m");
+   fprintf_symbol_filtered (stb->stream, funname ? funname : "??",
+ 			   funlang, DMGL_ANSI);
+   ui_out_field_stream (uiout, "func", stb);
++  ui_out_text (uiout, "\033[0m");
+   ui_out_wrap_hint (uiout, "   ");
+   annotate_frame_args ();
+-      
++
+   ui_out_text (uiout, " (");
+   if (print_args)
+     {
+@@ -806,6 +814,7 @@ print_frame (struct frame_info *frame, int print_level,
+       ui_out_wrap_hint (uiout, "   ");
+       ui_out_text (uiout, " at ");
+       annotate_frame_source_file ();
++      ui_out_text (uiout, "\033[1;33m");
+       ui_out_field_string (uiout, "file", sal.symtab->filename);
+       if (ui_out_is_mi_like_p (uiout))
+ 	{
+@@ -813,10 +822,13 @@ print_frame (struct frame_info *frame, int print_level,
+ 	  if (fullname != NULL)
+ 	    ui_out_field_string (uiout, "fullname", fullname);
+ 	}
++      ui_out_text (uiout, "\033[0m");
+       annotate_frame_source_file_end ();
+       ui_out_text (uiout, ":");
+       annotate_frame_source_line ();
++      ui_out_text (uiout, "\033[1;32m");
+       ui_out_field_int (uiout, "line", sal.line);
++      ui_out_text (uiout, "\033[0m");
+       annotate_frame_source_end ();
+     }
+ 
+@@ -885,7 +897,7 @@ parse_frame_specification_1 (const char *frame_exp, const char *message,
+ 	  addr_string = savestring (frame_exp, p - frame_exp);
+ 	  frame_exp = p;
+ 	  cleanup = make_cleanup (xfree, addr_string);
+-	  
++
+ 	  /* NOTE: Parse and evaluate expression, but do not use
+ 	     functions such as parse_and_eval_long or
+ 	     parse_and_eval_address to also extract the value.
