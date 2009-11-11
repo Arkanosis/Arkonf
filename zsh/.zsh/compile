@@ -76,15 +76,49 @@ function tcp()
     $name
 }
 
-alias dgpp="gpp -pg -ggdb"
-alias cf="./configure"
-alias m="gmake"
-alias cl="gmake clean"
-alias mca="gmake clean all"
-alias cmca="./configure && gmake clean all"
-alias arf="autoreconf -if"
-alias acm="autoreconf -if >- && ./configure >- && echo && echo && echo '-----------------------------------' && echo && echo && gmake clean all >-"
+function dgpp()
+{
+    gpp -pg -ggdb $@
+}
+
+function cf()
+{
+    ./configure $@
+}
+
+function m()
+{
+    make $@
+}
+
+function cl()
+{
+    make clean $@
+}
+
+function mca()
+{
+    make clean all $@
+}
+
+function cmca()
+{
+    ./configure && make clean all $@
+}
+
+function arf()
+{
+    autoreconf -if $@
+}
+
+function acm()
+{
+    autoreconf -if >- && ./configure >- && echo && echo && echo '-----------------------------------' && echo && echo && make clean all >- $@
+}
 
 if which sdl-config >&-; then
-    alias cplg="cpl `sdl-config --libs`  -I/usr/pkg/include/ -I/usr/pkg/include/GL -lGL -lGLU -lglut -lSDL_ttf -lSDL_image `sdl-config --cflags`"
+    function cplg()
+    {
+	cpl `sdl-config --libs`  -I/usr/pkg/include/ -I/usr/pkg/include/GL -lGL -lGLU -lglut -lSDL_ttf -lSDL_image `sdl-config --cflags` $@
+    }
 fi

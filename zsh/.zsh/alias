@@ -19,3 +19,8 @@ function pf()
 {
     gprof -b $@
 }
+
+function gdb()
+{
+    command gdb -q $@
+}

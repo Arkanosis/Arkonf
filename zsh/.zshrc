@@ -21,14 +21,17 @@ if [ "$HOST" != 'gate-ssh' ]; then
 
     MONITORED_PAGES=(
 	'W|http://fr.wikipedia.org/wiki/Discussion_utilisateur:Arkanosis'
-	'B|http://fr.wikipedia.org/wiki/Wikipédia:Le_Bistro/30_octobre_2009'
     )
 
     pushd "$ZARKONF_DIR/.zsh" >&-
 
+    if [[ $HOST = mad* ]]; then
+	source ./exalead
+    fi
+
     source ./zshrc
 
-    case "$HOST" in
+    case $HOST in
 	lisp|caml|ruby|ada|php|asp|sh|java|apl|pascal|xenadev)
 	    source ./acu
 	;;

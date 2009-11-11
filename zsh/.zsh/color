@@ -20,4 +20,5 @@ function nocolor()
 
 zle_highlight=(
     isearch:fg=red,bold
+    op:fg=red,bold
 )

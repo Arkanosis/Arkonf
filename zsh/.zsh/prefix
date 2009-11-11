@@ -2,8 +2,7 @@
 
 function prefix()
 {
-    zle beginning-of-line;
-    zle -U "$1 "
+    LBUFFER="$1 $LBUFFER"
 }
 
 function sudoit()

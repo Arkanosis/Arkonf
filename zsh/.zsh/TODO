@@ -1,3 +1,5 @@
+- Trouver un moyen de faire dialoguer le shell avec ses sous process détachés (&!) (pour monitor_pages et update_cvs_information)
+
 - Traduire les modules ls, conf, compile... en zsh
 - Remplacer tous les alias par des fonctions
 

@@ -2,23 +2,62 @@
 
 case `uname -s` in
     *BSD|SunOS)
-	alias ls="gls --color -F"
+	function ls()
+	{
+	    gls --color -F $@
+	}
     ;;
     OSF1|Darwin|HP-UX)
-	alias ls="\ls -F"
+	function ls()
+	{
+	    command ls -F $@
+	}
     ;;
     Linux)
-	alias ls="ls --color -F"
+	function ls()
+	{
+	    command ls --color -F $@
+	}
     ;;
 esac
 
-alias l="ls -lh"
-alias ll="l -A"
-alias lS="ll -S"
-alias lll="ll | less -r"
+function l()
+{
+    ls -lh $@
+}
+function ll()
+{
+    l -A $@
+}
+function lS()
+{
+    ll -S $@
+}
+function lll()
+{
+    ll $@ | less -r
+}
 
-alias lp='ls -ld *(-/DN)'
-alias lf='ls -l **(.)'
+function lp()
+{
+    dir=.
+    if ((#)); then
+       dir=$1
+       shift
+    fi
+
+    ls -ld $@ $dir/*(-/DN)
+}
+function lf()
+{
+    dir=.
+    if ((#)); then
+       dir=$1
+       shift
+    fi
+
+    ls -l $@ $dir/**(.)
+}
 
 source ./tree
 

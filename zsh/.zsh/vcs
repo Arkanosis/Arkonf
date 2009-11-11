@@ -157,7 +157,12 @@ function st()
     vcs=`whichvcs`
     case $vcs in
 	svn|cvs)
-	    $vcs st $@ | colorizeStatus
+	    if [[ $1 = '-f' ]]; then
+		shift
+		$vcs st $@ | grep -v '^?' | colorizeStatus
+	    else
+		$vcs st $@ | colorizeStatus
+	    fi
 	;;
 	hg)
 	    hg st $@ .
