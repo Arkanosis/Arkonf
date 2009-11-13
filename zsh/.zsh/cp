@@ -12,5 +12,10 @@ function zcp()
 
 function cpi()
 {
-    cp $1 `dirname $1`/$2
+    if ((# < 2)); then
+	cp
+	return $?
+    fi
+
+    cp $@[1,-3] $@[-2] `dirname $@[-2]`/$@[-1]
 }
