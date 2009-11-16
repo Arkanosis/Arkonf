@@ -339,6 +339,24 @@ function rv()
     esac
 }
 
+function bo()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	hg)
+	    hg backout --merge $@
+	;;
+	svn)
+	    svn merge $@
+	;;
+	git)
+	    git revert $@
+	;;
+    esac
+}
+
 function lg()
 {
     local vcs
