@@ -72,3 +72,14 @@ Utiliser [[ ]] plutôt que [ ]. Avantages :
  - [[ toto && titi ]] est supporté (|| aussi)
 
 Pour les tests arithmétiques, utiliser (( )), exemple : if ((x > 5)); then
+
+sux: comme su, mais permet d'utiliser le serveux X
+
+pour prendre un screenshot sous X :
+  chvt 7;sleep 10;import -display :0.0 -window root image.png
+dans un vt. chvt passe sur le vt de X
+
+Quand en ssh, taper "~C" permet de taper une commande SSH (créer un tunnel par exemple)
+
+Pour lancer un serveur http servant le répertoire courant sur le port 8000
+  python -m SimpleHTTPServer

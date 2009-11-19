@@ -6,6 +6,8 @@ setopt prompt_subst
 
 if ! ((EUID)); then
     PROMPT_COLOR=red
+elif [[ -n $SSH_CLIENT ]]; then
+    PROMPT_COLOR=green
 fi
 
 function precmd()

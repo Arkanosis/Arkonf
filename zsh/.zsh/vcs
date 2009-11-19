@@ -58,6 +58,7 @@ function vcsroot()
     while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]]; do
 	base_dir=$base_dir/..
     done
+    echo "Running $cmd in `canonicalize $base_dir`"
     $cmd $@ $base_dir
 }
 
