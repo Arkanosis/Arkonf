@@ -14,12 +14,8 @@ function precmd()
 {
     local base_dir branch
 
-    monitor_pages &!
-
-    if [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
-	PREVIOUS_PWD=$PWD
-	update_vcs_information
-    fi
+    #monitor_pages &!
+    update_vcs_information_if_needed
 
     case $TERM in
  	*xterm*|*rxvt*|Eterm)

@@ -1,31 +1,27 @@
 # "-*- sh -*-"
 
+function available()
+{
+    for program in $@[1,-2]; do
+	if which $program >&-; then
+	    echo $program
+	    return
+	fi
+    done
+    echo $@[-1]
+}
+
+function associate()
+{
+    for ext in $@[1,-2]; do
+	alias -s $ext=$@[-1]
+    done
+}
+
 alias -s README=v
 alias -s INSTALL=v
-
-if which okular >&-; then
-    alias -s pdf=okular
-elif which acroread >&-; then
-    alias -s pdf=acroread
-else
-    alias -s pdf=xpdf
-fi
-
-for srcext in $puresrcexts; do
-    alias -s $srcext=e
-done
-
 alias -s Makefile=e
 
-if which gwenview >&-; then
-    viewer=gwenview
-elif which xv >&-; then
-    viewer=xv
-else
-    viewer=display
-fi
-
-alias -s bmp=$viewer
-alias -s jpg=$viewer
-alias -s jpeg=$viewer
-alias -s png=$viewer
+associate $srcexts e
+associate bmp gif jpeg jpg png svg `available gwenview xv display`
+associate pdf ps `available okular acroread xpdf`

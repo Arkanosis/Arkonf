@@ -21,6 +21,9 @@ function whichvcs()
 	fi
 }
 
+typeset -A VCS_REVISION
+VCS_REVISION=()
+
 function update_vcs_information()
 {
     VCS=''
@@ -44,6 +47,17 @@ function update_vcs_information()
 	else
 	    VCS="${VCS}[git:uncommited]"
 	fi
+    fi
+
+    VCS_REVISION[$PWD]=$VCS
+}
+
+function update_vcs_information_if_needed()
+{
+    VCS=$VCS_REVISION[$PWD]
+    if [[ -z $VCS ]] && [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
+	PREVIOUS_PWD=$PWD
+	update_vcs_information
     fi
 }
 
