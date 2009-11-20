@@ -119,8 +119,7 @@ function /r()
 	;;
     esac
 
-    shift
-    shift
+    shift 2
 
     for file in `find $dir -type f`; do
 	if [[ $file = $~files ]]; then
