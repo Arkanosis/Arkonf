@@ -33,6 +33,10 @@ function lS()
 {
     ll -S $@
 }
+function lx()
+{
+    ll -X $@
+}
 function lll()
 {
     ll $@ | less -r

@@ -209,7 +209,6 @@ If region contains less than 2 lines, lines are left untouched."
 
 (load "~/.emacs.d/scroll-all.el")
 (load "~/.emacs.d/longlines.el")
-(load "~/.emacs.d/scroll-all.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Associations
@@ -283,7 +282,8 @@ If region contains less than 2 lines, lines are left untouched."
 )
 
 (c-set-offset 'case-label '+)
-(c-set-offset 'inclass '++)
+;(c-set-offset 'inclass '++)
+(c-set-offset 'inclass '+)
 (c-set-offset 'brace-list-open '0)
 (c-set-offset 'statement-case-open '0)
 (c-set-offset 'substatement-open '0)

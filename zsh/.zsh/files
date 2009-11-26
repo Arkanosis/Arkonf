@@ -22,6 +22,6 @@ alias -s README=v
 alias -s INSTALL=v
 alias -s Makefile=e
 
-associate $srcexts e
+associate $puresrcexts e
 associate bmp gif jpeg jpg png svg `available gwenview xv display`
 associate pdf ps `available okular acroread xpdf`

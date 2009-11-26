@@ -100,18 +100,13 @@ bindkey "^[e" sed-line
 # Tab pour lister le répertoire courant, insérer une tabulation, ou auto-compléter
 bindkey "^i" magic-tab
 
-bindkey \) highlight-paren
-bindkey \] highlight-paren
-bindkey \} highlight-paren
-bindkey \' highlight-paren
-bindkey \" highlight-paren
-bindkey \` highlight-paren
-
 function kbd()
 {
     setxkbmap us
     xmodmap ~/.Xmodmap
 }
+
+closingchars=(\) \] \} \' \" \`)
 
 function no-magic-keys()
 {
@@ -119,6 +114,10 @@ function no-magic-keys()
     bindkey '^[/' self-insert
     bindkey ' ' self-insert
     bindkey '^r' history-incremental-pattern-search-backward
+
+    for key in $closingchars; do
+	bindkey $key self-insert
+    done
 }
 
 function magic-keys()
@@ -127,6 +126,10 @@ function magic-keys()
     bindkey '^[/' magic-slash
     bindkey ' ' abbrev-expand
     bindkey '^r' history-globbing-search-backward
+
+    for key in $closingchars; do
+	bindkey $key highlight-paren
+    done
 }
 
 magic-keys
