@@ -1,14 +1,5 @@
 # "-*- sh -*-"
 
-if readlink -f . >& /dev/null; then
-    function canonicalize()
-    {
-	readlink -f $@
-    }
-elif ! which canonicalize >&-; then
-    echo 'Unable to find canonicalize, consider installing it with "arkinstall canonicalize"' >&2
-fi
-
 if which gsed >&-; then
     function sed()
     {

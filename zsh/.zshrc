@@ -18,6 +18,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
     ARKONF_DIR="$HOME/Arkonf"
     ZARKONF_DIR="$ARKONF_DIR/zsh"
     ZARKONF_CACHE="$HOME/.zcache"
+    ZARKONF_TODO="$HOME/.ztodo"
 
     MONITORED_PAGES=(
 	'W|http://fr.wikipedia.org/wiki/Discussion_utilisateur:Arkanosis'

@@ -22,7 +22,7 @@ function precmd()
 	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007"
  	    ;;
  	screen*)
-	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007\ek`basename $PWD`\e\\"
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007\ek$PWD:t\e\\"
  	    ;;
     esac
 

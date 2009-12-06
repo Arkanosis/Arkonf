@@ -238,6 +238,9 @@ If region contains less than 2 lines, lines are left untouched."
 ;(setq compile-command "g++ -Wall -Wextra -std=c++98 -pedantic -Wabi *.cc *.cpp *.cxx")
 (setq compile-command "ngscons -df && exatest com.exalead.mot.components.")
 
+;; (global-hl-line-mode t)
+;; (set-face-background 'hl-line "#111")
+
 (blink-cursor-mode t)
 (delete-selection-mode t) ;; Efface la selection a la saisie
 (global-font-lock-mode t)
