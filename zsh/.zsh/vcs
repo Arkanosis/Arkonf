@@ -451,3 +451,13 @@ function rcu()
 {
     vcsroot svn cleanup $@
 }
+
+function av()
+{
+    svnmerge avail $@
+}
+
+function mg()
+{
+    svnmerge merge -r $@
+}

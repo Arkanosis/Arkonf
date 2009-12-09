@@ -55,4 +55,4 @@ source watch
 source zle
 source zm
 
-popd
+popd >&-

@@ -15,5 +15,6 @@ function clean()
     rm -f *.log(N)
     rm -f *.toc(N)
     rm -f *~(N)
+    rm -f .*~(N)
     rm -f \#*\#(N)
 }
