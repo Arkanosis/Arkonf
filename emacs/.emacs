@@ -154,6 +154,19 @@ If region contains less than 2 lines, lines are left untouched."
     (delete-region beg end)
     (insert (apply 'string (reverse (string-to-list string))))))
 
+;; Switch window
+;; Non-custom function
+
+(defun select-previous-window ()
+  "Switch to the previous window"
+  (interactive)
+  (select-window (previous-window)))
+
+(defun select-next-window ()
+  "Switch to the next window"
+  (interactive)
+  (select-window (next-window)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -188,7 +201,10 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta g)] 'goto-line)
 (global-set-key [(control space)] ' dabbrev-expand)
 (global-set-key [(control t)] 'indent-region)
+
 (global-set-key [(control tab)] 'other-window)
+(global-set-key (kbd "A-<left>")  'select-previous-window)
+(global-set-key (kbd "A-<right>") 'select-next-window)
 
 (global-set-key [(control j)] 'backward-char)
 (global-set-key [(control k)] 'next-line)
