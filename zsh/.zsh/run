@@ -35,7 +35,10 @@ function run()
     done
 }
 
-alias diapo="run xv -shrink \; *.jpg"
+function diapo()
+{
+    run xv -shrink \; *.jpg
+}
 
 function runin()
 {

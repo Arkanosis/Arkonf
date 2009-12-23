@@ -22,4 +22,9 @@ function nshw()
     fi
 }
 
-alias ns="${HOME}/local/bin/soulmebaby&; sleep 15; kdestroy"
+function ns()
+{
+    soulmebaby &!
+    sleep 15
+    kdestroy
+}

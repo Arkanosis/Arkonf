@@ -63,7 +63,7 @@ function lf()
     ls -l $@ $dir/**(.)
 }
 
-source ./tree
+source tree
 
 function tls()
 {

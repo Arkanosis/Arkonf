@@ -1,20 +1,14 @@
 # "-*- sh -*-"
 
-alias ca="cd $ARKONF_DIR"
-alias cz="cd $ZARKONF_DIR"
-alias cv="cd $ARKONF_DIR/vim"
-alias czz="cd $ZARKONF_DIR/.zsh"
-alias czc="cd $ZARKONF_DIR/.zsh/completions"
-
 configuration_files=(
-    'emacs/.emacs'
-    'git/.gitconfig'
-    'mercurial/.hgrc'
-    'vim/.vimrc'
-    'screen/.screenrc'
-    'xmonad/xmonad.hs'
-    'xorg/.Xmodmap'
-    'zsh/.zshrc'
+    emacs/.emacs
+    git/.gitconfig
+    mercurial/.hgrc
+    vim/.vimrc
+    screen/.screenrc
+    xmonad/xmonad.hs
+    xorg/.Xmodmap
+    zsh/.zshrc
 )
 
 typeset -A configuration_files_pathes
@@ -22,9 +16,9 @@ typeset -A configuration_files_pathes
 configuration=()
 
 for configuration_file in $configuration_files; do
-    file="`echo $configuration_file | sed 's_\(.*/\)\?\([^/]\+\)$_\2_'`"
-    configuration+=("$file")
-    configuration_files_pathes[$file]="$ARKONF_DIR/$configuration_file"
+    file=`echo $configuration_file | sed 's_\(.*/\)\?\([^/]\+\)$_\2_'`
+    configuration+=($file)
+    configuration_files_pathes[$file]=$ARKONF_DIR/$configuration_file
 done
 
 function ze()
@@ -35,13 +29,13 @@ function ze()
 
     for module; do
 	configuration_file_path=$configuration_files_pathes[$module]
-	if [ -n "$configuration_file_path" ]; then
+	if [[ -n $configuration_file_path ]]; then
 	    files+=($configuration_file_path)
 	else
-	    if [ $module[1] = '_' ]; then
-		files+=("$ZARKONF_DIR/.zsh/completions/$module")
+	    if [[ $module[1] = _ ]]; then
+		files+=($ZARKONF_DIR/.zsh/completions/$module)
 	    else
-		files+=("$ZARKONF_DIR/.zsh/$module")
+		files+=($ZARKONF_DIR/.zsh/$module)
 	    fi
 	fi
     done
@@ -56,12 +50,67 @@ function cdo()
     popd >&-
 }
 
-alias cst="cdo st"
-alias cdf="cdo df"
-alias cdfl="cdo dfl"
-alias cci="cdo ci"
-alias cpush="cdo push"
-alias cup="cdo up"
-alias cadd="cdo add"
+function cst()
+{
+    cdo st $@
+}
 
-alias ctd="e $ZARKONF_DIR/.zsh/TODO"
+function cdf()
+{
+    cdo df $@
+}
+
+function cdfl()
+{
+    cdo dfl $@
+}
+
+function cci()
+{
+    cdo ci $@
+}
+
+function cpush()
+{
+    cdo push $@
+}
+
+function cup()
+{
+    cdo up $@
+}
+
+function cadd()
+{
+    cdo add $@
+}
+
+function ctd()
+{
+    e $ZARKONF_DIR/.zsh/TODO $@
+}
+
+function ca()
+{
+    cd $ARKONF_DIR $@
+}
+
+function cz()
+{
+    cd $ZARKONF_DIR $@
+}
+
+function cv()
+{
+    cd $ARKONF_DIR/vim $@
+}
+
+function czz()
+{
+    cd $ZARKONF_DIR/.zsh $@
+}
+
+function czc()
+{
+    cd $ZARKONF_DIR/.zsh/completions $@
+}

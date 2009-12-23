@@ -50,6 +50,7 @@ function /()
 {
     search $@
 }
+alias /='noglob /'
 function /l()
 {
     search $@ | less -r

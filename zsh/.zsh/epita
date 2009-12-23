@@ -1,9 +1,12 @@
 # "-*- sh -*-"
 
-source ./goinfre
-source ./netsoul
+source goinfre
+source netsoul
 
-alias zlock="zlock -immed -user root -notime -text '-=# $PSEUDO #=-' -pwtext 'Hj$!bVfRz&'"
+function zlock()
+{
+    zlock -immed -user root -notime -text '-=# $PSEUDO #=-' -pwtext 'Hj$!bVfRz&' $@
+}
 
 alias sb="ssh bam"
 alias so="ssh odrad"

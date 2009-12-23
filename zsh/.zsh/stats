@@ -28,12 +28,24 @@ function files()
 function lines()
 {
     if ! ((#)); then
-	echo -n ".\t"
-	find . \( $=srcnames \) -exec cat {} \; | wc -l
+	echo -n `find . \( $=srcnames \) -exec cat {} \; | wc -l`
+	echo ' .'
     else
 	for directory; do
-	    echo -n "$directory\t"
-	    find $directory \( $=srcnames \) -exec cat {} \; | wc -l
+	    echo -n `find $directory \( $=srcnames \) -exec cat {} \; | wc -l`
+	    echo " $directory"
 	done
-    fi
+    fi | sort -nr |
+    awk '
+    {
+        split("k M G T", unitName);
+        unit = 0;
+        while ($1 > 1000000)
+        {
+            $1 /= 1000;
+            ++unit;
+        }
+        if ($1 > 0)
+            print int($1) " " unitName[unit] "\t" $2;
+    }'
 }

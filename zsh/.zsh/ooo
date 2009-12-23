@@ -34,4 +34,7 @@ function calc()
     fi
 }
 
-alias oo="oowriter"
+function oo()
+{
+    oowriter $@
+}

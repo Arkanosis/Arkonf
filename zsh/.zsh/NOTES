@@ -83,3 +83,12 @@ Quand en ssh, taper "~C" permet de taper une commande SSH (créer un tunnel par 
 
 Pour lancer un serveur http servant le répertoire courant sur le port 8000
   python -m SimpleHTTPServer
+
+Sous emacs :
+ - query-replace : alt + %
+ - matching-paren : ctrl+alt+{b,n}
+ - paragraph : alt+{ / }
+ - indent : ctrl+alt+\
+
+Sous TSClient :
+ - ctrl+alt+entrée pour sortir du mode plein-écran
