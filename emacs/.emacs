@@ -199,12 +199,19 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "C-c b") 'kill-whole-line)
 
 (global-set-key [(meta g)] 'goto-line)
-(global-set-key [(control space)] ' dabbrev-expand)
-(global-set-key [(control t)] 'indent-region)
+
+(global-set-key [(control space)] 'dabbrev-expand)
+(global-set-key [(meta \;)] 'expand-abbrev)
+
+(global-set-key [(meta r)] 'replace-string)
 
 (global-set-key [(control tab)] 'other-window)
 (global-set-key (kbd "A-<left>")  'select-previous-window)
 (global-set-key (kbd "A-<right>") 'select-next-window)
+(global-set-key (kbd "A-<up>")  'previous-buffer)
+(global-set-key (kbd "A-<down>") 'next-buffer)
+(global-set-key (kbd "C-x <up>")  'iswitchb-buffer)
+(global-set-key (kbd "C-x <down>") 'iswitchb-buffer-other-window)
 
 (global-set-key [(control j)] 'backward-char)
 (global-set-key [(control k)] 'next-line)
@@ -234,6 +241,16 @@ If region contains less than 2 lines, lines are left untouched."
 (add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
 
 (add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Abbrev
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(autoload 'expand-abbrev-hook "expand")
+(setq abbrev-file-name "~/.emacs.d/abbrev.el")
+(read-abbrev-file abbrev-file-name t)
+(setq dabbrev-case-replace nil)
+(setq abbrev-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hooks
