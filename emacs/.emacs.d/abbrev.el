@@ -52,6 +52,9 @@
 (define-skeleton clog-skel "" nil
   >    "std::clog << " _ " << std::endl;"
 )
+(define-skeleton clog-display-skel "" nil
+  >    "std::clog << \" :\\\"\" << " _ " << \"\\\"\" << std::endl;"
+)
 
 (define-skeleton vector-skel "" nil
   >    "std::vector<" _ ">"
@@ -61,6 +64,17 @@
 )
 (define-skeleton str-skel "" nil
   >    "std::string"
+)
+
+(define-skeleton main-skel "" nil
+  >    "int main() {\n"
+  >    _ "\n"
+  > -2 "}"
+)
+(define-skeleton main-args-skel "" nil
+  >    "int main(int argc, char* argv[]) {\n"
+  >    _ "\n"
+  > -2 "}"
 )
 
 ;; Pour Exalead
@@ -88,10 +102,14 @@
   ("cco" "" cout-skel 0)
   ("cce" "" cerr-skel 0)
   ("ccl" "" clog-skel 0)
+  ("cdl" "" clog-display-skel 0)
 
   ("vve" "" vector-skel 0)
   ("mma" "" map-skel 0)
   ("sst" "" str-skel 0)
+
+  ("mmain" "" main-skel 0)
+  ("mmaina" "" main-args-skel 0)
 
   ;; Pour Exalead
   ("aae" "" arrayelts-skel 0)

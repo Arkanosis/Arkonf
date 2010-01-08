@@ -268,6 +268,9 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq undo-limit 200000)
+(setq undo-strong-limit 300000)
+
 ;(setq compile-command "g++ -Wall -Wextra -std=c++98 -pedantic -Wabi *.cc *.cpp *.cxx")
 (setq compile-command "ngscons -df && exatest com.exalead.mot.components.")
 

@@ -23,14 +23,22 @@ function rl
 setopt auto_cd
 setopt auto_pushd
 
+function display-path()
+{
+    newpath=`pwd`/`echo $1 | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`
+    echo -n "\e7\n\e[40m$newpath:A\e[0m\e[0K\e8\e[B\e[A"
+}
+
 function magic-dot()
 {
     local newpath
 
     if [[ $LBUFFER = *.. ]]; then
-	LBUFFER+=/..
-	newpath="`pwd`/`echo $LBUFFER | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`"
-	echo -n "\e7\n\e[40m$newpath:A\e[0m\e[0K\e8\e[B\e[A"
+	LBUFFER+=/../
+	display-path $LBUFFER
+    elif [[ $LBUFFER = *../ ]]; then
+	LBUFFER+=../
+	display-path $LBUFFER
     else
 	zle self-insert
     fi

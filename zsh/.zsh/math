@@ -38,3 +38,23 @@ EOF
 
 setopt c_bases
 setopt octal_zeroes
+
+function 0x()
+{
+    echo $(([#16]$1))
+}
+
+function 0()
+{
+    echo $(([#8]$1))
+}
+
+function b()
+{
+    echo $(([#2]$1))
+}
+
+function 10()
+{
+    echo $(($1))
+}
