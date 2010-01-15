@@ -10,6 +10,7 @@
 - Réindenter tout le code proprement
 
 - mvcd, cpcd, lncd
+- mkcpcd, mkmvcd
 
 - Rebinder les déplacements sur jklm comme dans vim, screen, xmonad et rebinder gmail et google reader de la même façon
 

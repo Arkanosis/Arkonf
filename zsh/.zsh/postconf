@@ -4,7 +4,12 @@ if [[ -z $LOGIN ]]; then
     LOGIN=$USER
 fi
 
-export MALLOC_OPTIONS=J
+if [[ `uname -s` = 'Linux' ]]; then
+    export MALLOC_OPTIONS=
+else
+    export MALLOC_OPTIONS=J
+fi
+
 export EMAIL=$EMAIL
 export REPLYTO=$EMAIL
 export NNTPSERVER=$NNTPSERVER

@@ -33,8 +33,8 @@ function magic-dot()
 {
     local newpath
 
-    if [[ $LBUFFER = *.. ]]; then
-	LBUFFER+=/../
+    if [[ $LBUFFER = *. ]]; then
+	LBUFFER+=./
 	display-path $LBUFFER
     elif [[ $LBUFFER = *../ ]]; then
 	LBUFFER+=../

@@ -1,6 +1,10 @@
 clear mod3
 clear mod4
-keycode 10 = 1 exclam eacute
+
+remove Lock = Caps_Lock
+keysym Caps_Lock = BackSpace
+
+keycode  10 = 1 exclam eacute
 keycode  11 = 2 at egrave
 keycode  12 = 3 numbersign ecircumflex
 keycode  13 = 4 dollar icircumflex
@@ -10,8 +14,13 @@ keycode  16 = 7 ampersand ocircumflex odiaeresis
 keycode  17 = 8 asterisk aacute
 keycode  18 = 9 parenleft agrave
 keycode  19 = 0 parenright acircumflex ediaeresis
+keycode  24 = q Q adiaeresis
 keycode  26 = e E EuroSign cent
+keycode  32 = o O oe OE
+keycode  38 = a A ae AE
 keycode  54 = c C ccedilla
-keycode 113 = Mode_switch Multi_key
+
 add mod3 = Mode_switch
 add mod4 = Multi_key
+
+keysym Super_L = Multi_key
