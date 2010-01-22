@@ -6,6 +6,7 @@ function zc()
 {
     zcalc $@
 }
+alias zc='noglob zc'
 
 function comp()
 {
