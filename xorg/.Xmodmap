@@ -20,7 +20,9 @@ keycode  32 = o O oe OE
 keycode  38 = a A ae AE
 keycode  54 = c C ccedilla
 
+keycode 108 = Mode_switch
+
 add mod3 = Mode_switch
 add mod4 = Multi_key
+add mod5 = Super_L
 
-keysym Super_L = Multi_key
