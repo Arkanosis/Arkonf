@@ -36,6 +36,13 @@
   "#define "
 )
 
+(define-skeleton assert-skel "" nil
+  "assert(" _ ");"
+)
+(define-skeleton andstring-skel "" nil
+  "&& \"" _ "\""
+)
+
 (define-skeleton cassert-skel "" nil
   "#include <cassert>"
 )
@@ -95,6 +102,9 @@
   ("iin" "" include-skel 0)
   ("ssn" "" system-include-skel 0)
   ("dde" "" define-skel 0)
+
+  ("aas" "" assert-skel 0)
+  ("aaa" "" andstring-skel 0)
 
   ("iia" "" cassert-skel 0)
   ("iii" "" iostream-skel 0)

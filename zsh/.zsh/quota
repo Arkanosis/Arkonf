@@ -23,10 +23,16 @@ function fs()
 
 function fsm()
 {
+    dir=.
+
+    if ((#)); then
+        dir=$1
+    fi
+
     (
-	\ls -gS **(.N) | sed -n 's/.\{17\}\( *\)\([0-9]\+\)[0-9]\{3\} .\{17\}/\2  \1/p'
+	\ls -gS $dir/**(.N) | sed -n 's/.\{17\}\( *\)\([0-9]\+\)[0-9]\{3\} .\{17\}/\2  \1/p'
 	;
-	dud
+	dud $dir
     ) |
     sort -nr |
     awk '

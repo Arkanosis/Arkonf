@@ -22,5 +22,3 @@ keycode  54 = c C ccedilla
 
 add mod3 = Mode_switch
 add mod4 = Multi_key
-
-keysym Super_L = Multi_key
