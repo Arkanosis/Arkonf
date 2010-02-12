@@ -407,7 +407,17 @@ function rlgv()
 }
 function gl()
 {
-    hg glog $@ | less
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	hg)
+	    hg glog $@
+	;;
+	git)
+	    git log --graph $@
+	;;
+    esac
 }
 function lc()
 {

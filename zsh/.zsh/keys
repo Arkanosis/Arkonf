@@ -104,6 +104,7 @@ function kbd()
 {
     setxkbmap us
     xmodmap ~/.Xmodmap
+    xset r 66
 }
 
 closingchars=(\) \] \} \' \" \`)

@@ -63,6 +63,17 @@
   >    "std::clog << \" :\\\"\" << " _ " << \"\\\"\" << std::endl;"
 )
 
+(define-skeleton dbg-skel "" nil
+  >    "DBG(\"" _ "\")"
+)
+(define-skeleton dbgv-skel "" nil
+  >    "DBG(\"" _ "\" <<  << \"\")"
+)
+
+(define-skeleton val-skel "" nil
+  >    " << " _ " << "
+)
+
 (define-skeleton vector-skel "" nil
   >    "std::vector<" _ ">"
 )
@@ -113,6 +124,11 @@
   ("cce" "" cerr-skel 0)
   ("ccl" "" clog-skel 0)
   ("cdl" "" clog-display-skel 0)
+
+  ("ddd" "" dbg-skel 0)
+  ("vvv" "" dbgv-skel 0)
+
+  ("lll" "" val-skel 0)
 
   ("vve" "" vector-skel 0)
   ("mma" "" map-skel 0)
