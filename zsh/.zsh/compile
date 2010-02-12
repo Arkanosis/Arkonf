@@ -91,7 +91,7 @@ function cf()
 
 function m()
 {
-    make $@
+    make $@ | colorizeGCC
 }
 
 function cl()
@@ -101,12 +101,12 @@ function cl()
 
 function mca()
 {
-    make clean all $@
+    make clean all $@ | colorizeGCC
 }
 
 function cmca()
 {
-    ./configure && make clean all $@
+    ./configure && make clean all $@ | colorizeGCC
 }
 
 function arf()

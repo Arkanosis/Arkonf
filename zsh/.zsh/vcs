@@ -184,7 +184,7 @@ function st()
 	svn|cvs)
 	    if [[ $1 = '-f' ]]; then
 		shift
-		$vcs st $@ | grep -v '^?' | colorizeStatus
+		$vcs st $@ | grep -v '^\?' | colorizeStatus
 	    else
 		$vcs st $@ | colorizeStatus
 	    fi
