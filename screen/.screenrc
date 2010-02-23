@@ -9,6 +9,8 @@ hardstatus alwayslastline
 
 caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%? %= %D %d %M %c"
 
+altscreen on
+
 #####################
 # Raccourcis clavier
 #####################

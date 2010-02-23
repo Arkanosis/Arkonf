@@ -198,6 +198,8 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c b") 'kill-whole-line)
 
+(global-set-key (kbd "C-x c") 'revert-buffer)
+
 (global-set-key [(meta g)] 'goto-line)
 
 (global-set-key [(control space)] 'dabbrev-expand)
@@ -272,7 +274,7 @@ If region contains less than 2 lines, lines are left untouched."
 (setq undo-strong-limit 300000)
 
 ;(setq compile-command "g++ -Wall -Wextra -std=c++98 -pedantic -Wabi *.cc *.cpp *.cxx")
-(setq compile-command "ngscons -df && exatest com.exalead.mot.components.")
+(setq compile-command "ngscons -df -t nojava && exatest com.exalead.mot.components.")
 
 ;; (global-hl-line-mode t)
 ;; (set-face-background 'hl-line "#111")
