@@ -18,11 +18,11 @@ function precmd()
     update_vcs_information_if_needed
 
     case $TERM in
+ 	screen*|xterm-color|xterm-256color)
+	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007\ek$PWD:t\e\\"
+ 	    ;;
  	*xterm*|*rxvt*|Eterm)
 	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007"
- 	    ;;
- 	screen*)
-	    echo -ne "\e]0;${HOST%%.*}:${PWD/$HOME/~} $VCS\007\ek$PWD:t\e\\"
  	    ;;
     esac
 

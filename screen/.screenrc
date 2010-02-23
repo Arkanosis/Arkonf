@@ -3,9 +3,11 @@
 #####################
 
 shell -$SHELL
+term xterm-color
 
-hardstatus on
-hardstatus alwayslastline
+startup_message off
+
+#hardstatus alwayslastline
 
 caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%? %= %D %d %M %c"
 
@@ -17,6 +19,8 @@ altscreen on
 
 escape ^\\
 # escape %'
+
+bind ^l focus
 
 bind l windowlist -b
 bind \\ windowlist -b
@@ -32,7 +36,7 @@ bind j prev
 bind ; next
 
 bind s split
-bind v vertical_split
+bind v split -v
 bind S remove
 
 bind = resize =

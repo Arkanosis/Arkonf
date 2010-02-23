@@ -144,12 +144,12 @@ function rd()
 {
     if ((#)); then
 	if [[ -f $1/README ]]; then
-	    < $1/README
+	    less $1/README
 	    return 0
 	fi
     else
 	if [[ -f ./README ]]; then
-	    < ./README
+	    less ./README
 	    return 0
 	fi
     fi

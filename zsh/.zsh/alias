@@ -24,3 +24,8 @@ function gdb()
 {
     command gdb -q $@
 }
+
+function sc()
+{
+    screen
+}
