@@ -5,7 +5,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Pour Exalead
+(setq standard-indent 2)
+(setq tab-width 2)
+(set-variable 'c-argdecl-indent   0)
 (setq c-basic-offset 2)
+(setq c-mode-hook
+    (function (lambda ()
+                (setq indent-tabs-mode nil)
+                (setq c-indent-level 2))))
+(setq c++-mode-hook
+    (function (lambda ()
+                (setq indent-tabs-mode nil)
+                (setq c-indent-level 2))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonctions
@@ -292,6 +303,8 @@ If region contains less than 2 lines, lines are left untouched."
 (tool-bar-mode nil)
 (transient-mark-mode t)
 
+(which-func-mode t)
+
 (prefer-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
@@ -378,11 +391,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;(global-set-key "\C-i" 'self-insert-command)
-
-(setq standard-indent 2)
-(setq tab-width 2)
-(set-variable 'c-argdecl-indent   0)
-
 
 (fset 'auto_arrayelts
    "\C-a\C-[f\C-[bstd::string((const char*(\C-?) ArrayElts(\C-@\C-e\C-[w), ArrayLength(\C-y(\C-?0\C-?))")
@@ -851,3 +859,5 @@ If region contains less than 2 lines, lines are left untouched."
 
 ;; (setq-default c-syntactic-indentation t)
 ;; (add-hook 'c-special-indent-hook 'c-reindent-intelligently)
+
+(put 'narrow-to-region 'disabled nil)
