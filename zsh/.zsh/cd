@@ -47,6 +47,14 @@ zle -N magic-dot
 
 function magic-slash()
 {
+    if [[ $LBUFFER != *../ ]]; then
+	zle self-insert
+    fi
+}
+zle -N magic-slash
+
+function magic-slash2()
+{
     zle self-insert
 
     if [[ $LBUFFER = / ]]; then
@@ -55,4 +63,4 @@ function magic-slash()
 	zle complete-word
     fi
 }
-zle -N magic-slash
+zle -N magic-slash2

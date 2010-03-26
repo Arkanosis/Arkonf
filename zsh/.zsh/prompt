@@ -35,6 +35,9 @@ PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2
 autoload -U colors
 colors
 
+up=`print "\e[A"`
+down=`print "\e[B"`
+RPROMPT='$up%(1j.[%j].) ${gray}[%T]%{$reset_color%}$down'
 RPROMPT='%(1j.[%j].)'
 
 # Affiche le texte, meme s'il n'y a pas de retour a la ligne

@@ -112,6 +112,7 @@ closingchars=(\) \] \} \' \" \`)
 function no-magic-keys()
 {
     bindkey . self-insert
+    bindkey / self-insert
     bindkey '^[/' self-insert
     bindkey ' ' self-insert
     bindkey '^r' history-incremental-pattern-search-backward
@@ -124,7 +125,8 @@ function no-magic-keys()
 function magic-keys()
 {
     bindkey . magic-dot
-    bindkey '^[/' magic-slash
+    bindkey / magic-slash
+    bindkey '^[/' magic-slash2
     bindkey ' ' abbrev-expand
     bindkey '^r' history-globbing-search-backward
 

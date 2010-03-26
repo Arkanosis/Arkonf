@@ -61,21 +61,19 @@ function update_vcs_information_if_needed()
     fi
 }
 
-function vcsroot()
-{
+function vcsroot () {
     local cmd base_dir
 
     cmd=$1
     shift
 
     base_dir=.
-    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]]; do
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; do
 	base_dir=$base_dir/..
     done
     echo "Running $cmd in $base_dir:A"
     $cmd $@ $base_dir
 }
-
 
 function co()
 {
@@ -306,10 +304,12 @@ function dlf()
     added=`$cmd diff $@ | sed -n '/^+/p' | wc -l`
     removed=`$cmd diff $@ | sed -n '/^-/p' | wc -l`
     difference=$((added-removed))
-    if ((difference)) then
+    if ((difference > 0)) then
 	echo "+$added\t-$removed\t(\e[32m+$difference\e[0m)"
-    else
+    elif ((difference < 0)) then
 	echo "+$added\t-$removed\t(\e[31m$difference\e[0m)"
+    else
+	echo "+$added\t-$removed\t(0)"
     fi
 }
 
