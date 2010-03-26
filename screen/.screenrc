@@ -12,6 +12,7 @@ startup_message off
 caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%? %= %D %d %M %c"
 
 altscreen on
+defscrollback 5000
 
 #####################
 # Raccourcis clavier
