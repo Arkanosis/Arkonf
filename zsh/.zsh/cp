@@ -1,8 +1,42 @@
 # "-*- sh -*-"
 
+function pcp()
+{
+    if [[ -f $2 ]]; then
+	echo -n 'cp: overwrite `'$2"'? " >&2
+	read y
+	if [[ $y != (y|Y) ]]; then
+	    return
+	fi
+    fi
+
+    strace -e write cp $1 $2 |& awk '
+    {
+        count += $NF
+        if (count % 10 == 0)
+        {
+            percent = count / size * 100
+            printf "%3d%% [", percent
+            for (i = 0; i <= percent; ++i)
+                printf "="
+            printf ">"
+            for (i = percent; i < 100; ++i)
+                printf " "
+            printf "]\r"
+        }
+    }
+    END {
+        print ""
+    }' size=`stat -c '%s' $1` count=0
+}
+
 function cp()
 {
-    command cp -iv $@
+#    if ((# == 2 && `stat -c '%s' $1` > 100000000)); then
+#	pcp $@
+#    else
+        command cp -iv $@
+#    fi
 }
 
 function zcp()

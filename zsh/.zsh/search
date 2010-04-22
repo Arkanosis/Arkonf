@@ -12,6 +12,17 @@ for srcext in $srcexts; do
 done
 srcexts_pattern+=')'
 
+csrcnames=()
+for csrcext in $csrcexts; do
+    csrcnames+=(-name \*.$csrcext -o)
+done
+csrcnames=$csrcnames[0,-2]
+srcnames=()
+for srcext in $srcexts; do
+    srcnames+=(-name \*.$srcext -o)
+done
+srcnames=$srcnames[0,-2]
+
 function search()
 {
     local dist dir exp
@@ -134,10 +145,41 @@ function /r()
     done
 }
 alias /r="noglob /r"
+function /x()
+{
+    local i dir files exp
+
+    if [[ $1 = -i ]]; then
+	i=-i
+	shift
+    fi
+
+    if ((# < 3)); then
+	echo 'Usage: /x [-i] <dir> <files pattern> <exec>' >&2
+	return 1
+    fi
+
+    dir=$1
+    files=$2
+
+    case $files in
+	cpp)
+	    files=$csrcnames
+	;;
+	src)
+	    files=$srcnames
+	;;
+    esac
+
+    shift 2
+
+    find $dir -type f \( $=files \) -exec $@ \;
+}
+alias /x="noglob /x"
 
 function /t()
 {
-    search 'TODO|FIXME|HACK'
+    search 'TODO\|FIXME\|HACK'
 }
 
 function rd()

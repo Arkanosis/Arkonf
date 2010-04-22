@@ -1,11 +1,5 @@
 # "-*- sh -*-"
 
-srcnames=()
-for srcext in $srcexts; do
-    srcnames+=(-name \*.$srcext -o)
-done
-srcnames=$srcnames[0,-2]
-
 function ct()
 {
     echo $#

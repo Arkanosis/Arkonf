@@ -21,7 +21,7 @@ function x()
     for arg; do
 	case $arg in
 	    *.(tar.bz2|tbz2))
-                if ((`tar tvjf $arg | sed 's@.*[ \t]\([^ \t/]\+\)\(/.*\)\?$@\1@' | sort -u | wc -l` > 1)); then
+                if ((`tar tvjf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
 		    read y
 		    if [[ $y = (y|Y) ]]; then
@@ -38,7 +38,7 @@ function x()
 		tar xvjf $arg
 	    ;;
 	    *.(tar.gz|tgz))
-                if ((`tar tvzf $arg | sed 's@.*[ \t]\([^ \t/]\+\)\(/.*\)\?$@\1@' | sort -u | wc -l` > 1 )); then
+                if ((`tar tvzf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
 		    read y
 		    if [[ $y = (y|Y) ]]; then
@@ -60,7 +60,7 @@ function x()
 
 		tarball=`echo $arg | sed 's/\.xz$//'`
 
-                if ((`tar tvf $tarball | sed 's@.*[ \t]\([^ \t/]\+\)\(/.*\)\?$@\1@' | sort -u | wc -l` > 1)); then
+                if ((`tar tvf $tarball | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
 		    read y
 		    if [[ $y = (y|Y) ]]; then
@@ -91,12 +91,12 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
 		gunzip $arg
 	    ;;
-	    *.zip)
-                if ((`unzip -l $arg | tail -n +4 | head -n -2 | sed 's@[ \t]*[0-9]\+[ \t]\+[0-1][0-9]-[0-3][0-9]-[0-9][0-9][ \t]\+[0-2][0-9]:[0-6][0-9][ \t]\+\([^ \t]\+\)@\1@' | sort -u | wc -l` > 1)); then
+	    *.(zip|jar))
+                if ((`unzip -l $arg | tail -n +4 | head -n -2 | sed 's@[ \t]*[0-9]\+[ \t]\+[0-1][0-9]-[0-3][0-9]-[0-9][0-9][ \t]\+[0-2][0-9]:[0-6][0-9][ \t]\+\\([^ \t]\+\\)@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
 		    read y
 		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $arg | sed 's/\.zip$//'`
+			dir=`echo $arg | sed 's/\.\(zip\|jar\)$//'`
 			mkdir $dir
 			pushd $dir
 			echo 'n' | x ../$arg
@@ -117,7 +117,7 @@ function x()
 		unzip $arg
 	    ;;
 	    *.tar)
-                if ((`tar tvf $arg | sed 's@.*[ \t]\([^ \t/]\+\)\(/.*\)\?$@\1@' | sort -u | wc -l` > 1)); then
+                if ((`tar tvf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
 		    read y
 		    if [[ $y = (y|Y) ]]; then
@@ -186,7 +186,7 @@ function t()
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
 		echo $arg | sed -e 's/.gz$//'
 	    ;;
-	    *.zip)
+	    *.(zip|jar))
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
 		unzip -l $arg
 	    ;;
