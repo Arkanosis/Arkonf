@@ -1,7 +1,7 @@
 diff --git a/gdb/infrun.c b/gdb/infrun.c
 index 842ff6b..3b5ba01 100644
---- a/gdb/infrun.c
-+++ b/gdb/infrun.c
+--- gdb/infrun.c
++++ gdb/infrun.c
 @@ -5005,13 +5005,17 @@ print_stop_reason (enum inferior_stop_reason stop_reason, int stop_info)
  	  if (ui_out_is_mi_like_p (uiout))
  	    ui_out_field_string
@@ -22,8 +22,8 @@ index 842ff6b..3b5ba01 100644
        ui_out_text (uiout, ".\n");
 diff --git a/gdb/stack.c b/gdb/stack.c
 index 4aad34c..6872873 100644
---- a/gdb/stack.c
-+++ b/gdb/stack.c
+--- gdb/stack.c
++++ gdb/stack.c
 @@ -342,7 +342,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
  	  fprintf_symbol_filtered (stb->stream, SYMBOL_PRINT_NAME (sym),
  				   SYMBOL_LANGUAGE (sym),
@@ -33,7 +33,7 @@ index 4aad34c..6872873 100644
 +	  ui_out_text (uiout, "\033[0m");
  	  annotate_arg_name_end ();
  	  ui_out_text (uiout, "=");
- 
+
 @@ -375,7 +377,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
  		  opts.deref_ref = 0;
  		  opts.summary = summary;
@@ -45,7 +45,7 @@ index 4aad34c..6872873 100644
  	      else
  		ui_out_text (uiout, "???");
 @@ -762,9 +766,11 @@ print_frame (struct frame_info *frame, int print_level,
- 
+
    if (print_level)
      {
 +      ui_out_text (uiout, "\033[36m");
@@ -67,7 +67,7 @@ index 4aad34c..6872873 100644
 +  ui_out_text (uiout, "\033[0m");
    ui_out_wrap_hint (uiout, "   ");
    annotate_frame_args ();
--      
+-
 +
    ui_out_text (uiout, " (");
    if (print_args)
@@ -93,4 +93,4 @@ index 4aad34c..6872873 100644
 +      ui_out_text (uiout, "\033[0m");
        annotate_frame_source_end ();
      }
- 
+
