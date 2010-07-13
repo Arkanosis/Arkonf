@@ -102,6 +102,12 @@
 (define-skeleton arraylength-skel "" nil
   "ArrayLength(" _ ")"
 )
+(define-skeleton xmlformat-skel "" nil
+  >    "for (AnnotatedToken token in " _ ") {\n"
+  >    "stdout.writeln(token, XmlFormat(prettyPrint = true));\n"
+  >    "stdout.writeln();\n"
+  > -2 "}\n"
+)
 
 (define-abbrev-table 'c++-mode-abbrev-table '(
   ("iif" "" if-skel 0)
@@ -140,6 +146,11 @@
   ;; Pour Exalead
   ("aae" "" arrayelts-skel 0)
   ("aal" "" arraylength-skel 0)
+  ("xmlf" "" xmlformat-skel 0)
+))
+
+(define-abbrev-table 'exa-mode-abbrev-table '(
+  ("xmlf" "" xmlformat-skel 0)
 ))
 
 (define-abbrev-table 'shell-mode-abbrev-table '(

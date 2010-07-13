@@ -22,6 +22,16 @@
 ;; Fonctions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Emacs named server
+;; (C) 2010 - Arkanosis
+
+(defun srv()
+  (interactive)
+  (setq
+   server-name
+   (read-string "server-name " "" nil "" nil))
+  (server-start))
+
 ;; Emacs web-search
 ;; (C) 2009 - Arkanosis
 
@@ -106,12 +116,14 @@
      ext)))
 (defun switch-or-open-header()
   (interactive)
+  (switch-or-open-corresponding ".h")
   (switch-or-open-corresponding ".hpp"))
 (defun switch-or-open-inline()
   (interactive)
   (switch-or-open-corresponding ".hxx"))
 (defun switch-or-open-source()
   (interactive)
+  (switch-or-open-corresponding ".c")
   (switch-or-open-corresponding ".cpp"))
 
 ;; Duplicate line
@@ -219,6 +231,10 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta r)] 'replace-string)
 
 (global-set-key [(control tab)] 'other-window)
+(global-set-key (kbd "M-<left>")  'select-previous-window)
+(global-set-key (kbd "M-<right>") 'select-next-window)
+(global-set-key (kbd "M-<up>")  'previous-buffer)
+(global-set-key (kbd "M-<down>") 'next-buffer)
 (global-set-key (kbd "A-<left>")  'select-previous-window)
 (global-set-key (kbd "A-<right>") 'select-next-window)
 (global-set-key (kbd "A-<up>")  'previous-buffer)
@@ -246,6 +262,10 @@ If region contains less than 2 lines, lines are left untouched."
 (load "~/.emacs.d/scroll-all.el")
 (load "~/.emacs.d/longlines.el")
 
+;; (load "~/.emacs.d/js2.elc")
+;; (load "~/.emacs.d/php-mode.el")
+;; (load "~/.emacs.d/two-mode-mode.el")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Associations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -254,6 +274,9 @@ If region contains less than 2 lines, lines are left untouched."
 (add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
 
 (add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
+
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
@@ -280,6 +303,8 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq split-width-threshold nil)
 
 (setq undo-limit 200000)
 (setq undo-strong-limit 300000)
@@ -344,6 +369,8 @@ If region contains less than 2 lines, lines are left untouched."
 (c-set-offset 'block-open '0)
 (c-set-offset 'catch-clause '0)
 
+(server-mode t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -355,25 +382,25 @@ If region contains less than 2 lines, lines are left untouched."
       (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
 
 (if (file-readable-p "~/.emacs.d/exa-mode.el")
-    (progn (load "~/.emacs.d/exa-mode.el")
-	   (autoload 'exa-mode "exa-mode" "" t)
-	   (autoload 'exa-export-all-packages "exa-mode" "" t)
-	   (setq auto-mode-alist
-		 (cons '("\\.exa$" . exa-mode) auto-mode-alist))
-	   (defun my-exa-hook ()
-	     (setq indent-tabs-mode nil)
-	     (setq compilation-error-regexp-alist
-		   (append
-		    compilation-error-regexp-alist
-		    (list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))
-		    ))
-	     (setq compilation-error-regexp-alist
-		   (append
-		    compilation-error-regexp-alist
-		    (list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4))))
-	     )
-	   (add-hook 'exa-mode-hook 'my-exa-hook)
-	   (set-face-foreground 'exa-keyword-face "#00eeee")
+    (progn
+      (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+      (autoload 'exa-mode "exa-mode" "" t)
+      (autoload 'exa-export-all-packages "exa-mode" "" t)
+      (setq auto-mode-alist
+	    (cons '("\\.exa$" . exa-mode) auto-mode-alist))
+      (defun my-exa-hook ()
+	(setq indent-tabs-mode nil)
+	(setq compilation-error-regexp-alist
+	      (append
+	       compilation-error-regexp-alist
+	       (list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))
+	       ))
+	(setq compilation-error-regexp-alist
+	      (append
+	       compilation-error-regexp-alist
+	       (list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4))))
+	)
+      (add-hook 'exa-mode-hook 'my-exa-hook)
     )
 )
 
@@ -385,6 +412,35 @@ If region contains less than 2 lines, lines are left untouched."
   (highlight-regexp "fetching for state [0-9]+" 'linum)
   (highlight-regexp "looking for [a-z]+ in context '.+" 'font-lock-keyword-face)
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; MediaWiki specifics
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defconst mw-style
+  '((c-offsets-alist . ((case-label . +)
+                        (arglist-close . 0)
+                        (cpp-macro . (lambda(x) (cdr x)))
+                        (comment-intro . 0)))
+    (c-hanging-braces-alist
+      (defun-open after)
+       (block-open after)
+        (defun-close))))
+
+(c-add-style "MediaWiki" mw-style)
+
+(define-minor-mode mw-mode
+  "tweak style for mediawiki"
+  nil " MW" nil
+  (if mw-mode
+      (progn
+        (setq indent-tabs-mode t)
+        (setq tab-width 4 c-basic-offset 4)
+        (c-set-style "MediaWiki"))
+    (kill-local-variable 'tab-width)
+    (kill-local-variable 'c-basic-offset)))
+
+(add-hook 'php-mode-hook (lambda () (mw-mode 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Old stuff
