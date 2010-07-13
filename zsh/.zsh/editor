@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-if which vim >&-; then
+if which vim >& /dev/null; then
    export EDITOR="vim"
 else
    export EDITOR="vi"
@@ -11,10 +11,14 @@ function v()
     $EDITOR $@
 }
 
-if which emacs >&-; then
+if which emacs >& /dev/null; then
     function e()
     {
 	emacs -nw $@
+    }
+    function ec()
+    {
+	emacsclient -nw $@
     }
 else
     function e()

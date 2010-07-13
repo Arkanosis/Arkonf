@@ -1,0 +1,19 @@
+# "-*- sh -*-"
+
+function serve()
+{
+    port=8080
+
+    if ! ((#)); then
+        echo 'Usage: serve <file> [port=8080]' >&2
+	return 1
+    fi
+
+    if ((# > 1)); then
+        port=$2
+    fi
+
+    while true; do
+	nc -l -p $port < $1
+    done
+}

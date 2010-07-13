@@ -1,5 +1,8 @@
 # "-*- sh -*-"
 
+# Noms des touches dans
+# /usr/X11/include/X11/keysymdef.h
+
 ###############################
 #      Raccourcis clavier     #
 ###############################
@@ -35,9 +38,11 @@ bindkey '^[p' push-input
 # Ctrl + T pour copier le dernier argument
 bindkey -s '^T' '!#$'
 
-# Alt + \ ou Alt + . pour remonter d'un niveau
+# Alt + . pour répéter le dernier argument
+bindkey '^[.' last-arg
+
+# Alt + \ ou pour remonter d'un niveau
 bindkey -s '^[\' '^[pcd ..\n'
-bindkey -s '^[.' '^[pcd ..\n'
 
 # Ctrl + ] pour retourner dans le repertoire precedent
 bindkey -s '^[]' '^[pcd - >&-\n'

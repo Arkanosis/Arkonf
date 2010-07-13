@@ -45,6 +45,7 @@ source rm
 source run
 source quota
 source search
+source serve
 source ssh
 source stats
 #source stderr

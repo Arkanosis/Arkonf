@@ -42,6 +42,10 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	Edelweiss)
 	    source ./edelweiss
 	;;
+	reddev014)
+	    source ./exalead
+	    export PATH="$HOME/local_RedHat/bin/:$PATH"
+	;;
 	mad*)
 	    source ./exalead
 	;;

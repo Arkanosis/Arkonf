@@ -3,7 +3,7 @@
 function available()
 {
     for program in $@[1,-2]; do
-	if which $program >&-; then
+	if which $program >& /dev/null; then
 	    echo $program
 	    return
 	fi

@@ -75,6 +75,18 @@ function vcsroot () {
     $cmd $@ $base_dir
 }
 
+function runinroot () {
+    local base_dir
+
+    base_dir=.
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; do
+	base_dir=$base_dir/..
+    done
+    if [[ $base_dir:A == */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; then
+        runin $base_dir $@
+    fi
+}
+
 function co()
 {
     hg clone $@ ||
@@ -203,6 +215,10 @@ function rst()
 {
     vcsroot st $@
 }
+function rft()
+{
+    rst -f
+}
 function rstl()
 {
     vcsroot stl $@
@@ -232,14 +248,17 @@ function rup()
     vcsroot up $@
 }
 
-function df()
+function dfcmd()
 {
-    local vcs base_dir
+    local cmd vcs base_dir
+
+    cmd=$1
+    shift
 
     vcs=`whichvcs`
     case $vcs in
 	svn)
-	    svn diff --diff-cmd=colordiff $@
+	    svn diff --diff-cmd=$cmd $@
 	;;
 	cvs)
 	    cvs diff $@
@@ -260,6 +279,10 @@ function df()
 	;;
     esac
 }
+function df()
+{
+    dfcmd colordiff $@
+}
 function rdf()
 {
     vcsroot df $@
@@ -267,6 +290,10 @@ function rdf()
 function dfl()
 {
     df $@ | less
+}
+function dfv()
+{
+    dfcmd vimdiff $@
 }
 function rdfl()
 {
@@ -287,6 +314,22 @@ function dcl()
 function rdcl()
 {
     vcsroot dcl $@
+}
+function dp()
+{
+    df -r prev $@
+}
+function rdp()
+{
+    vcsroot dp $@
+}
+function dpl()
+{
+    dfl -r prev $@
+}
+function rdpl()
+{
+    vcsroot dpl $@
 }
 
 function lcd()
@@ -476,8 +519,44 @@ function av()
 {
     svnmerge avail $@
 }
+function ava()
+{
+    revs=()
+    IFS=,
+    for r in `av`; do
+	if ((${#r} > 7)); then
+	    IFS=-
+	    a=($=r)
+	    revs+=(`seq -s '-' $a[1] $a[2]`)
+	else
+	    revs+=($r)
+	fi
+    done
+    echo $revs
+}
 
 function mg()
 {
     svnmerge merge -r $@
+}
+
+function bl()
+{
+    svnmerge block -r $@
+}
+
+function ub()
+{
+    svnmerge unblock -r $@
+}
+
+function rb()
+{
+    # TODO hg rollback / backout, svnmerge rollback, svn merge -r
+}
+
+function smv()
+{
+    vcs=`whichvcs`
+    $vcs mv $@
 }

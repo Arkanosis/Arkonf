@@ -51,9 +51,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|README\|NOTES\|INSTALL\|NEWS\|ChangeLog\|TODO\|Makefile\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
+	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|callgrind\.out\|README\|NOTES\|INSTALL\|NEWS\|ChangeLog\|TODO\|Makefile\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
     else
-	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
+	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|callgrind\.out\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
     fi
 }
 

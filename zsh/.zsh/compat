@@ -1,20 +1,20 @@
 # "-*- sh -*-"
 
-if which gsed >&-; then
+if which gsed >& /dev/null; then
     function sed()
     {
 	gsed $@
     }
 fi
 
-if which gawk >&-; then
+if which gawk >& /dev/null; then
     function awk()
     {
 	gawk $@
     }
 fi
 
-if which gmake >&-; then
+if which gmake >& /dev/null; then
     function make()
     {
 	gmake $@
