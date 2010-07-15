@@ -14,3 +14,10 @@ function history-globbing-search-backward()
     magic-keys
 }
 zle -N history-globbing-search-backward
+
+function zshaddhistory()
+{
+    if [[ ${1%%$'\n'} = (fg|bg) ]]; then
+	return 1
+    fi
+}

@@ -1,3 +1,5 @@
+- Filtrage /à posteriori/ des autocompletions d'un menu : <tab> ⇒ menu avec tous les fichiers, *.cpp ⇒ uniquement les cpp, A* ⇒ uniquement les cpp commençant par A ; ctrl+c annule le dernier refine
+
 - Supprimer tous les mots clefs 'function'
 
 - Amélioration de runin pour avoir l'autocomplétion dans le répertoire cible
