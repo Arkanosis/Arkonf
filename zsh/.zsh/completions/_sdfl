@@ -1,0 +1,13 @@
+#compdef sdfl
+
+local files
+
+files=()
+
+for file in `stm`; do
+    files+=($file)
+done
+
+if [[ $service == sdfl ]]; then
+    _wanted commands expl 'modified file' compadd -a files
+fi

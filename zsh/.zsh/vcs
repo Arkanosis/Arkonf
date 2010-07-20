@@ -211,6 +211,14 @@ function stl()
 {
     st $@ | less
 }
+function stm()
+{
+    local files
+    for file in `nocolor st -f | cut -d ' ' -f 2`; do
+	files+=($file)
+    done
+    echo $files
+}
 function rst()
 {
     vcsroot st $@
@@ -290,6 +298,11 @@ function rdf()
 function dfl()
 {
     df $@ | less
+}
+# Exactement pareil que dfl, mais avec une autre completion
+function sdfl()
+{
+    dfl $@
 }
 function dfv()
 {
