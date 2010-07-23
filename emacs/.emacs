@@ -191,6 +191,29 @@ If region contains less than 2 lines, lines are left untouched."
   (select-window (next-window)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Modules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "~/.emacs.d/linum.el")
+(global-linum-mode t)
+
+(load "~/.emacs.d/scroll-all.el")
+
+(load "~/.emacs.d/longlines.el")
+
+(load "~/.emacs.d/highlight-symbol.el")
+(add-hook 'exa-mode-hook 'highlight-symbol-mode)
+(add-hook 'java-mode-hook 'highlight-symbol-mode)
+(add-hook 'c-mode-hook 'highlight-symbol-mode)
+(add-hook 'c++-mode-hook 'highlight-symbol-mode)
+(add-hook 'cc-mode-hook 'highlight-symbol-mode)
+(setq highlight-symbol-idle-delay 0.5)
+
+;; (load "~/.emacs.d/js2.elc")
+;; (load "~/.emacs.d/php-mode.el")
+;; (load "~/.emacs.d/two-mode-mode.el")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -252,19 +275,9 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta i)] 'switch-or-open-inline)
 (global-set-key [(meta o)] 'switch-or-open-source)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Modules
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(load "~/.emacs.d/linum.el")
-(global-linum-mode t)
-
-(load "~/.emacs.d/scroll-all.el")
-(load "~/.emacs.d/longlines.el")
-
-;; (load "~/.emacs.d/js2.elc")
-;; (load "~/.emacs.d/php-mode.el")
-;; (load "~/.emacs.d/two-mode-mode.el")
+(global-set-key [(control f9)] 'highlight-symbol-at-point)
+(global-set-key [(control f11)] 'highlight-symbol-prev)
+(global-set-key [(control f12)] 'highlight-symbol-next)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Associations
@@ -369,7 +382,7 @@ If region contains less than 2 lines, lines are left untouched."
 (c-set-offset 'block-open '0)
 (c-set-offset 'catch-clause '0)
 
-(server-mode t)
+;(server-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exalead specifics
