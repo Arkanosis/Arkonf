@@ -19,6 +19,6 @@ function kf()
 
 function rmlock()
 {
-    find ~/.mozilla/firefox \( -name 'lock' -o -name '.parentlock' \) -delete
-    find ~/.thunderbird \( -name 'lock' -o -name '.parentlock' \) -delete
+    rm -f ~/.mozilla/firefox/*/{.parentlock,lock}(N)
+    rm -f ~/.thunderbird/*/{.parentlock,lock}(N)
 }
