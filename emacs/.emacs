@@ -4,6 +4,14 @@
 ;  arkanosis@gmail.com                                                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; - Commande pour copier intégralement la ligne courante
+; - Commande pour copier le token / le morceau de ligne qui suit / qui précède
+; - Suppression du mot qui suit / précède *sans copier*
+
 ;; Pour Exalead
 (setq standard-indent 2)
 (setq tab-width 2)
@@ -17,6 +25,10 @@
     (function (lambda ()
                 (setq indent-tabs-mode nil)
                 (setq c-indent-level 2))))
+(setq java-mode-hook
+    (function (lambda ()
+                (setq indent-tabs-mode nil)
+                (setq c-basic-offset 4))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonctions
@@ -197,6 +209,9 @@ If region contains less than 2 lines, lines are left untouched."
 (load "~/.emacs.d/linum.el")
 (global-linum-mode t)
 
+(load "~/.emacs.d/undo-tree.el")
+(global-undo-tree-mode)
+
 (load "~/.emacs.d/scroll-all.el")
 
 (load "~/.emacs.d/longlines.el")
@@ -209,8 +224,8 @@ If region contains less than 2 lines, lines are left untouched."
 (add-hook 'cc-mode-hook 'highlight-symbol-mode)
 (setq highlight-symbol-idle-delay 0.5)
 
-;; (load "~/.emacs.d/js2.elc")
-;; (load "~/.emacs.d/php-mode.el")
+(load "~/.emacs.d/js2.elc")
+(load "~/.emacs.d/php-mode.el")
 ;; (load "~/.emacs.d/two-mode-mode.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -316,6 +331,8 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq confirm-nonexistent-file-or-buffer nil)
 
 (setq split-width-threshold nil)
 

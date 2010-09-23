@@ -1,4 +1,6 @@
 @-moz-document
+  url-prefix("http://www.google.fr/reader/view/"),
+  url-prefix("https://www.google.fr/reader/view/"),
   url-prefix("http://www.google.com/reader/view/"),
   url-prefix("https://www.google.com/reader/view/")
 {
