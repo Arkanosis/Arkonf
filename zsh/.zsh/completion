@@ -46,6 +46,11 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
 zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|deb|docx|gz|jar|lzma|rar|tar|tbz2|tgz|xpi|xz|zip|Z):files *(-/):directories'
 
+compdef sc=screen
+compdef v=vim
+
+compdef _precommand runin
+
 function zcl()
 {
     if ((# != 1)); then

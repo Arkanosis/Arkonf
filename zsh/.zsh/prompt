@@ -43,7 +43,7 @@ RPROMPT='%(1j.[%j].) %T'
 # Affiche le texte, meme s'il n'y a pas de retour a la ligne
 setopt nopromptcr
 
-function exec()
+function xec()
 {
     case $TERM in
 	*xterm*|*rxvt*|Eterm)
@@ -54,5 +54,5 @@ function exec()
 	;;
     esac
 
-    builtin exec $@
+    exec $@
 }

@@ -1,9 +1,9 @@
 # "-*- sh -*-"
 
 if which vim >& /dev/null; then
-   export EDITOR="vim"
+   export EDITOR='vim'
 else
-   export EDITOR="vi"
+   export EDITOR='vi'
 fi
 
 function v()

@@ -105,6 +105,13 @@ bindkey "^[e" sed-line
 # Tab pour lister le répertoire courant, insérer une tabulation, ou auto-compléter
 bindkey "^i" magic-tab
 
+# Alt+M pour evaluer le globbing au fur et a mesure de la frappe
+bindkey "^[M" insert-files
+
+# Alt++ / - pour incrémenter / décrémenter une valeur numérique
+bindkey "^[+" incarg
+bindkey "^[-" decarg
+
 function kbd()
 {
     setxkbmap us

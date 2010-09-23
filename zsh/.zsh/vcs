@@ -24,6 +24,7 @@ function whichvcs()
 typeset -A VCS_REVISION
 VCS_REVISION=()
 
+# TODO regarder http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
 function update_vcs_information()
 {
     VCS=''
@@ -291,9 +292,21 @@ function df()
 {
     dfcmd colordiff $@
 }
+function vdf()
+{
+    dfcmd vimdiff $@
+}
+function kdf()
+{
+    dfcmd kdiff3 $@
+}
 function rdf()
 {
     vcsroot df $@
+}
+function rkdf()
+{
+    vcsroot kdf $@
 }
 function dfl()
 {
@@ -303,10 +316,6 @@ function dfl()
 function sdfl()
 {
     dfl $@
-}
-function dfv()
-{
-    dfcmd vimdiff $@
 }
 function rdfl()
 {

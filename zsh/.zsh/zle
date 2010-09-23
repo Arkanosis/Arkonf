@@ -2,14 +2,13 @@
 
 autoload -U read-from-minibuffer
 
-sed-line ()
+function sed-line ()
 {
    read-from-minibuffer 'Sed: '
    if [[ -n $REPLY ]]; then
       BUFFER=`echo $BUFFER | sed $REPLY`
    fi
 }
-
 zle -N sed-line
 
 # Insère des quotes lorsqu'un url est collée, backslashe les "?"...
@@ -26,3 +25,9 @@ function last-arg()
     zle complete-word
 }
 zle -N last-arg
+
+autoload -U insert-files
+zle -N insert-files
+
+autoload -U incarg
+zle -N incarg
