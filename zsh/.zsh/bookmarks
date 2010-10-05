@@ -12,7 +12,7 @@ function s()
     bookmarkcompletions+=($1:$bookmarks[$1])
 }
 
-function r()
+function g()
 {
     cd $bookmarks[$1]
 }

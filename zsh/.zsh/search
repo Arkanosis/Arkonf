@@ -198,3 +198,34 @@ function rd()
     echo 'No README file in this directory' >&2
     return 1
 }
+
+function checkheaders()
+{
+    find . \( -name '*.hh' -o -name '*.hpp' -o -name '*.hxx' \) -exec awk '
+/# *ifndef/ {
+  guard = $(NF)
+  left = 3
+}
+
+/# *define/ {
+  if (left > 0) {
+    left = 0
+    if ($(NF) != guard) {
+      print $(NF) " vs " guard
+      error = 1
+      exit
+    } else
+      exit
+  }
+}
+
+{
+  --left
+}
+
+END {
+  if (!error)
+    exit 1
+}
+' {} \; -print
+}

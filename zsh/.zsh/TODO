@@ -1,3 +1,5 @@
+- Si ccze est installé, l'utiliser automatiquement lors d'un tail sur un *.log. Voir éventuellement à recoder ccze en sed pour l'avoir partout. Installer aussi multitail
+
 - Recherche dans l'historique sous forme de menu (comme history-beginning-search-menu, mais en interactif et avec coloration)
 
 - Filtrage /à posteriori/ des autocompletions d'un menu : <tab> ⇒ menu avec tous les fichiers, *.cpp ⇒ uniquement les cpp, A* ⇒ uniquement les cpp commençant par A ; ctrl+c annule le dernier refine
