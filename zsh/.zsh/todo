@@ -8,21 +8,21 @@ fi
 
 source $ZARKONF_TODO
 
-function td()
+function ta()
 {
-    for task in $TASKS; do
-	echo $task
-    done
+    TASKS+=$*
+    echo "TASKS=($TASKS)" >| $ZARKONF_TODO
 }
 
-function tk()
+function td()
 {
-    TASKS+=$1
+    TASKS=("${(@)TASKS:#$1}")
     echo "TASKS=($TASKS)" >| $ZARKONF_TODO
 }
 
 function ts()
 {
-    # TODO remove task (backup in $ZARKONF_TODO.bak)
-    # TODO _ts to autocomplete
+    for task in $TASKS; do
+	echo $task
+    done
 }

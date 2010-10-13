@@ -1,3 +1,8 @@
+- patcher ZSH : ajouter une nouvelle fonctionnalité (généralisation du principe zcp / zmv à toutes les commandes, avec une syntaxe plus simple) :
+   une commande du genre « mv toto.[ch]pp titi.$1pp » doit s'étendre en « mv toto.cpp titi.cpp^Jmv toto.hpp titi.hpp » et non « mv toto.cpp toto.hpp titi.pp »
+   activé via une option
+   déclenché lorsqu'une ligne de commande contient un ou plusieur $N (où N entier)
+
 - Si ccze est installé, l'utiliser automatiquement lors d'un tail sur un *.log. Voir éventuellement à recoder ccze en sed pour l'avoir partout. Installer aussi multitail
 
 - Recherche dans l'historique sous forme de menu (comme history-beginning-search-menu, mais en interactif et avec coloration)
@@ -9,7 +14,7 @@
 - Amélioration de runin pour avoir l'autocomplétion dans le répertoire cible
 - Wrapper autour de runin pour profiter de l'autocomplétion, par exemple "ee" est un wrapper pour "runin edk emacs -nw" et autocomplète dans edk
 
-- TODO list locale (dans ~/.todo par exemple), avec ajout, suppression, listage, priorités, dates de fin...
+- gestion des priorités / dates de fin pour la todo list
 
 - Trouver un moyen de faire dialoguer le shell avec ses sous process détachés (&!) (pour monitor_pages et update_cvs_information)
 
@@ -63,7 +68,7 @@
 
 - Zsh à la sauce ViM (raccourcis, indication du mode...)
 
-- Raccouci 'suivant' symétrique à popd
+- Raccouci 'suivant' symétrique à popd ; voire gestion d'un arbre de parcours
 
 - Installeur :
  - Téléchargement de la dernière version si internet dispo (http://zarkonf.arkanosis.net/latest) avec wget
@@ -94,8 +99,8 @@
   Cyclamen:4~zarkonf/.zsh (0) [git:master:7321ac] [G:2 W:1 E:1 B:6]
   511 $
 
-- Xorg : remapper caps_lock : au lieu de backspace, peut servir de nouvelle touche modale (déplacement sur la home-row, backspace...), ou y placer ctrl ?
-         ou sur echap, pour les bindings vi
 - Bindings clavier :
  - utiliser loadkeys plutôt que xkb ou xmodmap (fonctionne en console, ssh...)
  - /usr/share/keymaps/i386/qwerty/us-acentos.map.gz ...
+
+- GTD : webservice en django (django-traq par exemple) avec interfaçage en zsh pour avoir les tâches direct dans le terminal et interfaçage en java pour les avoir sur le téléphone mobile (avec possibilité de ne synchroniser que sur une période horaire donnée — quand le net est gratos)

@@ -5,11 +5,16 @@ typeset -A bookmarks
 bookmarkentries=()
 bookmarkcompletions=()
 
-function s()
+function ba()
 {
     bookmarkentries+=($1)
-    bookmarks[$1]=`pwd`
+    bookmarks[$1]=$2
     bookmarkcompletions+=($1:$bookmarks[$1])
+}
+
+function s()
+{
+    ba $1 `pwd`
 }
 
 function g()

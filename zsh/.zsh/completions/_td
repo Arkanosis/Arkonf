@@ -1,0 +1,3 @@
+#compdef td
+
+_describe -t bookmark 'tasks' TASKS

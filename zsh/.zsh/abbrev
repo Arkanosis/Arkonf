@@ -4,7 +4,7 @@ typeset -Ag abbrev
 abbrev=(
     le    "| less"
     he    "| head"
-    ta    "| tail"
+    ti    "| tail"
 
     mu    ">&-"
 
