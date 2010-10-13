@@ -27,4 +27,4 @@ else
     return
 fi
 
-_describe -t bookmark 'functions' funs
+_describe -t function 'functions' funs
