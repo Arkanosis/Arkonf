@@ -17,7 +17,7 @@ zle -N history-globbing-search-backward
 
 function zshaddhistory()
 {
-    if [[ ${1%%$'\n'} = (fg|bg) ]]; then
+    if [[ ${1%%$'\n'} = (fg|bg|ll|'. ~/.zshrc') ]]; then
 	return 1
     fi
 }

@@ -2,22 +2,22 @@
 
 case `uname -s` in
     *BSD|SunOS)
-	function ls()
-	{
-	    gls --color -F $@
-	}
+        function ls()
+        {
+            gls --color -F $@
+        }
     ;;
     OSF1|Darwin|HP-UX)
-	function ls()
-	{
-	    command ls -F $@
-	}
+        function ls()
+        {
+            command ls -F $@
+        }
     ;;
     Linux)
-	function ls()
-	{
-	    command ls --color -F $@
-	}
+        function ls()
+        {
+            command ls --color -F $@
+        }
     ;;
 esac
 
@@ -28,6 +28,10 @@ function l()
 function ll()
 {
     l -A $@
+}
+function lt()
+{
+    ll -t $@
 }
 function lS()
 {
@@ -68,4 +72,22 @@ source tree
 function tls()
 {
     # Si -V dans les arguments, rediriger vers tree, sinon vers ls
+}
+
+function llf()
+{
+    local time res oldres
+
+    time=5
+    if ((# > 1)); then
+        time=$2
+    fi
+    while true; do
+        res=`ll $1`
+        if [[ $res != $oldres ]]; then
+            echo $res
+            oldres=$res
+        fi
+        sleep $time
+    done
 }
