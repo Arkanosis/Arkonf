@@ -4,19 +4,19 @@ local modules notes completions
 
 modules=()
 
-for module in "$ZARKONF_DIR/.zsh"/*[a-z]*(:t); do
+for module in $ZARKONF_DIR/.zsh/*[a-z]*(:t); do
     modules=($modules $module)
 done
 
 notes=()
 
-for note in "$ZARKONF_DIR/.zsh"/*[A-Z]*(:t); do
+for note in $ZARKONF_DIR/.zsh/*[A-Z]*(:t); do
     notes=($notes $note)
 done
 
 completions=()
 
-for completion in "$ZARKONF_DIR/.zsh/completions"/_*(:t); do
+for completion in $ZARKONF_DIR/.zsh/completions/_*(:t); do
     completions=($completions $completion)
 done
 

@@ -10,7 +10,7 @@ function whichvcs()
 		echo cvs
 	else
 		base_dir=.
-		while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && `readlink -f "$base_dir"` != / ]]; do
+		while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && $base_dir:A != / ]]; do
 			base_dir=$base_dir/..
 		done
 		if [[ -d $base_dir/.hg/ ]]; then
@@ -32,7 +32,7 @@ function update_vcs_information()
         VCS="[svn:`svn info | sed -n '/Revision/ s/.* \(.*\)/\1/p'`]"
     fi
     base_dir='.'
-    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && `readlink -f $base_dir` != / ]]; do
+    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && $base_dir:A != / ]]; do
 	base_dir=$base_dir/..
     done
     if [[ -d $base_dir/.hg/ ]]; then
@@ -62,7 +62,8 @@ function update_vcs_information_if_needed()
     fi
 }
 
-function vcsroot () {
+function vcsroot ()
+{
     local cmd base_dir
 
     cmd=$1
@@ -76,7 +77,8 @@ function vcsroot () {
     $cmd $@ $base_dir
 }
 
-function runinroot () {
+function runinroot ()
+{
     local base_dir
 
     base_dir=.
@@ -207,6 +209,14 @@ function st()
 	    git st $@
 	;;
     esac
+}
+function stf()
+{
+    st -f $@
+}
+function sf()
+{
+    st -f $@
 }
 function stl()
 {
@@ -488,7 +498,7 @@ function lc()
 {
     lg -r committed $@
 }
-function lcv
+function lcv()
 {
     lgv -r committed $@
 }

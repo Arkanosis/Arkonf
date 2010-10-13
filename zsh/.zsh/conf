@@ -43,6 +43,17 @@ function ze()
     e $files
 }
 
+function zf()
+{
+    local match params
+    match=`grep -nRI " $1()" $ZARKONF_DIR`
+
+    IFS=':'
+    params=($=match)
+
+    e +$params[2] $params[1]
+}
+
 function cdo()
 {
     pushd $ARKONF_DIR >&-

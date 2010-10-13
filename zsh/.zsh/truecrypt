@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-function ma
+function ma()
 {
     if ! ((#)); then
 	echo 'Usage: ma <files>' >&2
@@ -19,7 +19,7 @@ function ma
     done
 }
 
-function addnode
+function addnode()
 {
     if ((# != 1)); then
         echo 'Usage: addnode <nodeNumber>' >&2

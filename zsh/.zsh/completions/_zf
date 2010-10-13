@@ -1,0 +1,30 @@
+#compdef zf
+
+local cache funs
+
+funs=()
+
+typeset -U funs
+
+cache=$ZARKONF_CACHE/zf
+
+parsefiles()
+{
+    cat $ZARKONF_DIR/.zsh/*[a-z]*(.) | sed -n 's/ *function \([^ ]*\)()/\1/p' | while read fun; do
+	funs+=(\"$fun\")
+    done
+    echo "funs=($funs)" >| $cache
+}
+
+if [[ -s $cache ]]; then
+    source $cache
+else
+    if ! [[ -f $cache ]]; then
+	touch $cache
+	parsefiles &!
+    fi
+    echo -n "\e7\nPossible completions are being cached. This may take a while.\e[0K\e8\e[B\e[A"
+    return
+fi
+
+_describe -t bookmark 'functions' funs

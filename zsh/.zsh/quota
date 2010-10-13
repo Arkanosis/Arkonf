@@ -49,7 +49,7 @@ function fsm()
     }'
 }
 
-functions sz()
+function sz()
 {
     du -hs $@
 }

@@ -23,6 +23,28 @@ for srcext in $srcexts; do
 done
 srcnames=$srcnames[0,-2]
 
+excluded_files=(
+    '*.cache' '*.deps' '*.lo' '*.log' '*.m4' '*.mk' '*.output' '*.status' '*~' '.*~'
+    'Makefile.in' 'autom4te.cache' 'callgrind.out' 'configure'
+)
+excluded_dirs=(
+    '*.bak' '.git' '.hg' '.svn'
+)
+excluded_dists=(
+    'ChangeLog' 'INSTALL' 'Makefile' 'NEWS' 'NOTES' 'README' 'TODO'
+)
+exclusions=()
+for excluded_file in $excluded_files; do
+    exclusions+=(--exclude $excluded_file)
+done
+for excluded_dir in $excluded_dirs; do
+    exclusions+=(--exclude-dir $excluded_dir)
+done
+exclusions_dist=exclusions
+for excluded_dist in $excluded_dists; do
+    exclusions_dist+=(--exclude $excluded_dist)
+done
+
 function search()
 {
     local dist dir exp
@@ -51,9 +73,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|callgrind\.out\|README\|NOTES\|INSTALL\|NEWS\|ChangeLog\|TODO\|Makefile\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
+	grep -nRI $exp $dir $@ $=exclusions_dist
     else
-	grep -nRI $exp $dir $@ | grep -v '\.\(svn\|git\|hg\|deps\|mk:\|log:\|output:\|cache:\|lo:\|status:\|m4:\)\|Makefile\.in\|libtool:\|autom4te\.cache\|configure:\|callgrind\.out\|.*~: \|.*~:[0-9]+:[ M] ' | grep $exp
+	grep -nRI $exp $dir $@ $=exclusions
     fi
 }
 
