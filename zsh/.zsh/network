@@ -1,0 +1,6 @@
+# "-*- sh -*-"
+
+function netuse()
+{
+    netstat -a -e -e -p $@ | grep $HOST
+}

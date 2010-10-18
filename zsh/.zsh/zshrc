@@ -37,6 +37,7 @@ source mkdir
 #source monitor
 source mv
 source mute
+source network
 source options
 source prefix
 source prompt
