@@ -155,7 +155,7 @@ function /r()
 
     shift 2
 
-    for file in `find $dir -type f`; do
+    find $dir -type f | while read file; do
 	if [[ $file = $~files ]]; then
 	    res=`grep -n $i $exp $file`
 	    if ! ((?)); then
