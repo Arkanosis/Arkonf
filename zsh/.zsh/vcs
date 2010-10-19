@@ -206,7 +206,12 @@ function st()
 	    hg st $@ .
 	;;
 	git)
-	    git st $@
+	    if [[ $1 = '-f' ]]; then
+		shift
+		git st -uno $@
+	    else
+		git st $@
+	    fi
 	;;
     esac
 }
