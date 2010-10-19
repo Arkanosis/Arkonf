@@ -189,22 +189,11 @@ If region contains less than 2 lines, lines are left untouched."
     (delete-region beg end)
     (insert (apply 'string (reverse (string-to-list string))))))
 
-;; Switch window
-;; Non-custom function
-
-(defun select-previous-window ()
-  "Switch to the previous window"
-  (interactive)
-  (select-window (previous-window)))
-
-(defun select-next-window ()
-  "Switch to the next window"
-  (interactive)
-  (select-window (next-window)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "~/.emacs.d/workspaces.el")
 
 (load "~/.emacs.d/linum.el")
 (global-linum-mode t)
@@ -269,16 +258,13 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta r)] 'replace-string)
 
 (global-set-key [(control tab)] 'other-window)
-(global-set-key (kbd "M-<left>")  'select-previous-window)
-(global-set-key (kbd "M-<right>") 'select-next-window)
-(global-set-key (kbd "M-<up>")  'previous-buffer)
-(global-set-key (kbd "M-<down>") 'next-buffer)
-(global-set-key (kbd "A-<left>")  'select-previous-window)
-(global-set-key (kbd "A-<right>") 'select-next-window)
-(global-set-key (kbd "A-<up>")  'previous-buffer)
-(global-set-key (kbd "A-<down>") 'next-buffer)
+(global-set-key (kbd "M-<left>")  'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
+(global-set-key (kbd "M-<up>")  'windmove-up)
+(global-set-key (kbd "M-<down>") 'windmove-down)
 (global-set-key (kbd "C-x <up>")  'iswitchb-buffer)
 (global-set-key (kbd "C-x <down>") 'iswitchb-buffer-other-window)
+(global-set-key (kbd "C-x v") 'workspace-goto)
 
 (global-set-key [(control j)] 'backward-char)
 (global-set-key [(control k)] 'next-line)
@@ -344,6 +330,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 ;; (global-hl-line-mode t)
 ;; (set-face-background 'hl-line "#111")
+
+(winner-mode t)
 
 (blink-cursor-mode t)
 (delete-selection-mode t) ;; Efface la selection a la saisie
