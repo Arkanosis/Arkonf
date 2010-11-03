@@ -56,7 +56,7 @@ function update_vcs_information()
 function update_vcs_information_if_needed()
 {
     VCS=$VCS_REVISION[$PWD]
-    if [[ -z $VCS ]] && [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
+    if [[ -z $NO_VCS_INFO ]] && [[ -z $VCS ]] && [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
 	PREVIOUS_PWD=$PWD
 	update_vcs_information
     fi

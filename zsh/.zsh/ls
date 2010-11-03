@@ -2,10 +2,17 @@
 
 case `uname -s` in
     *BSD|SunOS)
-        function ls()
-        {
-            gls --color -F $@
-        }
+	if which gls >& /dev/null; then
+            function ls()
+            {
+		gls --color -F $@
+            }
+	else
+            function ls()
+            {
+		command ls -F $@
+            }
+	fi
     ;;
     OSF1|Darwin|HP-UX)
         function ls()
@@ -40,6 +47,10 @@ function lS()
 function lx()
 {
     ll -X $@
+}
+function xs()
+{
+    echo *(.:e) | tr ' ' '\n' | uniq -c | sort -rn
 }
 function lll()
 {
