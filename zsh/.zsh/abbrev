@@ -23,7 +23,7 @@ abbrev=(
     ty    "-type"
     ex    "-exec echo {} \;"
 
-    lo    "$HOME/local_Linux-x86_64"
+    lo    "$HOME/local_$arch"
 
     ">>>" ">&|"
 )
