@@ -46,7 +46,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    source ./exalead
 	    export PATH="$HOME/local_RedHat/bin/:$PATH"
 	;;
-	redsol*)
+	redsol*|tcsol*)
 	    source ./exalead
 	    export PATH="$HOME/local_Solaris/bin/:$PATH"
 	    NO_VCS_INFO=True
