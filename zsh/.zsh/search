@@ -47,17 +47,23 @@ done
 
 function search()
 {
-    local dist dir exp
+    local dist casi dir exp
 
     dist=0
+    casi=
 
     if ((# < 1)); then
-	echo 'Usage: search [-d] [dir] <exp>' >&2
+	echo 'Usage: search [-d] [-i] [dir] <exp>' >&2
 	return 1
     fi
 
     if ((# > 1)) && [[ $1 = -d ]]; then
 	dist=1
+	shift
+    fi
+
+    if ((# > 1)) && [[ $1 = -i ]]; then
+	casi=-i
 	shift
     fi
 
@@ -73,9 +79,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $exp $dir $@ $=exclusions_dist
+	grep -nRI $casi $exp $dir $@ $=exclusions_dist
     else
-	grep -nRI $exp $dir $@ $=exclusions
+	grep -nRI $casi $exp $dir $@ $=exclusions
     fi
 }
 
