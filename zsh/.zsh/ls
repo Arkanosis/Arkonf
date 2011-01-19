@@ -102,3 +102,8 @@ function llf()
         sleep $time
     done
 }
+
+function lsn()
+{
+    lsof -N
+}

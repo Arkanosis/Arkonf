@@ -241,7 +241,11 @@ function rst()
 }
 function rft()
 {
-    rst -f
+    rst -f $@
+}
+function rsf()
+{
+    rst -f $@
 }
 function rstl()
 {
