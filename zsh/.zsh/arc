@@ -143,7 +143,7 @@ function x()
 	    ;;
 	    *.rar)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
-		unrar e $arg
+		unrar x $arg
 	    ;;
 	    *)
 	        print "\e[91mCannot extract \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"

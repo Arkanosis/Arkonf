@@ -1,6 +1,7 @@
 # "-*- sh -*-"
 
 autoload zcalc
+zmodload zsh/mathfunc
 
 function zc()
 {

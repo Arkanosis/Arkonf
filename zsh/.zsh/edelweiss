@@ -2,7 +2,7 @@
 
 source ./capricorn
 
-PYTHONPATH="$PYTHONPATH:/home/arkanosis/Documents/Programmation/django-trunk/"
+PYTHONPATH="$PYTHONPATH:/home/arkanosis/Documents/Programmation/django-trunk/:/usr/lib/python:/usr/share/pyshared/:/usr/lib/pyshared/python2.6/"
 
 function apache()
 {
