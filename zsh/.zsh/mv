@@ -1,9 +1,19 @@
 # "-*- sh -*-"
 
-function mv()
-{
-    command mv -iv $@
-}
+case `uname -s` in
+    SunOS)
+	function mv()
+	{
+	    command mv -i $@
+	}
+    ;;
+    *)
+	function mv()
+	{
+	    command mv -iv $@
+	}
+    ;;
+esac
 
 # TODO replace with a function
 # problem: zmv is *already* a function

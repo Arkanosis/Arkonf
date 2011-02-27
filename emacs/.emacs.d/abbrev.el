@@ -96,6 +96,12 @@
 )
 
 ;; Pour Exalead
+(define-skeleton stdout-skel "" nil
+  >    "stdout.writeln(" _ ");"
+)
+(define-skeleton stderr-skel "" nil
+  >    "stderr.writeln(" _ ");"
+)
 (define-skeleton arrayelts-skel "" nil
   "ArrayElts(" _ ")"
 )
@@ -151,6 +157,8 @@
 
 (define-abbrev-table 'exa-mode-abbrev-table '(
   ("xmlf" "" xmlformat-skel 0)
+  ("sto" "" stdout-skel 0)
+  ("ste" "" stderr-skel 0)
 ))
 
 (define-abbrev-table 'shell-mode-abbrev-table '(

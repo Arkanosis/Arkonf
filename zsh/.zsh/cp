@@ -30,14 +30,24 @@ function pcp()
     }' size=`stat -c '%s' $1` count=0
 }
 
-function cp()
-{
-#    if ((# == 2 && `stat -c '%s' $1` > 100000000)); then
-#	pcp $@
-#    else
-        command cp -iv $@
-#    fi
-}
+case `uname -s` in
+    SunOS)
+	function cp()
+	{
+            command cp -i $@
+	}
+    ;;
+    *)
+	function cp()
+	{
+            #if ((# == 2 && `stat -c '%s' $1` > 100000000)); then
+	    #    pcp $@
+	    #else
+                command cp -iv $@
+	    #fi
+	}
+    ;;
+esac
 
 function zcp()
 {

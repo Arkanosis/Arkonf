@@ -193,6 +193,12 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load "~/.emacs.d/ansi-color.el")
+(ansi-color-for-comint-mode-on)
+(defun xterm-mode()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 (load "~/.emacs.d/workspaces.el")
 
 (load "~/.emacs.d/linum.el")
@@ -215,7 +221,7 @@ If region contains less than 2 lines, lines are left untouched."
 
 (load "~/.emacs.d/js2.elc")
 (load "~/.emacs.d/php-mode.el")
-;; (load "~/.emacs.d/two-mode-mode.el")
+(load "~/.emacs.d/two-mode-mode.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bindings
@@ -291,6 +297,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
+
+(add-to-list 'auto-mode-alist '("\\.log$" . xterm-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev

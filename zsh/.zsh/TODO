@@ -1,3 +1,5 @@
+- duplicates plus utile avec fdupes ?
+
 - patcher ZSH : ajouter une nouvelle fonctionnalité (généralisation du principe zcp / zmv à toutes les commandes, avec une syntaxe plus simple) :
    une commande du genre « mv toto.[ch]pp titi.$1pp » doit s'étendre en « mv toto.cpp titi.cpp^Jmv toto.hpp titi.hpp » et non « mv toto.cpp toto.hpp titi.pp »
    activé via une option

@@ -4,3 +4,8 @@ function netuse()
 {
     netstat -a -e -e -p $@ | grep $HOST
 }
+
+function ports()
+{
+    lsof -i -P | grep -i listen
+}

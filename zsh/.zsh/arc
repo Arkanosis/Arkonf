@@ -116,6 +116,10 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
 		unzip $arg
 	    ;;
+	    *.od(g|p|s|t))
+	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
+		unzip $arg
+	    ;;
 	    *.tar)
                 if ((`tar tvf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
 		    echo 'No root directory. Create one?'
@@ -192,6 +196,10 @@ function t()
 	    ;;
 	    *.docx)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
+		unzip -l $arg
+	    ;;
+	    *.od(g|p|s|t))
+	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
 		unzip -l $arg
 	    ;;
 	    *.tar)

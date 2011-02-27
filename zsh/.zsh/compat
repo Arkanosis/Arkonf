@@ -20,3 +20,13 @@ if which gmake >& /dev/null; then
 	gmake $@
     }
 fi
+
+if ! which md5 >& /dev/null; then
+    function md5()
+    {
+	md5sum $@
+    }
+fi
+
+# Emacs :p
+autoload -U tetris

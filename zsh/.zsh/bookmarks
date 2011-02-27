@@ -34,8 +34,8 @@ function d()
 	fi
     done
 
-    bookmarkentries=$newbookmarkentries
-    bookmarkcompletions=$newbookmarkcompletions
+    bookmarkentries=($newbookmarkentries)
+    bookmarkcompletions=($newbookmarkcompletions)
 
     unset $bookmarks[$1]
 }

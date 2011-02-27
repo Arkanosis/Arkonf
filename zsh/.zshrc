@@ -46,7 +46,11 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    source ./exalead
 	    export PATH="$HOME/local_RedHat/bin/:$PATH"
 	;;
-	mad*)
+	redsol*|tcsol*)
+	    source ./exalead
+	    NO_VCS_INFO=True
+	;;
+	mad*|reddev*)
 	    source ./exalead
 	;;
 	*)

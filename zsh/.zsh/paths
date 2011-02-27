@@ -2,7 +2,26 @@
 
 typeset -U PATH
 
-export PATH="$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH"
-export LD_LIBRARY_PATH="$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$PATH"
-export PYTHONPATH="$HOME/local/lib/python:$HOME/local/lib/python2.4/site-packages:$PYTHONPATH/"
-export CONFIG_SITE="$HOME/config.site"
+export PATH=$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH
+export LD_LIBRARY_PATH=$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$PATH
+export C_INCLUDE_PATH=$HOME/local_$arch/include/:$HOME/local/include/:$PATH
+export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
+export PYTHONPATH=$HOME/local/lib/python:$HOME/local/lib/python2.4/site-packages:$PYTHONPATH/
+export CONFIG_SITE=$HOME/config.site
+
+typeset -A namedpathes
+
+namedpathes+=(
+    bin ~/local/bin
+    abin ~/local_$arch/bin
+    lib ~/local/lib
+    alib ~/local_$arch/lib
+    share ~/local/share
+    arkonf $ARKONF_DIR
+    zarkonf $ZARKONF_DIR
+)
+
+for p in ${(k)namedpathes}; do
+    eval "alias cd$p=\"cd $namedpathes[$p]\""
+    eval "hash -d $p=$namedpathes[$p]"
+done
