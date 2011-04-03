@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+vcsrootpattern='(trunk|(branches|tags)/[0-9]##(.[0-9]##)#(|dev))'
+
 function whichvcs()
 {
 	local base_dir
@@ -70,10 +72,10 @@ function vcsroot ()
     shift
 
     base_dir=.
-    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; do
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
 	base_dir=$base_dir/..
     done
-    echo "Running $cmd in $base_dir:A"
+    echo "Running $cmd on $base_dir:A"
     $cmd $@ $base_dir
 }
 
@@ -82,10 +84,10 @@ function runinroot ()
     local base_dir
 
     base_dir=.
-    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; do
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
 	base_dir=$base_dir/..
     done
-    if [[ $base_dir:A == */(trunk|*/(branches|tags)/[0-9](.[0-9])##|/) ]]; then
+    if [[ $base_dir:A == */$~vcsrootpattern ]]; then
         runin $base_dir $@
     fi
 }
