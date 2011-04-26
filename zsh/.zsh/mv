@@ -1,7 +1,7 @@
 # "-*- sh -*-"
 
 case `uname -s` in
-    SunOS)
+    SunOS|AIX)
 	function mv()
 	{
 	    command mv -i $@
