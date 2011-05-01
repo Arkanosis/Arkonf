@@ -28,10 +28,18 @@ case `uname -s` in
     ;;
 esac
 
-function l()
-{
-    ls -lh $@
-}
+if ls -h >& /dev/null; then
+    function l()
+    {
+	ls -lh $@
+    }
+else
+    function l()
+    {
+	ls -l $@
+    }
+fi
+
 function ll()
 {
     l -A $@

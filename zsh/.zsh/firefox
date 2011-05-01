@@ -22,3 +22,8 @@ function rmlock()
     rm -f ~/.mozilla/firefox/*/{.parentlock,lock}(N)
     rm -f ~/.thunderbird/*/{.parentlock,lock}(N)
 }
+
+function falt()
+{
+    firefox -no-remote -Profile ~/.mozilla/firefox/*(oc[2])
+}

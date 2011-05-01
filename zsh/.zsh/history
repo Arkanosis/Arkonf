@@ -1,8 +1,8 @@
 # "-*- sh -*-"
 
 export HISTFILE=$HOME/.zcache/history
-export HISTSIZE=300
-export SAVEHIST=300
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 setopt inc_append_history
 setopt hist_ignore_all_dups
@@ -14,6 +14,14 @@ function history-globbing-search-backward()
     magic-keys
 }
 zle -N history-globbing-search-backward
+
+function history-globbing-search-forward()
+{
+    no-magic-keys
+    zle history-incremental-pattern-search-forward
+    magic-keys
+}
+zle -N history-globbing-search-forward
 
 function zshaddhistory()
 {

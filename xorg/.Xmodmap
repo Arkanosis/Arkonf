@@ -55,10 +55,18 @@ keycode  38 = a A ae AE
 keycode  39 = s S U221A U221B
 !! d D ÷ …
 keycode  40 = d D U00F7 U2026
-!! ' " ↔ ⇔
-keycode  48 = apostrophe quotedbl U2194 U21D4
+!! f F ↔ ⇔
+keycode  41 = f F U2194 U21D4
+!! g G ℃ ℉
+keycode  42 = g G U2103 U2109
+!! l L ♥
+keycode  46 = l L U2665
+!! ' " ’ ‱
+keycode  48 = apostrophe quotedbl U2019 U2031
 !! \ | ↖ ↑
 keycode  51 = backslash bar U2196 uparrow
+!! z Z
+keycode  52 = z Z U201C U201D
 !! c C ç Ç
 keycode  54 = c C ccedilla
 !! v V © §
@@ -79,6 +87,26 @@ keycode  61 = slash question U2197 downarrow
 keycode  65 = space space nobreakspace
 !!
 keycode  66 = BackSpace
+!! 7 ⁷
+keycode  79 = 7 U2077
+!! 8 ⁸
+keycode  80 = 8 U2078
+!! 9 ⁹
+keycode  81 = 9 U2079
+!! 4 ⁴
+keycode  83 = 4 U2074
+!! 5 ⁵
+keycode  84 = 5 U2075
+!! 6 ⁶
+keycode  85 = 6 U2076
+!! 1 ¹
+keycode  87 = 1 U00B9
+!! 2 ²
+keycode  88 = 2 U00B2
+!! 3 ³
+keycode  89 = 3 U00B3
+!! 0 ⁰
+keycode  90 = 0 U2070
 !! < > « »
 keycode  94 = less greater guillemotleft guillemotright
 !!

@@ -26,12 +26,15 @@ abbrev=(
     lo    "$HOME/local_$arch"
 
     ">>>" ">&|"
+    "2|" "2>>()"
 )
+
+# TODO revenir entre les parentheses pour 2>>() et entre les slashe pour sed s///
 
 function abbrev-expand()
 {
     local MATCH
-    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9<>]#}
+    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9<>|]#}
     LBUFFER+=${abbrev[$MATCH]:-$MATCH}
     zle self-insert
 }
