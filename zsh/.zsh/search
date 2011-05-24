@@ -166,6 +166,12 @@ function /r()
 	cpp)
 	    files=$csrcexts_pattern
 	;;
+	exa)
+	    files='*.exa'
+	;;
+	java)
+	    files='*.java'
+	;;
 	src)
 	    files=$srcexts_pattern
 	;;

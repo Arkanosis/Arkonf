@@ -5,10 +5,12 @@ function cx()
     chmod +x $@
 }
 
-function grep()
-{
-    command grep --color $@
-}
+if grep --color . <(echo .) >& /dev/null; then
+    function grep()
+    {
+	command grep --color $@
+    }
+fi
 
 function hx()
 {
@@ -28,4 +30,9 @@ function gdb()
 function sc()
 {
     screen
+}
+
+function kp()
+{
+    keepassx &!
 }

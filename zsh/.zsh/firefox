@@ -17,6 +17,11 @@ function kf()
     killall firefox-bin firefox
 }
 
+function rfx()
+{
+    kf ; firefox &!
+}
+
 function rmlock()
 {
     rm -f ~/.mozilla/firefox/*/{.parentlock,lock}(N)
