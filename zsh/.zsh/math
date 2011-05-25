@@ -156,6 +156,14 @@ def levenshtein(value):
             return ''
     code = rlevenshtein(value).strip(' ')
     return (unary(rec[0]) + ' ' + code).rstrip(' ')
+
+def golomb(value, k):
+    q = value / k
+    return (unary(q) + ' ' + truncatedBinary(value - q * k, k)).rstrip()
+
+def rice(value, k):
+    q = value / pow(k)
+    return (unary(q) + ' ' + b(value, k)).rstrip()
 "
 
 function una()
@@ -198,4 +206,18 @@ EOF
 function dell()
 {
     echo $((`del $@ | sed 's/ //g' | wc -c` - 1))
+}
+
+function ric()
+{
+    python <<EOF
+$entropyfunctions
+
+print rice($2, $1)
+EOF
+}
+
+function ricl()
+{
+    echo $((`ric $@ | sed 's/ //g' | wc -c` - 1))
 }
