@@ -24,7 +24,7 @@ done
 srcnames=$srcnames[0,-2]
 
 excluded_files=(
-    '*.cache' '*.deps' '*.lo' '*.log' '*.m4' '*.mk' '*.output' '*.status' '*~' '.*~'
+    '*.cache' '*.deps' '*.lo' '*.log' '*.m4' '*.mk' '*.output' '*.status' '*~' '.*~' '*.bak'
     'Makefile.in' 'autom4te.cache' 'callgrind.out' 'configure'
 )
 excluded_dirs=(
@@ -47,7 +47,7 @@ done
 
 function search()
 {
-    local dist casi dir exp
+    local dist casi xfile xdir dir exp
 
     dist=0
     casi=
@@ -67,6 +67,16 @@ function search()
 	shift
     fi
 
+    if ((# > 2)) && [[ $1 = -x ]]; then
+	xfile+="--exclude $2"
+	shift 2
+    fi
+
+    if ((# > 2)) && [[ $1 = -xd ]]; then
+	xdir+="--exclude-dir $2"
+	shift 2
+    fi
+
     dir=.
 
     if ((# == 2)); then
@@ -79,9 +89,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $casi $exp $dir $@ $=exclusions_dist
+	grep -nRI $casi $exp $dir $@ $=xfile $=xdir $=exclusions_dist
     else
-	grep -nRI $casi $exp $dir $@ $=exclusions
+	grep -nRI $casi $exp $dir $@ $=xfile $=xdir $=exclusions
     fi
 }
 
