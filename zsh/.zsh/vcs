@@ -210,9 +210,17 @@ function st()
 	git)
 	    if [[ $1 = '-f' ]]; then
 		shift
-		git st -uno $@
+		if ((#)); then
+		    git st -uno $@
+		else
+		    git st -uno .
+		fi
 	    else
-		git st $@
+		if ((#)); then
+		    git st $@
+		else
+		    git st .
+		fi
 	    fi
 	;;
     esac
@@ -445,7 +453,7 @@ function rv()
 	    svn revert -R $@
 	;;
 	git)
-	    git stash $@
+	    git checkout $@
 	;;
     esac
 }
@@ -485,7 +493,17 @@ function rlg()
 }
 function lgv()
 {
-    lg -v $@ | less
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	cvs)
+	    $vcs log $@ | less
+	;;
+	*)
+	    $vcs log -v $@ | less
+	;;
+    esac
 }
 function rlgv()
 {

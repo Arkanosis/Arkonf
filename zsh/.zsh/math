@@ -4,7 +4,11 @@ autoload zcalc
 
 function zc()
 {
-    zcalc $@
+    python <<EOF
+from math import *;
+
+print $@
+EOF
 }
 alias zc='noglob zc'
 
