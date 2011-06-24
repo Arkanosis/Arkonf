@@ -91,6 +91,7 @@ Sous emacs :
  - indent : ctrl+alt+\
  - auto-revert-mode pour recharger automatiquement un fichier
  - C-U M-! <command> pour executer une commande shell et récupérer le résulat
+ - M-x vc-annotate pour svn blame
 
 Sous TSClient :
  - ctrl+alt+entrée pour sortir du mode plein-écran
