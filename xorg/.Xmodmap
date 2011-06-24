@@ -61,6 +61,8 @@ keycode  41 = f F U2194 U21D4
 keycode  42 = g G U2103 U2109
 !! l L ♥
 keycode  46 = l L U2665
+!! ; :
+keycode  47 = semicolon colon U2198
 !! ' " ’ ‱
 keycode  48 = apostrophe quotedbl U2019 U2031
 !! \ | ↖ ↑
