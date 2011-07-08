@@ -63,3 +63,15 @@ function cpi()
 
     cp $@[1,-3] $@[-2] $@[-2]:h/$@[-1]
 }
+
+function mcp()
+{
+    local source
+
+    src=$1
+    shift
+
+    for dest; do
+	cp $src $dest
+    done
+}

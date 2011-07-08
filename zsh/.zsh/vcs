@@ -31,7 +31,7 @@ function update_vcs_information()
 {
     VCS=''
     if [[ -d .svn ]] ; then
-        VCS="[svn:`svn info | sed -n '/Revision/ s/.* \(.*\)/\1/p'`]"
+        VCS="[svn:`svn info | sed -n '/R.vision \?:/ s/.* \(.*\)/\1/p'`]"
     fi
     base_dir='.'
     while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && $base_dir:A != / ]]; do
@@ -210,9 +210,17 @@ function st()
 	git)
 	    if [[ $1 = '-f' ]]; then
 		shift
-		git st -uno $@
+		if ((#)); then
+		    git st -uno $@
+		else
+		    git st -uno .
+		fi
 	    else
-		git st $@
+		if ((#)); then
+		    git st $@
+		else
+		    git st .
+		fi
 	    fi
 	;;
     esac
@@ -305,7 +313,11 @@ function dfcmd()
 	    done
 	;;
 	git)
-	    git df --color $@
+	    if ((#)); then
+		git df --color $@
+	    else
+		git df --color .
+	    fi
 	;;
     esac
 }
@@ -445,7 +457,7 @@ function rv()
 	    svn revert -R $@
 	;;
 	git)
-	    git stash $@
+	    git checkout $@
 	;;
     esac
 }
@@ -485,7 +497,17 @@ function rlg()
 }
 function lgv()
 {
-    lg -v $@ | less
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	cvs)
+	    $vcs log $@ | less
+	;;
+	*)
+	    $vcs log -v $@ | less
+	;;
+    esac
 }
 function rlgv()
 {

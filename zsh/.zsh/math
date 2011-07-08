@@ -5,7 +5,11 @@ zmodload zsh/mathfunc
 
 function zc()
 {
-    zcalc $@
+    python <<EOF
+from math import *;
+
+print $@
+EOF
 }
 alias zc='noglob zc'
 
@@ -59,4 +63,166 @@ function b()
 function 10()
 {
     echo $(($1))
+}
+
+entropyfunctions="
+# Entropy encoding
+# (C) 2010 Arkanosis
+# arkanosis@gmail.com
+
+# This work is in the public domain
+
+import math
+
+# Helpers
+
+def b(value, length = None):
+    str = bin(value)[2:]
+    if length is None:
+        return str
+    if length > len(str):
+        return '0' * (length - len(str)) + str
+    if length:
+        return str[-length:]
+    return ''
+
+def flog(value):
+    return int(math.floor(math.log(value, 2)))
+
+def clog(value):
+    return int(math.ceil(math.log(value + 1, 2)))
+
+def pow(exp):
+    return int(math.pow(2, exp))
+
+# Encoders & decoders
+
+def unary(value):
+    return '1' * value + '0'
+
+def optimalBinary(value, size):
+    return b(value, clog(size))
+
+def truncatedBinary(value, size):
+    if not size:
+        return ''
+    if value < pow(flog(size) + 1) - size:
+        return b(value, flog(size))
+    return b(value + pow(size) - size, clog(size))
+
+def gamma(value):
+    if value:
+        return (unary(flog(value)) + ' ' + b(value, flog(value))).rstrip()
+    return '-'
+
+def delta(value):
+    if value:
+        return (gamma(flog(value) + 1) + ' ' + b(value, flog(value))).rstrip()
+    return '-'
+
+def omega(value):
+    if value:
+        def romega(value):
+            if value == 1:
+                return ''
+            return romega(clog(value) - 1) + ' ' + b(value, clog(value))
+        return romega(value) + ' 0'
+    return '-'
+
+def zeta(value, k):
+    if value:
+        h = flog(value) / k
+        return (unary(h) + ' ' + truncatedBinary(value - pow(h * k), pow((h + 1) * k) - pow(h * k))).rstrip()
+    return '-'
+
+def fibonacci(value):
+    if value:
+        values = [1, 2]
+        while values[-1] <= value:
+            values.append(values[-1] + values[-2])
+        values.pop()
+        code = '1'
+        for i in xrange(1, len(values) + 1):
+            if values[-i] <= value:
+                code = '1 ' + code
+                value -= values[-i]
+            else:
+                code = '0' + code
+        return code
+    return '-'
+
+def levenshtein(value):
+    rec = [0]
+    def rlevenshtein(value):
+        if value:
+            rec[0] += 1
+            return rlevenshtein(clog(value) - 1) + ' ' + b(value, flog(value))
+        else:
+            return ''
+    code = rlevenshtein(value).strip(' ')
+    return (unary(rec[0]) + ' ' + code).rstrip(' ')
+
+def golomb(value, k):
+    q = value / k
+    return (unary(q) + ' ' + truncatedBinary(value - q * k, k)).rstrip()
+
+def rice(value, k):
+    q = value / pow(k)
+    return (unary(q) + ' ' + b(value, k)).rstrip()
+"
+
+function una()
+{
+    python <<EOF
+$entropyfunctions
+
+print unary($1)
+EOF
+}
+
+function unal()
+{
+    echo $((`una $@ | wc -c` - 1))
+}
+
+function gam()
+{
+    python <<EOF
+$entropyfunctions
+
+print gamma($1)
+EOF
+}
+
+function gaml()
+{
+    echo $((`gam $@ | sed 's/ //g' | wc -c` - 1))
+}
+
+function del()
+{
+    python <<EOF
+$entropyfunctions
+
+print delta($1)
+EOF
+}
+
+function dell()
+{
+    echo $((`del $@ | sed 's/ //g' | wc -c` - 1))
+}
+
+function ric()
+{
+    python <<EOF
+$entropyfunctions
+
+print rice($2, $1)
+EOF
+}
+
+function ricl()
+{
+    echo $((`ric $@ | sed 's/ //g' | wc -c` - 1))
 }

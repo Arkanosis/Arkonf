@@ -12,13 +12,38 @@ function v()
 }
 
 if which emacs >& /dev/null; then
+    function eline()
+    {
+	local cmd args split
+
+	cmd=($=1)
+	shift
+
+	args=()
+
+	for arg; do
+	    if test -r $arg; then
+		args+=$arg
+	    else
+		split=(${(s.:.)arg})
+		if [[ $split[2] = <-> ]]; then
+		    args+=(+$split[2] $split[1])
+		else
+		    args+=$arg
+		fi
+	    fi
+	done
+
+	$cmd $args
+    }
+
     function e()
     {
-	emacs -nw $@
+	eline 'emacs -nw' $@
     }
     function ec()
     {
-	emacsclient -nw $@
+	eline 'emacsclient -nw' $@
     }
 else
     function e()

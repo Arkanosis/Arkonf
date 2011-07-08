@@ -31,3 +31,9 @@ zle -N insert-files
 
 autoload -U incarg
 zle -N incarg
+
+function restore-aborted-command()
+{
+    BUFFER=$ZLE_LINE_ABORTED
+}
+zle -N restore-aborted-command

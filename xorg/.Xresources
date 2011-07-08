@@ -1,0 +1,4 @@
+XTerm*background: black
+XTerm*foreground: white
+XTerm*title: terminal
+XTerm*saveLines: 1024

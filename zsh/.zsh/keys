@@ -78,6 +78,9 @@ bindkey -s "^['" '^[pdf\n'
 # Alt + s pour sourcer le dernier .zshrc
 bindkey -s '^[s' '^[p. ~/.zshrc\n'
 
+# Alt + k pour restaurer une commande annulee
+bindkey '^[k' restore-aborted-command
+
 # Alt + e pour transformer une commande en chemin complet
 #bindkey '^[e' expand-cmd-path
 
