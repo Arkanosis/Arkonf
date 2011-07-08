@@ -5,112 +5,169 @@ remove Lock = Caps_Lock
 
 !! 1 ! é É
 keycode  10 = 1 exclam eacute
+
 !! 2 @ è È
 keycode  11 = 2 at egrave
+
 !! 3 # ê Ê
 keycode  12 = 3 numbersign ecircumflex
+
 !! 4 $ î Î
 keycode  13 = 4 dollar icircumflex
+
 !! 5 % ù ï
 keycode  14 = 5 percent ugrave idiaeresis
+
 !! 6 ^ û ü
 keycode  15 = 6 asciicircum ucircumflex udiaeresis
+
 !! 7 & ô ö
 keycode  16 = 7 ampersand ocircumflex odiaeresis
+
 !! 8 * á Á
 keycode  17 = 8 asterisk aacute
+
 !! 9 ( à À
 keycode  18 = 9 parenleft agrave
+
 !!0 ) â ë
 keycode  19 = 0 parenright acircumflex ediaeresis
+
 !! - _ — –
 keycode  20 = minus underscore emdash endash
+
 !! = + ≠ ±
 keycode  21 = equal plus notequal plusminus
+
 !! q Q ä Ä
 keycode  24 = q Q adiaeresis
+
 !! w W ° ‰
 keycode  25 = w W U00B0 U2030
+
 !! e E € ¢
 keycode  26 = e E EuroSign cent
+
 !! r R Ⓡ
 keycode  27 = r R U24C7
+
 !! t T × ™
 keycode  28 = t T U00D7 U2122
+
 !! y Y † ‡
 keycode  29 = y Y U2020 U2021
+
 !! i I ∞ ؟
 keycode  31 = i I U221E U061F
+
 !! o O œ Œ
 keycode  32 = o O oe OE
+
 !! p P ′ ″
 keycode  33 = p P U2032 U2033
+
 !! [ { ⇐ ⇦
 keycode  34 = bracketleft braceleft U21D0 U21E6
+
 !! ] } ⇒ ⇨
 keycode  35 = bracketright braceright implies U21E8
+
 !! a A æ Æ
 keycode  38 = a A ae AE
+
 !! s S √ ∛
 keycode  39 = s S U221A U221B
+
 !! d D ÷ …
 keycode  40 = d D U00F7 U2026
+
 !! f F ↔ ⇔
 keycode  41 = f F U2194 U21D4
+
 !! g G ℃ ℉
 keycode  42 = g G U2103 U2109
+
+!! k K
+keycode  45 = k K
+
 !! l L ♥
 keycode  46 = l L U2665
-!! ; :
+
+!! ; : ↘
 keycode  47 = semicolon colon U2198
+
 !! ' " ’ ‱
 keycode  48 = apostrophe quotedbl U2019 U2031
+
 !! \ | ↖ ↑
 keycode  51 = backslash bar U2196 uparrow
+
 !! z Z
 keycode  52 = z Z U201C U201D
+
 !! c C ç Ç
 keycode  54 = c C ccedilla
+
 !! v V © §
 keycode  55 = v V U00A9 U00A7
+
 !! b B ∈ ∉
 keycode  56 = b B U2208 U2209
+
 !! n N №
 keycode  57 = n N U2116
+
 !! m M μ ·
 keycode  58 = m M U03BC U00B7
+
 !! , < ≤ ←
 keycode  59 = comma less lessthanequal leftarrow
+
 !! . > ≥ →
 keycode  60 = period greater greaterthanequal rightarrow
+
 !! / ? ↗ ↓
 keycode  61 = slash question U2197 downarrow
+
 !!   
 keycode  65 = space space nobreakspace
+
 !!
 keycode  66 = BackSpace
+
 !! 7 ⁷
 keycode  79 = 7 U2077
+
 !! 8 ⁸
 keycode  80 = 8 U2078
+
 !! 9 ⁹
 keycode  81 = 9 U2079
+
 !! 4 ⁴
 keycode  83 = 4 U2074
+
 !! 5 ⁵
 keycode  84 = 5 U2075
+
 !! 6 ⁶
 keycode  85 = 6 U2076
+
 !! 1 ¹
 keycode  87 = 1 U00B9
+
 !! 2 ²
 keycode  88 = 2 U00B2
+
 !! 3 ³
 keycode  89 = 3 U00B3
+
 !! 0 ⁰
 keycode  90 = 0 U2070
+
 !! < > « »
 keycode  94 = less greater guillemotleft guillemotright
+
 !!
 keycode 108 = Mode_switch
 
