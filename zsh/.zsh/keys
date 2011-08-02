@@ -90,6 +90,9 @@ bindkey '^[[Z' reverse-menu-complete
 # Alt + e pour editer la ligne de commande dans un editeur de texte
 #bindkey '^[e' edit-command-line
 
+# Alt + w pour supprimer ce qui précède jusqu'au dernier slash
+bindkey '^[w' back-to-last-slash
+
 # Alt + i pour inserer le dernier argument de la commande precedente
 bindkey '^[i' insert-last-word
 
