@@ -38,8 +38,8 @@ function restore-aborted-command()
 }
 zle -N restore-aborted-command
 
-function back-to-last-slash()
+function back-to-last-separator()
 {
-    LBUFFER=`echo $LBUFFER | sed 's@/[^/]\+/*\s*$@/@'`
+    LBUFFER=`echo $LBUFFER | sed 's@\([/\.]\)[^/\.]\+[/\.]*\s*$@\1@'`
 }
-zle -N back-to-last-slash
+zle -N back-to-last-separator
