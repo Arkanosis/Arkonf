@@ -1,6 +1,8 @@
 # "-*- sh -*-"
 
 vcsrootpattern='(trunk|(branches|tags)/[0-9]##(.[0-9]##)#(|dev))'
+VCS=
+PREVIOUS_PWD=
 
 function whichvcs()
 {
