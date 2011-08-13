@@ -14,3 +14,13 @@
     background-color: #CCCCFF !important;
   }
 }
+
+@-moz-document
+  url-prefix("http://www.google."),
+  url-prefix("https://www.google."),
+{
+  button.esw
+  {
+    display: none !important;
+  }
+}

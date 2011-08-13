@@ -37,3 +37,9 @@ function restore-aborted-command()
     BUFFER=$ZLE_LINE_ABORTED
 }
 zle -N restore-aborted-command
+
+function back-to-last-separator()
+{
+    LBUFFER=`echo $LBUFFER | sed 's@\([/\.]\)[^/\.]\+[/\.]*\s*$@\1@'`
+}
+zle -N back-to-last-separator

@@ -1,5 +1,8 @@
 # "-*- sh -*-"
 
+reset=`print "\e(B\e)B\e*B\e+B"`
+gray=`print "\e[90m"`
+
 source vcs
 
 setopt prompt_subst
@@ -26,8 +29,6 @@ function precmd()
  	    ;;
     esac
 
-reset=`print "\e(B\e)B\e*B\e+B"`
-gray=`print "\e[90m"`
 PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.) %~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$VCS$mail$fg[$PROMPT_COLOR]
 %!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
 }
