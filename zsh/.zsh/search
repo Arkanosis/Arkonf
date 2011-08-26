@@ -150,7 +150,7 @@ function /a()
 }
 function /r()
 {
-    local i dir files exp
+    local i dir files exp res
 
     if [[ $1 = -i ]]; then
 	i=-i
