@@ -1,7 +1,9 @@
 # "-*- sh -*-"
 
-reset=`print "\e(B\e)B\e*B\e+B"`
-gray=`print "\e[90m"`
+if [[ $sarch != AIX ]]; then
+    reset=`print "\e(B\e)B\e*B\e+B"`
+    gray=`print "\e[90m"`
+fi
 
 source vcs
 
@@ -36,8 +38,10 @@ PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2
 autoload -U colors
 colors
 
-up=`print "\e[A"`
-down=`print "\e[B"`
+if [[ $sarch != AIX ]]; then
+    up=`print "\e[A"`
+    down=`print "\e[B"`
+fi
 RPROMPT='$up%(1j.[%j].) ${gray}[%T]%{$reset_color%}$down'
 RPROMPT='%(1j.[%j].) %T'
 
