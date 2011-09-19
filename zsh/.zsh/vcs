@@ -510,6 +510,9 @@ function lgv()
 	cvs)
 	    $vcs log $@ | less
 	;;
+	git)
+	    git log -v --decorate $@
+	;;
 	*)
 	    $vcs log -v $@ | less
 	;;

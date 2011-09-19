@@ -26,3 +26,9 @@ for p in ${(k)namedpathes}; do
     eval "hash -d $p=$namedpathes[$p]"
     ba $p $namedpathes[$p]
 done
+
+# (C) 2011 Mikael Magnusson
+function shadowedpaths()
+{
+    print -l $^commands(e,'() { (( $# > 1 )) && REPLY=$@ } $^path/$REPLY:t(N)',N)
+}
