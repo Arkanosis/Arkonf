@@ -22,10 +22,11 @@ if [ -t 0 ]; then
     	zsh=
     done
 
-    if [ -z $screen ] && which screen > /dev/null; then
+    if [ -z $screen ] && [ -x "`which screen`" ]; then
+	which screen
     	screen=screen
     fi
-    if [ -z $zsh ] && which zsh > /dev/null; then
+    if [ -z $zsh ] && [ -x "`which zsh`" ]; then
     	zsh=zsh
     fi
 
