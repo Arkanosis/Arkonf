@@ -67,6 +67,8 @@ function lll()
 
 function lp()
 {
+    local dir
+
     dir=.
     if ((#)); then
        dir=$1
@@ -77,6 +79,8 @@ function lp()
 }
 function lf()
 {
+    local dir
+
     dir=.
     if ((#)); then
        dir=$1
