@@ -23,7 +23,6 @@ if [ -t 0 ]; then
     done
 
     if [ -z $screen ] && [ -x "`which screen`" ]; then
-	which screen
     	screen=screen
     fi
     if [ -z $zsh ] && [ -x "`which zsh`" ]; then
