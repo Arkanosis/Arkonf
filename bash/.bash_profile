@@ -31,7 +31,7 @@ if [ -t 0 ]; then
     fi
 
     if ! [ -z $zsh ]; then
-	SHELL=$zsh
+	export FULLSHELL=`which $zsh`
 	exec $screen
     fi
 
