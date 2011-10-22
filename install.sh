@@ -29,14 +29,21 @@ install zsh/.zsh ~/.zsh
 install mercurial/.hgrc ~/.hgrc
 install git/.gitconfig ~/.gitconfig
 
-install fluxbox ~/.fluxbox
+install fluxbox/.fluxbox ~/.fluxbox
 
 install emacs/.emacs ~/.emacs
 install emacs/.emacs.d ~/.emacs.d
 
 install gdb/.gdbinit ~/.gdbinit
 
+install python/.pythonrc.py ~/.pythonrc.py
+
+install pyjab/.pyjabrc ~/.pyjabrc
+
 install screen/.screenrc ~/.screenrc
+install tmux/.tmux.conf ~/.tmux.conf
+
+install uncrustify/.uncrustifyrc ~/.uncrustifyrc
 
 install vim/.vimrc ~/.vimrc
 install vim/.vim ~/.vim
@@ -44,6 +51,8 @@ install vim/.vim ~/.vim
 install xmonad ~/.xmonad
 
 install xorg/.Xmodmap ~/.Xmodmap
+install xorg/.Xresources ~/.Xresources
+install xorg/.Xresources ~/.Xdefaults
 
 echo
 
