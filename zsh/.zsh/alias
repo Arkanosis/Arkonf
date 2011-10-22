@@ -29,12 +29,22 @@ function gdb()
 
 function sc()
 {
-    screen
+    screen $@
 }
 
 function kp()
 {
-    keepassx &!
+    keepassx $@ &!
+}
+
+function mem()
+{
+    vmstat -sSM $@
+}
+
+function wa()
+{
+    watch $@
 }
 
 function py()

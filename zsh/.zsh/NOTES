@@ -95,3 +95,7 @@ Sous emacs :
 
 Sous TSClient :
  - ctrl+alt+entrée pour sortir du mode plein-écran
+
+Sous SSH :
+ - entrée, ~, . pour quitter ssh
+ - entrée, ~, ctrl+z pour suspendre ssh

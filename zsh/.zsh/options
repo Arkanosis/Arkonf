@@ -13,4 +13,4 @@ setopt equals
 
 setopt noclobber
 
-setopt warncreateglobal
+#setopt warncreateglobal

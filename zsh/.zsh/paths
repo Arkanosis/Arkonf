@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+source bookmarks
+
 typeset -U PATH
 
 export PATH=$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH

@@ -2,6 +2,8 @@
 
 function ma()
 {
+    local pass
+
     if ! ((#)); then
 	echo 'Usage: ma <files>' >&2
 	return 1
@@ -11,20 +13,28 @@ function ma()
 	mkdir mnt
     fi
 
+    read -s pass
+
     for i; do
         if ! [[ -d mnt/$i ]]; then
 	   mkdir mnt/$i
 	fi
-	truecrypt $i mnt/$i
+	echo $pass | sudo truecrypt -t $i mnt/$i -k '' --protect-hidden=no
     done
 }
 
 function addnode()
 {
+    local i
+
     if ((# != 1)); then
         echo 'Usage: addnode <nodeNumber>' >&2
 	return 1
     fi
 
-    sudo mknod -m660 /dev/loop$1 b 7 $1
+    i=1
+    while ((i < $1)); do
+	sudo mknod -m660 /dev/loop$i b 7 $i
+	((++i))
+    done
 }
