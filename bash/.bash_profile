@@ -4,6 +4,11 @@ if [ -t 0 ]; then
     	exec ssh madpc085
     fi
 
+    if [ "$HOSTNAME" = "madpc085" ]; then
+	export LD_LIBRARY_PATH=~/local_Linux-x86_64/lib:$LD_LIBRARY_PATH
+    	exec ~/local_Linux-x86_64/bin/tmux
+    fi
+
     for localpath in ~/local*; do
     	screen=$localpath/bin/screen
 	# TODO check this screen binary is compatible with the system, without running a screen session
