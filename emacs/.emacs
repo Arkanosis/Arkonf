@@ -6,11 +6,46 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; TODO
+;; dans ido-mode, répertoires nommées (ex: ~edkt/, ~i612/…)
+;; c-cc avec du texte sélectionné commente oldskool (ex: foo(int [bar]) ⇒ fo(int /* bar */[]))
+;; emacs + firefox (notamment pour Wikipédia) :
+;;  - emacs (+ mediawiki-mode, etc.)
+;;  - flyspell
+;;  - itsalltext
+;;  - mod pour itsalltext qui lance les aperçus mediawiki
+;;  => Objectif : dans Firefox, un clic sur « modifier »
+;;    - passe la page en mode « aperçu »
+;;    - ouvre emacs en mode mediawiki
+;;   Chaque ctrl+x+s sauvegarde un brouillon et met à jour l'aperçu (nickel pour le bi-écrans)
+;;   Le ctrl+x+w publie (en demandant le résumé de modif)
+;;   + : support de emacs-server / emacs-client (un seul emacs pour tous les articles modifiés)
+;;   Conf:
+;;
+;;
+;;    |---------------------------|---------------------------|
+;;    |				  |			      |
+;;    |				  \	    Firefox	      |
+;;    |	     Emacs, édition    	   |   	Lecture, aperçu…      |
+;;    |	  (wiki-texte, javascript) |			      |
+;;    |			   	   |	Plusieurs onglets     |
+;;    |			   	   /     dont un commandé     |
+;;    |	(besoin de copier-coller  |        par LiveRC         |
+;;    |  depuis et vers IRSSI)	  /			      |
+;;    |+------------------------------------------------------|
+;;    |       IRSSI, chat  	 \	     LiveRC	      |
+;;    |                            \(avec contrôle au clavier)|
+;;    -----------------------------\--------------------------|
+;;
+;;    L'édition en local de javascript modifie un fichier servi sur localhost
+;;    qui permet, lors de la sauvegarde, d'avoir l'aperçu en temps réel dans
+;;    Firefox
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; - Commande pour copier intégralement la ligne courante
 ; - Commande pour copier le token / le morceau de ligne qui suit / qui précède
 ; - Suppression du mot qui suit / précède *sans copier*
+; - Support du open-file-at-point
 
 ;; Pour Exalead
 (setq standard-indent 2)
@@ -189,9 +224,67 @@ If region contains less than 2 lines, lines are left untouched."
     (delete-region beg end)
     (insert (apply 'string (reverse (string-to-list string))))))
 
+;; Directory bookmarks
+;; (C) 2011 - Arkanosis
+
+(defconst *svn* "/ng/src/jroquet/svn/")
+
+(defun svnpath (path)
+  (concat *svn* path))
+
+(defconst *bookmarks*
+  (list (cons "edk" (svnpath "edk/edk/trunk"))
+        (cons "index6" (svnpath "platform/index6/trunk"))
+        (cons "semantic" (svnpath "platform/semantic/trunk"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun host-name ()
+  "Returns the name of the current host minus the domain."
+  (let ((hostname (downcase (system-name))))
+    (save-match-data
+      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
+
+(if
+ (string-equal (host-name) "reddev014")
+ nil
+ (progn
+
+
+  (load "~/.emacs.d/mediawiki.el")
+  (custom-set-variables
+   '(mediawiki-site-alist
+    (quote
+     (("ACU" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Blog commun")
+      ("ACU-wip" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Rtfb/Lesser known C++ constructs")
+      ("Wikipedia-Arkanosis" "http://fr.wikipedia.org/w/" "Arkanosis" "" "Wikipédia:Accueil principal")
+      ("Wikipedia-Arktest" "http://fr.wikipedia.org/w/" "Arktest" "" "Wikipédia:Accueil principal")
+      ("Wikipedia-Arkbot" "http://fr.wikipedia.org/w/" "Arkbot" "" "Wikipédia:Accueil principal"))
+    )
+   )
+  )
+  (defun mw()
+    (interactive)
+    (mediawiki-site)
+  )
+
+  (load "~/.emacs.d/linum.el")
+  (global-linum-mode t)
+
+  (load "~/.emacs.d/undo-tree.el")
+  (global-undo-tree-mode)
+
+  (load "~/.emacs.d/js2.elc")
+  (load "~/.emacs.d/php-mode.el")
+  (load "~/.emacs.d/two-mode-mode.el")
+
+ )
+)
+
+(load "~/.emacs.d/pyjab.el")
+(define-key global-map "\C-cns" 'pyjab_send)
 
 (load "~/.emacs.d/ansi-color.el")
 (ansi-color-for-comint-mode-on)
@@ -200,12 +293,6 @@ If region contains less than 2 lines, lines are left untouched."
   (ansi-color-apply-on-region (point-min) (point-max)))
 
 (load "~/.emacs.d/workspaces.el")
-
-(load "~/.emacs.d/linum.el")
-(global-linum-mode t)
-
-(load "~/.emacs.d/undo-tree.el")
-(global-undo-tree-mode)
 
 (load "~/.emacs.d/scroll-all.el")
 
@@ -217,11 +304,19 @@ If region contains less than 2 lines, lines are left untouched."
 (add-hook 'c-mode-hook 'highlight-symbol-mode)
 (add-hook 'c++-mode-hook 'highlight-symbol-mode)
 (add-hook 'cc-mode-hook 'highlight-symbol-mode)
+
+(add-hook 'java-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'c-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'c++-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'cc-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+
+;(add-hook 'c-mode-common-hook (lambda () (highlight-regexp "FIXME" "hi-red-b")))
+;(add-hook 'c-mode-common-hook (lambda () (highlight-regexp "TODO" "hi-red-b")))
+;(add-hook 'c-mode-common-hook 'highlight-symbol-mode)
 (setq highlight-symbol-idle-delay 0.5)
 
-(load "~/.emacs.d/js2.elc")
-(load "~/.emacs.d/php-mode.el")
-(load "~/.emacs.d/two-mode-mode.el")
+(add-hook 'c-mode-common-hook 'subword-mode)
+(add-hook 'c-mode-common-hook 'cwarn-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bindings
@@ -292,6 +387,11 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'auto-mode-alist '("\\SConscript\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.flea$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.gexo$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . python-mode))
+
+(add-to-list 'auto-mode-alist '("\\.jj$" . java-mode))
 
 (add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
 
@@ -299,6 +399,9 @@ If region contains less than 2 lines, lines are left untouched."
 (add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
 
 (add-to-list 'auto-mode-alist '("\\.log$" . xterm-mode))
+
+(add-to-list 'auto-mode-alist '("\\.wiki$" . mediawiki-mode))
+(add-to-list 'auto-mode-alist '("itsalltext.*\\.txt$" . mediawiki-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
@@ -326,6 +429,11 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
+
 (setq confirm-nonexistent-file-or-buffer nil)
 
 (setq split-width-threshold nil)
@@ -334,7 +442,7 @@ If region contains less than 2 lines, lines are left untouched."
 (setq undo-strong-limit 300000)
 
 ;(setq compile-command "g++ -Wall -Wextra -std=c++98 -pedantic -Wabi *.cc *.cpp *.cxx")
-(setq compile-command "ngscons -df -t nojava && exatest com.exalead.mot.components.")
+(setq compile-command "engscons -d -t benchmark")
 
 ;; (global-hl-line-mode t)
 ;; (set-face-background 'hl-line "#111")
@@ -346,7 +454,19 @@ If region contains less than 2 lines, lines are left untouched."
 (global-font-lock-mode t)
 ;(global-hl-line-mode t)
 (icomplete-mode t) ;; Auto completion des commandes
-(ido-mode t)
+(if
+ (string-equal (host-name) "reddev014")
+ nil
+ (progn
+   (ido-mode t)
+   (setq ido-auto-merge-work-directories-length nil)
+   (add-hook 'ido-setup-hook
+   	     (lambda ()
+   	       (define-key ido-completion-map
+   		 (kbd "C-c e")
+   		 "data")))
+ )
+)
 (iswitchb-mode)
 (menu-bar-mode -1)
 (normal-erase-is-backspace-mode 0)
@@ -401,12 +521,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun host-name ()
-  "Returns the name of the current host minus the domain."
-  (let ((hostname (downcase (system-name))))
-    (save-match-data
-      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
-
 (if (file-readable-p "~/.emacs.d/exa-mode.el")
     (progn
       (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
@@ -428,6 +542,10 @@ If region contains less than 2 lines, lines are left untouched."
 	)
       (add-hook 'exa-mode-hook 'my-exa-hook)
     )
+)
+
+(if (file-readable-p "~/.emacs.d/ellql-mode.el")
+    (load "~/.emacs.d/ellql-mode.el")
 )
 
 (defun ht()
@@ -516,7 +634,6 @@ If region contains less than 2 lines, lines are left untouched."
      "ns_who | grep %s | sed 's/@/  @ /' | sed 's/ *$//'"
      login
      login))))
-(define-key global-map "\C-cnw" 'ns_who)
 
 ;; ns_send
 ;; (C) 2007 - Arkanosis
@@ -534,7 +651,6 @@ If region contains less than 2 lines, lines are left untouched."
      (buffer-substring
       (point)
       (point+2))))))
-(define-key global-map "\C-cns" 'ns_send)
 
 ;; Auto-class
 ;; (C) 2007 - Arkanosis

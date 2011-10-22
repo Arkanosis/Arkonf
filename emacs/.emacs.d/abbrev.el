@@ -71,7 +71,7 @@
 )
 
 (define-skeleton val-skel "" nil
-  >    " << " _ " << "
+  >    "<< " _ " << "
 )
 
 (define-skeleton vector-skel "" nil
@@ -116,6 +116,8 @@
 )
 
 (define-abbrev-table 'c++-mode-abbrev-table '(
+  ("vva" "\" <<  << \"" nil 0)
+
   ("iif" "" if-skel 0)
   ("eei" "" elif-skel 0)
   ("eel" "" else-skel 0)
