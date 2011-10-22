@@ -40,6 +40,6 @@ zle -N restore-aborted-command
 
 function back-to-last-separator()
 {
-    LBUFFER=`echo $LBUFFER | sed 's@\([/\.]\)[^/\.]\+[/\.]*\s*$@\1@'`
+    LBUFFER=`echo $LBUFFER | sed 's@\([/\.,]\)[^/\.,]\+[/\.,]*\s*$@\1@'`
 }
 zle -N back-to-last-separator

@@ -46,3 +46,13 @@ function wa()
 {
     watch $@
 }
+
+function py()
+{
+    python -i -c 'import user'
+}
+
+function pw()
+{
+    pwgen --secure --ambiguous 9
+}

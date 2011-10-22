@@ -1,0 +1,62 @@
+# "-*- sh -*-"
+
+function jsindent()
+{
+    python <(cat <<EOF
+import json
+import re
+import sys
+
+def colorize(line):
+    for pattern, replacement in [
+        (re.compile(r'(\[|\]|\{|\}|,)'), '\033[1;34m\\\\1\033[0m'),
+        (re.compile(r': (?P<delim>"|\\')([^\\'"]*?)(?P=delim)'), ': \033[32m\\\\g<delim>\\\\2\\\\g<delim>\033[0m'),
+        (re.compile(r'(?P<delim>"|\\')([^\\'"]*?)(?P=delim):'), '\033[33m\\\\g<delim>\\\\2\\\\g<delim>\033[0m'),
+    ]:
+        line = re.sub(pattern, replacement, line)
+    return line
+
+for line in json.dumps(json.load(sys.stdin), indent=4).split('\n'):
+    print colorize(line)
+
+EOF
+    )
+}
+
+function jspath()
+{
+    if ((# != 1)); then
+	echo 'Usage: jspath <path>' >&2
+	echo '       jspath <@pathToString>' >&2
+	echo '       jspath <path1%separator%path2[…]>' >&2
+	return 1
+    fi
+
+    python <(cat <<EOF
+import json
+import re
+import sys
+
+paths = []
+separators = []
+for index, segment in enumerate(("$1% ").split('%')):
+    if index % 2:
+        separators.append(segment)
+    else:
+        paths.append(segment)
+
+if len(paths) > len(separators):
+    paths.pop()
+
+data = json.load(sys.stdin)
+
+result = ''
+for path, separator in zip(paths, separators):
+    if path[0] not in '[.':
+        path = '.' + path
+    exec 'result += json.dumps(data%s).strip("\\\\"") + "%s"' % (re.sub(re.compile(r'\.([a-zA-Z0-9_]+)'), '["\\\\1"]', path), separator)
+
+print result.rstrip()
+EOF
+    )
+}

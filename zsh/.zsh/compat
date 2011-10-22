@@ -28,5 +28,12 @@ if ! which md5 >& /dev/null; then
     }
 fi
 
+if which colordiff >& /dev/null; then
+    function diff()
+    {
+	colordiff $@
+    }
+fi
+
 # Emacs :p
 autoload -U tetris

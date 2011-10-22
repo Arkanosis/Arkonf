@@ -23,7 +23,7 @@ done
 
 function ze()
 {
-    local files
+    local files configuration_file_path
 
     files=()
 

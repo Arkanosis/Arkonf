@@ -27,6 +27,7 @@ source files
 source firefox
 source highlight
 source history
+source json
 source keys
 source less
 source ln
@@ -51,6 +52,7 @@ source stats
 #source stderr
 source todo
 source truecrypt
+source twitter
 source usb
 source watch
 source zle

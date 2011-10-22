@@ -6,7 +6,8 @@ if [ -t 0 ]; then
 
     for localpath in ~/local*; do
     	screen=$localpath/bin/screen
-    	if test -x $screen && $screen echo > /dev/null 2>&1; then
+	# TODO check this screen binary is compatible with the system, without running a screen session
+    	if test -x $screen; then
     	    echo screen from $screen
     	    break
     	fi
@@ -22,15 +23,16 @@ if [ -t 0 ]; then
     	zsh=
     done
 
-    if [ -z $screen ] && which screen > /dev/null; then
+    if [ -z $screen ] && [ -x "`which screen`" ]; then
     	screen=screen
     fi
-    if [ -z $zsh ] && which zsh > /dev/null; then
+    if [ -z $zsh ] && [ -x "`which zsh`" ]; then
     	zsh=zsh
     fi
 
     if ! [ -z $zsh ]; then
-    	exec $screen $zsh
+	export FULLSHELL=`which $zsh`
+	exec $screen
     fi
 
 fi
