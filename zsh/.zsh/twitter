@@ -37,7 +37,7 @@ function twls()
 	return 1
     fi
 
-    wget -q http://api.twitter.com/1/lists/members.json\?cursor\=-1\&owner\=$1\&slug\=$2 -O -
+    wget -q http://api.twitter.com/1/lists/members.json\?cursor\=-1\&owner_screen_name\=$1\&slug\=$2 -O -
 }
 
 function /tw()

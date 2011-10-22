@@ -23,6 +23,8 @@ function fs()
 
 function fsm()
 {
+    local dir
+
     dir=.
 
     if ((#)); then

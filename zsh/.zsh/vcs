@@ -246,7 +246,7 @@ function stl()
 function stm()
 {
     local files
-    for file in `nocolor st -f | cut -d ' ' -f 2`; do
+    for file in `nocolor st -f | grep '^[^X] ' | cut -d ' ' -f 2`; do
 	files+=($file)
     done
     echo $files
@@ -511,7 +511,7 @@ function lgv()
 	    $vcs log $@ | less
 	;;
 	git)
-	    git log -v --decorate $@
+	    git log -v --decorate=full --graph $@
 	;;
 	*)
 	    $vcs log -v $@ | less

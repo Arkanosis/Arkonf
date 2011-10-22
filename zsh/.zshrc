@@ -49,7 +49,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	redsol*|tcsol*)
 	    source ./exalead
 	    NO_VCS_INFO=True
-	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin
+	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
 	;;
 	mad*|reddev*|tcdev*)
 	    source ./exalead

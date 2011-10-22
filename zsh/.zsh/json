@@ -29,6 +29,7 @@ function jspath()
 	echo 'Usage: jspath <path>' >&2
 	echo '       jspath <@pathToString>' >&2
 	echo '       jspath <path1%separator%path2[…]>' >&2
+	echo '       jspath <path[42].path[*].path>' >&2
 	return 1
     fi
 
@@ -54,7 +55,9 @@ result = ''
 for path, separator in zip(paths, separators):
     if path[0] not in '[.':
         path = '.' + path
-    exec 'result += json.dumps(data%s).strip("\\\\"") + "%s"' % (re.sub(re.compile(r'\.([a-zA-Z0-9_]+)'), '["\\\\1"]', path), separator)
+    path = 'data' + re.sub(re.compile(r'\.([a-zA-Z0-9_]+)'), '["\\\\1"]', path)      # foo[0].bar[*].baz -> foo[0]['bar'][*]['baz']
+    path = re.sub(re.compile(r'^(.*?)\[\*\](.*)'), '[_\\\\2 for _ in \\\\1]', path)  # foo[0]['bar'][*]['baz'] -> [_['baz'] for _ in foo[0]['bar']]
+    exec 'result += json.dumps(%s).strip("\\\\"") + "%s"' % (path, separator)
 
 print result.rstrip()
 EOF

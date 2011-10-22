@@ -182,6 +182,9 @@ function /r()
 	java)
 	    files='*.java'
 	;;
+	jexo)
+	    files='*.(exa|java|gexo)'
+	;;
 	src)
 	    files=$srcexts_pattern
 	;;

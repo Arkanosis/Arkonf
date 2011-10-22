@@ -35,5 +35,7 @@ if which colordiff >& /dev/null; then
     }
 fi
 
+export FULLSHELL=`which zsh`
+
 # Emacs :p
 autoload -U tetris

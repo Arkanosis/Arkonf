@@ -1,13 +1,24 @@
 # "-*- sh -*-"
 
 configuration_files=(
+    bash/.bash_profile
+    bash/.bashrc
     emacs/.emacs
+    firefox/chrome/userChrome.css
+    firefox/chrome/userContent.css
+    gdb/.gdbinit
     git/.gitconfig
+    htop/.htoprc
     mercurial/.hgrc
-    vim/.vimrc
+    pyjab/.pyjabrc
+    python/.pythonrc.py
     screen/.screenrc
+    tmux/.tmux.conf
+    uncrustify/.uncrustifyrc
+    vim/.vimrc
     xmonad/xmonad.hs
     xorg/.Xmodmap
+    xorg/.Xresources
     zsh/.zshrc
 )
 

@@ -38,8 +38,8 @@ bindkey '^[p' push-input
 # Ctrl + T pour copier le dernier argument
 bindkey -s '^T' '!#$'
 
-# Alt + . pour répéter le dernier argument
-bindkey '^[.' last-arg
+# Alt + m pour répéter le dernier argument
+bindkey '^[m' last-arg
 
 # Alt + \ ou pour remonter d'un niveau
 bindkey -s '^[\' '^[pcd ..\n'
@@ -122,7 +122,7 @@ bindkey "^[M" insert-files
 
 # Alt++ / - pour incrémenter / décrémenter une valeur numérique
 bindkey "^[+" incarg
-bindkey "^[-" decarg
+#bindkey "^[-" decarg
 
 function kbd()
 {
