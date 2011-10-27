@@ -53,5 +53,9 @@ function fsm()
 
 function sz()
 {
-    du -hs $@
+    if ! ((#)); then
+        du -hs .
+    else
+	du -hs $@
+    fi
 }
