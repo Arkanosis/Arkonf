@@ -4,6 +4,17 @@
   url-prefix("http://www.google.com/reader/view/"),
   url-prefix("https://www.google.com/reader/view/")
 {
+
+  #entries
+  {
+    padding: 0 !important;
+  }
+
+  .entry .entry-body, .entry .entry-title, .entry .entry-likers
+  {
+    max-width: 750px !important;
+  }
+
   #entries.list .collapsed:hover, #entries.list .read .collapsed:hover
   {
     background-color: #99FFCC !important;
