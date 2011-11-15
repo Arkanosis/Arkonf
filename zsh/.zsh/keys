@@ -93,6 +93,9 @@ bindkey '^[[Z' reverse-menu-complete
 # Alt + w pour supprimer ce qui précède jusqu'au dernier slash ou point
 bindkey '^[w' back-to-last-separator
 
+# Alt + W pour supprimer ce qui suit jusqu'au prochain slash ou point
+bindkey '^[W' forward-to-last-separator
+
 # Alt + i pour inserer le dernier argument de la commande precedente
 bindkey '^[i' insert-last-word
 

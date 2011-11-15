@@ -43,3 +43,9 @@ function back-to-last-separator()
     LBUFFER=`echo $LBUFFER | sed 's@\([/\.,]\)[^/\.,]\+[/\.,]*\s*$@\1@'`
 }
 zle -N back-to-last-separator
+
+function forward-to-last-separator()
+{
+    RBUFFER=`echo $RBUFFER | sed 's@^\s*[/\.,]*[^/\.,]\+\([/\.,]\)@\1@'`
+}
+zle -N forward-to-last-separator
