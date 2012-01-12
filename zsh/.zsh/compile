@@ -40,10 +40,11 @@ function colorizeGCC()
     yellow="\\\\e[1;33m&\\\\e[0m"
     red="\\\\e[1;31m&\\\\e[0m"
     while read line; do
-	echo `echo $line | sed "
+	line=`echo $line | sed "
             s%$location warning:%$yellow%
             s%$location error:%$red%
         "`
+	echo $line
     done
 }
 
