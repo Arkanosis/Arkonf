@@ -49,7 +49,7 @@ source search
 source serve
 source ssh
 source stats
-#source stderr
+source stderr
 source todo
 source truecrypt
 source twitter
