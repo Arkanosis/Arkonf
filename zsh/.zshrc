@@ -51,7 +51,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    NO_VCS_INFO=True
 	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
 	;;
-	mad*|reddev*|tcdev*)
+	mad*|reddev*|tcdev*|*dsy)
 	    source ./exalead
 	;;
 	*)
