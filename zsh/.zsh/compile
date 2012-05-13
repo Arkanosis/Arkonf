@@ -3,6 +3,7 @@
 csrcexts=(
     h c
     hh hpp hxx ipp C cc cpp cxx
+    ll yy
 )
 
 puresrcexts=(

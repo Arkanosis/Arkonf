@@ -89,9 +89,9 @@ function search()
     shift
 
     if ((dist)); then
-	grep -nRI $casi $exp $dir $@ $=xfile $=xdir $=exclusions_dist
+	grep -nRI $casi $=xfile $=xdir $=exclusions_dist -- $exp $dir $@
     else
-	grep -nRI $casi $exp $dir $@ $=xfile $=xdir $=exclusions
+	grep -nRI $casi $=xfile $=xdir $=exclusions -- $exp $dir $@
     fi
 }
 
@@ -180,10 +180,10 @@ function /r()
 	    files='*.exa'
 	;;
 	java)
-	    files='*.java'
+	    files='*.(java|jj)'
 	;;
 	jexo)
-	    files='*.(exa|java|gexo)'
+	    files='*.(exa|java|jj|gexo)'
 	;;
 	src)
 	    files=$srcexts_pattern
@@ -193,10 +193,10 @@ function /r()
     shift 2
 
     for file in $dir/**/$~files; do
-	    res=`grep -n $i $exp $file`
+	    res=`grep -n $i -- $exp $file`
 	    if ! ((?)); then
 		echo "\e[1;33m$file\e[0m"
-		echo $res | grep $i $exp
+		echo $res | grep $i -- $exp
 	    fi
     done
 }

@@ -1,6 +1,7 @@
 # "-*- sh -*-"
 
 configuration_files=(
+    awesome/rc.lua
     bash/.bash_profile
     bash/.bashrc
     emacs/.emacs
@@ -19,6 +20,7 @@ configuration_files=(
     xmonad/xmonad.hs
     xorg/.Xmodmap
     xorg/.Xresources
+    xorg/.xsession
     zsh/.zshrc
 )
 
