@@ -114,6 +114,12 @@
   >    "stdout.writeln();\n"
   > -2 "}\n"
 )
+(define-skeleton sso-skel "" nil
+  >    "System.out.println(" _ ");"
+)
+(define-skeleton sse-skel "" nil
+  >    "System.err.println(" _ ");"
+)
 
 (define-abbrev-table 'c++-mode-abbrev-table '(
   ("vva" "\" <<  << \"" nil 0)
@@ -159,8 +165,15 @@
 
 (define-abbrev-table 'exa-mode-abbrev-table '(
   ("xmlf" "" xmlformat-skel 0)
-  ("sto" "" stdout-skel 0)
-  ("ste" "" stderr-skel 0)
+  ("cco" "" stdout-skel 0)
+  ("cce" "" stderr-skel 0)
+  ("ccl" "" stdout-skel 0)
+))
+
+(define-abbrev-table 'java-mode-abbrev-table '(
+  ("cco" "" sso-skel 0)
+  ("cce" "" sse-skel 0)
+  ("ccl" "" sso-skel 0)
 ))
 
 (define-abbrev-table 'shell-mode-abbrev-table '(
