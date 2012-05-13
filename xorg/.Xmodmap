@@ -48,8 +48,8 @@ keycode  25 = w W U00B0 U2030
 !! e E € ¢
 keycode  26 = e E EuroSign cent
 
-!! r R Ⓡ
-keycode  27 = r R U24C7
+!! r R ®
+keycode  27 = r R U00AE
 
 !! t T × ™
 keycode  28 = t T U00D7 U2122
