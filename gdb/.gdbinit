@@ -6,3 +6,7 @@ set print object
 set print vtbl
 
 source /ng/sdk/tools/devenv/gdb/gdbinit
+
+define nsf
+  handle SIGSEGV nostop
+end
