@@ -10,8 +10,26 @@ XTerm*saveLines: 1024
 !!!!!!!!!!!!!!!!!!!!!!!!
 ! (U)Rxvt
 !!!!!!!!!!!!!!!!!!!!!!!!
-Rxvt*background: black
-Rxvt*foreground: white
+Rxvt.font: xft:DejaVu Sans Mono:pixelsize=10:antialias=true
+Rxvt*background: #000000
+Rxvt*foreground: #b2b2b2
+Rxvt*color0: #000000
+Rxvt*color1: #b21818
+Rxvt*color2: #18b218
+Rxvt*color3: #b26818
+Rxvt*color4: #1818b2
+Rxvt*color5: #b218b2
+Rxvt*color6: #18b2b2
+Rxvt*color7: #b2b2b2
+Rxvt*color8: #686868
+Rxvt*color9: #ff5454
+Rxvt*color10: #54ff54
+Rxvt*color11: #ffff54
+Rxvt*color12: #5454ff
+Rxvt*color13: #ff54ff
+Rxvt*color14: #54ffff
+Rxvt*color15: #ffffff
+Rxvt*termName:xterm
 Rxvt*scrollBar: False
 Rxvt*saveLines: 65535
 Rxvt*borderLess: True
