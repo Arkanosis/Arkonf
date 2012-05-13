@@ -241,6 +241,8 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "~/.emacs.d")
+
 (defun host-name ()
   "Returns the name of the current host minus the domain."
   (let ((hostname (downcase (system-name))))
@@ -252,8 +254,7 @@ If region contains less than 2 lines, lines are left untouched."
  nil
  (progn
 
-
-  (load "~/.emacs.d/mediawiki.el")
+  (require 'mediawiki)
   (custom-set-variables
    '(mediawiki-site-alist
     (quote
@@ -270,35 +271,37 @@ If region contains less than 2 lines, lines are left untouched."
     (mediawiki-site)
   )
 
-  (load "~/.emacs.d/linum.el")
+  (require 'linum)
   (global-linum-mode t)
 
-  (load "~/.emacs.d/undo-tree.el")
+  (require 'undo-tree)
   (global-undo-tree-mode)
 
-  (load "~/.emacs.d/js2.elc")
-  (load "~/.emacs.d/php-mode.el")
-  (load "~/.emacs.d/two-mode-mode.el")
+  (require 'js2-mode)
+  (require 'php-mode)
+  (require 'lua-mode)
+  (require 'two-mode-mode)
+
+  (require 'auto-complete-config)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (ac-config-default)
 
  )
 )
 
-(load "~/.emacs.d/pyjab.el")
+(require 'pyjab)
 (define-key global-map "\C-cns" 'pyjab_send)
 
-(load "~/.emacs.d/ansi-color.el")
+(require 'ansi-color)
 (ansi-color-for-comint-mode-on)
 (defun xterm-mode()
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
-(load "~/.emacs.d/workspaces.el")
-
-(load "~/.emacs.d/scroll-all.el")
-
-(load "~/.emacs.d/longlines.el")
-
-(load "~/.emacs.d/highlight-symbol.el")
+(require 'workspaces)
+(require 'scroll-all)
+(require 'longlines)
+(require 'highlight-symbol)
 (add-hook 'exa-mode-hook 'highlight-symbol-mode)
 (add-hook 'java-mode-hook 'highlight-symbol-mode)
 (add-hook 'c-mode-hook 'highlight-symbol-mode)
@@ -394,6 +397,8 @@ If region contains less than 2 lines, lines are left untouched."
 (add-to-list 'auto-mode-alist '("\\.jj$" . java-mode))
 
 (add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
+
+(add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
@@ -495,6 +500,7 @@ If region contains less than 2 lines, lines are left untouched."
 (setq next-line-add-newlines nil)
 (setq scroll-step 1) ;; Ne descend que d'une ligne lorsau'on arrive en bas de l'ecran
 (setq visible-bell t)
+(setq org-replace-disputed-keys t)
 (setq-default gdb-many-windows t)
 (setq-default show-trailing-whitespace t)
 (setq-default vc-follow-symlinks t)
@@ -523,7 +529,6 @@ If region contains less than 2 lines, lines are left untouched."
 
 (if (file-readable-p "~/.emacs.d/exa-mode.el")
     (progn
-      (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
       (autoload 'exa-mode "exa-mode" "" t)
       (autoload 'exa-export-all-packages "exa-mode" "" t)
       (setq auto-mode-alist

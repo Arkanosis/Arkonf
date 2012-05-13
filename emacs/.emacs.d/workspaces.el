@@ -42,3 +42,5 @@
       (setq current-workspace ?0)
       (workspace-create-new ?1)
       (setq workspaces-are-initialized t))
+
+(provide 'workspaces)
