@@ -1,4 +1,17 @@
+!!!!!!!!!!!!!!!!!!!!!!!!
+! XTerm
+!!!!!!!!!!!!!!!!!!!!!!!!
+
 XTerm*background: black
 XTerm*foreground: white
 XTerm*title: terminal
 XTerm*saveLines: 1024
+
+!!!!!!!!!!!!!!!!!!!!!!!!
+! (U)Rxvt
+!!!!!!!!!!!!!!!!!!!!!!!!
+Rxvt*background: black
+Rxvt*foreground: white
+Rxvt*scrollBar: False
+Rxvt*saveLines: 65535
+Rxvt*borderLess: True
