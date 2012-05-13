@@ -35,6 +35,7 @@ bind \\ windowlist -b
 bind n title
 
 bind t screen 1
+bind c screen 1
 
 bind j prev
 bind ; next
