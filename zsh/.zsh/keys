@@ -57,7 +57,7 @@ bindkey -s '^[c' '^[pfg\n'
 #bindkey -s '^[p' 'pushd\n'
 
 # Alt + = pour depiler un repertoire
-bindkey -s '^[=' '^[ppopd >&-\n'
+bindkey -s '^[=' '^[ppopd > /dev/null\n'
 
 # Alt + g pour aller dans /goinfre/
 bindkey -s '^[g' '^[pcd /goinfre/\n'

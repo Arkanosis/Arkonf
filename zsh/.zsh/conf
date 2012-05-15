@@ -73,7 +73,7 @@ function cdo()
 {
     pushd $ARKONF_DIR >&-
     $@
-    popd >&-
+    popd > /dev/null
 }
 
 function cst()

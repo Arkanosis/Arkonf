@@ -45,5 +45,5 @@ function runin()
     pushd $1 >&-
     shift
     $@
-    popd >&-
+    popd > /dev/null
 }

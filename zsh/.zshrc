@@ -61,7 +61,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	;;
     esac
 
-    popd >&-
+    popd > /dev/null
 
     #enable_proxy
 else

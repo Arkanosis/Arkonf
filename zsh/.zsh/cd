@@ -12,7 +12,7 @@ function cdir()
 
 function popd()
 {
-    builtin popd >&-
+    builtin popd > /dev/null
 }
 
 function rl()
