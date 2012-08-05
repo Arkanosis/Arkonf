@@ -1,0 +1,6 @@
+# "-*- sh -*-"
+
+function synergyc
+{
+    ssh -f -N -L 24800:$1:24800 $1 && command synergyc localhost
+}
