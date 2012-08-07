@@ -50,6 +50,7 @@ source serve
 source ssh
 source stats
 source stderr
+source synergy
 source todo
 source truecrypt
 source twitter
