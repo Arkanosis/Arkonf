@@ -1,78 +1,74 @@
 diff --git a/gdb/infrun.c b/gdb/infrun.c
-index 842ff6b..3b5ba01 100644
---- gdb/infrun.c
-+++ gdb/infrun.c
-@@ -5005,13 +5005,17 @@ print_stop_reason (enum inferior_stop_reason stop_reason, int stop_info)
- 	  if (ui_out_is_mi_like_p (uiout))
- 	    ui_out_field_string
- 	      (uiout, "reason", async_reason_lookup (EXEC_ASYNC_SIGNAL_RECEIVED));
-+	  ui_out_text (uiout, "\033[5;91m");
- 	  ui_out_field_string (uiout, "signal-name",
- 			       target_signal_to_name (stop_info));
-+	  ui_out_text (uiout, "\033[0m");
- 	  annotate_signal_name_end ();
- 	  ui_out_text (uiout, ", ");
- 	  annotate_signal_string ();
-+	  ui_out_text (uiout, "\033[91m");
- 	  ui_out_field_string (uiout, "signal-meaning",
- 			       target_signal_to_string (stop_info));
-+	  ui_out_text (uiout, "\033[0m");
- 	  annotate_signal_string_end ();
- 	}
-       ui_out_text (uiout, ".\n");
+index cf6c062..0d5f2f5 100644
+--- a/gdb/infrun.c
++++ b/gdb/infrun.c
+@@ -5775,13 +5775,17 @@ print_signal_exited_reason (enum gdb_signal siggnal)
+       (uiout, "reason", async_reason_lookup (EXEC_ASYNC_EXITED_SIGNALLED));
+   ui_out_text (uiout, "\nProgram terminated with signal ");
+   annotate_signal_name ();
++  ui_out_text (uiout, "\033[5;91m");
+   ui_out_field_string (uiout, "signal-name",
+ 		       gdb_signal_to_name (siggnal));
++  ui_out_text (uiout, "\033[0m");
+   annotate_signal_name_end ();
+   ui_out_text (uiout, ", ");
+   annotate_signal_string ();
++  ui_out_text (uiout, "\033[91m");
+   ui_out_field_string (uiout, "signal-meaning",
+ 		       gdb_signal_to_string (siggnal));
++  ui_out_text (uiout, "\033[0m");
+   annotate_signal_string_end ();
+   ui_out_text (uiout, ".\n");
+   ui_out_text (uiout, "The program no longer exists.\n");
 diff --git a/gdb/stack.c b/gdb/stack.c
-index 4aad34c..6872873 100644
---- gdb/stack.c
-+++ gdb/stack.c
-@@ -342,7 +342,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
- 	  fprintf_symbol_filtered (stb->stream, SYMBOL_PRINT_NAME (sym),
- 				   SYMBOL_LANGUAGE (sym),
- 				   DMGL_PARAMS | DMGL_ANSI);
-+	  ui_out_text (uiout, "\033[95m");
- 	  ui_out_field_stream (uiout, "name", stb);
-+	  ui_out_text (uiout, "\033[0m");
- 	  annotate_arg_name_end ();
- 	  ui_out_text (uiout, "=");
+index 51747ea..88915e2 100644
+--- a/gdb/stack.c
++++ b/gdb/stack.c
+@@ -239,7 +239,9 @@ print_frame_arg (const struct frame_arg *arg)
+   if (arg->entry_kind == print_entry_values_only
+       || arg->entry_kind == print_entry_values_compact)
+     fputs_filtered ("@entry", stb);
++  ui_out_text (uiout, "\033[95m");
+   ui_out_field_stream (uiout, "name", stb);
++  ui_out_text (uiout, "\033[0m");
+   annotate_arg_name_end ();
+   ui_out_text (uiout, "=");
 
-@@ -375,7 +377,9 @@ print_frame_args (struct symbol *func, struct frame_info *frame,
- 		  opts.deref_ref = 0;
- 		  opts.summary = summary;
- 		  common_val_print (val, stb->stream, 2, &opts, language);
-+		  ui_out_text (uiout, "\033[92m");
- 		  ui_out_field_stream (uiout, "value", stb);
-+		  ui_out_text (uiout, "\033[0m");
- 	        }
- 	      else
- 		ui_out_text (uiout, "???");
-@@ -762,9 +766,11 @@ print_frame (struct frame_info *frame, int print_level,
-
-   if (print_level)
-     {
-+      ui_out_text (uiout, "\033[36m");
-       ui_out_text (uiout, "#");
-       ui_out_field_fmt_int (uiout, 2, ui_left, "level",
- 			    frame_relative_level (frame));
-+      ui_out_text (uiout, "\033[0m");
+@@ -287,7 +289,9 @@ print_frame_arg (const struct frame_arg *arg)
+ 			  except.message);
      }
-   get_user_print_options (&opts);
-   if (opts.addressprint)
-@@ -777,12 +783,14 @@ print_frame (struct frame_info *frame, int print_level,
+
++  ui_out_text (uiout, "\033[92m");
+   ui_out_field_stream (uiout, "value", stb);
++  ui_out_text (uiout, "\033[0m");
+
+   /* Also invoke ui_out_tuple_end.  */
+   do_cleanups (old_chain);
+@@ -777,9 +781,11 @@ print_frame_info (struct frame_info *frame, int print_level,
+          to list for this frame.  */
+       if (print_level)
+         {
++          ui_out_text (uiout, "\033[36m");
+           ui_out_text (uiout, "#");
+           ui_out_field_fmt_int (uiout, 2, ui_left, "level",
+ 				frame_relative_level (frame));
++	  ui_out_text (uiout, "\033[0m");
+         }
+       if (ui_out_is_mi_like_p (uiout))
+         {
+@@ -1143,12 +1149,14 @@ print_frame (struct frame_info *frame, int print_level,
  	ui_out_text (uiout, " in ");
        }
    annotate_frame_function_name ();
 +  ui_out_text (uiout, "\033[1;31m");
-   fprintf_symbol_filtered (stb->stream, funname ? funname : "??",
+   fprintf_symbol_filtered (stb, funname ? funname : "??",
  			   funlang, DMGL_ANSI);
    ui_out_field_stream (uiout, "func", stb);
 +  ui_out_text (uiout, "\033[0m");
    ui_out_wrap_hint (uiout, "   ");
    annotate_frame_args ();
--
-+
-   ui_out_text (uiout, " (");
-   if (print_args)
-     {
-@@ -806,6 +814,7 @@ print_frame (struct frame_info *frame, int print_level,
+
+@@ -1183,6 +1191,7 @@ print_frame (struct frame_info *frame, int print_level,
        ui_out_wrap_hint (uiout, "   ");
        ui_out_text (uiout, " at ");
        annotate_frame_source_file ();
@@ -80,7 +76,7 @@ index 4aad34c..6872873 100644
        ui_out_field_string (uiout, "file", sal.symtab->filename);
        if (ui_out_is_mi_like_p (uiout))
  	{
-@@ -813,10 +822,13 @@ print_frame (struct frame_info *frame, int print_level,
+@@ -1191,10 +1200,13 @@ print_frame (struct frame_info *frame, int print_level,
  	  if (fullname != NULL)
  	    ui_out_field_string (uiout, "fullname", fullname);
  	}
@@ -93,4 +89,3 @@ index 4aad34c..6872873 100644
 +      ui_out_text (uiout, "\033[0m");
        annotate_frame_source_end ();
      }
-
