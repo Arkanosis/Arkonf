@@ -366,6 +366,10 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "M-<right>") 'windmove-right)
 (global-set-key (kbd "M-<up>")  'windmove-up)
 (global-set-key (kbd "M-<down>") 'windmove-down)
+(global-set-key (kbd "ESC <left>")  'windmove-left)
+(global-set-key (kbd "ESC <right>") 'windmove-right)
+(global-set-key (kbd "ESC <up>")  'windmove-up)
+(global-set-key (kbd "ESC <down>") 'windmove-down)
 (global-set-key (kbd "C-x <up>")  'iswitchb-buffer)
 (global-set-key (kbd "C-x <down>") 'iswitchb-buffer-other-window)
 (global-set-key (kbd "C-x v") 'workspace-goto)
@@ -399,8 +403,9 @@ If region contains less than 2 lines, lines are left untouched."
 (add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
 
 (add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xul$" . xml-mode))
 
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsm?$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
 
 (add-to-list 'auto-mode-alist '("\\.log$" . xterm-mode))
