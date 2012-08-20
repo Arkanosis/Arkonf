@@ -3,7 +3,6 @@ username = Arkanosis <arkanosis@gmail.com>
 
 [extensions]
 hgext.hbisect= !
-hgext.alias=
 hgext.bookmarks=
 hgext.churn=
 hgext.color=
