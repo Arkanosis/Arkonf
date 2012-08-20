@@ -10,26 +10,27 @@ XTerm*saveLines: 1024
 !!!!!!!!!!!!!!!!!!!!!!!!
 ! (U)Rxvt
 !!!!!!!!!!!!!!!!!!!!!!!!
-Rxvt.font: xft:DejaVu Sans Mono:pixelsize=10:antialias=true
+Rxvt.font: xft:DejaVu Sans Mono:pixelsize=14:antialias=true
+Rxvt.letterSpace: -1
 Rxvt*background: #000000
-Rxvt*foreground: #b2b2b2
+Rxvt*foreground: #ffffff
 Rxvt*color0: #000000
-Rxvt*color1: #b21818
-Rxvt*color2: #18b218
-Rxvt*color3: #b26818
-Rxvt*color4: #1818b2
-Rxvt*color5: #b218b2
-Rxvt*color6: #18b2b2
-Rxvt*color7: #b2b2b2
-Rxvt*color8: #686868
-Rxvt*color9: #ff5454
-Rxvt*color10: #54ff54
-Rxvt*color11: #ffff54
-Rxvt*color12: #5454ff
-Rxvt*color13: #ff54ff
-Rxvt*color14: #54ffff
-Rxvt*color15: #ffffff
+Rxvt*color1: #cc0000
+Rxvt*color2: #4e9a06
+Rxvt*color3: #c4a000
+Rxvt*color4: #3465a4
+Rxvt*color5: #75507b
+Rxvt*color6: #06989a
+Rxvt*color7: #d3d7cf
+Rxvt*color8: #555753
+Rxvt*color9: #ef2929
+Rxvt*color10: #8ae234
+Rxvt*color11: #fce94f
+Rxvt*color12: #729fcf
+Rxvt*color13: #ad7fa8
+Rxvt*color14: #34e2e2
+Rxvt*color15: #eeeeec
 Rxvt*termName:xterm
 Rxvt*scrollBar: False
 Rxvt*saveLines: 65535
-Rxvt*borderLess: True
+Rxvt*borderLess: False ! Support depends on the WM: True for KWin, False for Metacity and AwesomeWM
