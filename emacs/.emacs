@@ -512,11 +512,6 @@ If region contains less than 2 lines, lines are left untouched."
 
 (custom-set-variables '(fill-column 78))
 
-(custom-set-faces
- '(font-lock-comment-face       ((((class color) (background light))
-                                            (:italic t :foreground "#800060"))))
-)
-
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
 (c-set-offset 'inclass '+)
