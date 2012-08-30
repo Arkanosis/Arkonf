@@ -277,6 +277,7 @@ If region contains less than 2 lines, lines are left untouched."
   (require 'undo-tree)
   (global-undo-tree-mode)
 
+  (require 'markdown-mode)
   (require 'js2-mode)
   (require 'php-mode)
   (require 'lua-mode)
@@ -374,12 +375,6 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "C-x <down>") 'iswitchb-buffer-other-window)
 (global-set-key (kbd "C-x v") 'workspace-goto)
 
-(global-set-key [(control j)] 'backward-char)
-(global-set-key [(control k)] 'next-line)
-(global-set-key [(control l)] 'previous-line)
-(global-set-key [(control \;)] 'forward-char)
-(global-set-key [(control b)] 'kill-line)
-
 (global-set-key [(meta h)] 'switch-or-open-header)
 (global-set-key [(meta i)] 'switch-or-open-inline)
 (global-set-key [(meta o)] 'switch-or-open-source)
@@ -391,6 +386,8 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Associations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 (add-to-list 'auto-mode-alist '("\\SConscript\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
@@ -438,6 +435,11 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun terminal-init-screen-256color ()
+  (load "term/xterm")
+  (xterm-register-default-colors)
+  (tty-set-up-initial-frame-faces))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
