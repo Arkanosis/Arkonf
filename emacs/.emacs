@@ -349,6 +349,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (global-set-key "" 'backward-delete-char)
 (global-set-key "" 'goto-line)
+(global-set-key "[7~" 'beginning-of-line)
+(global-set-key "[8~" 'end-of-line)
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c b") 'kill-whole-line)
