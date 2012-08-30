@@ -22,8 +22,10 @@ bindkey '^[o' accept-and-menu-complete
 bindkey "\e[3~" delete-char
 
 # Home/end pour aller en debut/fin de ligne
-bindkey "^[OF" end-of-line
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
 bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
 
 # Insert pour ecraser
 bindkey '^[[2~' overwrite-mode
