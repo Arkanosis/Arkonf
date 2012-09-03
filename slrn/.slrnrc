@@ -1,0 +1,15 @@
+charset config utf8
+charset display utf8
+charset outgoing utf8
+
+set realname "Jérémie Roquet"
+set username "jroquet"
+set hostname "arkanosis.net"
+set replyto "Jérémie Roquet <jroquet@arkanosis.net>"
+
+set signature ".signature"
+
+set custom_headers "X-Hacker: If you're reading this, you should get an internship at Exalead. Please drop me an email at jroquet@exalead.com"
+
+set sorting_method 9
+header_display_format 0 "%F%-5S%-5l:[%16r] %t%s %-24g[%-22d]"
