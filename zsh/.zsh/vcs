@@ -48,7 +48,7 @@ function update_vcs_information()
 	    VCS="${VCS}[hg:default:`hg id -n`]"
 	fi
     elif [[ -d $base_dir/.git/ ]]; then
-	branch=`git branch`
+	branch=`git branch | command grep '^\*'`
 	if git describe --always >& /dev/null; then
 	    VCS="${VCS}[git:$branch[3,-1]:`git describe --always`]"
 	else
@@ -61,6 +61,7 @@ function update_vcs_information()
 
 function update_vcs_information_if_needed()
 {
+    # TODO idem si derniere commande = git checkout
     VCS=$VCS_REVISION[$PWD]
     if [[ -z $NO_VCS_INFO ]] && [[ -z $VCS ]] && [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
 	PREVIOUS_PWD=$PWD
@@ -106,6 +107,12 @@ function co()
 	echo This is not a know repository >&2
 	return 1
     )
+}
+
+function ch()
+{
+    git checkout $@
+    update_vcs_information
 }
 
 function colorizeAdd()
@@ -193,7 +200,7 @@ function colorizeStatus()
                 s/^M[ 	].\+/\\\\e[1;34m&\\\\e[0m/' -e '
                 s/^C[ 	].\+/\\\\e[1;91m&\\\\e[0m/' -e '
                 s/^?[ 	].\+/\\\\e[1;35m&\\\\e[0m/' -e '
-                s/35\(m?[ 	].\+\.\\(log\|bak\|local\)\)/90\1/'`
+                s/35\(m?[ 	].\+\.\\(log\|bak\|local\)\)/38;5;239\1/'`
 	echo $line
     done
 }
