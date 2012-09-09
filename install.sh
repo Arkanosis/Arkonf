@@ -39,10 +39,13 @@ install emacs/.emacs.d ~/.emacs.d
 install gdb/.gdbinit ~/.gdbinit
 
 install python/.pythonrc.py ~/.pythonrc.py
+install python/.pydistutils.cfg ~/.pydistutils.cfg
 
 install pyjab/.pyjabrc ~/.pyjabrc
 
 install slrn/.slrnrc ~/.slrnrc
+
+install ssh/.ssh/config ~/.ssh/config
 
 install screen/.screenrc ~/.screenrc
 install tmux/.tmux.conf ~/.tmux.conf
