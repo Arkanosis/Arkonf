@@ -59,7 +59,7 @@ function ze()
 function zf()
 {
     local match params oldifs
-    match=`grep -nRI " $1()" $ZARKONF_DIR`
+    match=`command grep -nRI " $1()" $ZARKONF_DIR`
 
     oldifs=$IFS
     IFS=':'
