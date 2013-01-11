@@ -1,4 +1,0 @@
-# "-*- sh -*-"
-
-alias usb="pmount /dev/sda1 /media/usb && cd /media/usb"
-alias dusb="cd && pumount /media/usb && cd - >&-"
