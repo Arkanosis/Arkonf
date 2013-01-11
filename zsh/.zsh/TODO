@@ -1,3 +1,6 @@
+- ea : à la /r, mais ouvre les fichiers à la bonne ligne au lieu d'afficher les résultats
+( e `for i in *.java; do if ! grep -q getExpandedPath $i; then echo $i; fi; done | xargs echo )
+
 - duplicates plus utile avec fdupes ?
 
 - patcher ZSH : ajouter une nouvelle fonctionnalité (généralisation du principe zcp / zmv à toutes les commandes, avec une syntaxe plus simple) :

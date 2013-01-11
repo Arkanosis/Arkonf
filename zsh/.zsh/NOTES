@@ -36,6 +36,8 @@ $var:h : chemin uniquement
 $var:r : fichier uniquement
 $var:e : extension uniquement
 
+cmd ~+<tab> : autocomplète avec les chemins de l'historique
+
 --
 
 zstyle ':completion:*:rm:*' ignore-line yes # évite que le même fichier soit autocomplété deux fois (ici pour rm)
@@ -75,6 +77,9 @@ Pour les tests arithmétiques, utiliser (( )), exemple : if ((x > 5)); then
 
 sux: comme su, mais permet d'utiliser le serveux X
 
+namei -m `pwd` pour avoir les droits de tous les répertoires du courant jusqu'à la racine
+getconf LONG_BIT ; getconf LEVEL1_DCACHE_LINESIZE… → 32 ou 64 bits, taille des lignes de cache…
+
 pour prendre un screenshot sous X :
   chvt 7;sleep 10;import -display :0.0 -window root image.png
 dans un vt. chvt passe sur le vt de X
@@ -92,6 +97,7 @@ Sous emacs :
  - auto-revert-mode pour recharger automatiquement un fichier
  - C-U M-! <command> pour executer une commande shell et récupérer le résulat
  - M-x vc-annotate pour svn blame
+ - ctrl+x r t (avec région sélectionnée et curseur en début de ligne): préfixe toutes les lignes (pour augmenter l'indentation, par exemple)
 
 Sous TSClient :
  - ctrl+alt+entrée pour sortir du mode plein-écran

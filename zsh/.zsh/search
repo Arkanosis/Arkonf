@@ -31,7 +31,7 @@ excluded_dirs=(
     '*.bak' '.git' '.hg' '.svn'
 )
 excluded_dists=(
-    'ChangeLog' 'INSTALL' 'Makefile' 'NEWS' 'NOTES' 'README' 'TODO'
+    'ChangeLog' 'INSTALL' 'Makefile' 'NEWS' 'NOTES' 'README' 'README.md' 'TODO'
 )
 exclusions=()
 for excluded_file in $excluded_files; do
@@ -244,14 +244,20 @@ function rd()
 	if [[ -f $1/README ]]; then
 	    less $1/README
 	    return 0
+	elif [[ -f $1/README.md ]]; then
+	    less $1/README.md
+	    return 0
 	fi
     else
 	if [[ -f ./README ]]; then
 	    less ./README
 	    return 0
+	elif [[ -f ./README.md ]]; then
+	    less ./README.md
+	    return 0
 	fi
     fi
-    echo 'No README file in this directory' >&2
+    echo 'No README or README.md file in this directory' >&2
     return 1
 }
 
