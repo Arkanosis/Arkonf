@@ -197,9 +197,9 @@ function colorizeStatus()
 	line=`echo $line | sed -e '
                 s/^A[ 	].\+/\\\\e[1;32m&\\\\e[0m/' -e '
                 s/^D[ 	].\+/\\\\e[1;31m&\\\\e[0m/' -e '
-                s/^M[ 	].\+/\\\\e[1;34m&\\\\e[0m/' -e '
+                s/^[MU][ 	].\+/\\\\e[1;34m&\\\\e[0m/' -e '
                 s/^C[ 	].\+/\\\\e[1;91m&\\\\e[0m/' -e '
-                s/^?[ 	].\+/\\\\e[1;35m&\\\\e[0m/' -e '
+                s/^[?G][ 	].\+/\\\\e[1;35m&\\\\e[0m/' -e '
                 s/35\(m?[ 	].\+\.\\(log\|bak\|local\)\)/38;5;239\1/'`
 	echo $line
     done
@@ -284,7 +284,7 @@ function up()
     vcs=`whichvcs`
     case $vcs in
 	svn|cvs)
-	    $vcs up $@
+	    $vcs up $@ | colorizeStatus
 	;;
 	hg)
 	    hg fetch $@
