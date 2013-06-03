@@ -6,7 +6,7 @@ zmodload zsh/mathfunc
 function zc()
 {
     python <<EOF
-from math import *;
+from math import *
 
 print $@
 EOF

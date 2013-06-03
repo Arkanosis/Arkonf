@@ -201,6 +201,7 @@ function /r()
     done
 }
 alias /r="noglob /r"
+alias /ri="noglob /r -i"
 function /x()
 {
     local i dir files exp

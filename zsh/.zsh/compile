@@ -82,6 +82,26 @@ function tcp()
     return $?
 }
 
+function tjp()
+{
+    local name ret
+
+    name=`mktemp -d`
+    print '\e[1;33m*** Compiling ***\e[0m'
+    echo `which javac` $1
+    javac $1 -d $name
+
+    ret=$?
+
+    if ((ret)) || ! [[ -r $name/${${1##*/}/java/class} ]]; then
+	return $ret
+    fi
+
+    print '\e[1;33m*** Running java -cp' $name ${${1##*/}%%.java} '***\e[0m'
+    time java -cp $name ${${1##*/}%%.java}
+    return $?
+}
+
 function dgpp()
 {
     gpp -pg -ggdb $@
