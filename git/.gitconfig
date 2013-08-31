@@ -21,3 +21,6 @@ df = diff
 b = branch
 ci = commit -a
 co = checkout
+
+[diff]
+tool = vimdiff

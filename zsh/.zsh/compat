@@ -35,6 +35,13 @@ if which colordiff >& /dev/null; then
     }
 fi
 
+if which remmina >& /dev/null; then
+    function tsclient()
+    {
+	remmina $@
+    }
+fi
+
 export FULLSHELL=`which zsh`
 
 # Emacs :p

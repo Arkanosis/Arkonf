@@ -2,13 +2,16 @@
 
 source bookmarks
 
-typeset -U PATH
+typeset -U PATH LIBRARY_PATH LD_LIBRARY_PATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH PYTHONPATH
 
 export PATH=$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH
-export LD_LIBRARY_PATH=$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$LD_LIBRARY_PATH
+export LIBRARY_PATH=$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LIBRARY_PATH
 export C_INCLUDE_PATH=$HOME/local_$arch/include/:$HOME/local/include/:$C_INCLUDE_PATH
 export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-export PYTHONPATH=$HOME/local/lib/python:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH/
+#export PYTHONPATH=$HOME/local_$arch/lib/python:$HOME/local_$arch/lib/python2.7:$HOME/local_$arch/lib/python2.7/site-packages:$HOME/local/lib/python:$HOME/local/lib/python2.7:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH/
+export PYTHONPATH=$HOME/local/lib/python:$HOME/local/lib/python2.7:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH/
+
 export CONFIG_SITE=$HOME/config.site
 
 typeset -A namedpathes
@@ -33,4 +36,10 @@ done
 function shadowedpaths()
 {
     print -l $^commands(e,'() { (( $# > 1 )) && REPLY=$@ } $^path/$REPLY:t(N)',N)
+}
+
+function path() {
+    for file; do
+	echo $file:A
+    done
 }
