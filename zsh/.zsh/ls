@@ -90,13 +90,6 @@ function lf()
     ls -l $@ $dir/**(.)
 }
 
-source tree
-
-function tls()
-{
-    # Si -V dans les arguments, rediriger vers tree, sinon vers ls
-}
-
 function llf()
 {
     local time res oldres
