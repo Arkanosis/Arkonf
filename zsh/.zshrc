@@ -26,10 +26,6 @@ if [ "$HOST" != 'gate-ssh' ]; then
 
     pushd "$ZARKONF_DIR/.zsh" >&-
 
-    if [[ $HOST = mad* ]]; then
-	source ./exalead
-    fi
-
     source ./zshrc
 
     case $HOST in
@@ -42,7 +38,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	Edelweiss)
 	    source ./edelweiss
 	;;
-	reddev014|tcdev003)
+	reddev0(0|1)4|(ng|tc)dev00(2|3))
 	    source ./exalead
 	    export PATH=$PATH:s/Linux-x86_64/RedHat/
 	;;
@@ -51,7 +47,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    NO_VCS_INFO=True
 	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
 	;;
-	mad*|reddev*|tcdev*|*dsy)
+	mad*|reddev*|tcdev*|*dsy|lenov*|ngci*)
 	    source ./exalead
 	;;
 	*)
