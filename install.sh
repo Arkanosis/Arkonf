@@ -35,6 +35,8 @@ install gdb/.gdbinit ~/.gdbinit
 
 install python/.pythonrc.py ~/.pythonrc.py
 
+install pywikibot/.pywikibot ~/.pywikibot
+
 install pyjab/.pyjabrc ~/.pyjabrc
 install weechat/.weechat ~/.weechat
 
