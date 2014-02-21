@@ -13,67 +13,60 @@ function c()
     done
 }
 
+function flattendir() {
+    if test -d $1/$1 && [[ `ls -l $1 | wc -l` = 2 ]]; then
+	command mv $1/$1/*(N) $1/$1/.*(N) $1
+	rmdir $1/$1
+    fi
+}
+
 function x()
 {
-    # Extracteur universel v1.3
-    # (C) 2008-2009 Arkanosis
-    # arkanosis@gmail.com
+    # Extracteur universel v1.4
+    # (C) 2008-2014 Arkanosis
+    # jroquet@arkanosis.net
     for arg; do
 	case $arg in
 	    *.(tar.bz2|tbz2))
-                if ((`tar tvjf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
-		    echo 'No root directory. Create one?'
-		    read y
-		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $arg | sed 's/\.\(tbz2\|tar\.bz2\)$//'`
-			mkdir $dir
-			pushd $dir
-			echo 'n' | x ../$arg
-			popd
-			continue
-		    fi
+	        dir=`echo $arg | sed 's/\.\(tbz2\|tar\.bz2\)$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
 		fi
-
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m"
-		tar xvjf $arg
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m" && \
+		tar xvjf ../$arg && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.(tar.gz|tgz))
-                if ((`tar tvzf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
-		    echo 'No root directory. Create one?'
-		    read y
-		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $arg | sed 's/\.\(tgz\|tar\.gz\)$//'`
-			mkdir $dir
-			pushd $dir
-			echo 'n' | x ../$arg
-			popd
-			continue
-		    fi
+	        dir=`echo $arg | sed 's/\.\(tgz\|tar\.gz\)$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
 		fi
-
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m"
-		tar xvzf $arg
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m" && \
+		tar xvzf ../$arg && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.(tar.xz|txz))
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
-		7za x $arg
-
-		tarball=`echo $arg | sed 's/\.xz$//'`
-
-                if ((`tar tvf $tarball | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
-		    echo 'No root directory. Create one?'
-		    read y
-		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $tarball | sed 's/\.tar$//'`
-			mkdir $dir
-			pushd $dir
-			echo 'n' | x ../$tarball
-			popd
-			continue
-		    fi
+	        dir=`echo $arg | sed 's/\.\(txz\|tar\.xz\)$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
 		fi
-		tar xvf $tarball
-		rm $tarball
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m" && \
+		7za x ../$arg && \
+		tar xvf $arg.tar && \
+		rm $arg.tar && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.7z)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
@@ -92,21 +85,17 @@ function x()
 		gunzip $arg
 	    ;;
 	    *.(zip|jar))
-                if ((`unzip -l $arg | tail -n +4 | head -n -2 | sed 's@[ \t]*[0-9]\+[ \t]\+[0-1][0-9]-[0-3][0-9]-[0-9][0-9][ \t]\+[0-2][0-9]:[0-6][0-9][ \t]\+\\([^ \t]\+\\)@\1@' | sort -u | wc -l` > 1)); then
-		    echo 'No root directory. Create one?'
-		    read y
-		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $arg | sed 's/\.\(zip\|jar\)$//'`
-			mkdir $dir
-			pushd $dir
-			echo 'n' | x ../$arg
-			popd
-			continue
-		    fi
+	        dir=`echo $arg | sed 's/\.\(zip\|jar\)$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
 		fi
-
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
-		unzip $arg
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
+		unzip ../$arg && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.Z)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZ\e[0;32m compressed file)...\e[0m"
@@ -121,30 +110,34 @@ function x()
 		unzip $arg
 	    ;;
 	    *.tar)
-                if ((`tar tvf $arg | sed 's@.*[ \t]\\([^ \t/]\+\\)\\(/.*\\)\?$@\1@' | sort -u | wc -l` > 1)); then
-		    echo 'No root directory. Create one?'
-		    read y
-		    if [[ $y = (y|Y) ]]; then
-			dir=`echo $arg | sed 's/\.tar$//'`
-			mkdir $dir
-			pushd $dir
-			echo 'n' | x ../$arg
-			popd
-			continue
-		    fi
+	        dir=`echo $arg | sed 's/\.tar$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
 		fi
-
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
-		tar xvf $arg
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m" && \
+		tar xvf ../$arg && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.deb)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-		dpkg-deb -x $arg `echo $arg | sed 's/\.deb$//'`
+		dpkg-deb -xv $arg `echo $arg | sed 's/\.deb$//'`
 	    ;;
 	    *.rpm)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m"
-		dir=`echo $arg | sed 's/\.rpm$//'`
-		mkdir $dir && cd $dir && rpm2cpio ../$arg | cpio -idmv && cd -
+	        dir=`echo $arg | sed 's/\.rpm$//'`
+		if test -e $dir; then
+		    echo "$dir already exists, cannot extract $arg" >&2
+		    break
+		fi
+		mkdir $dir && \
+		cd $dir >&- && \
+		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m" && \
+		rpm2cpio ../$arg | cpio -idmv && \
+		cd - >&- && \
+		flattendir $dir
 	    ;;
 	    *.xpi)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
