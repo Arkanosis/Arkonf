@@ -6,6 +6,8 @@ setopt shortloops
 
 limit coredumpsize 0
 
+setopt longlistjobs
+
 autoload zmv
 autoload -U zed
 
