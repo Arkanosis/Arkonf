@@ -80,6 +80,8 @@ sux: comme su, mais permet d'utiliser le serveux X
 namei -m `pwd` pour avoir les droits de tous les répertoires du courant jusqu'à la racine
 getconf LONG_BIT ; getconf LEVEL1_DCACHE_LINESIZE… → 32 ou 64 bits, taille des lignes de cache…
 
+ncdu pour un fsm amélioré / un baobab en ncurses
+
 pour prendre un screenshot sous X :
   chvt 7;sleep 10;import -display :0.0 -window root image.png
 dans un vt. chvt passe sur le vt de X
