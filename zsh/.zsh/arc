@@ -141,6 +141,11 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
 		dpkg-deb -x $arg `echo $arg | sed 's/\.deb$//'`
 	    ;;
+	    *.rpm)
+	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m"
+		dir=`echo $arg | sed 's/\.rpm$//'`
+		mkdir $dir && cd $dir && rpm2cpio ../$arg | cpio -idmv && cd -
+	    ;;
 	    *.xpi)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
 		unzip $arg
