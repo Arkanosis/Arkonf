@@ -277,6 +277,8 @@ If region contains less than 2 lines, lines are left untouched."
   (require 'undo-tree)
   (global-undo-tree-mode)
 
+  (require 'mo-git-blame)
+
   (require 'markdown-mode)
   (require 'js2-mode)
   (require 'php-mode)
@@ -326,6 +328,15 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(define-key function-key-map "\eOA" [up])
+(define-key function-key-map "\e[A" [up])
+(define-key function-key-map "\eOB" [down])
+(define-key function-key-map "\e[B" [down])
+(define-key function-key-map "\eOC" [right])
+(define-key function-key-map "\e[C" [right])
+(define-key function-key-map "\eOD" [left])
+(define-key function-key-map "\e[D" [left])
+
 (global-set-key [f2]  'scroll-all-mode)
 (global-set-key [f3]  'find-file-at-point)
 (global-set-key [f4]  'hs-toggle-hiding)
@@ -342,6 +353,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (global-set-key [(control f10)] 'kill-compilation)
 (global-set-key [(control f12)] 'previous-error)
+
+(global-set-key "[34~" 'kill-compilation)
 
 (global-set-key "\C-c\C-c" 'comment-region)
 (global-set-key "\C-c\C-v" 'uncomment-region)
@@ -393,6 +406,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'auto-mode-alist '("\\SConscript\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.def$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.esdl$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.flea$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.gexo$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . python-mode))
@@ -430,7 +445,18 @@ If region contains less than 2 lines, lines are left untouched."
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 ;(add-hook 'find-file-hooks' hs-hide-all)
 
-(setq write-file-hooks 'delete-trailing-whitespace)
+(defun exa-check-svn-commit-msg ()
+  (not
+    (or
+      (not
+        (string-match ".*/svn-commit\\.[0-9]+\\.tmp"
+          (buffer-file-name)))
+      (string-match "\\([Mm]ercury\\|[Aa]pollo\\|[Aa]pps\\)\\([Cc]lose\\(d\\|s\\)?\\|[Ff][ei]x\\(ed\\|es\\)?\\|[Aa]ddresses\\|[Rr]e\\(ferences\\|fs\\)?\\|[Ss]ee\\).?\\(#\\|\\([Tt]icket\\|[Ii]ssue\\|[Bb]ug\\)[: ]?\\)?\\([0-9]+\\)"
+        (buffer-string))
+      (y-or-n-p "Missing Mercury(Ref|Close)s. Commit anyway? "))))
+
+(add-hook 'write-file-hooks 'exa-check-svn-commit-msg)
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
 (add-hook 'emacs-startup-hook 'delete-other-windows) ;; Ras le bol de cet écran splitté au démarrage
 
@@ -594,6 +620,18 @@ If region contains less than 2 lines, lines are left untouched."
     (kill-local-variable 'c-basic-offset)))
 
 (add-hook 'php-mode-hook (lambda () (mw-mode 1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Couleurs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; TODO use variables
+
+(custom-set-faces
+ ; Comments
+; '(font-lock-comment-face ((t (:foreground "Firebrick"))))
+)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Old stuff
