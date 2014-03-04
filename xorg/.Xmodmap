@@ -24,14 +24,14 @@ keycode  15 = 6 asciicircum ucircumflex udiaeresis
 !! 7 & ô ö
 keycode  16 = 7 ampersand ocircumflex odiaeresis
 
-!! 8 * á Á
-keycode  17 = 8 asterisk aacute
+!! 8 * á ë
+keycode  17 = 8 asterisk aacute ediaeresis
 
 !! 9 ( à À
 keycode  18 = 9 parenleft agrave
 
-!!0 ) â ë
-keycode  19 = 0 parenright acircumflex ediaeresis
+!!0 ) â Â
+keycode  19 = 0 parenright acircumflex
 
 !! - _ — –
 keycode  20 = minus underscore emdash endash
