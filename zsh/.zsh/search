@@ -196,7 +196,7 @@ function /r()
 	    res=`grep -n $i -- $exp $file`
 	    if ! ((?)); then
 		echo "\e[1;33m$file\e[0m"
-		echo $res | grep $i -- $exp
+		echo $res
 	    fi
     done
 }
