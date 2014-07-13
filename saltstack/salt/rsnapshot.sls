@@ -1,0 +1,3 @@
+rsnapshot:
+  pkg:
+    - installed

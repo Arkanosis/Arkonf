@@ -1,0 +1,3 @@
+iptables-persistent:
+  pkg:
+    - installed

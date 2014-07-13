@@ -1,0 +1,3 @@
+virtualbox:
+  pkg:
+    - installed

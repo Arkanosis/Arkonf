@@ -1,0 +1,3 @@
+ncdu:
+  pkg:
+    - installed

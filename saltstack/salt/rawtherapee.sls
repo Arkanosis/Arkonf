@@ -1,0 +1,3 @@
+rawtherapee:
+  pkg:
+    - installed

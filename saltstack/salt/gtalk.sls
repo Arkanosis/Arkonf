@@ -1,0 +1,3 @@
+google-talkplugin:
+  pkg:
+    - installed

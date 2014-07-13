@@ -1,0 +1,3 @@
+xpra:
+  pkg:
+    - installed

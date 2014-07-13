@@ -1,0 +1,3 @@
+libreoffice:
+  pkg:
+    - installed

@@ -1,0 +1,3 @@
+remmina:
+  pkg:
+    - installed

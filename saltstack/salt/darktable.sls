@@ -1,0 +1,3 @@
+darktable:
+  pkg:
+    - installed

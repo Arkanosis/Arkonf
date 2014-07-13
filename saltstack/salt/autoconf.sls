@@ -1,0 +1,3 @@
+autoconf:
+  pkg:
+    - installed

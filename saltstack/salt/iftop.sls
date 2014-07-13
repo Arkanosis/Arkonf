@@ -1,0 +1,3 @@
+iftop:
+  pkg:
+    - installed

@@ -1,0 +1,3 @@
+synergy:
+  pkg:
+    - installed

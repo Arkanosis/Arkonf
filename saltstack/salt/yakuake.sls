@@ -1,0 +1,3 @@
+yakuake:
+  pkg:
+    - installed

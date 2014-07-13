@@ -1,0 +1,3 @@
+jackd:
+  pkg:
+    - installed

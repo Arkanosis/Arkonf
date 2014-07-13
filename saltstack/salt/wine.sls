@@ -1,0 +1,3 @@
+wine:
+  pkg:
+    - installed
