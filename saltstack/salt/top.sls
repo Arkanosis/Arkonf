@@ -64,6 +64,8 @@ base:
 #    - yakuake
     - zsh
 
+#    - users
+
   'os:(Debian|Ubuntu)':
     - match: grain_pcre
     - aptitude
