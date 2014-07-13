@@ -2,6 +2,7 @@ base:
   '*':
 #    - android
 #    - apache2
+#    - ardour
 #    - audacity
 #    - autoconf
 #    - awesome
@@ -19,6 +20,7 @@ base:
 #    - gtalk
     - htop
 #    - hugin
+#    - hydrogen
     - iftop
 #    - imagemagick
 #    - inkscape
@@ -48,6 +50,7 @@ base:
 #    - synergy
 #    - sysvbanner
     - tmux
+#    - traceroute
 #    - unrar
     - vim
 #    - virtualbox

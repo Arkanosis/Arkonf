@@ -1,0 +1,3 @@
+hydrogen:
+  pkg:
+    - installed
