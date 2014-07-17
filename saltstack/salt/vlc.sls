@@ -1,0 +1,3 @@
+vlc:
+  pkg:
+    - installed

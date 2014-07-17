@@ -1,0 +1,3 @@
+gimp:
+  pkg:
+    - installed

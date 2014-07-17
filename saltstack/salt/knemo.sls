@@ -1,0 +1,3 @@
+knemo:
+  pkg:
+    - installed

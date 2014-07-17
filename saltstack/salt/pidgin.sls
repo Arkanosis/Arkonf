@@ -1,0 +1,3 @@
+pidgin:
+  pkg:
+    - installed

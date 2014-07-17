@@ -1,0 +1,3 @@
+kipi-plugins:
+  pkg:
+    - installed

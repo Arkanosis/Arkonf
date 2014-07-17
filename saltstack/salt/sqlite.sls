@@ -1,0 +1,3 @@
+sqlite:
+  pkg:
+    - installed

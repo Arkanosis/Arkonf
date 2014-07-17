@@ -1,0 +1,3 @@
+scribus:
+  pkg:
+    - installed

@@ -1,0 +1,3 @@
+keepassx:
+  pkg:
+    - installed

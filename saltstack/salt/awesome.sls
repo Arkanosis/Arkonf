@@ -1,0 +1,3 @@
+awesome-extra:
+  pkg:
+    - installed

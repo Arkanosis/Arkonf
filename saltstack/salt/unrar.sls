@@ -1,0 +1,3 @@
+unrar:
+  pkg:
+    - installed

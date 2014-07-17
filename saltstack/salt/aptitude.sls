@@ -1,0 +1,3 @@
+aptitude:
+  pkg:
+    - installed

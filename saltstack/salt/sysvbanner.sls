@@ -1,0 +1,3 @@
+sysvbanner:
+  pkg:
+    - installed

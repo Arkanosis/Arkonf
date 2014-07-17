@@ -1,0 +1,3 @@
+etckeeper:
+  pkg:
+    - installed

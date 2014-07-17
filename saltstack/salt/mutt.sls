@@ -1,0 +1,3 @@
+mutt:
+  pkg:
+    - installed
