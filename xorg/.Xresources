@@ -33,5 +33,10 @@ Rxvt.color15: #eeeeec
 Rxvt.termName:xterm-256color
 Rxvt.scrollBar: False
 Rxvt.saveLines: 65535
-Rxvt.borderLess: False ! Support depends on the WM: True for KWin, False for Metacity and AwesomeWM
+Rxvt*scrollTtyOutput: false
+Rxvt*scrollWithBuffer: true
+Rxvt*scrollTtyKeypress: true
 Rxvt.searchable-scrollback: CM-s
+Rxvt.borderLess: False ! Support depends on the WM: True for KWin, False for Metacity and AwesomeWM
+URxvt.iso14755: False
+URxvt.iso14755_52: False
