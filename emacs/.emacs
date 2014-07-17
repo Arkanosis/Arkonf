@@ -449,7 +449,7 @@ If region contains less than 2 lines, lines are left untouched."
   (not
     (or
       (not
-        (string-match ".*/svn-commit\\.[0-9]+\\.tmp"
+        (string-match ".*/svn-commit\\(\\.[0-9]+\\)?\\.tmp"
           (buffer-file-name)))
       (string-match "\\([Mm]ercury\\|[Aa]pollo\\|[Aa]pps\\)\\([Cc]lose\\(d\\|s\\)?\\|[Ff][ei]x\\(ed\\|es\\)?\\|[Aa]ddresses\\|[Rr]e\\(ferences\\|fs\\)?\\|[Ss]ee\\).?\\(#\\|\\([Tt]icket\\|[Ii]ssue\\|[Bb]ug\\)[: ]?\\)?\\([0-9]+\\)"
         (buffer-string))
