@@ -1,3 +1,3 @@
 gimp:
   pkg:
-    - installed
+    - latest

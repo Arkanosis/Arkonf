@@ -1,3 +1,3 @@
 weechat:
   pkg:
-    - installed
+    - latest

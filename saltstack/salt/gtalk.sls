@@ -1,3 +1,3 @@
 google-talkplugin:
   pkg:
-    - installed
+    - latest

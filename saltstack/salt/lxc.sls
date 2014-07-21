@@ -1,3 +1,3 @@
-aptitude:
+lxc:
   pkg:
     - latest

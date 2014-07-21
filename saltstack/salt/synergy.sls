@@ -1,3 +1,3 @@
 synergy:
   pkg:
-    - installed
+    - latest

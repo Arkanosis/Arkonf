@@ -1,3 +1,3 @@
 pwgen:
   pkg:
-    - installed
+    - latest

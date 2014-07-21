@@ -1,3 +1,3 @@
 chromium-browser:
   pkg:
-    - installed
+    - latest

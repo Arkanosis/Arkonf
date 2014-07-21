@@ -1,3 +1,3 @@
 rsnapshot:
   pkg:
-    - installed
+    - latest

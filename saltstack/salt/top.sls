@@ -3,69 +3,70 @@ base:
 #    - android
 #    - apache2
 #    - ardour
-#    - audacity
-#    - autoconf
+    - audacity
+    - autoconf
+    - arkonf
 #    - awesome
-#    - chromium
-#    - darktable
+    - chromium
+    - darktable
     - emacs
     - etckeeper
-#    - ffmpeg
-#    - filezilla
+    - ffmpeg
+    - filezilla
     - firefox
-#    - g++
-#    - gammu
-#    - gimp
+    - g++
+    - gimp
     - git
 #    - gtalk
     - htop
-#    - hugin
-#    - hydrogen
+    - hugin
+    - hydrogen
     - iftop
-#    - imagemagick
-#    - inkscape
+    - imagemagick
+    - inkscape
     - iptables
 #    - jackd
     - kdiff3
     - keepassx
-#    - kipi
+    - kipi
 #    - knemo
-#    - libreoffice
+    - libreoffice
+    - lxc
 #    - mutt
 #    - mysql-server
     - ncdu
+    - nfs
 #    - ssh
     - p7zip
 #    - php
-#    - pidgin
+    - pidgin
     - pwgen
     - python
-#    - rawtherapee
-#    - remmina
+    - rawtherapee
+    - remmina
     - rsnapshot
-    - urxvt
-#    - scribus
-#    - sqlite
+    - scribus
+    - sqlite
     - subversion
 #    - synergy
-#    - sysvbanner
-    - tmux
-#    - traceroute
-#    - unrar
+    - sysvbanner
+    - term
+    - traceroute
+    - unrar
     - vim
 #    - virtualbox
     - vlc
-#    - wammu
-#    - weechat
-#    - whois
-#    - wine
-#    - wireshark
-#    - xpra
-#    - yakuake
+    - wammu
+    - weechat
+    - whois
+    - wine
+    - wireshark
+    - xpra
+    - yakuake
     - zsh
 
-#    - users
+    - users
 
-  'os:(Debian|Ubuntu)':
-    - match: grain_pcre
+  'os_family:Debian':
     - aptitude
+

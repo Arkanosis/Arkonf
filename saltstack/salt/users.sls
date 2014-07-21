@@ -1,3 +1,8 @@
+# TODO names in UTF-8
+# TODO user emails
+# TODO user pictures (KDM)
+# TODO use ecryptfs for home directories
+
 famille:
   group.present:
     - gid: 1100
@@ -8,7 +13,7 @@ amis:
 
 arkanosis:
   user.present:
-    - fullname: Jérémie Roquet
+#    - fullname: "J\u00e9r\u00e9mie Roquet"
     - shell: /usr/bin/zsh
     - home: /home/arkanosis
     - uid: 1000
@@ -39,7 +44,7 @@ snad_a:
 
 oodna:
   user.present:
-    - fullname: Anne-Sophie Denommé-Pichon
+#    - fullname: "Anne-Sophie Denomm\u00e9-Pichon"
     - shell: /usr/bin/zsh
     - home: /home/oodna
     - uid: 1201

@@ -1,3 +1,3 @@
 subversion:
   pkg:
-    - installed
+    - latest

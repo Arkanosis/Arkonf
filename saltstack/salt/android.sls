@@ -1,3 +1,3 @@
 android-tools-adb:
   pkg:
-    - installed
+    - latest

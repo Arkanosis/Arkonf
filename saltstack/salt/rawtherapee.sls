@@ -1,3 +1,3 @@
 rawtherapee:
   pkg:
-    - installed
+    - latest

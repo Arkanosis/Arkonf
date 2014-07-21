@@ -1,3 +1,3 @@
 scribus:
   pkg:
-    - installed
+    - latest

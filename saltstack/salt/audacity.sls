@@ -1,3 +1,3 @@
 audacity:
   pkg:
-    - installed
+    - latest

@@ -1,3 +1,3 @@
 etckeeper:
   pkg:
-    - installed
+    - latest

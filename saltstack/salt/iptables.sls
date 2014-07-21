@@ -1,3 +1,3 @@
 iptables-persistent:
   pkg:
-    - installed
+    - latest

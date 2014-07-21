@@ -1,3 +1,3 @@
 keepassx:
   pkg:
-    - installed
+    - latest

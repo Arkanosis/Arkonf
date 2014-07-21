@@ -1,3 +1,3 @@
 hydrogen:
   pkg:
-    - installed
+    - latest

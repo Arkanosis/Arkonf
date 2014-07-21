@@ -1,3 +1,3 @@
 awesome-extra:
   pkg:
-    - installed
+    - latest

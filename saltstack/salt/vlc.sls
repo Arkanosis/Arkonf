@@ -1,3 +1,3 @@
 vlc:
   pkg:
-    - installed
+    - latest

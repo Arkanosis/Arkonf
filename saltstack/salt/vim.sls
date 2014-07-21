@@ -1,3 +1,3 @@
 vim:
   pkg:
-    - installed
+    - latest

@@ -1,0 +1,5 @@
+#! /bin/sh
+
+export FULLSHELL=/usr/bin/zsh
+exec urxvt -e tmux
+

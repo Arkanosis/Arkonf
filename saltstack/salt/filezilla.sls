@@ -1,3 +1,3 @@
 filezilla:
   pkg:
-    - installed
+    - latest

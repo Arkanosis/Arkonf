@@ -1,3 +1,3 @@
 pidgin:
   pkg:
-    - installed
+    - latest

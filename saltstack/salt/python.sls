@@ -1,3 +1,3 @@
 python:
   pkg:
-    - installed
+    - latest

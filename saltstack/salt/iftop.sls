@@ -1,3 +1,3 @@
 iftop:
   pkg:
-    - installed
+    - latest

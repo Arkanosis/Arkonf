@@ -1,3 +1,3 @@
 wireshark:
   pkg:
-    - installed
+    - latest

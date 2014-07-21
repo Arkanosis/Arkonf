@@ -1,3 +1,3 @@
 wammu:
   pkg:
-    - installed
+    - latest

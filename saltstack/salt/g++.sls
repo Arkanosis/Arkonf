@@ -1,3 +1,3 @@
 g++:
   pkg:
-    - installed
+    - latest

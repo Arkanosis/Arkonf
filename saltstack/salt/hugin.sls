@@ -1,3 +1,3 @@
 hugin:
   pkg:
-    - installed
+    - latest

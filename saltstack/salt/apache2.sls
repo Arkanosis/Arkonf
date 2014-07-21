@@ -1,3 +1,3 @@
 apache2:
   pkg:
-    - installed
+    - latest

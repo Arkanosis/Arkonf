@@ -1,3 +1,7 @@
-ffmpeg:
+libav-tools:
   pkg:
-    - installed
+    - latest
+
+/usr/bin/ffmpeg:
+  file.symlink:
+    - target: /usr/bin/avconv

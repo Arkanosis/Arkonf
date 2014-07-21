@@ -1,3 +1,3 @@
 mutt:
   pkg:
-    - installed
+    - latest

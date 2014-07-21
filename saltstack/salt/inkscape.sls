@@ -1,3 +1,3 @@
 inkscape:
   pkg:
-    - installed
+    - latest

@@ -1,3 +1,3 @@
 kipi-plugins:
   pkg:
-    - installed
+    - latest

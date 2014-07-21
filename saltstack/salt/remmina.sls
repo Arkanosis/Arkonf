@@ -1,3 +1,3 @@
 remmina:
   pkg:
-    - installed
+    - latest

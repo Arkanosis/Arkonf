@@ -1,3 +1,3 @@
 sqlite:
   pkg:
-    - installed
+    - latest

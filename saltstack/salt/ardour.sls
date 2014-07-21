@@ -1,3 +1,3 @@
 ardour:
   pkg:
-    - installed
+    - latest

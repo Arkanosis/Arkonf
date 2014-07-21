@@ -1,3 +1,0 @@
-gammu:
-  pkg:
-    - installed

@@ -1,3 +1,3 @@
 knemo:
   pkg:
-    - installed
+    - latest

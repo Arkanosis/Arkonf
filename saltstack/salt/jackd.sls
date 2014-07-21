@@ -1,3 +1,3 @@
 jackd:
   pkg:
-    - installed
+    - latest

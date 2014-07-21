@@ -1,3 +1,3 @@
 ncdu:
   pkg:
-    - installed
+    - latest

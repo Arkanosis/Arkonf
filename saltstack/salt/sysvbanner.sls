@@ -1,3 +1,3 @@
 sysvbanner:
   pkg:
-    - installed
+    - latest

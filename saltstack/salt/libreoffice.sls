@@ -1,3 +1,3 @@
 libreoffice:
   pkg:
-    - installed
+    - latest

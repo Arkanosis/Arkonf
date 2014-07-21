@@ -1,3 +1,3 @@
 firefox:
   pkg:
-    - installed
+    - latest

@@ -1,0 +1,4 @@
+#! /bin/sh
+
+exec urxvt -e "/usr/bin/zsh"
+

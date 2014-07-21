@@ -1,3 +1,3 @@
 darktable:
   pkg:
-    - installed
+    - latest

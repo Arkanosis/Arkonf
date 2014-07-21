@@ -1,3 +1,3 @@
 xpra:
   pkg:
-    - installed
+    - latest

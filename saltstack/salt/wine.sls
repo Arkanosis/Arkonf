@@ -1,3 +1,3 @@
 wine:
   pkg:
-    - installed
+    - latest

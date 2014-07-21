@@ -1,3 +1,3 @@
-aptitude:
+nfs-common:
   pkg:
     - latest

@@ -1,3 +1,3 @@
 virtualbox:
   pkg:
-    - installed
+    - latest

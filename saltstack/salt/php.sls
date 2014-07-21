@@ -1,3 +1,3 @@
 php:
   pkg:
-    - installed
+    - latest

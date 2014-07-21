@@ -1,3 +1,3 @@
 whois:
   pkg:
-    - installed
+    - latest

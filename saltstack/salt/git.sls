@@ -1,11 +1,11 @@
 git:
   pkg:
-    - installed
+    - latest
 
 git-review:
   pkg:
-    - installed
+    - latest
 
 git-svn:
   pkg:
-    - installed
+    - latest

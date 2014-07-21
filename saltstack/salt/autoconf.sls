@@ -1,3 +1,3 @@
 autoconf:
   pkg:
-    - installed
+    - latest

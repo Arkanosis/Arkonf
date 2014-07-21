@@ -1,3 +1,3 @@
 traceroute:
   pkg:
-    - installed
+    - latest

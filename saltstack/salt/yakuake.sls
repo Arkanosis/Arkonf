@@ -1,3 +1,3 @@
 yakuake:
   pkg:
-    - installed
+    - latest

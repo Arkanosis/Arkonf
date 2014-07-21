@@ -1,3 +1,0 @@
-tmux:
-  pkg:
-    - installed

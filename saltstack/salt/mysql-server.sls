@@ -1,3 +1,3 @@
 mysql-server:
   pkg:
-    - installed
+    - latest

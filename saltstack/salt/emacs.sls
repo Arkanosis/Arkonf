@@ -1,3 +1,3 @@
 emacs:
   pkg:
-    - installed
+    - latest

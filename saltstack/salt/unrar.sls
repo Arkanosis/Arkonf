@@ -1,3 +1,3 @@
 unrar:
   pkg:
-    - installed
+    - latest

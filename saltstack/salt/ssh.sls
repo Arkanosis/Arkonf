@@ -1,3 +1,3 @@
 openssh-server:
   pkg:
-    - installed
+    - latest
