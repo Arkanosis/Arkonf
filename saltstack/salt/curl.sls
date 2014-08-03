@@ -1,3 +1,3 @@
-emacs:
+curl:
   pkg:
     - latest

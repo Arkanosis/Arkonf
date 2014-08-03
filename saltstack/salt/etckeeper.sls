@@ -1,3 +1,0 @@
-etckeeper:
-  pkg:
-    - latest

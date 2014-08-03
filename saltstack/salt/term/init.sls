@@ -16,3 +16,13 @@ tmux:
     - source: salt://term/zssh
     - mode: 755
 
+/home/arkanosis/.tmux.conf:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/tmux/.tmux.conf
+    - user: arkanosis
+
+/home/arkanosis/.screenrc:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/screen/.screenrc
+    - user: arkanosis
+

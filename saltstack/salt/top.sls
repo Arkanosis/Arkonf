@@ -8,6 +8,8 @@ base:
     - arkonf
 #    - awesome
     - chromium
+    - compression
+    - curl
     - darktable
     - emacs
     - etckeeper
@@ -16,7 +18,6 @@ base:
     - firefox
     - g++
     - gimp
-    - git
 #    - gtalk
     - htop
     - hugin
@@ -36,8 +37,7 @@ base:
 #    - mysql-server
     - ncdu
     - nfs
-#    - ssh
-    - p7zip
+    - ssh
 #    - php
     - pidgin
     - pwgen
@@ -45,14 +45,14 @@ base:
     - rawtherapee
     - remmina
     - rsnapshot
+    - ruby
     - scribus
     - sqlite
-    - subversion
 #    - synergy
     - sysvbanner
     - term
     - traceroute
-    - unrar
+    - vcs
     - vim
 #    - virtualbox
     - vlc
@@ -61,6 +61,7 @@ base:
     - whois
     - wine
     - wireshark
+    - xorg
     - xpra
     - yakuake
     - zsh
