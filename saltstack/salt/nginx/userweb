@@ -1,0 +1,53 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server ipv6only=on;
+
+	server_name localhost;
+
+	charset UTF-8;
+
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ ^/~(.+?)(/.*)?$ {
+		alias /home/$1/Web$2;
+		index  index.html index.htm;
+		autoindex on;
+	}
+}
+
+server {
+	listen 443;
+	listen [::]:443 ipv6only=on;
+
+	server_name localhost;
+
+	charset UTF-8;
+
+	root /usr/shar/nginx/html;
+	index index.html index.htm;
+
+	ssl on;
+	ssl_certificate /etc/nginx/ssl/taz-localhost.crt;
+	ssl_certificate_key /etc/nginx/ssl/taz-localhost.key;
+
+	ssl_session_timeout 5m;
+
+	ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+	ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+	ssl_prefer_server_ciphers on;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ ^/~(.+?)(/.*)?$ {
+		alias /home/$1/Web$2;
+		index  index.html index.htm;
+		autoindex on;
+	}
+}

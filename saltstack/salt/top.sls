@@ -33,13 +33,16 @@ base:
 #    - knemo
     - libreoffice
     - lxc
+    - media
 #    - mutt
 #    - mysql-server
     - ncdu
+    - nginx
     - nfs
     - ssh
 #    - php
     - pidgin
+    - pgp
     - pwgen
     - python
     - rawtherapee
@@ -55,7 +58,6 @@ base:
     - vcs
     - vim
 #    - virtualbox
-    - vlc
     - wammu
     - weechat
     - whois
@@ -70,4 +72,3 @@ base:
 
   'os_family:Debian':
     - aptitude
-

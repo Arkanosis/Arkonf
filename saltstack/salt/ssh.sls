@@ -1,3 +1,5 @@
+# TODO generate ssh keys
+
 openssh-server:
   pkg:
     - latest
@@ -6,4 +8,3 @@ openssh-server:
   file.symlink:
     - target: /home/arkanosis/Arkonf/ssh/.ssh/config
     - user: arkanosis
-
