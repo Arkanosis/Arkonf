@@ -19,6 +19,9 @@ arkanosis:
     - uid: 1000
     - gid: 1000
     - groups:
+      - dialout # access to /dev/tty* for (g|w)ammu
+      - famille
+      - amis
     - remove_groups: False
   group.present:
     - gid: 1000

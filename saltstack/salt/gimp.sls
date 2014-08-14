@@ -2,7 +2,7 @@ gimp:
   pkg:
     - latest
 
-gimp-locale-fr:
+gimp-help-fr:
   pkg:
     - latest
 
