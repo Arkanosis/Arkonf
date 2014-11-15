@@ -2,6 +2,6 @@ htop:
   pkg:
     - latest
 
-libncursesw5:
+libncursesw5-dev:
   pkg:
     - latest

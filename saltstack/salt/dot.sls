@@ -1,0 +1,3 @@
+graphviz:
+  pkg:
+    - latest

@@ -1,3 +1,3 @@
-rsnapshot:
+emboss:
   pkg:
     - latest

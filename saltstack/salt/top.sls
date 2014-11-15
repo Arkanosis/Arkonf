@@ -7,10 +7,13 @@ base:
     - autoconf
     - arkonf
 #    - awesome
+    - bio
+    - blog
     - chromium
     - compression
     - curl
     - darktable
+    - dot
     - emacs
     - etckeeper
     - ffmpeg
@@ -32,6 +35,7 @@ base:
     - kipi
 #    - knemo
     - libreoffice
+    - lsb
     - lxc
     - media
 #    - mutt
@@ -55,6 +59,7 @@ base:
     - sysvbanner
     - term
     - traceroute
+    - utilities
     - vcs
     - vim
 #    - virtualbox
