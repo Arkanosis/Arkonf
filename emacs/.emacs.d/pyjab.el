@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2011 - Jérémie Roquet
 
-;; Author: Jérémie Roquet <arkanosis@gmail.com>
-;; Maintainer: Jérémie Roquet <arkanosis@gmail.com>
+;; Author: Jérémie Roquet <jroquet@arkanosis.net>
+;; Maintainer: Jérémie Roquet <jroquet@arkanosis.net>
 ;; Version: 0.1
 ;; Keywords: purple jabber client chat
 ;; URL: http://github.com/Arkanosis/pyjab

@@ -2,12 +2,12 @@
 
 #  Zsh Conf - Basée sur zArkonf v0.7
 #  (C) 2007-2009 - Arkanosis
-#  arkanosis@gmail.com
+#  jroquet@arkanosis.net
 
 if [ "$HOST" != 'gate-ssh' ]; then
-    LOGIN='roquet_j'
+    LOGIN='arkanosis'
     PSEUDO="Arkanosis"
-    EMAIL='arkanosis@gmail.com'
+    EMAIL='jroquet@arkanosis.net'
     SOCKS_PASSWORD=''
     PROXY_HOST=''
     PROXY_PORT=''

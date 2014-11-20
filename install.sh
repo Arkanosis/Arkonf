@@ -13,7 +13,7 @@ install()
 
 printf '\033[33mArkinstall v0.1\n'
 printf '(C) 2009-2012 - Arkanosis\n'
-printf 'arkanosis@gmail.com\n'
+printf 'jroquet@arkanosis.net\n'
 printf 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m\n'
 
 echo

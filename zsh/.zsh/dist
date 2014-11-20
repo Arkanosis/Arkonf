@@ -6,7 +6,7 @@ function dist()
 {
     # Exécution distribuée v1.2
     # (C) 2009 Arkanosis
-    # arkanosis@gmail.com
+    # jroquet@arkanosis.net
     if ! ((#)); then
 	echo 'Usage: dist <cmd> [arg [...]]' >&2
 	return 1

@@ -28,7 +28,7 @@
  */
 
 /* This is not the original file!
-   Modified by Jérémie Roquet <arkanosis@gmail.com> */
+   Modified by Jérémie Roquet <jroquet@arkanosis.net> */
 
 #include <ctype.h>
 #include <signal.h>
