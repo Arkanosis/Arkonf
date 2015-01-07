@@ -277,6 +277,20 @@ function rstl()
     vcsroot stl $@
 }
 
+function sls()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	svn)
+	    $vcs ls `svn info | sed -n 's/URL: //p'`
+	;;
+    esac
+
+    update_vcs_information
+}
+
 function up()
 {
     local vcs

@@ -8,7 +8,7 @@ function cx()
 if grep --color . <(echo .) >& /dev/null; then
     function grep()
     {
-	command grep --color=always $@
+	command grep --color=auto $@
     }
 fi
 
