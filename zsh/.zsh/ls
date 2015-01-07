@@ -20,7 +20,7 @@ case `uname -s` in
             command ls -F $@
         }
     ;;
-    Linux)
+    Linux|AIX)
         function ls()
         {
             command ls --color -F $@
