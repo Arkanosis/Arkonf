@@ -2,15 +2,15 @@
 
 function mute()
 {
-    ($@) >-
+    ($@) > /dev/null
 }
 
 function emute()
 {
-    ($@) 2>-
+    ($@) 2> /dev/null
 }
 
 function amute()
 {
-    ($@) >&-
+    ($@) >& /dev/null
 }

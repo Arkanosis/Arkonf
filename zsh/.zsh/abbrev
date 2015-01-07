@@ -6,7 +6,7 @@ abbrev=(
     he    "| head"
     ti    "| tail"
 
-    mu    ">&-"
+    mu    "> /dev/null"
 
     sr    "| sort"
     sru   "| sort -u"

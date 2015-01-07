@@ -47,7 +47,7 @@ bindkey '^[m' last-arg
 bindkey -s '^[\' '^[pcd ..\n'
 
 # Ctrl + ] pour retourner dans le repertoire precedent
-bindkey -s '^[]' '^[pcd - >&-\n'
+bindkey -s '^[]' '^[pcd - > /dev/null\n'
 
 # Alt + entree pour valider et lister le répertoire
 bindkey -s '^[j' '^j^jll\n'

@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-pushd $0:h >&-
+pushd $0:h > /dev/null
 
 source postconf
 source arch

@@ -142,7 +142,7 @@ function acm()
     autoreconf -if >- && ./configure >- && echo && echo && echo '-----------------------------------' && echo && echo && make clean all >- $@
 }
 
-if which sdl-config >&-; then
+if which sdl-config > /dev/null; then
     function cplg()
     {
 	cpl `sdl-config --libs`  -I/usr/pkg/include/ -I/usr/pkg/include/GL -lGL -lGLU -lglut -lSDL_ttf -lSDL_image `sdl-config --cflags` $@

@@ -42,7 +42,7 @@ function diapo()
 
 function runin()
 {
-    pushd $1 >&-
+    pushd $1 > /dev/null
     shift
     $@
     popd > /dev/null

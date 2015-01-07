@@ -71,7 +71,7 @@ function zf()
 
 function cdo()
 {
-    pushd $ARKONF_DIR >&-
+    pushd $ARKONF_DIR > /dev/null
     $@
     popd > /dev/null
 }

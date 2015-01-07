@@ -34,10 +34,10 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m" && \
 		tar xvjf ../$arg && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.(tar.gz|tgz))
@@ -47,10 +47,10 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m" && \
 		tar xvzf ../$arg && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.(tar.xz|txz))
@@ -60,12 +60,12 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m" && \
 		7za x ../$arg && \
 		tar xvf $arg.tar && \
 		rm $arg.tar && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.7z)
@@ -91,10 +91,10 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
 		unzip ../$arg && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.Z)
@@ -116,10 +116,10 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m" && \
 		tar xvf ../$arg && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.deb)
@@ -133,10 +133,10 @@ function x()
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir >&- && \
+		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m" && \
 		rpm2cpio ../$arg | cpio -idmv && \
-		cd - >&- && \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.xpi)

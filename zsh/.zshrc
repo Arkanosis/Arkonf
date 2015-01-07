@@ -24,7 +24,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	'W|http://fr.wikipedia.org/wiki/Discussion_utilisateur:Arkanosis'
     )
 
-    pushd "$ZARKONF_DIR/.zsh" >&-
+    pushd "$ZARKONF_DIR/.zsh" > /dev/null
 
     source ./zshrc
 
@@ -51,7 +51,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    source ./exalead
 	;;
 	*)
-	    if which ns_who >&-; then
+	    if which ns_who > /dev/null; then
 		source ./epita
 	    fi
 	;;
