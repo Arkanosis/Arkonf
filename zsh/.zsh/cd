@@ -25,22 +25,36 @@ setopt auto_pushd
 
 function display-path()
 {
-    newpath=`pwd`/`echo $1 | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`
-    echo -n "\e7\n\e[40m$newpath:A\e[0m\e[0K\e8\e[B\e[A"
-}
-
-function magic-dot()
-{
     local newpath
 
+    newpath=`pwd`/`echo $1 | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`
+    echo -n "\e7\n\e[48;5;236m$newpath:A\e[0m\e[0K\e8\e[B\e[A"
+}
+
+# TODO if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
+function magic-dot()
+{
     if [[ $LBUFFER = *. ]]; then
-	LBUFFER+=./
-	display-path $LBUFFER
+        LBUFFER+=./
+        if ((NUMERIC > 0)); then
+            repeat $((NUMERIC-1)) LBUFFER+=../
+        fi
+        display-path $LBUFFER
     elif [[ $LBUFFER = *../ ]]; then
-	LBUFFER+=../
-	display-path $LBUFFER
+        LBUFFER+=../
+        if ((NUMERIC > 0)); then
+            repeat $((NUMERIC-1)) LBUFFER+=../
+        fi
+        display-path $LBUFFER
     else
-	zle self-insert
+        LBUFFER+=.
+        if ((NUMERIC > 0)); then
+            LBUFFER+=./
+            repeat $((NUMERIC-1)) LBUFFER+=../
+            display-path $LBUFFER
+        fi
+        # TODO si pas dans le cadre d'un chemin, utiliser self-insert plutot que LBUFFER+=.
+        # cela permet d'utiliser ESC 42 . pour ajouter 42 points d'un coup
     fi
 }
 zle -N magic-dot
@@ -48,7 +62,7 @@ zle -N magic-dot
 function magic-slash()
 {
     if [[ $LBUFFER != *../ ]]; then
-	zle self-insert
+        zle self-insert
     fi
 }
 zle -N magic-slash
@@ -58,9 +72,9 @@ function magic-slash2()
     zle self-insert
 
     if [[ $LBUFFER = / ]]; then
-	LBUFFER+=' '
+        LBUFFER+=' '
     else
-	zle complete-word
+        zle complete-word
     fi
 }
 zle -N magic-slash2
