@@ -31,7 +31,6 @@ base:
     - iptables
 #    - jackd
     - kdiff3
-    - keepassx
     - kipi
 #    - knemo
     - libreoffice
@@ -40,9 +39,9 @@ base:
     - media
 #    - mutt
 #    - mysql-server
-    - ncdu
     - nginx
     - nfs
+    - pass
     - ssh
 #    - php
     - pidgin
@@ -54,6 +53,7 @@ base:
     - rsnapshot
     - ruby
     - scribus
+    - space
     - sqlite
 #    - synergy
     - sysvbanner
