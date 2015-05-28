@@ -39,6 +39,7 @@ source mv
 source mute
 source network
 source options
+source paste
 source prefix
 source prompt
 source proxy
