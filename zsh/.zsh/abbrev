@@ -17,7 +17,7 @@ abbrev=(
 
     xa    "| xargs"
 
-    se    "| sed 's///'"
+    se    "| sed 's/__CURSOR__//g'"
 
     fn    "find . -type f -name"
     ty    "-type"
@@ -26,16 +26,24 @@ abbrev=(
     lo    "$HOME/local_$arch"
 
     ">>>" ">&|"
-    "2|" "2>>()"
+    "<<<" "<(__CURSOR__) "
+    "2|" "2>>(__CURSOR__) "
 )
 
 # TODO revenir entre les parentheses pour 2>>() et entre les slashe pour sed s///
 
 function abbrev-expand()
 {
-    local MATCH
+    local MATCH REPL
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9<>|]#}
-    LBUFFER+=${abbrev[$MATCH]:-$MATCH}
-    zle self-insert
+    REPL=$abbrev[$MATCH]
+    LBUFFER+=${REPL:-$MATCH}
+
+    if [[ $REPL =~ '__CURSOR__' ]]; then
+        RBUFFER=${LBUFFER[(ws:__CURSOR__:)2]}${RBUFFER}
+        LBUFFER=${LBUFFER[(ws:__CURSOR__:)1]}
+    else
+        zle self-insert
+    fi
 }
 zle -N abbrev-expand

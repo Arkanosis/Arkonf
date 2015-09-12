@@ -147,6 +147,10 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
 		unrar x $arg
 	    ;;
+	    *.iso)
+	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
+		7z x $arg
+	    ;;
 	    *)
 	        print "\e[91mCannot extract \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
 	    ;;
@@ -215,6 +219,10 @@ function t()
 	    *.rar)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
 		unrar l $arg
+	    ;;
+	    *.iso)
+	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
+		7z l $arg
 	    ;;
 	    *)
 	        print "\e[91mCannot list \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
