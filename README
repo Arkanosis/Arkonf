@@ -4,3 +4,14 @@ jroquet@arkanosis.net
 
 http://arkanosis.net/
 http://github.com/Arkanosis/Arkonf
+
+Installation on Kubuntu:
+ - sudo apt-get install salt-minion
+ - ssh-keygen -t rsa -b 4096
+ - ssh-add
+ - < ~/.ssh/id_rsa.pub nc termbin.com 9999
+ - git clone git@github.com:Arkanosis/Arkonf.git
+ - sudo cp -r Arkonf/saltstack/* /srv
+ - sed -i 's/.*file_client:.*/file_client: local/' /etc/salt/minion
+ - sudo salt-call state.highstate
+ - sudo aptitude update && sudo aptitude full-upgrade
