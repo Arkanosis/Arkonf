@@ -10,7 +10,7 @@ XTerm.saveLines: 1024
 !!!!!!!!!!!!!!!!!!!!!!!!
 ! (U)Rxvt
 !!!!!!!!!!!!!!!!!!!!!!!!
-Rxvt.font: xft:DejaVu Sans Mono:pixelsize=14:antialias=true
+Rxvt.font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true
 Rxvt.letterSpace: -1
 Rxvt.background: #000000
 Rxvt.foreground: #ffffff
@@ -30,13 +30,13 @@ Rxvt.color12: #729fcf
 Rxvt.color13: #ad7fa8
 Rxvt.color14: #34e2e2
 Rxvt.color15: #eeeeec
-Rxvt.termName:xterm-256color
+Rxvt.termName:rxvt-256color
 Rxvt.scrollBar: False
 Rxvt.saveLines: 65535
-Rxvt*scrollTtyOutput: false
-Rxvt*scrollWithBuffer: true
-Rxvt*scrollTtyKeypress: true
+Rxvt.scrollTtyOutput: false
+Rxvt.scrollWithBuffer: true
+Rxvt.scrollTtyKeypress: true
 Rxvt.searchable-scrollback: CM-s
-Rxvt.borderLess: False ! Support depends on the WM: True for KWin, False for Metacity and AwesomeWM
+Rxvt.borderLess: False
 URxvt.iso14755: False
 URxvt.iso14755_52: False

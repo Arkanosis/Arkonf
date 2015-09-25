@@ -21,7 +21,6 @@ if [ "$HOST" != 'gate-ssh' ]; then
     ZARKONF_TODO="$HOME/.ztodo"
 
     MONITORED_PAGES=(
-	'W|http://fr.wikipedia.org/wiki/Discussion_utilisateur:Arkanosis'
     )
 
     pushd "$ZARKONF_DIR/.zsh" > /dev/null

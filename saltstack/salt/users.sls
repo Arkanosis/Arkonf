@@ -15,6 +15,8 @@ arkanosis:
   user.present:
 #    - fullname: "J\u00e9r\u00e9mie Roquet"
     - shell: /usr/bin/zsh
+      - require:
+        - pkg: zsh
     - home: /home/arkanosis
     - uid: 1000
     - gid: 1000
@@ -30,6 +32,8 @@ snad:
   user.present:
     - fullname: Sandrine Roquet
     - shell: /usr/bin/zsh
+      - require:
+        - pkg: zsh
     - home: /home/snad
     - uid: 1101
     - gid: 1101
@@ -49,6 +53,8 @@ oodna:
   user.present:
 #    - fullname: "Anne-Sophie Denomm\u00e9-Pichon"
     - shell: /usr/bin/zsh
+      - require:
+        - pkg: zsh
     - home: /home/oodna
     - uid: 1201
     - gid: 1201
@@ -69,6 +75,8 @@ albinou:
   user.present:
     - fullname: Albin Kauffmann
     - shell: /usr/bin/zsh
+      - require:
+        - pkg: zsh
     - home: /home/albinou
     - uid: 1203
     - gid: 1203
