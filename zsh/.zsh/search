@@ -1,13 +1,13 @@
 # "-*- sh -*-"
 
-csrcexts_pattern='.*\.('
-for csrcext in $csrcexts; do
+csrcexts_pattern='.*\.('$csrcexts[1]
+for csrcext in $csrcexts[2,-1]; do
     csrcexts_pattern+="|$csrcext"
 done
 csrcexts_pattern+=')'
 
-srcexts_pattern='.*\.('
-for srcext in $srcexts; do
+srcexts_pattern='.*\.('$srcexts[1]
+for srcext in $srcexts[2,-1]; do
     srcexts_pattern+="|$srcext"
 done
 srcexts_pattern+=')'
