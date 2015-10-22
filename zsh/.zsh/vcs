@@ -143,6 +143,21 @@ function add()
     esac
 }
 
+function unadd()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	svn)
+	    svn rm -R --keep-local $@ | colorizeAdd
+	;;
+	git)
+	    $vcs unadd $@
+	;;
+    esac
+}
+
 function ci()
 {
     local vcs
