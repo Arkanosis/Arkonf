@@ -1,5 +1,6 @@
 base:
   '*':
+    - ag
 #    - android
 #    - apache2
 #    - ardour

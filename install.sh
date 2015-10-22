@@ -12,12 +12,16 @@ install()
 }
 
 printf '\033[33mArkinstall v0.1\n'
-printf '(C) 2009-2012 - Arkanosis\n'
+printf '(C) 2009-2015 - Arkanosis\n'
 printf 'jroquet@arkanosis.net\n'
 printf 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m\n'
 
 echo
 
+install dotfiles/.forward ~/.forward
+install dotfiles/.pgpkey ~/.pgpkey
+install dotfiles/.plan ~/.plan
+install dotfiles/.project ~/.project
 install dotfiles/.signature ~/.signature
 
 install zsh/.zshrc ~/.zshrc
