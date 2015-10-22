@@ -4,3 +4,9 @@
 *.kdb
 *.elc
 *.pyc
+.directory
+emacs/.emacs.d/ac-comphist.dat
+emacs/.emacs.d/eshell
+pywikibot/.pywikibot/apicache
+pywikibot/.pywikibot/pywikibot.lwp
+pywikibot/.pywikibot/throttle.ctrl
