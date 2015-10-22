@@ -283,6 +283,7 @@ If region contains less than 2 lines, lines are left untouched."
   (require 'js2-mode)
   (require 'php-mode)
   (require 'lua-mode)
+  (require 'csharp-mode)
   (require 'two-mode-mode)
 
   (require 'auto-complete-config)
