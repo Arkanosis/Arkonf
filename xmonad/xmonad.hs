@@ -1,4 +1,0 @@
--- TODO
---  - Utiliser win + jkl; pour les déplacements dans les fenêtres
---  - win +x : terminal avec screen
---  - win +w : fermer fenêtre
