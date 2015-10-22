@@ -1,23 +1,35 @@
 # "-*- sh -*-"
 
 configuration_files=(
+    autoconf/.config.site
     awesome/rc.lua
     bash/.bash_profile
     bash/.bashrc
+    bip/.bip/bip.conf
+    dotfiles/.forward
+    dotfiles/.pgpkey
+    dotfiles/.plan
+    dotfiles/.project
+    dotfiles/.signature
     emacs/.emacs
+    firefox/user.js
     firefox/chrome/userChrome.css
     firefox/chrome/userContent.css
+    gammu/.gammurc
     gdb/.gdbinit
     git/.gitconfig
     htop/.htoprc
     mercurial/.hgrc
     pyjab/.pyjabrc
+    python/.pydistutils.cfg
     python/.pythonrc.py
+    pywikibot/.pywikibot/user-config.py
     screen/.screenrc
+    slrn/.srlnrc
+    ssh/.ssh/config
     tmux/.tmux.conf
     uncrustify/.uncrustifyrc
     vim/.vimrc
-    xmonad/xmonad.hs
     xorg/.Xmodmap
     xorg/.Xresources
     xorg/.xsession
@@ -47,8 +59,10 @@ function ze()
 	else
 	    if [[ $module[1] = _ ]]; then
 		files+=($ZARKONF_DIR/.zsh/completions/$module)
-	    else
+	    elif [[ -f $ZARKONF_DIR/.zsh/$module ]]; then
 		files+=($ZARKONF_DIR/.zsh/$module)
+	    else
+		files+=($ARKONF_DIR/saltstack/salt/**/$module)
 	    fi
 	fi
     done
