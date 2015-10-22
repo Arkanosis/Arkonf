@@ -194,6 +194,20 @@ function cif()
     ci -F $@
 }
 
+function unci()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	git)
+	    git uncommit $@
+	;;
+    esac
+
+    update_vcs_information
+}
+
 function push()
 {
     local vcs
