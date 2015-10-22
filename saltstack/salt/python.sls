@@ -2,6 +2,10 @@ python:
   pkg:
     - latest
 
+python-dev:
+  pkg:
+    - latest
+
 python-lxml:
   pkg:
     - latest

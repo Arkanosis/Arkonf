@@ -9,6 +9,7 @@ base:
 #    - awesome
     - bio
     - blog
+    - build
     - chromium
     - compression
     - curl
