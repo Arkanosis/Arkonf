@@ -21,6 +21,8 @@ df = diff
 b = branch
 ci = commit -a
 co = checkout
+unadd = reset HEAD
+uncommit = reset --soft HEAD^
 
 [diff]
 tool = vimdiff

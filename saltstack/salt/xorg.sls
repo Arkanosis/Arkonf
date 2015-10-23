@@ -1,3 +1,7 @@
+wmctrl:
+  pkg:
+    - latest
+
 /home/arkanosis/.Xmodmap:
   file.symlink:
     - target: /home/arkanosis/Arkonf/xorg/.Xmodmap
@@ -7,4 +11,3 @@
   file.symlink:
     - target: /home/arkanosis/Arkonf/xorg/.Xresources
     - user: arkanosis
-

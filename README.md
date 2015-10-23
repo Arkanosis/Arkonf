@@ -1,6 +1,8 @@
 # Arkonf
 
-Arkonf is a collection of configuration files for various tools.
+Arkonf is system configuration including:
+* a list of packages to install, managed using Salt;
+* a collection of configuration files for these tools.
 
 ## Installation
 
@@ -36,9 +38,10 @@ sudo aptitude update && sudo aptitude full-upgrade
 ## Copyright
 
 Copyright 2001-2015 – Jérémie Roquet <jroquet@arkanosis.net>
+
 All code except code written by third-parties released under the MIT License.
 
 ## Links
 
-http://arkanosis.net/
-http://github.com/Arkanosis/Arkonf
+* http://arkanosis.net/
+* http://github.com/Arkanosis/Arkonf

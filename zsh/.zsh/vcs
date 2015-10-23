@@ -143,6 +143,21 @@ function add()
     esac
 }
 
+function unadd()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	svn)
+	    svn rm -R --keep-local $@ | colorizeAdd
+	;;
+	git)
+	    $vcs unadd $@
+	;;
+    esac
+}
+
 function ci()
 {
     local vcs
@@ -177,6 +192,20 @@ function rci()
 function cif()
 {
     ci -F $@
+}
+
+function unci()
+{
+    local vcs
+
+    vcs=`whichvcs`
+    case $vcs in
+	git)
+	    git uncommit $@
+	;;
+    esac
+
+    update_vcs_information
 }
 
 function push()

@@ -8,6 +8,12 @@ for module in $ZARKONF_DIR/.zsh/*[a-z]*(:t); do
     modules=($modules $module)
 done
 
+states=()
+
+for state in $ARKONF_DIR/saltstack/salt/**/*(.:t); do
+    states=($states $state)
+done
+
 notes=()
 
 for note in $ZARKONF_DIR/.zsh/*[A-Z]*(:t); do
@@ -24,3 +30,4 @@ _wanted configuration expl 'configuration' compadd -a configuration
 _wanted module expl 'module' compadd -a modules
 _wanted note expl 'note' compadd -a notes
 _wanted completion expl 'completion' compadd -a completions
+_wanted state expl 'state' compadd -a states

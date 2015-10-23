@@ -1,0 +1,4 @@
+[gammu]
+port=/dev/ttyACM0
+connection=at
+name=K610i

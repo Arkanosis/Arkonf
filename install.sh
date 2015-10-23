@@ -57,8 +57,6 @@ install vim/.vimrc ~/.vimrc
 install vim/.vim ~/.vim
 
 install awesome ~/.config/awesome
-install fluxbox/.fluxbox ~/.fluxbox
-install xmonad ~/.xmonad
 
 install xorg/.Xmodmap ~/.Xmodmap
 install xorg/.Xresources ~/.Xresources

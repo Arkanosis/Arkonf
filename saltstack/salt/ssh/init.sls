@@ -4,6 +4,10 @@ openssh-server:
   pkg:
     - latest
 
+sshfs:
+  pkg:
+    - latest
+
 /etc/ssh/sshd_config:
   file.managed:
     - source: salt://ssh/sshd_config

@@ -1,0 +1,3 @@
+cmake:
+  pkg:
+    - latest
