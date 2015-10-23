@@ -284,6 +284,7 @@ If region contains less than 2 lines, lines are left untouched."
   (require 'php-mode)
   (require 'lua-mode)
   (require 'csharp-mode)
+  (require 'yaml-mode)
   (require 'two-mode-mode)
 
   (require 'auto-complete-config)
@@ -427,6 +428,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'auto-mode-alist '("\\.wiki$" . mediawiki-mode))
 (add-to-list 'auto-mode-alist '("itsalltext.*\\.txt$" . mediawiki-mode))
+
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
