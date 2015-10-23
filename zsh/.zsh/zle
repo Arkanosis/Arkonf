@@ -6,7 +6,7 @@ function sed-line ()
 {
    read-from-minibuffer 'Sed: '
    if [[ -n $REPLY ]]; then
-      BUFFER=`echo ${(q)BUFFER} | sed $REPLY`
+      BUFFER=`echo $BUFFER | sed $REPLY`
    fi
 }
 zle -N sed-line
