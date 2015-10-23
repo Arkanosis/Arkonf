@@ -1,9 +1,9 @@
 # "-*- sh -*-"
 
-# (C) Oliver Kiddle, modifications by Arkanosis
+# (C) Oliver Kiddle, Arkanosis
 function highlight-paren()
 {
-    local i nested=1
+    local i nested=1 old_region_highlight
 
     typeset -A match
 
@@ -23,27 +23,10 @@ function highlight-paren()
 	[[ $BUFFER[$i] == $KEYS ]] && (( ++nested ))
     }
 
-    region_highlight=("$((i-1)) $i standout")
+    old_region_highlight=$region_highlight
+    region_highlight+=("$((i-1)) $i standout")
     zle -R
     read -kt 1 && zle -U "$REPLY"
-    region_highlight=()
+    region_highlight=$old_region_highlight
 }
 zle -N highlight-paren
-
-# function highlight-keyword()
-# {
-#     local keywords
-
-#     keywords=(if then fi for in while do done case esac)
-
-#     for keyword in $keywords; do
-# 	keyword+=$KEYS
-# 	keywordpos=$((#keyword - 1))
-# 	for ((bufferpos=$((CURSOR - 1)); bufferpos && keywordpos; --bufferpos && --keywordpos)); do
-# 	    if [[ $BUFFER[$bufferpos] != $keyword[$keywordpos] ]] then
-# 		continue 2
-# 	    fi
-# 	done
-#     done
-# }
-# zle -N highlight-keyword
