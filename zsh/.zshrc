@@ -37,7 +37,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	Edelweiss)
 	    source ./edelweiss
 	;;
-	reddev0(0|1)4|(ng|tc)dev00(2|3))
+	reddev0(0|1)4|(ng|tc)dev00(2|3)|nglqa021.paris.exalead.com)
 	    source ./exalead
 	    export PATH=$PATH:s/Linux-x86_64/RedHat/
 	;;
@@ -45,12 +45,13 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    source ./exalead
 	    NO_VCS_INFO=True
 	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
+	    export LD_LIBRARY_PATH=/opt/csw/lib:$LD_LIBRARY_PATH
 	;;
-	mad*|reddev*|tcdev*|*dsy|lenov*|ngci*)
+	mad*|reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|local_Linux-x86_64)
 	    source ./exalead
 	;;
 	*)
-	    if which ns_who > /dev/null; then
+	    if which ns_who >& /dev/null; then
 		source ./epita
 	    fi
 	;;
