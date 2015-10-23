@@ -2,15 +2,39 @@
 
 source bookmarks
 
-typeset -U PATH LIBRARY_PATH LD_LIBRARY_PATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH PYTHONPATH
+typeset -U PATH path
+typeset -xTU LIBRARY_PATH _library_path
+typeset -xTU LD_LIBRARY_PATH _ld_library_path
+typeset -xTU C_INCLUDE_PATH _c_include_path
+typeset -xTU CPLUS_INCLUDE_PATH _cplus_include_path
+typeset -xTU PYTHONPATH _python_path
 
-export PATH=$HOME/local_$arch/bin/:$HOME/local/bin/:$PATH
-export LIBRARY_PATH=$HOME/local_$arch/lib/:$HOME/local/lib/:$HOME/local/lib64/:$HOME/local/lib32/:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$LIBRARY_PATH
-export C_INCLUDE_PATH=$HOME/local_$arch/include/:$HOME/local/include/:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-#export PYTHONPATH=$HOME/local_$arch/lib/python:$HOME/local_$arch/lib/python2.7:$HOME/local_$arch/lib/python2.7/site-packages:$HOME/local/lib/python:$HOME/local/lib/python2.7:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH/
-export PYTHONPATH=$HOME/local/lib/python:$HOME/local/lib/python2.7:$HOME/local/lib/python2.7/site-packages:$PYTHONPATH/
+path=(
+    $HOME/local_$arch/bin/
+    $HOME/local/bin/
+    $path
+)
+_library_path=(
+    $HOME/local_$arch/lib/
+    $HOME/local/lib/
+    $HOME/local/lib64/
+    $HOME/local/lib32/
+    $_ld_library_path
+)
+_ld_library_path=($_library_path)
+_c_include_path=(
+    $HOME/local_$arch/include/
+    $HOME/local/include/
+    $_c_include_path
+)
+_cplus_include_path=($_c_include_path)
+_python_path=(
+#    $HOME/local_$arch/lib/python2.7
+    $HOME/local_$arch/lib/python2.7/site-packages
+    $HOME/local/lib/python2.7/site-packages
+    /usr/lib/python2.7/dist-packages
+    $_python_path
+)
 
 export CONFIG_SITE=$HOME/config.site
 
