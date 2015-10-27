@@ -1,3 +1,0 @@
-darktable:
-  pkg:
-    - latest

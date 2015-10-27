@@ -1,27 +1,23 @@
-python:
+iftop:
   pkg:
     - latest
 
-python-dev:
+iptables-persistent:
   pkg:
     - latest
 
-python-lxml:
+nethogs:
   pkg:
     - latest
 
-python-imaging:
+traceroute:
   pkg:
     - latest
 
-python-pip:
+whois:
   pkg:
     - latest
 
-python-requests:
-  pkg:
-    - latest
-
-python-xlrd:
+wireshark:
   pkg:
     - latest

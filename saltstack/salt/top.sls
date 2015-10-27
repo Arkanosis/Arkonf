@@ -3,8 +3,6 @@ base:
     - ag
 #    - android
 #    - apache2
-#    - ardour
-    - audacity
     - autoconf
     - arkonf
 #    - awesome
@@ -14,7 +12,6 @@ base:
     - chromium
     - compression
     - curl
-    - darktable
     - dot
     - emacs
     - etckeeper
@@ -22,18 +19,10 @@ base:
     - filezilla
     - firefox
     - g++
-    - gimp
 #    - gtalk
     - htop
-    - hugin
-    - hydrogen
-    - iftop
-    - imagemagick
-    - inkscape
-    - iptables
-#    - jackd
+    - image
     - kdiff3
-    - kipi
 #    - knemo
     - libreoffice
     - lsb
@@ -49,27 +38,25 @@ base:
     - pidgin
     - pgp
     - pwgen
+    - processing
     - python
-    - rawtherapee
     - remmina
     - rsnapshot
     - ruby
     - scribus
+    - sound
     - space
     - sqlite
 #    - synergy
     - sysvbanner
     - term
-    - traceroute
     - utilities
     - vcs
     - vim
 #    - virtualbox
     - wammu
     - weechat
-    - whois
     - wine
-    - wireshark
     - xorg
     - xpra
     - yakuake

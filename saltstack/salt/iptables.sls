@@ -1,3 +1,0 @@
-iptables-persistent:
-  pkg:
-    - latest

@@ -1,3 +1,0 @@
-kipi-plugins:
-  pkg:
-    - latest

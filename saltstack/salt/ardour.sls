@@ -1,3 +1,0 @@
-ardour:
-  pkg:
-    - latest

@@ -1,3 +1,0 @@
-rawtherapee:
-  pkg:
-    - latest

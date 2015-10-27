@@ -1,3 +1,0 @@
-inkscape:
-  pkg:
-    - latest
