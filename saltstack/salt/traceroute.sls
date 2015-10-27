@@ -1,3 +1,0 @@
-traceroute:
-  pkg:
-    - latest

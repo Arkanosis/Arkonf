@@ -1,3 +1,0 @@
-audacity:
-  pkg:
-    - latest

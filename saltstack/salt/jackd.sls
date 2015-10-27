@@ -1,3 +1,0 @@
-jackd:
-  pkg:
-    - latest

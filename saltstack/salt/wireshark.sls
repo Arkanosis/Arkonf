@@ -1,3 +1,0 @@
-wireshark:
-  pkg:
-    - latest

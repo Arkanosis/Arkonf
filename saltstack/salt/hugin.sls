@@ -1,3 +1,0 @@
-hugin:
-  pkg:
-    - latest

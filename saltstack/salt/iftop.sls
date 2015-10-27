@@ -1,3 +1,0 @@
-iftop:
-  pkg:
-    - latest
