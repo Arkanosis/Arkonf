@@ -1,3 +1,0 @@
-pwgen:
-  pkg:
-    - latest

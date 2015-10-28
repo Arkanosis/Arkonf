@@ -6,6 +6,10 @@ tmux:
   pkg:
     - latest
 
+yakuake:
+  pkg:
+    - latest
+
 /usr/bin/zmux:
   file.managed:
     - source: salt://term/zmux
@@ -25,4 +29,3 @@ tmux:
   file.symlink:
     - target: /home/arkanosis/Arkonf/screen/.screenrc
     - user: arkanosis
-

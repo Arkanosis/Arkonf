@@ -5,3 +5,7 @@ keepassx:
 pass:
   pkg:
     - latest
+
+pwgen:
+  pkg:
+    - latest
