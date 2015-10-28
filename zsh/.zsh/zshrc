@@ -11,7 +11,6 @@ source editor
 source abbrev
 source alias
 source arc
-source arkinstall
 source backup
 source bookmarks
 source cd
@@ -20,14 +19,11 @@ source color
 source compile
 source completion
 source conf
-source dist
-source duplicates
 source dot
 source files
 source firefox
 source highlight
 source history
-source json
 source keys
 source less
 source ln
@@ -36,7 +32,6 @@ source math
 source mkdir
 #source monitor
 source mv
-source mute
 source network
 source options
 source paste
@@ -47,15 +42,11 @@ source rm
 source run
 source quota
 source search
-source serve
 source stats
-source stderr
+#source stderr
 source synergy
-source todo
 source truecrypt
-source twitter
 source watch
 source zle
-source zm
 
 popd > /dev/null

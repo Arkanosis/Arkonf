@@ -24,4 +24,4 @@ alias -s Makefile=e
 
 associate $puresrcexts e
 associate bmp gif jpeg jpg png svg `available gwenview xv display`
-associate pdf ps `available okular acroread xpdf`
+associate pdf ps `available okular evince xpdf`

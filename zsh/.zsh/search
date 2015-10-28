@@ -236,6 +236,9 @@ function rd()
 	elif [[ -f $1/README.md ]]; then
 	    less $1/README.md
 	    return 0
+	elif [[ -f $1/README.rst ]]; then
+	    less $1/README.rst
+	    return 0
 	fi
     else
 	if [[ -f ./README ]]; then
@@ -244,9 +247,12 @@ function rd()
 	elif [[ -f ./README.md ]]; then
 	    less ./README.md
 	    return 0
+	elif [[ -f ./README.rst ]]; then
+	    less ./README.rst
+	    return 0
 	fi
     fi
-    echo 'No README or README.md file in this directory' >&2
+    echo 'No README, README.md or README.rst file in this directory' >&2
     return 1
 }
 

@@ -61,9 +61,6 @@ bindkey -s '^[c' '^[pfg\n'
 # Alt + = pour depiler un repertoire
 bindkey -s '^[=' '^[ppopd > /dev/null\n'
 
-# Alt + g pour aller dans /goinfre/
-bindkey -s '^[g' '^[pcd /goinfre/\n'
-
 # Alt + r pour aller modifier la commande precedente
 bindkey -s '^[r' "!!:gs///^b^b"
 bindkey -s '^[h' "history\n"

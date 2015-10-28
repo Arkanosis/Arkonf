@@ -56,3 +56,8 @@ function pw()
 {
     pwgen --secure --ambiguous 9
 }
+
+function fu()
+{
+    sudo aptitude update && sudo aptitude full-upgrade
+}
