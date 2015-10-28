@@ -1,3 +1,0 @@
-lxc:
-  pkg:
-    - latest

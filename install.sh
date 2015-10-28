@@ -46,6 +46,9 @@ install weechat/.weechat ~/.weechat
 
 install slrn/.slrnrc ~/.slrnrc
 
+mkdir ~/.config/lxc
+install lxc/default.conf ~/.config/lxc/default.conf
+
 install ssh/.ssh/config ~/.ssh/config
 
 install screen/.screenrc ~/.screenrc
