@@ -12,3 +12,7 @@ csvkit:
   pip.installed:
     - require:
       - pkg: python-pip
+
+xmlstarlet:
+  pkg:
+    -latest

@@ -7,7 +7,6 @@ base:
     - arkonf
 #    - awesome
     - bio
-    - blog
     - build
     - chromium
     - compression
@@ -37,13 +36,13 @@ base:
 #    - php
     - pidgin
     - pgp
+    - publication
     - pwgen
     - processing
     - python
     - remmina
     - rsnapshot
     - ruby
-    - scribus
     - sound
     - space
     - sqlite
