@@ -3,11 +3,9 @@ base:
     - ag
 #    - android
 #    - apache2
-    - autoconf
     - arkonf
 #    - awesome
     - bio
-    - blog
     - build
     - chromium
     - compression
@@ -15,7 +13,6 @@ base:
     - dot
     - emacs
     - etckeeper
-    - ffmpeg
     - filezilla
     - firefox
     - g++
@@ -23,7 +20,6 @@ base:
     - htop
     - image
     - kdiff3
-#    - knemo
     - libreoffice
     - lsb
     - lxc
@@ -37,13 +33,12 @@ base:
 #    - php
     - pidgin
     - pgp
-    - pwgen
+    - publication
     - processing
     - python
     - remmina
     - rsnapshot
     - ruby
-    - scribus
     - sound
     - space
     - sqlite
@@ -59,7 +54,6 @@ base:
     - wine
     - xorg
     - xpra
-    - yakuake
     - zsh
 
     - users

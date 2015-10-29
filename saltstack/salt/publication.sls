@@ -1,11 +1,11 @@
-keepassx:
+python-pelican:
   pkg:
     - latest
 
-pass:
+python-sphinx:
   pkg:
     - latest
 
-pwgen:
+scribus:
   pkg:
     - latest

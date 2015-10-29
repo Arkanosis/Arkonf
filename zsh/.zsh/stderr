@@ -1,15 +1,15 @@
 # "-*- sh -*-"
 
-# exec 1>>(
-#     IFS="\n"
-#     while read line; do
-# 	print " $line" > /dev/tty
-#     done &
-# )
+exec 1>>(
+    IFS="\n"
+    while read line; do
+	print " $line" > /dev/tty
+    done &
+)
 
-# exec 2>>(
-#     IFS="\n"
-#     while read line; do
-# 	print "\e[31m│\e[0m$line" > /dev/tty
-#     done &
-# )
+exec 2>>(
+    IFS="\n"
+    while read line; do
+	print "\e[31m│\e[0m$line" > /dev/tty
+    done &
+)

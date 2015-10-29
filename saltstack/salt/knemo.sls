@@ -1,3 +1,0 @@
-knemo:
-  pkg:
-    - latest

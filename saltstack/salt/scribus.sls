@@ -1,3 +1,0 @@
-scribus:
-  pkg:
-    - latest

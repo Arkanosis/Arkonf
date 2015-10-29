@@ -1,7 +1,11 @@
-ncdu:
+dfc:
   pkg:
     - latest
 
-dfc:
+fdupes:
+  pkg:
+    - latest
+
+ncdu:
   pkg:
     - latest

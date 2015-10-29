@@ -1,3 +1,0 @@
-autoconf:
-  pkg:
-    - latest

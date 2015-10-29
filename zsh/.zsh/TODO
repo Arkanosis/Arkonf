@@ -1,8 +1,6 @@
 - ea : à la /r, mais ouvre les fichiers à la bonne ligne au lieu d'afficher les résultats
 ( e `for i in *.java; do if ! grep -q getExpandedPath $i; then echo $i; fi; done | xargs echo )
 
-- duplicates plus utile avec fdupes ?
-
 - patcher ZSH : ajouter une nouvelle fonctionnalité (généralisation du principe zcp / zmv à toutes les commandes, avec une syntaxe plus simple) :
    une commande du genre « mv toto.[ch]pp titi.$1pp » doit s'étendre en « mv toto.cpp titi.cpp^Jmv toto.hpp titi.hpp » et non « mv toto.cpp toto.hpp titi.pp »
    activé via une option
@@ -35,8 +33,6 @@
 
 - Mod + entrée => cd + ll
 
-- coloration syntaxique basique (module highlight)
-
 - Apprendre la syntaxe complète de zstyle
 
 - zm / zc / zt, nouveau module, comme zmv et zcp, mais avec la syntaxe de sed :
@@ -52,15 +48,11 @@
 
 - Bookmarks permanents (utiliser un fichier), avec listage, avertissement en cas de doublon, suppression, hash -d...
 
-- Ne pas charger ZARKONF si mode non interactif, résoud (probablement) les problèmes de scp
-
 - Améliorer le support des caractères accentués pour zstyle (au besoin, patcher ZSH qui supporte ça très mal)
 - Dans la coloration des options (-<nomOption>), colorer en rouge l'option (et laisser la description en blanc)
 
 - Révision / branche dans le prompt pour CVS, Darcs
-- vcsroot pour hg, git et darcs
-
-- Finir tree() : doit être compatible avec toutes les options de gls
+- vcsroot pour hg et darcs
 
 - Arc plus complet :
  - factorisation du code
@@ -74,14 +66,6 @@
 - Zsh à la sauce ViM (raccourcis, indication du mode...)
 
 - Raccouci 'suivant' symétrique à popd ; voire gestion d'un arbre de parcours
-
-- Installeur :
- - Téléchargement de la dernière version si internet dispo (http://zarkonf.arkanosis.net/latest) avec wget
- - Affichage de 'zArkonf N.M, (C) 200...'
- - Le répertoire 'modules' est parcouru, et si un module est installé, son script 'install' est lancé
- - Chaque module installé ajoute sa ligne 'source' dans ~/.zshrc
- - Choix du binding clavier (+ fonction pour passer rapidement en mode clavier pour le développement)
- - Passer un coup de sed -i sur le .zshrc pour changer $ARKONF_DIR
 
 - Notes :
  - tuto rapide du globbing (soustraction *et* répertoires avec attributs des fichiers...)
@@ -107,5 +91,3 @@
 - Bindings clavier :
  - utiliser loadkeys plutôt que xkb ou xmodmap (fonctionne en console, ssh...)
  - /usr/share/keymaps/i386/qwerty/us-acentos.map.gz ...
-
-- GTD : webservice en django (django-traq par exemple) avec interfaçage en zsh pour avoir les tâches direct dans le terminal et interfaçage en java pour les avoir sur le téléphone mobile (avec possibilité de ne synchroniser que sur une période horaire donnée — quand le net est gratos)

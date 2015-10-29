@@ -6,6 +6,10 @@ iptables-persistent:
   pkg:
     - latest
 
+#knemo:
+#  pkg:
+#    - latest
+
 nethogs:
   pkg:
     - latest

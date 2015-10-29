@@ -43,6 +43,3 @@ if which remmina >& /dev/null; then
 fi
 
 export FULLSHELL=`which zsh`
-
-# Emacs :p
-autoload -U tetris

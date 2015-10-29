@@ -1,9 +1,5 @@
 # "-*- sh -*-"
 
-if [[ -z $LOGIN ]]; then
-    LOGIN=$USER
-fi
-
 if [[ `uname -s` = 'Linux' ]]; then
     export MALLOC_OPTIONS=
 else

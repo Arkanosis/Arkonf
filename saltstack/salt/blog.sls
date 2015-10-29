@@ -1,3 +1,0 @@
-python-pelican:
-  pkg:
-    - latest

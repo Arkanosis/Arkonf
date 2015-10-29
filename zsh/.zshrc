@@ -1,12 +1,10 @@
 # "-*- sh -*-"
 
-#  Zsh Conf - Basée sur zArkonf v0.7
-#  (C) 2007-2009 - Arkanosis
+#  ZSH configuration
+#  (C) 2007-2015 - Jérémie Roquet
 #  jroquet@arkanosis.net
 
 if [ "$HOST" != 'gate-ssh' ]; then
-    LOGIN='arkanosis'
-    PSEUDO="Arkanosis"
     EMAIL='jroquet@arkanosis.net'
     SOCKS_PASSWORD=''
     PROXY_HOST=''
@@ -28,15 +26,6 @@ if [ "$HOST" != 'gate-ssh' ]; then
     source ./zshrc
 
     case $HOST in
-	lisp|caml|ruby|ada|php|asp|sh|java|apl|pascal|xenadev)
-	    source ./acu
-	;;
-	Cyclamen)
-	    source ./cyclamen
-	;;
-	Edelweiss)
-	    source ./edelweiss
-	;;
 	reddev0(0|1)4|(ng|tc)dev00(2|3)|nglqa021.paris.exalead.com)
 	    source ./exalead
 	    export PATH=$PATH:s/Linux-x86_64/RedHat/
@@ -49,11 +38,6 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	;;
 	mad*|reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|local_Linux-x86_64)
 	    source ./exalead
-	;;
-	*)
-	    if which ns_who >& /dev/null; then
-		source ./epita
-	    fi
 	;;
     esac
 
