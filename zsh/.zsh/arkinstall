@@ -9,3 +9,38 @@ function arkinstall()
 {
     # TODO
 }
+
+function apti()
+{
+    if ((# < 2)); then
+        echo 'Usage: apti <args...> <dest>' >&2
+	return 1
+    fi
+
+    yes n | aptitude install --simulate $@[1,-2] | awk '
+/^The following NEW/ {
+  install = 1
+  next
+}
+
+$0 !~ /^ / {
+  install = 0
+  next
+}
+
+{
+  if (install) {
+    split($0, pkgs, " ")
+    for (pkg in pkgs) {
+      sub(/{a}$/, "", pkgs[pkg])
+      print pkgs[pkg]
+    }
+  }
+}' | while read pkg; do
+	aptitude download $pkg
+        (
+	    dpkg-deb -x ${pkg}_* $@[-1]
+	    rm ${pkg}_*
+	) &!
+    done
+}
