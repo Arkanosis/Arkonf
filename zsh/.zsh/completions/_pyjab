@@ -1,0 +1,33 @@
+#compdef pyjab
+
+# pyjab completion file for zsh
+# (C) 2011 Jérémie Roquet
+# arkanosis@gmail.com
+
+local usernames oldifs
+
+_pyjab_sequence()
+{
+    [[ $1 = 1 ]] || return
+
+    if [[ $LBUFFER[-1] = ' ' ]]; then
+        if [[ $KEYS = , ]]; then
+            LBUFFER=$LBUFFER[1,-2]
+        fi
+    fi
+}
+
+oldifs=$IFS
+IFS=,
+
+usernames=`pyjab \*`
+usernames=($=usernames)
+
+compset -P '*,'
+for username in $=IPREFIX; do
+    usernames=(${usernames:#$username})
+done
+
+IFS=$oldifs
+
+_wanted username expl 'username' compadd -R _pyjab_sequence -a usernames

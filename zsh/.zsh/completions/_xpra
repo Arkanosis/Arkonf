@@ -1,0 +1,177 @@
+#compdef xpra
+
+# global commands and options
+declare -ga _xpra_subcommands _xpra_start_upgrade_options
+
+## known subcommands
+_xpra_subcommands=(
+    start:"This command starts a new xpra server, including any necessary setup."
+    attach:"This command attachs to a running xpra server, and forwards any applications using that server to appear on your current screen."
+    detach:"Detaches the given xpra display."
+    screenshot:"Takes a screenshot and saves it to the filename specified."
+    version:"Queries the server version and prints it out."
+    info:"Queries the server for version, status and statistics."
+    stop:"This command attachs to a running xpra server, and requests that it terminate immediately."
+    list:"This command finds all xpra servers that have been started by the current user on the current machine, and lists them."
+    upgrade:"This command starts a new xpra server, but instead of creating it from scratch, it attaches to another existing server, tells it to exit, and takes over managing the applications that it was managing before."
+)
+
+## options common to the `start` and `upgrade` subcommands
+_xpra_start_upgrade_options=(
+    "--start-child=[After starting the server, runs the command CMD using the default shell.]:CMD:"
+    "--exit-with-children[Automatically terminate when the last child has exited.]"
+    "--no-daemon[Prevents server from putting itself into the background, i.e 'daemonizing'.]"
+    "--use-display[Use an existing display rather than starting one with xvfb.]"
+    "--xvfb=[Specify how to run your preferred virtual X server executable]:CMD:"
+    "--no-randr[Disables X11 randr support.]"
+    "--bind-tcp=[Listen to connections on a raw TCP socket instead of a local Unix domain socket.]:[HOST]\:PORT:"
+    "--password-file=[This allows sessions to be secured with a password stored in a text file.]:FILENAME:"
+)
+
+## options common to the `attach` and `stop` subcommands
+_xpra_attach_stop_options=(
+    "--ssh=[Tell xpra how to run ssh]:fICMD:"
+    "--remote-xpra=[Use this option to specify how to run xpra on the remote host]:CMD:"
+)
+
+# complete subcommands
+function _xpra_subcommands() {
+    _describe "subcommands" _xpra_subcommands
+}
+
+# complete subcommand `start`
+function _xpra_start_options() {
+    _arguments $_xpra_start_upgrade_options \
+               "(-): :->warn_existing" \
+                && return
+
+    # list displays already occupied with an xpra server
+    case $state in
+        (warn_existing)
+            xpra list >/dev/null
+            if [ $? == 0 ]
+            then
+                _message "There are currently xpra servers running on the following displays:"
+                xpra list | while read line
+                do
+                    if [[ $line =~ :[0-9]+$ ]]
+                    then
+                        _message "    $MATCH"
+                    fi
+                done
+            fi
+            _call_function __xpra_displays
+        ;;
+    esac
+}
+
+# complete subcommand `upgrade`
+function _xpra_upgrade_options() {
+    _arguments $_xpra_start_upgrade_options \
+               "(-): :__xpra_displays"
+}
+
+# complete subcommand `attach`
+function _xpra_attach_options() {
+    local -a attach_options
+
+    attach_options=(
+        "(-z --compress)"{-z,--compress=}"[Select the level of compression xpra will use when transmitting data over the network.]:LEVEL:"
+        "--jpeg-quality=[This option sets the JPEG compression quality of pixel data sent by the server.]:VALUE:"
+        "--auto-refresh-delay=[This option sets a delay after which the windows are automatically refreshed.]:DELAY:"
+        "--max-bandwidth=[Specify the link's maximal receive bandwidth.]:BW:"
+        "--key-shortcut=[These keys will be caught by the client and trigger the action specified.]:key\:action:"
+        "--readonly[Read only mode prevents all keyboard and mouse activity from being sent to the server.]"
+        "--no-keyboard-sync[Disables keyboard state synchronization.]"
+        "--title-suffix=[Sets the portion of text which is appended to the windows' title.]:VALUE:"
+        "--title=[Sets the text shown as window title.]:VALUE:"
+        "--window-icon=[Path to the default image which will be used for all windows.]:FILENAME:"
+        "--mmap-group[Sets the mmap file's gid to match the socket file's gid and sets the mmap file's permissions to 660.]"
+        "(-): :__xpra_displays"
+    )
+
+    _arguments $_xpra_attach_stop_options $attach_options
+}
+
+# complete subcommand `stop`
+function _xpra_stop_options() {
+    _arguments $_xpra_attach_stop_options \
+               "(-): :__xpra_displays"
+}
+
+# completion for `DISPLAY`s with running xpra servers on them
+function __xpra_displays() {
+    local -a displays
+    local i=1
+
+    xpra list | while read line
+    do
+        if [[ $line =~ :[0-9]+$ ]]
+        then
+            display=$MATCH
+            session_name=$(__xpra_session_info $display)
+            displays[$i]="\\$display:$session_name"
+            i=$(($i+1))
+        fi
+    done
+    _describe "DISPLAY" displays
+}
+
+# return an info string describing the server on the given `DISPLAY`
+function __xpra_session_info() {
+    display=$1
+    session_info=$(xpra info $display 2>&1)
+    windows=`expr match "$session_info" '.\+windows=\([0-9]\+\)'`
+    session_name=`expr match "$session_info" '.\+session_name=\(.*\)'`
+    if [ -z $session_name ]
+    then
+        session_name='<no session name>'
+    fi
+    echo "session: $session_name [num windows: $windows]"
+}
+
+# main function
+# handling 1st level completions (general options, subcommands and subcommand options)
+function _xpra() {
+    local curcontext="${curcontext}"
+    local mode state ret
+    local -a general_options
+
+    general_options=(
+        "--version[Show program's version number and exit]"
+        "(-h --help)"{-h,--help}"[Show this help message and exit]"
+        "(-d --debug)"{-d,--debug=}"[List of categories to enable debugging for (or \"all\")]:FILTER1,FILTER2,...:"
+        "--no-mmap[Disable memory mapped transfers for local connections]"
+        "--no-pulseaudio[Disable pulseaudio support via X11 root window properties]"
+        "--session-name=[The name of this session, which may be used in notifications, menus, etc]:SESSION_NAME:"
+        "--encoding=[What image compression algorithm to use: png, jpeg, rgb24, x264, vpx. Default: png]:ENCODING:"
+        "--socket-dir=[Directory to place/look for the socket files in (default: \$XPRA_SOCKET_DIR or '~/.xpra')]:DIR:"
+        "(-): :->subcommand"
+        "(-)*:: :->subcommand_options"
+    )
+    _arguments $general_options && return
+
+    case $state in
+        (subcommand)
+            # complete subcommands
+            _call_function - _xpra_subcommands
+            ;;
+        (subcommand_options)
+            curcontext=${curcontext%:*:*}:xpra_$words[1]_options:
+
+            # the entered subcommand is unknown
+            if [[ ! ${_xpra_subcommands[@]} =~ $words[1] ]]
+            then
+                _message "Unknown subcommand '$words[1]'" && return
+            fi
+
+            # complete subcommand options
+            _call_function - _xpra_$words[1]_options
+            if [ $? != 0 ]; then
+                _message "No completions for subcommand '$words[1]'"
+            fi
+            ;;
+    esac
+}
+
+_xpra
