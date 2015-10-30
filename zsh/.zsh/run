@@ -47,3 +47,8 @@ function runin()
     $@
     popd > /dev/null
 }
+
+function psd()
+{
+    pgrep -f $@
+}
