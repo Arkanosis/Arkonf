@@ -277,6 +277,8 @@ If region contains less than 2 lines, lines are left untouched."
   (require 'undo-tree)
   (global-undo-tree-mode)
 
+  (require 'flymake)
+
   (require 'mo-git-blame)
 
   (require 'markdown-mode)
