@@ -3,4 +3,3 @@ git@github.com:Arkanosis/Arkonf.git:
     - rev: master
     - target: /home/arkanosis/Arkonf
     - user: arkanosis
-

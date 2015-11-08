@@ -15,4 +15,4 @@ csvkit:
 
 xmlstarlet:
   pkg:
-    -latest
+    - latest

@@ -15,3 +15,4 @@ lxc:
   file.symlink:
     - target: /home/arkanosis/Arkonf/lxc/default.conf
     - user: arkanosis
+    - makedirs: True

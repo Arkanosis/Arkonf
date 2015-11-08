@@ -3,6 +3,9 @@
 # TODO user pictures (KDM)
 # TODO use ecryptfs for home directories
 
+include:
+  - zsh
+
 famille:
   group.present:
     - gid: 1100
@@ -23,10 +26,8 @@ sshbridge:
 
 arkanosis:
   user.present:
-#    - fullname: "J\u00e9r\u00e9mie Roquet"
+    #- fullname: "Jérémie Roquet"
     - shell: /usr/bin/zsh
-      - require:
-        - pkg: zsh
     - home: /home/arkanosis
     - uid: 1000
     - gid: 1000
@@ -36,6 +37,8 @@ arkanosis:
       - famille
       - amis
     - remove_groups: False
+    - require:
+      - pkg: zsh
   group.present:
     - gid: 1000
 
@@ -43,14 +46,14 @@ snad:
   user.present:
     - fullname: Sandrine Roquet
     - shell: /usr/bin/zsh
-      - require:
-        - pkg: zsh
     - home: /home/snad
     - uid: 1101
     - gid: 1101
     - groups:
       - famille
     - remove_groups: False
+    - require:
+      - pkg: zsh
   group.present:
     - gid: 1101
 snad_a:
@@ -62,10 +65,8 @@ snad_a:
 
 oodna:
   user.present:
-#    - fullname: "Anne-Sophie Denomm\u00e9-Pichon"
+    #- fullname: "Anne-Sophie Denommé-Pichon"
     - shell: /usr/bin/zsh
-      - require:
-        - pkg: zsh
     - home: /home/oodna
     - uid: 1201
     - gid: 1201
@@ -73,6 +74,8 @@ oodna:
       - famille
       - amis
     - remove_groups: False
+    - require:
+      - pkg: zsh
   group.present:
     - gid: 1201
 oodna_a:
@@ -86,14 +89,14 @@ albinou:
   user.present:
     - fullname: Albin Kauffmann
     - shell: /usr/bin/zsh
-      - require:
-        - pkg: zsh
     - home: /home/albinou
     - uid: 1203
     - gid: 1203
     - groups:
       - amis
     - remove_groups: False
+    - require:
+      - pkg: zsh
   group.present:
     - gid: 1203
 albinou_a:

@@ -14,5 +14,4 @@ etckeeper init && etckeeper commit -m 'Initial commit':
     - require:
       - pkg: etckeeper
       - file: /etc/etckeeper/etckeeper.conf
-    - unless: test -d /etc.git
-
+    - unless: test -d /etc/.git
