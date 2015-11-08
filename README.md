@@ -17,22 +17,22 @@ cd Arkonf
 ./install.sh
 ```
 
-## As sudo user on Kubuntu
+## As root on Kubuntu
 
 This is the prefered way to install the full Arkonf (including packages) on a
 machine with sudo access.
 
 ```
-sudo apt-get install salt-minion
+apt-get install salt-minion
 ssh-keygen -t rsa -b 4096
-ssh-add
-< ~/.ssh/id_rsa.pub nc termbin.com 9999
-cd
+< /root/.ssh/id_rsa.pub nc termbin.com 9999
+# Add your public key on GitHub
+cd /root
 git clone git@github.com:Arkanosis/Arkonf.git
-sudo cp -r Arkonf/saltstack/* /srv
-sudo sed -i 's/.*file_client:.*/file_client: local/' /etc/salt/minion
-sudo salt-call state.highstate
-sudo aptitude update && sudo aptitude full-upgrade
+ln -s /root/Arkonf/saltstack /srv
+sed -i 's/.*file_client:.*/file_client: local/' /etc/salt/minion
+salt-call state.highstate
+aptitude update && aptitude full-upgrade
 ```
 
 ## Copyright
