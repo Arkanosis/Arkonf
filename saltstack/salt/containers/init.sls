@@ -1,10 +1,14 @@
+docker.io:
+  pkg:
+    - latest
+
 lxc:
   pkg:
     - latest
 
 /etc/lxc/lxc-usernet:
   file.managed:
-    - source: salt://lxc/lxc-usernet
+    - source: salt://containers/lxc-usernet
     - mode: 644
 
 /home/arkanosis/.config/lxc/default.conf:

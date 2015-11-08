@@ -6,11 +6,11 @@ python-dev:
   pkg:
     - latest
 
-python-lxml:
+python-imaging:
   pkg:
     - latest
 
-python-imaging:
+python-lxml:
   pkg:
     - latest
 
@@ -23,5 +23,9 @@ python-requests:
     - latest
 
 python-xlrd:
+  pkg:
+    - latest
+
+swig:
   pkg:
     - latest

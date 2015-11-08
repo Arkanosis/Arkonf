@@ -9,6 +9,7 @@ base:
     - build
     - chromium
     - compression
+    - containers
     - curl
     - dot
     - emacs
@@ -22,7 +23,6 @@ base:
     - kdiff3
     - libreoffice
     - lsb
-    - lxc
     - media
 #    - mutt
 #    - mysql-server

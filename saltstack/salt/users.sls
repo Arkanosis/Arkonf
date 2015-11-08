@@ -11,6 +11,16 @@ amis:
   group.present:
     - gid: 1200
 
+sshbridge:
+  user.present:
+    - shell: /bin/false
+    - home: /home/sshbridge
+    - uid: 900
+    - gid: 900
+    - remove_groups: False
+  group.present:
+    - gid: 900
+
 arkanosis:
   user.present:
 #    - fullname: "J\u00e9r\u00e9mie Roquet"
@@ -22,6 +32,7 @@ arkanosis:
     - gid: 1000
     - groups:
       - dialout # access to /dev/tty* for (g|w)ammu
+      - docker
       - famille
       - amis
     - remove_groups: False
