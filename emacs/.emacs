@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;  Emacs Conf v0.9                                                     ;
-;  (C) 2006-2009 - Arkanosis                                           ;
+;  Arkonf for Emacs                                                    ;
+;  (C) 2006-2015 - Jérémie Roquet                                      ;
 ;  jroquet@arkanosis.net                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -243,87 +243,111 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(defun host-name ()
-  "Returns the name of the current host minus the domain."
-  (let ((hostname (downcase (system-name))))
-    (save-match-data
-      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
+(require 'use-package)
 
-(if
- (string-equal (host-name) "reddev014")
- nil
- (progn
+(use-package linum
+  :config
+  (global-linum-mode t))
 
-  (require 'mediawiki)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode t))
+
+(use-package flymake)
+
+(use-package mo-git-blame)
+
+(use-package markdown-mode
+  :mode "\\.md$")
+(use-package js2-mode
+  :mode "\\.jsm?$")
+(use-package python
+  :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
+(use-package php-mode
+  :mode "\\.php[0-9]?$")
+(use-package lua-mode
+  :mode "\\.lua$")
+(use-package java-mode
+  :mode "\\.\\(java\\|jj\\)$")
+(use-package csharp-mode
+  :mode "\\.cs$")
+(use-package xml-mode
+  :mode "\\.\\(xsd\\|xul\\)$")
+(use-package yaml-mode
+  :mode "\\.\\(sls\\|yml\\)$")
+(use-package hexl-mode
+  :mode "\\.bin$")
+(use-package ellql-mode
+  :mode "\\.ellql$")
+(use-package two-mode-mode)
+
+(use-package auto-complete-config
+  :config
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (ac-config-default))
+
+(use-package mediawiki
+  :config
   (custom-set-variables
-   '(mediawiki-site-alist
-    (quote
-     (("ACU" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Blog commun")
-      ("ACU-wip" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Rtfb/Lesser known C++ constructs")
-      ("Wikipedia-Arkanosis" "http://fr.wikipedia.org/w/" "Arkanosis" "" "Wikipédia:Accueil principal")
-      ("Wikipedia-Arktest" "http://fr.wikipedia.org/w/" "Arktest" "" "Wikipédia:Accueil principal")
-      ("Wikipedia-Arkbot" "http://fr.wikipedia.org/w/" "Arkbot" "" "Wikipédia:Accueil principal"))
-    )
-   )
-  )
+    '(mediawiki-site-alist
+      (quote
+        (("ACU" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Blog commun")
+         ("ACU-wip" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Rtfb/Lesser known C++ constructs")
+	 ("Wikipedia-Arkanosis" "http://fr.wikipedia.org/w/" "Arkanosis" "" "Wikipédia:Accueil principal")
+	 ("Wikipedia-Arktest" "http://fr.wikipedia.org/w/" "Arktest" "" "Wikipédia:Accueil principal")
+	 ("Wikipedia-Arkbot" "http://fr.wikipedia.org/w/" "Arkbot" "" "Wikipédia:Accueil principal")))))
   (defun mw()
     (interactive)
-    (mediawiki-site)
-  )
+    (mediawiki-site))
+  :mode ("\\(\\.wiki\\|itsalltext.*\\.txt\\)$" . mediawiki-mode))
 
-  (require 'linum)
-  (global-linum-mode t)
+(use-package exa-mode
+  :config
+  (defun my-exa-hook ()
+    (setq indent-tabs-mode nil)
+    (setq compilation-error-regexp-alist
+      (append
+        compilation-error-regexp-alist
+	(list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))))
+    (setq compilation-error-regexp-alist
+      (append
+        compilation-error-regexp-alist
+	(list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4)))))
+  (add-hook 'exa-mode-hook 'my-exa-hook)
+  :mode "\\.exa$")
 
-  (require 'undo-tree)
-  (global-undo-tree-mode)
+(use-package pyjab
+  :config
+  (define-key global-map "\C-cns" 'pyjab_send))
 
-  (require 'flymake)
+(use-package ansi-color
+  :config
+  (ansi-color-for-comint-mode-on)
+  (defun xterm-mode()
+    (interactive)
+    (ansi-color-apply-on-region (point-min) (point-max)))
+  :mode ("\\.log$" . xterm-mode))
 
-  (require 'mo-git-blame)
+(use-package workspaces)
+(use-package scroll-all)
+(use-package longlines)
+(use-package highlight-symbol
+  :config
+  (add-hook 'exa-mode-hook 'highlight-symbol-mode)
+  (add-hook 'java-mode-hook 'highlight-symbol-mode)
+  (add-hook 'c-mode-hook 'highlight-symbol-mode)
+  (add-hook 'c++-mode-hook 'highlight-symbol-mode)
+  (add-hook 'cc-mode-hook 'highlight-symbol-mode)
+  (setq highlight-symbol-idle-delay 0.5))
 
-  (require 'markdown-mode)
-  (require 'js2-mode)
-  (require 'php-mode)
-  (require 'lua-mode)
-  (require 'csharp-mode)
-  (require 'yaml-mode)
-  (require 'two-mode-mode)
-
-  (require 'auto-complete-config)
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-  (ac-config-default)
-
- )
-)
-
-(require 'pyjab)
-(define-key global-map "\C-cns" 'pyjab_send)
-
-(require 'ansi-color)
-(ansi-color-for-comint-mode-on)
-(defun xterm-mode()
-  (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
-
-(require 'workspaces)
-(require 'scroll-all)
-(require 'longlines)
-(require 'highlight-symbol)
-(add-hook 'exa-mode-hook 'highlight-symbol-mode)
-(add-hook 'java-mode-hook 'highlight-symbol-mode)
-(add-hook 'c-mode-hook 'highlight-symbol-mode)
-(add-hook 'c++-mode-hook 'highlight-symbol-mode)
-(add-hook 'cc-mode-hook 'highlight-symbol-mode)
-
-(add-hook 'java-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'c-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'c++-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'cc-mode-hook (lambda () (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-
-;(add-hook 'c-mode-common-hook (lambda () (highlight-regexp "FIXME" "hi-red-b")))
-;(add-hook 'c-mode-common-hook (lambda () (highlight-regexp "TODO" "hi-red-b")))
-;(add-hook 'c-mode-common-hook 'highlight-symbol-mode)
-(setq highlight-symbol-idle-delay 0.5)
+(add-hook 'java-mode-hook (lambda ()
+  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'c-mode-hook (lambda ()
+  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'c++-mode-hook (lambda ()
+  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+(add-hook 'cc-mode-hook (lambda ()
+  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
 
 (add-hook 'c-mode-common-hook 'subword-mode)
 (add-hook 'c-mode-common-hook 'cwarn-mode)
@@ -403,38 +427,6 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control f12)] 'highlight-symbol-next)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Associations
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-
-(add-to-list 'auto-mode-alist '("\\SConscript\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\SConstruct\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.def$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.esdl$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.flea$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.gexo$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . python-mode))
-
-(add-to-list 'auto-mode-alist '("\\.jj$" . java-mode))
-
-(add-to-list 'auto-mode-alist '("\\.bin$" . hexl-mode))
-
-(add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
-(add-to-list 'auto-mode-alist '("\\.xul$" . xml-mode))
-
-(add-to-list 'auto-mode-alist '("\\.jsm?$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.php[0-9]?$" . php-mode))
-
-(add-to-list 'auto-mode-alist '("\\.log$" . xterm-mode))
-
-(add-to-list 'auto-mode-alist '("\\.wiki$" . mediawiki-mode))
-(add-to-list 'auto-mode-alist '("itsalltext.*\\.txt$" . mediawiki-mode))
-
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -476,10 +468,11 @@ If region contains less than 2 lines, lines are left untouched."
   (xterm-register-default-colors)
   (tty-set-up-initial-frame-faces))
 
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-after-kill-buffer-p t)
+  (setq uniquify-ignore-buffers-re "^\\*"))
 
 (setq confirm-nonexistent-file-or-buffer nil)
 
@@ -501,6 +494,13 @@ If region contains less than 2 lines, lines are left untouched."
 (global-font-lock-mode t)
 ;(global-hl-line-mode t)
 (icomplete-mode t) ;; Auto completion des commandes
+
+(defun host-name ()
+  "Returns the name of the current host minus the domain."
+  (let ((hostname (downcase (system-name))))
+    (save-match-data
+      (substring hostname (string-match "^[^.]+" hostname) (match-end 0)))))
+
 (if
  (string-equal (host-name) "reddev014")
  nil
@@ -563,32 +563,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Exalead specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(if (file-readable-p "~/.emacs.d/exa-mode.el")
-    (progn
-      (autoload 'exa-mode "exa-mode" "" t)
-      (autoload 'exa-export-all-packages "exa-mode" "" t)
-      (setq auto-mode-alist
-	    (cons '("\\.exa$" . exa-mode) auto-mode-alist))
-      (defun my-exa-hook ()
-	(setq indent-tabs-mode nil)
-	(setq compilation-error-regexp-alist
-	      (append
-	       compilation-error-regexp-alist
-	       (list (list "\"\\([^\"]*\\)\":\\([0-9]+\\)" 1 2))
-	       ))
-	(setq compilation-error-regexp-alist
-	      (append
-	       compilation-error-regexp-alist
-	       (list '("[a-z0-9/]+: \\([eE]rror\\|[wW]arning\\|Info\\): \\([^,\" \n\t]+\\)[,:] \\(line \\)?\\([0-9]+\\):" 2 4))))
-	)
-      (add-hook 'exa-mode-hook 'my-exa-hook)
-    )
-)
-
-(if (file-readable-p "~/.emacs.d/ellql-mode.el")
-    (load "~/.emacs.d/ellql-mode.el")
-)
 
 (defun ht()
   (interactive)
