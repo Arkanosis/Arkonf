@@ -4,6 +4,7 @@
 # TODO use ecryptfs for home directories
 
 include:
+  - containers
   - zsh
 
 famille:
@@ -38,6 +39,7 @@ arkanosis:
       - amis
     - remove_groups: False
     - require:
+      - pkg: docker.io
       - pkg: zsh
   group.present:
     - gid: 1000
