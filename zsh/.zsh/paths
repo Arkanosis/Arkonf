@@ -36,6 +36,8 @@ _python_path=(
     $_python_path
 )
 
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+
 export CONFIG_SITE=$HOME/config.site
 
 typeset -A namedpathes
