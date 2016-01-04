@@ -59,7 +59,7 @@ function cpo()
 }
 function gpp()
 {
-    g++ -Wall -Wextra -Wconversion -Wabi -std=c++98 -pedantic -Wno-long-long $@ |& colorizeGCC
+    g++ -Wall -Wextra -Wconversion -Wabi -std=c++11 -pedantic -Wno-long-long $@ |& colorizeGCC
 }
 
 function tcp()
