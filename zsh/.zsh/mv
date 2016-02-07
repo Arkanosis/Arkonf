@@ -35,3 +35,13 @@ function mvcd()
 {
     # TODO
 }
+
+function mvln()
+{
+    if ((# < 2)); then
+	mv
+	return $?
+    fi
+
+    mv $1 $2 && ln -s $2:A/${${1%/}##*/} ${1%/}
+}

@@ -43,7 +43,7 @@ nginx:
       - pkg: nginx
 
 /etc/nginx/ssl/taz-localhost.key:
-  cmd.wait:
+  cmd.run:
     - name: openssl genrsa -out /etc/nginx/ssl/taz-localhost.key 2048
     - require:
       - file: /etc/nginx/ssl

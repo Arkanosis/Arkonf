@@ -14,13 +14,15 @@ function whichvcs()
 		echo cvs
 	else
 		base_dir=.
-		while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && $base_dir:A != / ]]; do
+		while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git&& ! -d $base_dir/.svn && $base_dir:A != / ]]; do
 			base_dir=$base_dir/..
 		done
 		if [[ -d $base_dir/.hg/ ]]; then
 		    echo hg
 		elif [[ -d $base_dir/.git/ ]]; then
 		    echo git
+		elif [[ -d $base_dir/.svn/ ]]; then
+		    echo svn
 		fi
 	fi
 }
@@ -38,7 +40,7 @@ function update_vcs_information()
         VCS="[svn:`svn info | sed -n '/R.vision \?:/ s/.* \(.*\)/\1/p'`]"
     fi
     base_dir='.'
-    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && $base_dir:A != / ]]; do
+    while [[ ! -d $base_dir/.hg && ! -d $base_dir/.git && ! -d $base_dir/.svn && $base_dir:A != / ]]; do
 	base_dir=$base_dir/..
     done
     if [[ -d $base_dir/.hg/ ]]; then
@@ -54,6 +56,8 @@ function update_vcs_information()
 	else
 	    VCS="${VCS}[git:uncommited]"
 	fi
+    elif [[ -d $base_dir/.svn/ ]]; then
+        VCS="[svn:`svn info | sed -n '/R.vision \?:/ s/.* \(.*\)/\1/p'`]"
     fi
 
     VCS_REVISION[$PWD]=$VCS

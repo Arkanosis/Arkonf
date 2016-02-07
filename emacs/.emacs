@@ -47,6 +47,9 @@
 ; - Suppression du mot qui suit / précède *sans copier*
 ; - Support du open-file-at-point
 
+;; Désactiver le gc le temps du chargement de la configuration
+(setq gc-cons-threshold 100000000)
+
 ;; Pour Exalead
 (setq standard-indent 2)
 (setq tab-width 2)
@@ -253,8 +256,6 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (global-undo-tree-mode t))
 
-(use-package flymake)
-
 (use-package mo-git-blame)
 
 (use-package markdown-mode
@@ -270,6 +271,8 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package java-mode
   :mode "\\.\\(java\\|jj\\)$")
 (use-package csharp-mode
+  :config
+  (use-package flymake)
   :mode "\\.cs$")
 (use-package xml-mode
   :mode "\\.\\(xsd\\|xul\\)$")
@@ -1087,3 +1090,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;; (add-hook 'c-special-indent-hook 'c-reindent-intelligently)
 
 (put 'narrow-to-region 'disabled nil)
+
+;; Réactivation du gc après le chargement de la conf
+(setq gc-cons-threshold 800000)

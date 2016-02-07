@@ -9,3 +9,10 @@ function ports()
 {
     lsof -i -P | grep -i listen
 }
+
+function kb()
+{
+    sudo kill -9 $(ps -hU sshbridge | awk '{ print $1 }')
+    killall hts 2> /dev/null
+    hts -F localhost:12678 10000
+}
