@@ -12,7 +12,7 @@ install()
 }
 
 printf '\033[33mArkinstall v0.1\n'
-printf '(C) 2009-2015 - Arkanosis\n'
+printf '(C) 2009-2016 - Arkanosis\n'
 printf 'jroquet@arkanosis.net\n'
 printf 'Check for latest version at http://github.com/Arkanosis/Arkonf\033[0m\n'
 
@@ -38,6 +38,7 @@ install emacs/.emacs.d ~/.emacs.d
 install gdb/.gdbinit ~/.gdbinit
 
 install python/.pythonrc.py ~/.pythonrc.py
+install python/usercustomize.py ~/local/lib/python2.7/usercustomize.py
 
 install pywikibot/.pywikibot ~/.pywikibot
 
