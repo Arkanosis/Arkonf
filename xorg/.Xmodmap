@@ -178,10 +178,13 @@ keycode  90 = 0 U2070
 !! < > « »
 keycode  94 = less greater guillemotleft guillemotright
 
-!!
+!! Alt Gr
 keycode 108 = Mode_switch
 
-!!
+!! Win L
+keycode 133 = Super_L
+
+!! Win R
 keycode 134 = Multi_key
 
 clear shift
@@ -194,8 +197,13 @@ clear mod4
 clear mod5
 
 add shift = Shift_L Shift_R
+!add lock =
 add control = Control_L Control_R
-add mod1 = Alt_L
-add mod2 = Mode_switch
-add mod3 = Multi_key
-add mod4 = Num_Lock
+add mod1 = Alt_L Mode_switch
+add mod2 = Num_Lock
+!add mod3 =
+add mod4 = Super_L Multi_key
+!add mod5 =
+
+! Shift_L ... Shift_R
+! Control_L Super_L Alt_L Space Mode_switch Multi_key Menu Control_R
