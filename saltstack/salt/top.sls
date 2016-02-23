@@ -1,6 +1,5 @@
 base:
   '*':
-    - ag
 #    - android
 #    - apache2
     - arkonf
@@ -29,7 +28,6 @@ base:
     - nginx
     - nfs
     - pass
-    - ssh
 #    - php
     - pidgin
     - pgp
@@ -40,8 +38,10 @@ base:
     - rsnapshot
     - ruby
     - sound
+    - search
     - space
     - sqlite
+    - ssh
 #    - synergy
     - sysvbanner
     - term
