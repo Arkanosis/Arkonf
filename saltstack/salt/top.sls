@@ -22,8 +22,8 @@ base:
     - kdiff3
     - libreoffice
     - lsb
+    - mail
     - media
-#    - mutt
 #    - mysql-server
     - nginx
     - nfs
