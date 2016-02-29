@@ -62,6 +62,8 @@ install vim/.vim ~/.vim
 
 install awesome ~/.config/awesome
 
+install yakuake/yakuakerc ~/.kde/share/config/yakuakerc
+
 install xorg/.Xmodmap ~/.Xmodmap
 install xorg/.Xresources ~/.Xresources
 install xorg/.Xresources ~/.Xdefaults

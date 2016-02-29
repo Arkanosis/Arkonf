@@ -29,3 +29,8 @@ yakuake:
   file.symlink:
     - target: /home/arkanosis/Arkonf/screen/.screenrc
     - user: arkanosis
+
+/home/arkanosis/.kde/share/config/yakuakerc:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/yakuake/yakuakerc
+    - user: arkanosis
