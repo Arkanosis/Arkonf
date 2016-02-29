@@ -1,8 +1,53 @@
+# VM
+
 python:
   pkg:
     - latest
 
 python-dev:
+  pkg:
+    - latest
+
+# Startup configuration
+
+/home/arkanosis/.pythonrc.py:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/python/.pythonrc.py
+    - user: arkanosis
+
+/home/arkanosis/local/lib/python2.7/usercustomize.py:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/python/usercustomize.py
+    - user: arkanosis
+
+# Installer
+
+python-pip:
+  pkg:
+    - latest
+
+python3-pip:
+  pkg:
+    - latest
+
+# Debugger
+
+python-pudb:
+  pkg:
+    - latest
+
+python3-pudb:
+  pkg:
+    - latest
+
+# Bindings
+swig:
+  pkg:
+    - latest
+
+# Modules
+
+python3-click-cli:
   pkg:
     - latest
 
@@ -18,15 +63,11 @@ python-lxml:
   pkg:
     - latest
 
-python-pip:
+python-q:
   pkg:
     - latest
 
-python3-click-cli:
-  pkg:
-    - latest
-
-python3-pip:
+python3-q:
   pkg:
     - latest
 
@@ -39,9 +80,5 @@ python-xlrd:
     - latest
 
 python3-yaml:
-  pkg:
-    - latest
-
-swig:
   pkg:
     - latest
