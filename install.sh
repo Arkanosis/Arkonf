@@ -62,6 +62,8 @@ install vim/.vim ~/.vim
 
 install awesome ~/.config/awesome
 
+install kde/kwinrc ~/.kde/share/config/kwinrc
+install kde/user-places.xbel ~/.local/share/user-places.xbel
 install yakuake/yakuakerc ~/.kde/share/config/yakuakerc
 
 install xorg/.Xmodmap ~/.Xmodmap

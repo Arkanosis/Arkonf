@@ -1,0 +1,10 @@
+[Desktops]
+Number=1
+
+[MouseBindings]
+CommandTitlebarWheel=Change Opacity
+
+[Style]
+ButtonsOnLeft=MFS
+ButtonsOnRight=H_IA_X
+CustomButtonPositions=true

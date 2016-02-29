@@ -20,6 +20,7 @@ base:
 #    - gtalk
     - htop
     - image
+    - kde
     - kdiff3
     - libreoffice
     - lsb

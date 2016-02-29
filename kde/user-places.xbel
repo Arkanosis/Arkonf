@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info" xmlns:kdepriv="http://www.kde.org/kdepriv">
+ <bookmark href="file:///home/arkanosis/Documents/Anne-Sophie">
+  <title>Anne-Sophie</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="inode-directory"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1450316485/0 (V2)</ID>
+    <IsHidden>false</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+</xbel>
