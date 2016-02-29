@@ -9,6 +9,7 @@ base:
     - chromium
     - compression
     - containers
+    - crypto
     - curl
     - dot
     - emacs
@@ -30,7 +31,6 @@ base:
     - pass
 #    - php
     - pidgin
-    - pgp
     - publication
     - processing
     - python
