@@ -567,7 +567,7 @@ function lgv()
 	    $vcs log $@ | less
 	;;
 	git)
-	    git log -v --decorate=full --graph $@
+	    git log -v --graph $@
 	;;
 	*)
 	    $vcs log -v $@ | less

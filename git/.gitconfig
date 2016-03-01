@@ -2,27 +2,33 @@
 name = Jérémie Roquet
 email = jroquet@arkanosis.net
 
-[push]
-default = current
-
-[color]
-diff = auto
-status = auto
-branch = auto
-
-[color "status"]
-added = green
-changed = blue
-untracked = magenta
-
 [alias]
 st = status
 df = diff
 b = branch
 ci = commit -a
 co = checkout
+lg = log --graph --pretty=format:'%C(auto)%h — %s %d\nAuthored: %ad (%ar) — %an <%ae>\nCommited: %cd (%cr) — %cn <%ce> (%G?)\n\n%b%Creset'
 unadd = reset HEAD
 uncommit = reset --soft HEAD^
 
+[color]
+branch = auto
+diff = auto
+grep = auto
+interactive = auto
+status = auto
+
+[color "status"]
+added = green
+changed = blue
+untracked = magenta
+
 [diff]
 tool = vimdiff
+
+[log]
+decorate = full
+
+[push]
+default = current
