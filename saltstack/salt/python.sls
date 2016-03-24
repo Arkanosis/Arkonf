@@ -32,6 +32,13 @@ python3-pip:
   pkg:
     - latest
 
+# UI
+
+ptpython:
+  pip.installed:
+    - require:
+      - pkg: python-pip
+
 # Debugger
 
 python-pudb:
