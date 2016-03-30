@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-vcsrootpattern='(trunk|(branches|tags)/[0-9]##(.[0-9]##)#(|dev))'
+vcsrootpattern='(trunk|branches/([0-9]##(.[0-9]##)#(|dev|-*)|V[0-9]R20[0-9][0-9](|x|X)(|-V[0-9]R20[0-9][0-9](|x|X)(|.SP[0-9]).[0-9]##-[0-9a-zA-Z-]##)))'
 VCS=
 PREVIOUS_PWD=
 
@@ -81,7 +81,7 @@ function vcsroot ()
     shift
 
     base_dir=.
-    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS || $base_dir:A == */$~vcsrootpattern/* ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
 	base_dir=$base_dir/..
     done
     echo "Running $cmd on $base_dir:A"
@@ -93,7 +93,7 @@ function runinroot ()
     local base_dir
 
     base_dir=.
-    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
+    while [[ -d $base_dir/../.svn || -d $base_dir/../CVS || $base_dir:A == */$~vcsrootpattern/* ]] && [[ $base_dir:A != */$~vcsrootpattern ]]; do
 	base_dir=$base_dir/..
     done
     if [[ $base_dir:A == */$~vcsrootpattern ]]; then
