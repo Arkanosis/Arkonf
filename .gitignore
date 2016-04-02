@@ -10,3 +10,5 @@ emacs/.emacs.d/eshell
 pywikibot/.pywikibot/apicache
 pywikibot/.pywikibot/pywikibot.lwp
 pywikibot/.pywikibot/throttle.ctrl
+weechat/.weechat/logs
+weechat/.weechat/weechat.log
