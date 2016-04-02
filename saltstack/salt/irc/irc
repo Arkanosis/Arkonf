@@ -1,0 +1,5 @@
+#! /bin/sh
+
+chmod u-w $HOME/.weechat
+weechat
+chmod u+w $HOME/.weechat

@@ -1,3 +1,0 @@
-weechat:
-  pkg:
-    - latest

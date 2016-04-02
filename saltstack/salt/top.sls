@@ -20,6 +20,7 @@ base:
 #    - gtalk
     - htop
     - image
+    - irc
     - java
     - kde
     - kdiff3
@@ -52,7 +53,6 @@ base:
     - vim
 #    - virtualbox
     - wammu
-    - weechat
     - wine
     - xorg
     - xpra
