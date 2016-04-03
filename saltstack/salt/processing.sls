@@ -1,3 +1,6 @@
+include:
+  - python
+
 jq:
   pkg:
     - latest
