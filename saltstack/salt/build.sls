@@ -13,3 +13,7 @@ cmake:
 libtool:
   pkg:
     - latest
+
+pkg-config:
+  pkg:
+    - latest
