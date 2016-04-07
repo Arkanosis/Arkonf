@@ -18,7 +18,6 @@ base:
     - firefox
     - g++
 #    - gtalk
-    - htop
     - image
     - irc
     - java
@@ -28,6 +27,7 @@ base:
     - lsb
     - mail
     - media
+    - monitoring
 #    - mysql-server
     - nginx
     - nfs
