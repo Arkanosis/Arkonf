@@ -4,6 +4,6 @@ rsnapshot:
 
 /etc/rsnapshot.conf:
   file.managed:
-    - source: salt://rsnapshot/rsnapshot.conf
+    - source: salt://backup/rsnapshot.conf
+    - template: jinja
     - mode: 644
-

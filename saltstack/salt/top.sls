@@ -4,6 +4,7 @@ base:
 #    - apache2
     - arkonf
 #    - awesome
+    - backup
     - bio
     - build
     - chromium
@@ -38,7 +39,6 @@ base:
     - processing
     - python
     - remmina
-    - rsnapshot
     - ruby
     - sound
     - search
