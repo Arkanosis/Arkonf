@@ -180,9 +180,9 @@ function ci()
 	;;
 	git)
 	    if ((#)); then
-		git commit $@
+		git commit -S $@
 	    else
-		git commit -a
+		git commit -Sa
 	    fi
 	;;
     esac
