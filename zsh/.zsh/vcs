@@ -180,9 +180,9 @@ function ci()
 	;;
 	git)
 	    if ((#)); then
-		git commit $@
+		git commit -S $@
 	    else
-		git commit -a
+		git commit -Sa $@
 	    fi
 	;;
     esac
@@ -196,6 +196,9 @@ function rci()
 function cif()
 {
     ci -F $@
+}
+function am() {
+    ci --amend $@
 }
 
 function unci()
@@ -387,25 +390,49 @@ function df()
 {
     dfcmd colordiff $@
 }
+function ds()
+{
+    dfcmd colordiff --staged $@
+}
 function vdf()
 {
     dfcmd vimdiff $@
+}
+function vds()
+{
+    dfcmd vimdiff --staged $@
 }
 function kdf()
 {
     dfcmd kdiff3 $@
 }
+function kds()
+{
+    dfcmd kdiff3 --staged $@
+}
 function rdf()
 {
     vcsroot df $@
+}
+function rds()
+{
+    vcsroot df --staged $@
 }
 function rkdf()
 {
     vcsroot kdf $@
 }
+function rkds()
+{
+    vcsroot kdf --staged $@
+}
 function dfl()
 {
     df $@ | less
+}
+function dsl()
+{
+    df --staged $@ | less
 }
 # Exactement pareil que dfl, mais avec une autre completion
 function sdfl()
@@ -415,6 +442,10 @@ function sdfl()
 function rdfl()
 {
     vcsroot dfl $@
+}
+function rdsl()
+{
+    vcsroot dfl --staged $@
 }
 function dc()
 {

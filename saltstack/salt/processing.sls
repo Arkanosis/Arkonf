@@ -1,6 +1,10 @@
 include:
   - python
 
+datamash:
+  pkg:
+    - latest
+
 jq:
   pkg:
     - latest

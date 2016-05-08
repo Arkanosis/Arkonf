@@ -1,6 +1,7 @@
 [user]
 name = Jérémie Roquet
 email = jroquet@arkanosis.net
+signingkey = jroquet@arkanosis.net
 
 [alias]
 st = status
@@ -23,6 +24,9 @@ status = auto
 added = green
 changed = blue
 untracked = magenta
+
+[commit]
+gpgsign = true
 
 [diff]
 tool = vimdiff

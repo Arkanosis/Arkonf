@@ -4,6 +4,7 @@ base:
 #    - apache2
     - arkonf
 #    - awesome
+    - backup
     - bio
     - build
     - chromium
@@ -18,7 +19,6 @@ base:
     - firefox
     - g++
 #    - gtalk
-    - htop
     - image
     - irc
     - java
@@ -28,6 +28,7 @@ base:
     - lsb
     - mail
     - media
+    - monitoring
 #    - mysql-server
     - nginx
     - nfs
@@ -38,7 +39,6 @@ base:
     - processing
     - python
     - remmina
-    - rsnapshot
     - ruby
     - sound
     - search
