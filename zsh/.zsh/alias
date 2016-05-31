@@ -61,3 +61,8 @@ function fu()
 {
     sudo aptitude update && sudo aptitude full-upgrade
 }
+
+function tig()
+{
+    command tig --show-signature $@
+}
