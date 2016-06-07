@@ -2,6 +2,7 @@
 name = Jérémie Roquet
 email = jroquet@arkanosis.net
 signingkey = jroquet@arkanosis.net
+useconfigonly = true
 
 [alias]
 st = status
@@ -36,3 +37,6 @@ decorate = full
 
 [push]
 default = current
+
+[tig]
+diff-options = --show-signature
