@@ -62,3 +62,6 @@ base:
 
   'os_family:Debian':
     - aptitude
+
+  'Edelweiss':
+    - fstab
