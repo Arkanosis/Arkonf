@@ -2,6 +2,10 @@ darktable:
   pkg:
     - latest
 
+jhead:
+  pkg:
+    - latest
+
 gimp:
   pkg:
     - latest
