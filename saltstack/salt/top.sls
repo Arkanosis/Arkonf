@@ -30,6 +30,7 @@ base:
     - media
     - monitoring
 #    - mysql-server
+    - network
     - nginx
     - nfs
     - pass
