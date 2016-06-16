@@ -85,16 +85,18 @@ function x()
 		gunzip $arg
 	    ;;
 	    *.(zip|jar))
-	        dir=`echo $arg | sed 's/\.\(zip\|jar\)$//'`
+	        dir=`basename $arg | sed 's/\.\(zip\|jar\)$//'`
+		arg=`readlink -f $arg`
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
 		fi
 		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
-		unzip ../$arg && \
-		cd - > /dev/null && \
+		( \
+		    cd $dir > /dev/null && \
+   		    print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
+		    unzip $arg \
+                ) && \
 		flattendir $dir
 	    ;;
 	    *.Z)
