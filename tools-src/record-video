@@ -1,0 +1,21 @@
+#! /usr/bin/zsh
+
+gif=false
+
+if [[ $# -ge 1 && $1 = -gif ]]; then
+    gif=true
+    shift
+fi
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $(basename $0) [-gif] <output.webm>" >&2
+    exit 1
+fi
+
+geometry=$(xrectsel "-s %wx%h -i :0+%x,%y") || exit 1
+
+if $gif; then
+    avconv -f x11grab -show_region 1 -r 25 $=geometry -framerate 15 # TODO FIXME all arguments + conversion from temp .avi to .gif
+else
+    avconv -f x11grab -show_region 1 -r 25 $=geometry -deadline realtime -b 5000000 -minrate 200000 -maxrate 40000000 $1
+fi

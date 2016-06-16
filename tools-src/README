@@ -1,1 +1,2 @@
 bdiff: diff huge files (several gigabytes, if needed), compile with -Wno-long-long
+record-video: capture part of the screen as webm / git, requires github.com/lolilolicon/xrectsel
