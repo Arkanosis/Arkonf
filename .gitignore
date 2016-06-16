@@ -2,6 +2,7 @@
 *#
 *.bak
 *.kdb
+*.kdbx
 *.elc
 *.pyc
 .directory
