@@ -1,3 +1,0 @@
-virtualbox:
-  pkg:
-    - latest

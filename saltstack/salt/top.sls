@@ -52,9 +52,8 @@ base:
     - utilities
     - vcs
     - vim
-#    - virtualbox
+    - vm
     - wammu
-    - wine
     - xorg
     - xpra
     - zsh

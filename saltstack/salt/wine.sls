@@ -1,3 +1,0 @@
-wine:
-  pkg:
-    - latest
