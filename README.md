@@ -19,8 +19,7 @@ cd Arkonf
 
 ## As root
 
-This is the prefered way to install the full Arkonf (including packages) on a
-machine with sudo access.
+This is the prefered way to install the full Arkonf (including packages).
 
 ### On Arch Linux
 

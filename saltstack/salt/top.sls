@@ -1,8 +1,13 @@
 base:
   '*':
+    - ssh
     - zsh
 
     - users
+
+  'gpus:vendor:intel':
+    - match: grain
+    - intel_gpu
 
   'os_family:Debian':
 #    - android
@@ -51,7 +56,6 @@ base:
     - search
     - space
     - sqlite
-    - ssh
 #    - synergy
     - sysvbanner
     - term
