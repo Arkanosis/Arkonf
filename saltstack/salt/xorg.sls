@@ -1,6 +1,13 @@
-wmctrl:
-  pkg:
-    - latest
+xorg_pkgs:
+  pkg.installed:
+    - pkgs:
+      - wmctrl
+{% if grains['os_family'] == 'Arch' %}
+      - xorg-server
+      - xorg-xinit
+{% endif %}
+
+# TODO FIXME ~/.xinitrc
 
 /home/arkanosis/.Xmodmap:
   file.symlink:

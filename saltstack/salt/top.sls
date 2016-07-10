@@ -1,6 +1,7 @@
 base:
   '*':
     - ssh
+    - xorg
     - zsh
 
     - users
@@ -9,12 +10,14 @@ base:
     - match: grain
     - intel_gpu
 
+ 'os_family:Arch':
+    - awesome
+
   'os_family:Debian':
 #    - android
 #    - apache2
     - aptitude
     - arkonf
-#    - awesome
     - backup
     - bio
     - build
@@ -64,7 +67,6 @@ base:
     - vim
     - vm
     - wammu
-    - xorg
     - xpra
 
   'Edelweiss':

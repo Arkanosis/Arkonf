@@ -4,7 +4,7 @@ ssh_pkgs:
   pkg.installed:
     - pkgs:
       - libpam-google-authenticator
-{% if grains['os_family' == 'Arch' %}
+{% if grains['os_family'] == 'Arch' %}
       - openssh
 {% else %}
       - openssh-server
