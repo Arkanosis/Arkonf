@@ -1,7 +1,13 @@
 base:
   '*':
+    - zsh
+
+    - users
+
+  'os_family:Debian':
 #    - android
 #    - apache2
+    - aptitude
     - arkonf
 #    - awesome
     - backup
@@ -56,12 +62,6 @@ base:
     - wammu
     - xorg
     - xpra
-    - zsh
-
-    - users
-
-  'os_family:Debian':
-    - aptitude
 
   'Edelweiss':
     - fstab
