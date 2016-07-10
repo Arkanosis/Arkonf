@@ -1,5 +1,6 @@
 base:
   '*':
+    - fstab
     - ssh
     - xorg
     - zsh
@@ -68,6 +69,3 @@ base:
     - vm
     - wammu
     - xpra
-
-  'Edelweiss':
-    - fstab
