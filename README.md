@@ -10,7 +10,7 @@ Arkonf is system configuration including:
 
 This will only install configuration files for the current user.
 
-```
+```sh
 cd
 git clone https://github.com/Arkanosis/Arkonf.git
 cd Arkonf
@@ -23,7 +23,7 @@ This is the prefered way to install the full Arkonf (including packages).
 
 ### On Arch Linux
 
-```
+```sh
 pacman -S salt-raet openssh openbsd-netcat git
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
@@ -38,7 +38,7 @@ pacman -Syu
 
 ### On Kubuntu
 
-```
+```sh
 apt-get install salt-minion
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
