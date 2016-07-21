@@ -1,6 +1,10 @@
 base:
   '*':
+    - arkonf
+    - emacs
+    - network
     - fstab
+    - monitoring
     - ssh
     - xorg
     - zsh
@@ -11,14 +15,13 @@ base:
     - match: grain
     - intel_gpu
 
- 'os_family:Arch':
+  'os_family:Arch':
     - awesome
 
   'os_family:Debian':
 #    - android
 #    - apache2
     - aptitude
-    - arkonf
     - backup
     - bio
     - build
@@ -28,7 +31,6 @@ base:
     - crypto
     - curl
     - dot
-    - emacs
     - etckeeper
     - filezilla
     - firefox
@@ -43,9 +45,7 @@ base:
     - lsb
     - mail
     - media
-    - monitoring
 #    - mysql-server
-    - network
     - nginx
     - nfs
     - pass

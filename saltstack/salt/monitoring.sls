@@ -1,21 +1,13 @@
 # TODO FIXME JRDS
 
-dstat:
-  pkg:
-    - latest
-
-glances:
-  pkg:
-    - latest
-
-htop:
-  pkg:
-    - latest
-
-libncursesw5-dev:
-  pkg:
-    - latest
-
-sysstat:
-  pkg:
-    - latest
+monitoring_pkgs:
+  pkg.installed:
+    - pkgs:
+      - dstat
+      - glances
+      - htop
+{% if grains['os_family'] != 'Arch' %}
+      - libncursesw5-dev
+{% endif %}
+      - sysstat
+      - strace

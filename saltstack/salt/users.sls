@@ -4,8 +4,15 @@
 # TODO use ecryptfs for home directories
 
 include:
+{% if grains['os_family'] != 'Arch' %}
   - containers
+{% endif %}
   - zsh
+
+users_pkg:
+  pkg.installed:
+    - pkgs:
+      - sudo
 
 famille:
   group.present:
@@ -33,13 +40,17 @@ arkanosis:
     - uid: 1000
     - gid: 1000
     - groups:
+{% if grains['os_family'] != 'Arch' %}
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
+{% endif %}
       - famille
       - amis
     - remove_groups: False
     - require:
+{% if grains['os_family'] != 'Arch' %}
       - pkg: docker.io
+{% endif %}
       - pkg: zsh
   group.present:
     - gid: 1000
