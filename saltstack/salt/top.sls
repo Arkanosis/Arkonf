@@ -6,6 +6,7 @@ base:
     - fstab
     - monitoring
     - ssh
+    - vcs
     - xorg
     - zsh
 
@@ -67,7 +68,6 @@ base:
     - sysvbanner
     - term
     - utilities
-    - vcs
     - vim
     - vm
     - wammu

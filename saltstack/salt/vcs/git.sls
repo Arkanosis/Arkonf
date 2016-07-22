@@ -1,18 +1,12 @@
-git:
-  pkg:
-    - latest
-
-git-review:
-  pkg:
-    - latest
-
-git-svn:
-  pkg:
-    - latest
-
-tig:
-  pkg:
-    - latest
+git_pkgs:
+  pkg.installed:
+    - pkgs:
+      - git
+      - git-review
+{% if grains['os_family'] != 'Arch' %}
+      - git-svn
+{% endif %}
+      - tig
 
 /home/arkanosis/.gitconfig:
   file.symlink:
