@@ -11,14 +11,17 @@ base:
 
     - users
 
-  'gpus:vendor:intel':
+  'P@host:(marvin|taz)':
+    - touchpad
+
+  'G@gpus:vendor:intel':
     - match: grain
     - intel_gpu
 
-  'os_family:Arch':
+  'G@os_family:Arch':
     - awesome
 
-  'os_family:Debian':
+  'G@os_family:Debian':
 #    - android
 #    - apache2
     - aptitude
