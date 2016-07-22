@@ -1,14 +1,15 @@
-rxvt-unicode-256color:
-  pkg:
-    - latest
-
-tmux:
-  pkg:
-    - latest
-
-yakuake:
-  pkg:
-    - latest
+term_pkgs:
+  pkg.installed:
+    - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - rxvt-unicode
+{% else %}
+      - rxvt-unicode-256color
+{% endif %}
+      - tmux
+{% if grains['os_family'] != 'Arch' %}
+      - yakuake
+{% endif %}
 
 /usr/bin/zmux:
   file.managed:

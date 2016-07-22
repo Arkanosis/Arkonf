@@ -1,3 +1,0 @@
-unrar:
-  pkg:
-    - latest

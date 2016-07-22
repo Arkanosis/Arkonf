@@ -1,3 +1,0 @@
-chromium-browser:
-  pkg:
-    - latest

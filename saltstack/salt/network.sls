@@ -1,6 +1,7 @@
 network_pkgs:
   pkg.installed:
     - pkgs:
+      - curl
       - iftop
 {% if grains['os_family'] != 'Arch' %}
       - iptables-persistent

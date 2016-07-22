@@ -1,39 +1,17 @@
-darktable:
-  pkg:
-    - latest
-
-jhead:
-  pkg:
-    - latest
-
-gimp:
-  pkg:
-    - latest
-
-gimp-help-fr:
-  pkg:
-    - latest
-
-gimp-plugin-registry:
-  pkg:
-    - latest
-
-hugin:
-  pkg:
-    - latest
-
-imagemagick:
-  pkg:
-    - latest
-
-inkscape:
-  pkg:
-    - latest
-
-kipi-plugins:
-  pkg:
-    - latest
-
-rawtherapee:
-  pkg:
-    - latest
+image_pkgs:
+  pkg.installed:
+    - pkgs:
+      - darktable
+      - jhead
+      - gimp
+      - gimp-help-fr
+{% if grains['os_family'] != 'Arch' %}
+      - gimp-plugin-registry
+{% endif %}
+      - hugin
+      - imagemagick
+      - inkscape
+{% if grains['os_family'] != 'Arch' %}
+      - kipi-plugins
+{% endif %}
+      - rawtherapee

@@ -1,12 +1,18 @@
 base:
   '*':
     - arkonf
+    - compression
+    - crypto
     - emacs
-    - network
     - fstab
+    - image
+    - libreoffice
     - monitoring
+    - network
     - ssh
+    - term
     - vcs
+    - webbrowser
     - xorg
     - zsh
 
@@ -29,23 +35,16 @@ base:
     - backup
     - bio
     - build
-    - chromium
-    - compression
     - containers
-    - crypto
-    - curl
     - dot
     - etckeeper
     - filezilla
-    - firefox
     - g++
 #    - gtalk
-    - image
     - irc
     - java
     - kde
     - kdiff3
-    - libreoffice
     - lsb
     - mail
     - media
@@ -66,7 +65,6 @@ base:
     - sqlite
 #    - synergy
     - sysvbanner
-    - term
     - utilities
     - vim
     - vm
