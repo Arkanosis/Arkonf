@@ -7,3 +7,4 @@ compression_pkgs:
       - p7zip-full
 {% endif %}
       - unrar
+      - unzip
