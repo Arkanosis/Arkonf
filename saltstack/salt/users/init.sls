@@ -44,6 +44,7 @@ arkanosis:
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
 {% endif %}
+      - wheel
       - famille
       - amis
     - remove_groups: False
@@ -118,3 +119,13 @@ albinou_a:
     - members:
       - arkanosis
       - albinou
+
+/etc/sudoers:
+  file.managed:
+    - source: salt://users/sudoers
+    - user: root
+    - group: root
+    - mode: 440
+    - check-cmd: /usr/sbin/visudo -c -f
+    - require:
+      - pkg: users_pkg
