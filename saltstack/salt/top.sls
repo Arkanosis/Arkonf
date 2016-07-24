@@ -1,6 +1,7 @@
 base:
   '*':
     - arkonf
+    - compile
     - compression
     - crypto
     - emacs
@@ -9,6 +10,7 @@ base:
     - libreoffice
     - monitoring
     - network
+    - space
     - ssh
     - term
     - vcs
@@ -22,7 +24,6 @@ base:
     - touchpad
 
   'G@gpus:vendor:intel':
-    - match: grain
     - intel_gpu
 
   'G@os_family:Arch':
@@ -34,12 +35,10 @@ base:
     - aptitude
     - backup
     - bio
-    - build
     - containers
     - dot
     - etckeeper
     - filezilla
-    - g++
 #    - gtalk
     - irc
     - java
@@ -61,7 +60,6 @@ base:
     - ruby
     - sound
     - search
-    - space
     - sqlite
 #    - synergy
     - sysvbanner
