@@ -8,6 +8,7 @@ network_pkgs:
 {% endif %}
       #- knemo
       - nethogs
+      - rsync
       - traceroute
       - wget
       - whois

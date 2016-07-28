@@ -9,5 +9,6 @@ monitoring_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - libncursesw5-dev
 {% endif %}
+      - lsof
       - sysstat
       - strace
