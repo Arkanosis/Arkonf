@@ -7,11 +7,19 @@ include:
 {% if grains['os_family'] != 'Arch' %}
   - containers
 {% endif %}
+  - monitoring
+  - network
   - zsh
 
-users_pkg:
+users_mods:
+  kmod.present:
+    - mods:
+      - ecryptfs
+
+users_pkgs:
   pkg.installed:
     - pkgs:
+      - ecryptfs-utils
       - sudo
 
 famille:
@@ -34,7 +42,7 @@ sshbridge:
 
 arkanosis:
   user.present:
-    #- fullname: "Jérémie Roquet"
+    #- fullname: 'Jérémie Roquet'
     - shell: /usr/bin/zsh
     - home: /home/arkanosis
     - uid: 1000
@@ -55,6 +63,15 @@ arkanosis:
       - pkg: zsh
   group.present:
     - gid: 1000
+
+/home/.ecryptfs/arkanosis:
+  cmd.run:
+    - name: '! echo "Please run as root and then login: passwd arkanosis; ps -u arkanosis && ecryptfs-migrate-home -u arkanosis"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+      - user: arkanosis
+    - unless: test -d /home/.ecryptfs/arkanosis
 
 snad:
   user.present:
@@ -77,9 +94,18 @@ snad_a:
       - arkanosis
       - snad
 
+/home/.ecryptfs/snad:
+  cmd.run:
+    - name: '! echo "Please run as root and then login: passwd snad; ps -u snad && ecryptfs-migrate-home -u snad"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+      - user: snad
+    - unless: test -d /home/.ecryptfs/snad
+      
 oodna:
   user.present:
-    #- fullname: "Anne-Sophie Denommé-Pichon"
+    #- fullname: 'Anne-Sophie Denommé-Pichon'
     - shell: /usr/bin/zsh
     - home: /home/oodna
     - uid: 1201
@@ -98,6 +124,15 @@ oodna_a:
     - members:
       - arkanosis
       - oodna
+
+/home/.ecryptfs/oodna:
+  cmd.run:
+    - name: '! echo "Please run as root and then login: passwd oodna; ps -u oodna && ecryptfs-migrate-home -u oodna"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+      - user: oodna
+    - unless: test -d /home/.ecryptfs/oodna
 
 albinou:
   user.present:
@@ -120,6 +155,15 @@ albinou_a:
       - arkanosis
       - albinou
 
+/home/.ecryptfs/albinou:
+  cmd.run:
+    - name: '! echo "Please run as root and then login: passwd albinou; ps -u albinou && ecryptfs-migrate-home -u albinou"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+      - user: albinou
+    - unless: test -d /home/.ecryptfs/albinou
+
 /etc/sudoers:
   file.managed:
     - source: salt://users/sudoers
@@ -128,4 +172,13 @@ albinou_a:
     - mode: 440
     - check-cmd: /usr/sbin/visudo -c -f
     - require:
-      - pkg: users_pkg
+      - pkg: users_pkgs
+
+/etc/pam.d/system-auth:
+  file.managed:
+    - source: salt://users/system-auth
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: users_pkgs
