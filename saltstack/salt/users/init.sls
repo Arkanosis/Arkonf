@@ -14,6 +14,7 @@ include:
 users_mods:
   kmod.present:
     - mods:
+      - dm_crypt
       - ecryptfs
 
 users_pkgs:
@@ -182,3 +183,12 @@ albinou_a:
     - mode: 644
     - require:
       - pkg: users_pkgs
+
+/etc/crypttab:
+  cmd.run:
+    - name: '! echo "Please run as root: ecryptfs-setup-swap"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+    - unless: grep -q cryptswap /etc/fstab
+
