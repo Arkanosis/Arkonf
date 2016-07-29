@@ -1,25 +1,14 @@
 include:
   - python
 
-datamash:
-  pkg:
-    - latest
-
-jq:
-  pkg:
-    - latest
-
-# TODO FIXME from wily only
-#python-csvkit:
-#  pkg:
-#    - latest
-
-# TODO FIXME remove after wily
-csvkit:
-  pip.installed:
-    - require:
-      - pkg: python-pip
-
-xmlstarlet:
-  pkg:
-    - latest
+processing_pkgs:
+  pkg.installed:
+    - pkgs:
+{% if grains['os_family'] != 'Arch' %}
+      - datamash
+{% endif %}
+      - jq
+{% if grains['os_family'] != 'Arch' %}
+      - python-csvkit
+{% endif %}
+      - xmlstarlet

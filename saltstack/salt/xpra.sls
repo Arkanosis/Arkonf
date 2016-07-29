@@ -1,3 +1,0 @@
-xpra:
-  pkg:
-    - latest

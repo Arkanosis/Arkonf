@@ -5,6 +5,8 @@ xorg_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - xorg-server
       - xorg-xinit
+{% else %}
+      - xpra # TODO FIXME need it for ArchLinux as well
 {% endif %}
 
 # TODO FIXME ~/.xinitrc

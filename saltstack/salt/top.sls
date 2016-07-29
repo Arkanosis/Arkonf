@@ -10,6 +10,10 @@ base:
     - libreoffice
     - monitoring
     - network
+    - pass
+    - processing
+    - python
+    - search
     - space
     - ssh
     - term
@@ -50,16 +54,12 @@ base:
 #    - mysql-server
     - nginx
     - nfs
-    - pass
 #    - php
     - pidgin
     - publication
-    - processing
-    - python
     - remmina
     - ruby
     - sound
-    - search
     - sqlite
 #    - synergy
     - sysvbanner
@@ -67,4 +67,4 @@ base:
     - vim
     - vm
     - wammu
-    - xpra
+
