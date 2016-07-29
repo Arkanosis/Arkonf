@@ -9,7 +9,10 @@ xorg_pkgs:
       - xpra # TODO FIXME need it for ArchLinux as well
 {% endif %}
 
-# TODO FIXME ~/.xinitrc
+/home/arkanosis/.initrc:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/xorg/.xinitrc
+    - user: arkanosis
 
 /home/arkanosis/.Xmodmap:
   file.symlink:
