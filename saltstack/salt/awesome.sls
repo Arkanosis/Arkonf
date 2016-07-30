@@ -5,3 +5,8 @@ awesome_pkgs:
 {% if grains['os_family'] == 'Debian' %}
       - awesome-extra
 {% endif %}
+
+/home/arkanosis/.config/awesome:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/awesome
+    - user: arkanosis
