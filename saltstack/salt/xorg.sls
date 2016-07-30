@@ -3,11 +3,14 @@ xorg_pkgs:
     - pkgs:
       - wmctrl
 {% if grains['os_family'] == 'Arch' %}
+      - xautolock
       - xorg-server
       - xorg-xinit
 {% else %}
       - xpra # TODO FIXME need it for ArchLinux as well
 {% endif %}
+
+# AUR sxlock
 
 /home/arkanosis/.initrc:
   file.symlink:
