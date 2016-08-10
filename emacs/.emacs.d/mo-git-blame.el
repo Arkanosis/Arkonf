@@ -87,7 +87,7 @@ interactive use, e.g. the file name, current revision etc.")
   "MoGitBlame menu"
   '("MoGitBlame"
     ["Re-blame for revision at point" mo-git-blame-reblame-for-revision-at t]
-    ["Re-blame for ancestor of revision at point" mo-git-blame-reblame-for-ancestor-of-revision-at-point t]
+    ["Re-blame for ancestor of revision at point" mo-git-blame-reblame-for-ancestor-of-revision-at t]
     ["Raw content for revision at point" mo-git-blame-content-for-revision-at t]
     ["Log for revision at point" mo-git-blame-log-for-revision-at t]
     ["Overwrite file with revision at point" mo-git-blame-overwrite-file-with-revision-at t]
@@ -116,6 +116,12 @@ interactive use, e.g. the file name, current revision etc.")
   :group 'mo-git-blame
   :type 'string)
 
+(defcustom mo-git-blame-git-blame-args ""
+  "Additional arguments to pass to git blame."
+  :group 'mo-git-blame
+  :type 'string)
+
+
 (defcustom mo-git-blame-incremental t
   "Runs `git blame' in the background with the --incremental
 option if this variable is non-nil."
@@ -140,6 +146,25 @@ option if this variable is non-nil."
                  (const :tag "If available" if-available)
                  (const :tag "Never" never)))
 
+(defcustom mo-git-blame-use-magit 'if-available
+  "Controls whether or not magit will be used. Possible choices:
+
+  `never'        -- do not use magit even if it is loaded
+  `if-available' -- use magit if it has been loaded before
+  `always'       -- automatically load magit and use it"
+  :group 'mo-git-blame
+  :type '(choice (const :tag "Always" always)
+                 (const :tag "If available" if-available)
+                 (const :tag "Never" never)))
+
+(defcustom mo-git-blame-delete-other-windows nil
+  "Delete other windows before setting up the blame-window and the
+content-window if variable is non-nil."
+
+  :group 'mo-git-blame
+  :type '(choice (const :tag "Delete other windows" t)
+                 (const :tag "Don't delete other windows" nil)))
+
 ;; This function was taken from magit (called 'magit-trim-line' there).
 (defun mo-git-blame-trim-line (str)
   (cond ((string= str "")
@@ -162,17 +187,14 @@ option if this variable is non-nil."
   (mo-git-blame-trim-line (mo-git-blame-git-output args)))
 
 (defun mo-git-blame-get-top-dir (cwd)
-  (let ((cwd (expand-file-name cwd))
-        git-dir)
-    (setq git-dir
-          (or (getenv "GIT_WORK_TREE")
-              (if (file-directory-p cwd)
-                  (let* ((default-directory cwd)
-                         (dir (mo-git-blame-git-string "rev-parse" "--git-dir"))
-                         (dir (concat (or (file-remote-p cwd) "") dir))
-                         (dir (if dir (file-name-directory (expand-file-name dir)) "")))
-                    (if (and dir (file-directory-p dir))
-                        (file-name-as-directory dir))))))
+  (let* ((cwd (expand-file-name cwd))
+         (git-dir (or (getenv "GIT_WORK_TREE")
+                      (if (file-directory-p cwd)
+                          (let* ((default-directory cwd)
+                                 (dir (mo-git-blame-git-string "rev-parse" "--show-toplevel"))
+                                 (dir (concat (or (file-remote-p cwd) "") dir)))
+                            (if (and dir (file-directory-p dir))
+                                (file-name-as-directory dir)))))))
     (or git-dir
         (error "No Git repository found"))))
 
@@ -223,7 +245,7 @@ git is already/still running."
     (save-excursion
       (let ((inhibit-read-only t)
             (info (format "%s (%s %s %s) %s"
-                          (substring (symbol-name (plist-get entry :hash)) 0 8)
+                          (substring (symbol-name (plist-get entry :hash)) 0 7)
                           (plist-get entry :author)
                           (format-time-string "%Y-%m-%d %T" (mo-git-blame-commit-info-to-time entry) t)
                           (plist-get entry :author-tz)
@@ -352,13 +374,29 @@ git is already/still running."
   (interactive)
   (mo-git-blame-log-for-revision (plist-get mo-git-blame-vars :current-revision)))
 
+(defun mo-git-blame-show-revision--diff-mode (revision)
+  "Internal function that fills the current buffer with revision using diff-mode"
+  (erase-buffer)
+  (mo-git-blame-run "show" revision)
+  (goto-char (point-min))
+  (diff-mode))
+
+(defun mo-git-blame-show-revision--magit (revision)
+  "Internal function that fills the current buffer with revision using magit"
+  (let ((magit-commit-buffer-name (buffer-name)))
+    (magit-show-commit revision)))
+
 (defun mo-git-blame-show-revision (revision)
-  (let ((buffer (mo-git-blame-get-output-buffer)))
+  (let ((buffer (mo-git-blame-get-output-buffer))
+        (the-func (cond ((eq mo-git-blame-use-magit 'always)
+                         (require 'magit)
+                         'mo-git-blame-show-revision--magit)
+                        ((and (eq mo-git-blame-use-magit 'if-available)
+                              (functionp 'magit-show-commit))
+                         'mo-git-blame-show-revision--magit)
+                        (t 'mo-git-blame-show-revision--diff-mode))))
     (with-current-buffer buffer
-      (erase-buffer)
-      (mo-git-blame-run "show" revision)
-      (goto-char (point-min))
-      (diff-mode))
+      (funcall the-func revision))
     (display-buffer buffer)))
 
 (defun mo-git-blame-show-revision-at ()
@@ -495,6 +533,9 @@ option. Otherwise the whole file is blamed."
       (goto-char (point-max))
       (line-number-at-pos))))
 
+(defvar mo-git-blame-mode-hook nil
+  "Mode hook.")
+
 (defun mo-git-blame-mode ()
   "Show the output of 'git blame' and the content of the file in
 two frames side-by-side. Allows iterative re-blaming for specific
@@ -510,7 +551,13 @@ from elisp.
         mode-name "MoGitBlame"
         mode-line-process ""
         truncate-lines t)
-  (use-local-map mo-git-blame-mode-map))
+  (use-local-map mo-git-blame-mode-map)
+  (run-hooks 'mo-git-blame-mode-hook))
+
+(defun mo-git-blame--make-args (args)
+  (delete ""
+          (append (list mo-git-blame-git-blame-args)
+                  args)))
 
 (defun mo-git-blame-run-blame-normally (start-line lines-to-blame)
   (let* ((num-content-lines (mo-git-blame-number-of-content-lines))
@@ -527,7 +574,7 @@ from elisp.
     (if start-line
         (setq args (append (list "-L" (format "%d,+%d" start-line lines-to-blame))
                            args)))
-    (apply 'mo-git-blame-run "blame" args)
+    (apply 'mo-git-blame-run "blame" (mo-git-blame--make-args args))
 
     (if num-lines-to-append
         (dotimes (i num-lines-to-append)
@@ -535,7 +582,7 @@ from elisp.
 
 (defun mo-git-blame-run-blame-incrementally (start-line lines-to-blame)
   (let* ((num-content-lines (mo-git-blame-number-of-content-lines))
-         i)
+         i args)
     (dotimes (i (1- num-content-lines))
       (insert "\n"))
 
@@ -544,7 +591,7 @@ from elisp.
         (setq args (append (list "-L" (format "%d,+%d" start-line lines-to-blame))
                            args)))
     (mo-git-blame-assert-not-running)
-    (apply 'mo-git-blame-run* "blame" args)))
+    (apply 'mo-git-blame-run* "blame" (mo-git-blame--make-args args))))
 
 (defun mo-git-blame-init-blame-buffer (start-line lines-to-blame)
   (if mo-git-blame-incremental
@@ -642,8 +689,12 @@ blamed."
                 (cons (list :full-file-name (plist-get prior-vars :full-file-name)
                             :revision (plist-get prior-vars :current-revision))
                       prior-revisions))))
+    (when mo-git-blame-delete-other-windows
+      (delete-other-windows-internal))
     (if (window-full-width-p)
-        (split-window-horizontally mo-git-blame-blame-window-width))
+        (split-window-horizontally mo-git-blame-blame-window-width)
+      (shrink-window-horizontally (- (window-width)
+                                     mo-git-blame-blame-window-width)))
     (select-window (setq content-window (next-window)))
     (switch-to-buffer content-buffer)
     (select-window blame-window)
@@ -757,7 +808,15 @@ blamed."
   (interactive)
   (if (null (buffer-file-name))
       (error "The current buffer is not associated with a file."))
-  (mo-git-blame-file (buffer-file-name)))
+  (mo-git-blame-file (file-truename (buffer-file-name))))
+
+;;;###autoload
+(defun mo-git-blame-current-for-revision (revision)
+  "Calls `mo-git-blame-file' for `revision' for the current buffer."
+  (interactive "sRevision: ")
+  (if (null (buffer-file-name))
+      (error "The current buffer is not associated with a file."))
+  (mo-git-blame-file (file-truename (buffer-file-name)) revision))
 
 (provide 'mo-git-blame)
 
