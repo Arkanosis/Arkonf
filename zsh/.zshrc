@@ -1,7 +1,7 @@
 # "-*- sh -*-"
 
 #  ZSH configuration
-#  (C) 2007-2015 - Jérémie Roquet
+#  (C) 2007-2016 - Jérémie Roquet
 #  jroquet@arkanosis.net
 
 if [ "$HOST" != 'gate-ssh' ]; then
@@ -26,18 +26,18 @@ if [ "$HOST" != 'gate-ssh' ]; then
     source ./zshrc
 
     case $HOST in
-	reddev0(0|1)4|(ng|tc)dev00(2|3)|nglqa021.paris.exalead.com)
-	    source ./exalead
-	    export PATH=$PATH:s/Linux-x86_64/RedHat/
-	;;
 	redsol*|tcsol*)
 	    source ./exalead
 	    NO_VCS_INFO=True
 	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
 	    export LD_LIBRARY_PATH=/opt/csw/lib:$LD_LIBRARY_PATH
 	;;
-	mad*|reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|local_Linux-x86_64)
+	reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|nglqa*|lxc*|local_Linux-x86_64)
 	    source ./exalead
+	    if lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
+		export PATH=/udir/jroquet/local_RedHat/bin:$PATH
+		export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
+	    fi
 	;;
     esac
 
@@ -51,4 +51,4 @@ else
     exit
 fi
 
-# Garder un ligne vide a la fin, sinon la derniere commande n'est pas executee
+# Garder une ligne vide a la fin, sinon la derniere commande n'est pas executee
