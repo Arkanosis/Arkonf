@@ -248,6 +248,14 @@ If region contains less than 2 lines, lines are left untouched."
 
 (require 'use-package)
 
+(use-package fiplr
+  :config
+  (setq fiplr-root-markers '(".git" ".svn"))
+  (setq fiplr-ignored-globs '(
+    (directories (".git" ".svn" "bin" "generated" "python-cache" "scripts"))
+    (files ("*.class" "*.bak" "*.pyc" "*.log"))))
+  (global-set-key (kbd "C-x f") 'fiplr-find-file))
+
 (use-package linum
   :config
   (global-linum-mode t))
