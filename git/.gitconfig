@@ -10,7 +10,7 @@ df = diff
 b = branch
 ci = commit -a
 co = checkout
-lg = log --graph --pretty=format:'%C(auto)%h — %s %d\nAuthored: %ad (%ar) — %an <%ae>\nCommited: %cd (%cr) — %cn <%ce> (%G?)\n\n%b%Creset'
+lg = log --graph
 unadd = reset HEAD
 uncommit = reset --soft HEAD^
 
