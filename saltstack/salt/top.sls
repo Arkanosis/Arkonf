@@ -4,10 +4,10 @@ base:
     - compile
     - compression
     - crypto
+    - document
     - emacs
     - fstab
     - image
-    - libreoffice
     - monitoring
     - network
     - pass
