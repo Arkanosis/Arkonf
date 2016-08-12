@@ -297,6 +297,10 @@ If region contains less than 2 lines, lines are left untouched."
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (ac-config-default))
 
+(use-package rtags
+  :config
+  (global-set-key  [(meta v)] 'rtags-find-symbol-at-point))
+
 (use-package mediawiki
   :config
   (custom-set-variables
