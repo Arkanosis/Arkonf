@@ -20,7 +20,7 @@ syndaemon -t -K -R -i .5 -d
 emacs --daemon=emacsconsole &
 
 # Lock
-xautolock -time 60 -locker 'sxlock -l' &
+xautolock -time 1 -locker 'sxlock -l' &
 
 # Window manager
 exec awesome
