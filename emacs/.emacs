@@ -299,7 +299,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package rtags
   :config
-  (global-set-key  [(meta v)] 'rtags-find-symbol-at-point))
+  (global-set-key  [(meta v)] 'rtags-find-symbol-at-point)
+  (global-set-key  [(meta V)] 'rtags-location-stack-back))
 
 (use-package mediawiki
   :config
