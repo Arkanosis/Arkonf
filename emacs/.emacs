@@ -430,8 +430,6 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "ESC <right>") 'windmove-right)
 (global-set-key (kbd "ESC <up>")  'windmove-up)
 (global-set-key (kbd "ESC <down>") 'windmove-down)
-(global-set-key (kbd "C-x <up>")  'iswitchb-buffer)
-(global-set-key (kbd "C-x <down>") 'iswitchb-buffer-other-window)
 (global-set-key (kbd "C-x v") 'workspace-goto)
 
 (global-set-key [(meta h)] 'switch-or-open-header)
@@ -530,7 +528,6 @@ If region contains less than 2 lines, lines are left untouched."
    		 "data")))
  )
 )
-(iswitchb-mode)
 (menu-bar-mode -1)
 (normal-erase-is-backspace-mode 0)
 (show-paren-mode t)
@@ -1011,18 +1008,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;; 			     (or (getenv "CFLAGS") "-ansi -pedantic -Wall -g")
 ;; 			     file))))))
 
-
-
-(defun iswitchb-local-keys ()
-  (mapc (lambda (K)
-	  (let* ((key (car K)) (fun (cdr K)))
-	    (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
-	'(("<right>" . iswitchb-next-match)
-	  ("<left>"  . iswitchb-prev-match)
-	  ("<up>"    . ignore             )
-	  ("<down>"  . ignore             ))))
-
-(add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 
 (defun oa()
   (interactive)
