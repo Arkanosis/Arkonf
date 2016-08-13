@@ -280,6 +280,8 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.lua$")
 (use-package java-mode
   :mode "\\.\\(java\\|jj\\)$")
+(use-package rust-mode
+  :mode "\\.rs$")
 (use-package csharp-mode
   :config
   (use-package flymake)
@@ -288,6 +290,8 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.\\(xsd\\|xul\\)$")
 (use-package yaml-mode
   :mode "\\.\\(sls\\|yml\\)$")
+(use-package toml-mode
+  :mode "\\.\\(toml\\|tml\\)$")
 (use-package hexl-mode
   :mode "\\.bin$")
 (use-package ellql-mode
