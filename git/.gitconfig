@@ -32,6 +32,9 @@ gpgsign = true
 [diff]
 tool = vimdiff
 
+[gitreview]
+remote = origin
+
 [log]
 decorate = full
 
