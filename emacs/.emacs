@@ -269,6 +269,8 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package markdown-mode
   :mode "\\.md$")
 (use-package js2-mode
+  :config
+  (use-package js2-imenu-extras)
   :mode "\\.jsm?$")
 (use-package python
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
