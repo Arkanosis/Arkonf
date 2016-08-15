@@ -16,7 +16,7 @@ function countdown() {
 	left=$((end - now))
 	clear
 	repeat 10 echo
-	banner -C -w $COLUMNS $(date -d "@$left" "+%M : %S")
+	banner -C -w $COLUMNS $(date -d "@$((left - 3600))" "+%k : %M : %S")
 	(( left > 0 )) || break
 	sleep 1
     done
