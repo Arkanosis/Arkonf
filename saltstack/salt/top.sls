@@ -1,6 +1,7 @@
 base:
   '*':
     - arkonf
+    - banner
     - compile
     - compression
     - crypto
@@ -63,7 +64,6 @@ base:
     - sound
     - sqlite
 #    - synergy
-    - sysvbanner
     - utilities
     - vim
     - vm
