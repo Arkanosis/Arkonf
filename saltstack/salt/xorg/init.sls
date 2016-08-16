@@ -6,6 +6,7 @@ xorg_pkgs:
       - xautolock
       - xorg-server
       - xorg-xinit
+      - xorg-xinput
       - xorg-xrandr
 {% else %}
       - xpra # TODO FIXME need it for ArchLinux as well
