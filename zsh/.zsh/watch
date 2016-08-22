@@ -3,3 +3,21 @@
 watch=(notme)
 LOGCHECK=60
 WATCHFMT='%n %a %l from %m at %t.'
+
+function countdown() {
+    local end now left
+    if ((# < 1)); then
+        echo 'Usage: countdown <time>' >&2
+	return 1
+    fi
+    end=$(date -d "$*" +%s)
+    for ((; ; )); do
+	now=$(date +%s)
+	left=$((end - now))
+	clear
+	repeat 10 echo
+	banner -C -w $COLUMNS $(date -d "@$((left - 3600))" "+%k : %M : %S")
+	(( left > 0 )) || break
+	sleep 1
+    done
+}

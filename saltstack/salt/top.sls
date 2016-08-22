@@ -1,13 +1,14 @@
 base:
   '*':
     - arkonf
+    - banner
     - compile
     - compression
     - crypto
+    - document
     - emacs
     - fstab
     - image
-    - libreoffice
     - monitoring
     - network
     - pass
@@ -63,7 +64,6 @@ base:
     - sound
     - sqlite
 #    - synergy
-    - sysvbanner
     - utilities
     - vim
     - vm

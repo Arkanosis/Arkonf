@@ -7,7 +7,7 @@ function fx()
 	return 1
     else
 	for i; do
-	    firefox `pwd`/$i
+	    firefox "$(pwd)/$i"
 	done
     fi
 }

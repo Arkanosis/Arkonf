@@ -26,6 +26,11 @@ if [ "$HOST" != 'gate-ssh' ]; then
     source ./zshrc
 
     case $HOST in
+	marvin)
+	    if [[ $TERM = linux ]]; then
+		setfont /usr/share/kbd/consolefonts/sun12x22.psfu.gz
+	    fi
+	;;
 	redsol*|tcsol*)
 	    source ./exalead
 	    NO_VCS_INFO=True

@@ -1,3 +1,0 @@
-sysvbanner:
-  pkg:
-    - latest
