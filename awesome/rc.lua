@@ -64,8 +64,6 @@ local layouts =
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -83,7 +81,9 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
+tags[1] = awful.tag({ "web", "code 1", "code 2", "code 3" }, 1, awful.layout.suit.tile)
+tags[2] = awful.tag({ "mail", "code A", "code B", "code C" }, 2, awful.layout.suit.tile)
+for s = 3, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
