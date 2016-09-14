@@ -81,8 +81,8 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-tags[1] = awful.tag({ "web", "code 1", "code 2", "code 3" }, 1, awful.layout.suit.tile)
-tags[2] = awful.tag({ "mail", "code A", "code B", "code C" }, 2, awful.layout.suit.tile)
+tags[1] = awful.tag({ "web", "code 1", "code 2", "code 3", "code 4" }, 1, awful.layout.suit.tile)
+tags[2] = awful.tag({ "mail", "code A", "code B", "code C", "code D" }, 2, awful.layout.suit.tile)
 for s = 3, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
