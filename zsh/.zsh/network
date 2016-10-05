@@ -16,3 +16,8 @@ function kb()
     killall hts 2> /dev/null
     hts -F localhost:12678 10000
 }
+
+function eip()
+{
+    curl ipinfo.io
+}
