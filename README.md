@@ -36,10 +36,10 @@ salt-call --local state.highstate
 pacman -Syu
 ```
 
-### On Kubuntu
+### On Debian and Kubuntu
 
 ```sh
-apt-get install salt-minion
+apt install salt-minion git
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
@@ -47,17 +47,18 @@ cd /root
 git clone git@github.com:Arkanosis/Arkonf.git
 ln -s /root/Arkonf/saltstack /srv
 sed -i 's/.*file_client:.*/file_client: local/' /etc/salt/minion
+apt update
 salt-call state.highstate
-aptitude update && aptitude full-upgrade
+apt upgrade
 ```
 
 ## Copyright
 
-Copyright 2001-2015 – Jérémie Roquet <jroquet@arkanosis.net>
+Copyright 2001-2016 – Jérémie Roquet <jroquet@arkanosis.net>
 
 All code except code written by third-parties released under the MIT License.
 
 ## Links
 
-* http://arkanosis.net/
-* http://github.com/Arkanosis/Arkonf
+* https://arkanosis.net/
+* https://github.com/Arkanosis/Arkonf
