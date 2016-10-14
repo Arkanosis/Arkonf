@@ -121,6 +121,33 @@
   >    "System.err.println(" _ ");"
 )
 
+;; Pour Python
+(define-skeleton pmain-skel "" nil
+  "#! /usr/bin/env python3\n"
+  "\n"
+  "import os\n"
+  "import sys\n"
+  "\n"
+  "if __name__ == '__main__':\n"
+  "    if len(sys.argv) != 2:\n"
+  "        print('Usage: {}'.format(sys.argv[0].rsplit(os.sep, 1)[-1]), file=sys.stderr)\n"
+  "        sys.exit(1)\n"
+  "\n"
+  "    with open(sys.argv[1], 'r') as input_file:\n"
+  "        pass\n"
+)
+
+(define-skeleton pdef-skel "" nil
+  >    "def " _ "():\n"
+  >    "pass"
+  )
+
+(define-skeleton pclass-skel "" nil
+  >    "class " _ ":\n"
+  >    "def __init__(self):\n"
+  >    "pass"
+)
+
 (define-abbrev-table 'c++-mode-abbrev-table '(
   ("vva" "\" <<  << \"" nil 0)
 
@@ -178,6 +205,12 @@
 
 (define-abbrev-table 'shell-mode-abbrev-table '(
   (";fu" "function ()\n{\n\n}" nil 0)
+  ))
+
+(define-abbrev-table 'python-mode-abbrev-table '(
+  ("mmain" "" pmain-skel 0)
+  ("ddef" "" pdef-skel 0)
+  ("cclass" "" pclass-skel 0)
 ))
 
 (define-abbrev-table 'global-abbrev-table '(

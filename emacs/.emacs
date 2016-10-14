@@ -273,6 +273,9 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package js2-imenu-extras)
   :mode "\\.jsm?$")
 (use-package python
+  :config
+  (add-hook 'python-mode-hook
+	    (lambda () (setq abbrev-mode t)))
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
 (use-package php-mode
   :mode "\\.php[0-9]?$")
