@@ -22,5 +22,8 @@ emacs --daemon=emacsconsole &
 # Lock
 xautolock -time 1 -locker 'sxlock -l' &
 
+# SSH agent
+eval $(ssh-agent)
+
 # Window manager
 exec awesome
