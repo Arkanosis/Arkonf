@@ -24,7 +24,7 @@ This is the prefered way to install the full Arkonf (including packages).
 ### On Arch Linux
 
 ```sh
-pacman -S salt-raet openssh openbsd-netcat git
+pacman -S salt openssh openbsd-netcat git
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
