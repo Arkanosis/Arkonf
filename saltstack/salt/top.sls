@@ -7,6 +7,7 @@ base:
     - crypto
     - document
     - emacs
+    - etckeeper
     - fstab
     - image
     - monitoring
@@ -43,7 +44,6 @@ base:
     - bio
     - containers
     - dot
-    - etckeeper
     - filezilla
 #    - gtalk
     - irc
