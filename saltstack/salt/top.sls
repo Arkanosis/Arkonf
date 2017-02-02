@@ -19,6 +19,7 @@ base:
     - space
     - ssh
     - term
+    - usb
     - vcs
     - webbrowser
     - xorg
