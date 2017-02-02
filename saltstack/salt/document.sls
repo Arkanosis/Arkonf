@@ -15,4 +15,6 @@ document_pkgs:
       - libreoffice
       - okular
 {% endif %}
- 
+  pkg.absent:
+    - pkgs
+       - nano
