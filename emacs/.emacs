@@ -488,7 +488,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (defun terminal-init-screen-256color ()
   (load "term/xterm")
-  (xterm-register-default-colors xterm-standard-colors)
+  (if (version< emacs-version "25")
+    (xterm-register-default-colors)
+    (xterm-register-default-colors xterm-standard-colors))
   (tty-set-up-initial-frame-faces))
 
 (use-package uniquify
