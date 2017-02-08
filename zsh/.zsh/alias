@@ -27,6 +27,13 @@ function gdb()
     command gdb -q $@
 }
 
+function jdb()
+{
+    local jdbpath
+    jdbpath=$(sed -n 's@^\(.*/bin/\)java.*@\1@p' /proc/$1/cmdline)
+    command $jdbpath/jdb -connect sun.jvm.hotspot.jdi.SAPIDAttachingConnector:pid=$1 $@[2,-1]
+}
+
 function sc()
 {
     screen $@
