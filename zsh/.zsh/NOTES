@@ -107,3 +107,6 @@ Sous TSClient :
 Sous SSH :
  - entrée, ~, . pour quitter ssh
  - entrée, ~, ctrl+z pour suspendre ssh
+
+
+Sortir de qemu: ctrl+a x
