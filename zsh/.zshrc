@@ -37,7 +37,7 @@ if [ "$HOST" != 'gate-ssh' ]; then
 	    export PATH=/opt/csw/bin:/opt/sfw/bin:/ng/sdk/tools/devenv/bin:/ng/bin:/bin:/usr/bin:$PATH
 	    export LD_LIBRARY_PATH=/opt/csw/lib:$LD_LIBRARY_PATH
 	;;
-	reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|nglqa*|lxc*|local_Linux-x86_64)
+	reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|nglqa*|nglapo*|lxc*|local_Linux-x86_64)
 	    source ./exalead
 	    if lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
 		export PATH=/udir/jroquet/local_RedHat/bin:$PATH
