@@ -165,6 +165,29 @@ albinou_a:
       - user: albinou
     - unless: test -d /home/.ecryptfs/albinou
 
+guest:
+  user.present:
+    #- fullname: 'Guest'
+    - shell: /usr/bin/zsh
+    - home: /home/guest
+    - uid: 1900
+    - gid: 1900
+    - groups:
+    - remove_groups: False
+    - require:
+      - pkg: zsh
+  group.present:
+    - gid: 1900
+
+/home/.ecryptfs/guest:
+  cmd.run:
+    - name: '! echo "Please run as root and then login: passwd guest; ps -u guest && ecryptfs-migrate-home -u guest"'
+    - require:
+      - kmod: users_mods
+      - pkg: users_pkgs
+      - user: guest
+    - unless: test -d /home/.ecryptfs/guest
+
 /etc/sudoers:
   file.managed:
     - source: salt://users/sudoers
