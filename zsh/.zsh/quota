@@ -59,3 +59,7 @@ function sz()
 	du -hs $@
     fi
 }
+
+function dfc() {
+    command dfc -dsTwW $@
+}
