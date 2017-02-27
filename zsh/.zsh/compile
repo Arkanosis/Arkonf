@@ -112,6 +112,8 @@ function cf()
     ./configure $@
 }
 
+export MAKEFLAGS="-j $(grep -c '^processor' /proc/cpuinfo)"
+
 function m()
 {
     make $@ | colorizeGCC
