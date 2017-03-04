@@ -10,6 +10,7 @@ base:
     - emacs
     - etckeeper
     - fstab
+    - kdiff3
     - image
     - monitoring
     - network
@@ -50,7 +51,6 @@ base:
     - irc
     - java
     - kde
-    - kdiff3
     - lsb
     - mail
     - media

@@ -1,3 +1,6 @@
-kdiff3:
-  pkg:
-    - latest
+kdiff3_pkgs:
+  pkg.installed:
+    - pkgs:
+      - kdiff3
+
+
