@@ -2,6 +2,7 @@ base:
   '*':
     - arkonf
     - banner
+    - containers
     - compile
     - compression
     - crypto
@@ -43,7 +44,6 @@ base:
     - aptitude
     - backup
     - bio
-    - containers
     - dot
     - filezilla
 #    - gtalk

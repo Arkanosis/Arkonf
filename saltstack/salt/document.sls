@@ -15,6 +15,8 @@ document_pkgs:
       - libreoffice
       - okular
 {% endif %}
-  pkg.absent:
-    - pkgs
-       - nano
+
+document_pkgs_removed: # https://github.com/saltstack/salt/issues/35592
+  pkg.removed:
+    - pkgs:
+      - nano

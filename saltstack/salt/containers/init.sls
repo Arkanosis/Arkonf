@@ -1,10 +1,10 @@
-docker.io:
-  pkg:
-    - latest
-
-lxc:
-  pkg:
-    - latest
+containers_pkg:
+  pkg.installed:
+    - pkgs:
+{% if grains['os_family'] != 'Arch' %}
+      -  docker.io
+{% endif %}
+      - lxc
 
 /etc/lxc/lxc-usernet:
   file.managed:
