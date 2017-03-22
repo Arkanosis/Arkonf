@@ -11,6 +11,16 @@ XTerm.saveLines: 1024
 ! (U)Rxvt
 !!!!!!!!!!!!!!!!!!!!!!!!
 Rxvt.font: xft:DejaVu Sans Mono:pixelsize=12:antialias=true
+Rxvt.keysym.M-1: command:\033]710;xft:DejaVu Sans Mono:pixelsize=10:antialias=true\007
+Rxvt.keysym.M-2: command:\033]710;xft:DejaVu Sans Mono:pixelsize=12:antialias=true\007
+Rxvt.keysym.M-3: command:\033]710;xft:DejaVu Sans Mono:pixelsize=14:antialias=true\007
+Rxvt.keysym.M-4: command:\033]710;xft:DejaVu Sans Mono:pixelsize=16:antialias=true\007
+Rxvt.keysym.M-5: command:\033]710;xft:DejaVu Sans Mono:pixelsize=20:antialias=true\007
+Rxvt.keysym.M-6: command:\033]710;xft:DejaVu Sans Mono:pixelsize=24:antialias=true\007
+Rxvt.keysym.M-7: command:\033]710;xft:DejaVu Sans Mono:pixelsize=28:antialias=true\007
+Rxvt.keysym.M-8: command:\033]710;xft:DejaVu Sans Mono:pixelsize=34:antialias=true\007
+Rxvt.keysym.M-9: command:\033]710;xft:DejaVu Sans Mono:pixelsize=40:antialias=true\007
+Rxvt.keysym.M-equal: command:\033]710;xft:DejaVu Sans Mono:pixelsize=12:antialias=true\007
 Rxvt.letterSpace: -1
 Rxvt.background: #000000
 Rxvt.foreground: #ffffff
