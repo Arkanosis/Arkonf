@@ -14,5 +14,3 @@ autoload -U zed
 setopt equals
 
 setopt noclobber
-
-#setopt warncreateglobal

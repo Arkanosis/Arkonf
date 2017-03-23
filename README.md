@@ -54,7 +54,7 @@ apt upgrade
 
 ## Copyright
 
-Copyright 2001-2016 – Jérémie Roquet <jroquet@arkanosis.net>
+Copyright 2001-2017 – Jérémie Roquet <jroquet@arkanosis.net>
 
 All code except code written by third-parties released under the MIT License.
 

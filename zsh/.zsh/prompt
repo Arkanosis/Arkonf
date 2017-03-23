@@ -45,7 +45,6 @@ fi
 RPROMPT='$up%(1j.[%j].) ${gray}[%T]%{$reset_color%}$down'
 RPROMPT='%(1j.[%j].) %T'
 
-# Affiche le texte, meme s'il n'y a pas de retour a la ligne
 setopt nopromptcr
 
 function xec()

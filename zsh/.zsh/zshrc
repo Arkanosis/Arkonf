@@ -1,7 +1,5 @@
 # "-*- sh -*-"
 
-pushd $0:h > /dev/null
-
 source postconf
 source arch
 source paths
@@ -48,5 +46,3 @@ source synergy
 source truecrypt
 source watch
 source zle
-
-popd > /dev/null
