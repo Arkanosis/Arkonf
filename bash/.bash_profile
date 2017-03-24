@@ -35,8 +35,6 @@ if [[ -t 0 ]]; then
 	exec tmux
     fi
 
-    if [[ -x $(which zsh) ]]; then
-	exec zsh
-    fi
+    exec $FULLSHELL
 
 fi
