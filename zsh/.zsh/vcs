@@ -197,20 +197,21 @@ function cif()
 {
     ci -F $@
 }
+
+function unci()
+{
+    git uncommit $@
+
+    update_vcs_information
+}
+
 function am() {
     ci --amend $@
 }
 
-function unci()
+function unam()
 {
-    local vcs
-
-    vcs=`whichvcs`
-    case $vcs in
-	git)
-	    git uncommit $@
-	;;
-    esac
+    git unamend $@
 
     update_vcs_information
 }
