@@ -2,6 +2,7 @@ xorg_pkgs:
   pkg.installed:
     - pkgs:
       - wmctrl
+      - xclip
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
       - xorg-server
@@ -35,4 +36,3 @@ xorg_pkgs:
   file.symlink:
     - target: /home/arkanosis/Arkonf/xorg/.Xresources
     - user: arkanosis
-
