@@ -58,6 +58,8 @@ Copyright 2001-2017 – Jérémie Roquet <jroquet@arkanosis.net>
 
 All code except code written by third-parties released under the MIT License.
 
+See the `LICENSE` file for more details.
+
 ## Links
 
 * https://arkanosis.net/
