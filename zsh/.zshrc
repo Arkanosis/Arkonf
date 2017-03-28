@@ -7,8 +7,8 @@ PROXY_PORT=''
 NNTPSERVER='news.epita.fr'
 PROMPT_COLOR='cyan'
 
-ARKONF_DIR="$HOME/Arkonf"
-ZARKONF_DIR="$ARKONF_DIR/zsh"
+ZARKONF_DIR="${${(%):-%x}:A:h}"
+ARKONF_DIR="$ZARKONF_DIR:h"
 ZARKONF_CACHE="$HOME/.zcache"
 ZARKONF_TODO="$HOME/.ztodo"
 
