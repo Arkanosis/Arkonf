@@ -39,8 +39,14 @@ remote = origin
 [log]
 decorate = full
 
+[pull]
+rebase = true
+
 [push]
 default = current
+
+[rebase]
+autoStash = true
 
 [tig]
 diff-options = --show-signature
