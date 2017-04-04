@@ -1,15 +1,8 @@
-#ardour:
-#  pkg:
-#    - latest
-
-audacity:
-  pkg:
-    - latest
-
-hydrogen:
-  pkg:
-    - latest
-
-#jackd:
-#  pkg:
-#    - latest
+sound_pkgs:
+  pkg.installed:
+    - pkgs:
+      #- ardour
+      - audacity
+      - hydrogen
+      #- jackd
+      - pavucontrol
