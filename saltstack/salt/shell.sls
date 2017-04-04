@@ -1,6 +1,8 @@
-zsh:
-  pkg:
-    - latest
+shell_pkgs:
+  pkg.installed:
+    - pkgs:
+      - shellcheck
+      - zsh
 
 /home/arkanosis/.zshrc:
   file.symlink:
@@ -11,4 +13,3 @@ zsh:
   file.symlink:
     - target: /home/arkanosis/Arkonf/zsh/.zsh
     - user: arkanosis
-

@@ -18,6 +18,7 @@ base:
     - processing
     - python
     - search
+    - shell
     - space
     - ssh
     - term
@@ -25,7 +26,6 @@ base:
     - vcs
     - webbrowser
     - xorg
-    - zsh
 
     - users
 
