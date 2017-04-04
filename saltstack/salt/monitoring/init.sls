@@ -9,6 +9,7 @@ monitoring_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - libncursesw5-dev
 {% endif %}
+      - lm-sensors
       - lsof
 #      - smartmontools
       - sysstat
