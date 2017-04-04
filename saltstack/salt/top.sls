@@ -59,6 +59,7 @@ base:
     - nfs
 #    - php
     - pidgin
+    - profile
     - publication
     - remmina
     - ruby
