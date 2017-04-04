@@ -32,8 +32,8 @@ server {
 	index index.html index.htm;
 
 	ssl on;
-	ssl_certificate /etc/nginx/ssl/taz-localhost.crt;
-	ssl_certificate_key /etc/nginx/ssl/taz-localhost.key;
+	ssl_certificate /etc/nginx/ssl/localhost.crt;
+	ssl_certificate_key /etc/nginx/ssl/localhost.key;
 
 	ssl_session_timeout 5m;
 
