@@ -1,6 +1,6 @@
 Port 12678
 
-UsePrivilegeSeparation yes
+UsePrivilegeSeparation sandbox
 
 SyslogFacility AUTH
 LogLevel VERBOSE
@@ -11,17 +11,12 @@ HostKey /etc/ssh/ssh_host_dsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
-KeyRegenerationInterval 3600
-ServerKeyBits 2048
-
-UsePAM no
-RhostsRSAAuthentication no
-IgnoreRhosts yes
+UsePAM yes
 HostbasedAuthentication no
 PasswordAuthentication no
-ChallengeResponseAuthentication no
-RSAAuthentication no
+ChallengeResponseAuthentication yes
 PubkeyAuthentication yes
+AuthenticationMethods publickey,keyboard-interactive:pam
 
 PermitRootLogin no
 PermitEmptyPasswords no
@@ -41,3 +36,6 @@ TCPKeepAlive yes
 AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
+
+Match Address 192.168.1.112,192.168.1.113,192.168.1.116
+      AuthenticationMethods publickey
