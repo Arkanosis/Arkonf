@@ -1,4 +1,4 @@
-containers_pkg:
+containers_pkgs:
   pkg.installed:
     - pkgs:
 {% if grains['os_family'] != 'Arch' %}

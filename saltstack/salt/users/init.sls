@@ -1,7 +1,7 @@
 # TODO names in UTF-8
 # TODO user emails
 # TODO user pictures (KDM)
-# TODO use ecryptfs for home directories
+# TODO guest home on tmpfs
 
 include:
 {% if grains['os_family'] != 'Arch' %}
@@ -9,18 +9,22 @@ include:
 {% endif %}
   - monitoring
   - network
-  - zsh
+  - shell
 
+{% if grains['os_family'] == 'Arch' %}
 users_mods:
   kmod.present:
     - mods:
       - dm_crypt
       - ecryptfs
+{% endif %}
 
 users_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
       - ecryptfs-utils
+{% endif %}
       - sudo
 
 famille:
@@ -53,18 +57,21 @@ arkanosis:
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
 {% endif %}
+{% if grains['os_family'] == 'Arch' %}
       - wheel
+{% endif %}
       - famille
       - amis
     - remove_groups: False
     - require:
 {% if grains['os_family'] != 'Arch' %}
-      - pkg: docker.io
+      - pkg: containers_pkgs
 {% endif %}
-      - pkg: zsh
+      - pkg: shell_pkgs
   group.present:
     - gid: 1000
 
+{% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/arkanosis:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd arkanosis; ps -u arkanosis && ecryptfs-migrate-home -u arkanosis"'
@@ -73,6 +80,7 @@ arkanosis:
       - pkg: users_pkgs
       - user: arkanosis
     - unless: test -d /home/.ecryptfs/arkanosis
+{% endif %}
 
 snad:
   user.present:
@@ -85,7 +93,7 @@ snad:
       - famille
     - remove_groups: False
     - require:
-      - pkg: zsh
+      - pkg: shell_pkgs
   group.present:
     - gid: 1101
 snad_a:
@@ -95,6 +103,7 @@ snad_a:
       - arkanosis
       - snad
 
+{% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/snad:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd snad; ps -u snad && ecryptfs-migrate-home -u snad"'
@@ -103,7 +112,8 @@ snad_a:
       - pkg: users_pkgs
       - user: snad
     - unless: test -d /home/.ecryptfs/snad
-      
+{% endif %}
+
 oodna:
   user.present:
     #- fullname: 'Anne-Sophie Denommé-Pichon'
@@ -116,7 +126,7 @@ oodna:
       - amis
     - remove_groups: False
     - require:
-      - pkg: zsh
+      - pkg: shell_pkgs
   group.present:
     - gid: 1201
 oodna_a:
@@ -126,6 +136,7 @@ oodna_a:
       - arkanosis
       - oodna
 
+{% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/oodna:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd oodna; ps -u oodna && ecryptfs-migrate-home -u oodna"'
@@ -134,6 +145,7 @@ oodna_a:
       - pkg: users_pkgs
       - user: oodna
     - unless: test -d /home/.ecryptfs/oodna
+{% endif %}
 
 albinou:
   user.present:
@@ -146,7 +158,7 @@ albinou:
       - amis
     - remove_groups: False
     - require:
-      - pkg: zsh
+      - pkg: shell_pkgs
   group.present:
     - gid: 1203
 albinou_a:
@@ -156,6 +168,8 @@ albinou_a:
       - arkanosis
       - albinou
 
+
+{% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/albinou:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd albinou; ps -u albinou && ecryptfs-migrate-home -u albinou"'
@@ -164,6 +178,7 @@ albinou_a:
       - pkg: users_pkgs
       - user: albinou
     - unless: test -d /home/.ecryptfs/albinou
+{% endif %}
 
 guest:
   user.present:
@@ -175,10 +190,11 @@ guest:
     - groups:
     - remove_groups: False
     - require:
-      - pkg: zsh
+      - pkg: shell_pkgs
   group.present:
     - gid: 1900
 
+{% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/guest:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd guest; ps -u guest && ecryptfs-migrate-home -u guest"'
@@ -187,7 +203,9 @@ guest:
       - pkg: users_pkgs
       - user: guest
     - unless: test -d /home/.ecryptfs/guest
+{% endif %}
 
+{% if grains['os_family'] == 'Arch' %}
 /etc/sudoers:
   file.managed:
     - source: salt://users/sudoers
@@ -206,7 +224,9 @@ guest:
     - mode: 644
     - require:
       - pkg: users_pkgs
+{% endif %}
 
+{% if grains['os_family'] == 'Arch' %}
 /etc/crypttab:
   cmd.run:
     - name: '! echo "Please run as root: ecryptfs-setup-swap"'
@@ -214,4 +234,4 @@ guest:
       - kmod: users_mods
       - pkg: users_pkgs
     - unless: grep -q cryptswap /etc/fstab
-
+{% endif %}
