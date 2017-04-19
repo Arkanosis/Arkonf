@@ -13,6 +13,7 @@ ssmtp:
 /etc/ssmtp/ssmtp.conf:
   file.managed:
     - source: salt://mail/ssmtp.conf
+    - template: jinja
     - mode: 640
 
 /etc/ssmtp/revaliases:
