@@ -532,6 +532,7 @@ If region contains less than 2 lines, lines are left untouched."
  (progn
    (ido-mode t)
    (setq ido-auto-merge-work-directories-length nil)
+   (setq ido-save-directory-list-file "~/.zcache/ido-last")
    (add-hook 'ido-setup-hook
    	     (lambda ()
    	       (define-key ido-completion-map
