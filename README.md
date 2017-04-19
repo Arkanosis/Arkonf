@@ -11,10 +11,8 @@ Arkonf is system configuration including:
 This will only install configuration files for the current user.
 
 ```sh
-cd
 git clone https://github.com/Arkanosis/Arkonf.git
-cd Arkonf
-./install.sh
+make -C Arkonf install
 ```
 
 ## As root
