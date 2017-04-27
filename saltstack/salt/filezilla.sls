@@ -1,3 +1,0 @@
-filezilla:
-  pkg:
-    - latest

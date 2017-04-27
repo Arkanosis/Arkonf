@@ -10,6 +10,7 @@ base:
     - emacs
     - etckeeper
     - fstab
+    - ftp
     - kdiff3
     - image
     - monitoring
@@ -46,7 +47,6 @@ base:
     - backup
     - bio
     - dot
-    - filezilla
 #    - gtalk
     - irc
     - java
