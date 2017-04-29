@@ -13,6 +13,7 @@ base:
     - ftp
     - kdiff3
     - image
+    - java
     - monitoring
     - network
     - pass
@@ -49,7 +50,6 @@ base:
     - dot
 #    - gtalk
     - irc
-    - java
     - kde
     - lsb
     - mail
