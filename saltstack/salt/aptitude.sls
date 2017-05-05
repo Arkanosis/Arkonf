@@ -1,3 +1,0 @@
-aptitude:
-  pkg:
-    - latest

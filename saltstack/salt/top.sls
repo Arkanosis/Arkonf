@@ -44,7 +44,6 @@ base:
   'G@os_family:Debian':
 #    - android
 #    - apache2
-    - aptitude
     - backup
     - bio
     - dot
@@ -70,4 +69,3 @@ base:
     - vim
     - vm
     - wammu
-
