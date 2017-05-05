@@ -439,6 +439,10 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "ESC <right>") 'windmove-right)
 (global-set-key (kbd "ESC <up>")  'windmove-up)
 (global-set-key (kbd "ESC <down>") 'windmove-down)
+(global-set-key (kbd "\e[1;3D")  'windmove-left)
+(global-set-key (kbd "\e[1;3C") 'windmove-right)
+(global-set-key (kbd "\e[1;3A")  'windmove-up)
+(global-set-key (kbd "\e[1;3B") 'windmove-down)
 (global-set-key (kbd "C-x v") 'workspace-goto)
 
 (global-set-key [(meta h)] 'switch-or-open-header)
