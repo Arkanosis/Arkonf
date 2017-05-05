@@ -6,11 +6,13 @@ xorg_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
       - xorg-server
+      - xorg-server-xephyr
       - xorg-xinit
       - xorg-xinput
       - xorg-xrandr
 {% else %}
       - xpra # TODO FIXME need it for ArchLinux as well
+      - xserver-xephyr
 {% endif %}
 
 # AUR sxlock
