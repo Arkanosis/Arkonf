@@ -14,6 +14,7 @@ base:
     - kdiff3
     - image
     - java
+    - media
     - monitoring
     - network
     - pass
@@ -52,7 +53,6 @@ base:
     - kde
     - lsb
     - mail
-    - media
 #    - mysql-server
     - nginx
     - nfs
