@@ -13,3 +13,7 @@ webbrowser_pkgs:
       - firefox-locale-fr
 {% endif %}
 
+/home/arkanosis/.cache/mozilla:
+  file.symlink:
+    - target: /tmp/.mozilla-cache_arkanosis
+    - user: arkanosis
