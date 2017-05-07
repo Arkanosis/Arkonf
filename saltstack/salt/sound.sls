@@ -6,3 +6,4 @@ sound_pkgs:
       - hydrogen
       #- jackd
       - pavucontrol
+      - pulseaudio
