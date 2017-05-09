@@ -31,7 +31,12 @@ function precmd()
  	    ;;
     esac
 
-PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.) %~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$VCS$mail$fg[$PROMPT_COLOR]
+    VENV=''
+    if [[ -n $VIRTUAL_ENV ]]; then
+	VENV="(venv:$(basename $VIRTUAL_ENV))"
+    fi
+
+PROMPT='$reset%{$fg_bold[$PROMPT_COLOR]%}%m%{$reset_color$fg[$PROMPT_COLOR]%}%(2L.:%L.) %~ (%(?.$fg[green]%?.$fg[red]%?)$fg[$PROMPT_COLOR]) $gray$VCS$mail$VENV$fg[$PROMPT_COLOR]
 %!%{$fg_bold[$PROMPT_COLOR]%} $ %{$reset_color%}'
 }
 
