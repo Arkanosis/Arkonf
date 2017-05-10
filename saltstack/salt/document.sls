@@ -14,6 +14,7 @@ document_pkgs:
 {% else %}
       - libreoffice
       - okular
+      - pdftk # TODO FIXME need it for ArchLinux as well
 {% endif %}
 
 document_pkgs_removed: # https://github.com/saltstack/salt/issues/35592
