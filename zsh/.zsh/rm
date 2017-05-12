@@ -3,8 +3,10 @@
 function rmbrute()
 {
     for arg; do
-	chmod -R 700 $arg
-	rm -rvf $arg
+	if [[ -n $arg && -e $arg ]]; then
+	    find $arg -exec chmod u+rw {} \;
+	    rm -rf $arg
+	fi
     done
 }
 
