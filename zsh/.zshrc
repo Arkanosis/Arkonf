@@ -20,6 +20,9 @@ pushd "$ZARKONF_DIR/.zsh" > /dev/null
 source ./zshrc
 
 case $HOST in
+    Edelweiss)
+	source ~/.cargo/env
+    ;;
     marvin)
 	if [[ $TERM = linux ]]; then
 	    setfont /usr/share/kbd/consolefonts/sun12x22.psfu.gz

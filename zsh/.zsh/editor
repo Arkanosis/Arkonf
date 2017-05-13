@@ -47,6 +47,11 @@ if which emacs >& /dev/null; then
     {
 	eline 'emacsclient -nw' $@
     }
+
+    function re()
+    {
+	e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
+    }
 else
     function e()
     {
