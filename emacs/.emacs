@@ -284,7 +284,13 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package java-mode
   :mode "\\.\\(java\\|jj\\)$")
 (use-package rust-mode
-  :mode "\\.rs$")
+  :mode "\\.rs$"
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode)
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (setq company-tooltip-align-annotations t))
 (use-package csharp-mode
   :config
   (use-package flymake)
