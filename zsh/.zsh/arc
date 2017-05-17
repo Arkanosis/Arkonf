@@ -186,6 +186,10 @@ function t()
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
 		7za l $arg
 	    ;;
+	    *.xz)
+	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
+		7za l $arg
+	    ;;
 	    *.bz2)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
 		echo $arg | sed -e 's/.bz2$//'
