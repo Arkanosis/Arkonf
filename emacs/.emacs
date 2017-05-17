@@ -298,7 +298,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package xml-mode
   :mode "\\.\\(xsd\\|xul\\)$")
 (use-package yaml-mode
-  :mode "\\.\\(sls\\|yml\\)$")
+  :mode "\\.\\(sls\\|yml\\|yaml\\)$")
 (use-package toml-mode
   :mode "\\.\\(toml\\|tml\\)$")
 (use-package hexl-mode
