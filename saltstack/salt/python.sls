@@ -19,6 +19,8 @@ python_pkgs:
       - python2-pillow
       - python-jinja
       - python2-lxml
+      - python-progressbar
+      - python2-progressbar
       - python2-requests
       - python2-xlrd
       - python-yaml
@@ -31,10 +33,12 @@ python_pkgs:
       - python-pudb
       - python3-pudb
       # Modules
-      - python3-click-cli
+      - python3-click
       - python-imaging
       - python3-jinja2
       - python-lxml
+      - python-progressbar
+      - python3-progressbar
       - python-q # TODO FIXME need it for ArchLinux as well
       - python3-q
       - python-requests
