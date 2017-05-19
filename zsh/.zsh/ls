@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+export QUOTING_STYLE=literal
+
 case `uname -s` in
     *BSD|SunOS)
 	if which gls >& /dev/null; then
