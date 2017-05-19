@@ -54,6 +54,7 @@ install ssh/.ssh/config ~/.ssh/config
 
 install screen/.screenrc ~/.screenrc
 install tmux/.tmux.conf ~/.tmux.conf
+install tmux/plugins ~/.tmux
 
 install uncrustify/.uncrustifyrc ~/.uncrustifyrc
 
