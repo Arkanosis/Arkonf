@@ -2,7 +2,7 @@ xorg_pkgs:
   pkg.installed:
     - pkgs:
       - wmctrl
-      - xclip
+      - xsel
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
       - xorg-server
