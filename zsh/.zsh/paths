@@ -7,6 +7,7 @@ typeset -xTU LIBRARY_PATH _library_path
 typeset -xTU LD_LIBRARY_PATH _ld_library_path
 typeset -xTU C_INCLUDE_PATH _c_include_path
 typeset -xTU CPLUS_INCLUDE_PATH _cplus_include_path
+typeset -xTU PKG_CONFIG_PATH _pkg_config_path
 typeset -xTU PYTHONPATH _python_path
 
 path=(
@@ -28,6 +29,7 @@ _c_include_path=(
     $_c_include_path
 )
 _cplus_include_path=($_c_include_path)
+_pkg_config_path=($HOME/local_$arch/lib/pkgconfig)
 _python_path=(
 #    $HOME/local_$arch/lib/python2.7
     $HOME/local_$arch/lib/python2.7/site-packages
