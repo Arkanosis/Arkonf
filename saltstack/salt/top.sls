@@ -1,6 +1,7 @@
 base:
   '*':
     - arkonf
+    - backup
     - banner
     - containers
     - compile
@@ -46,7 +47,6 @@ base:
   'G@os_family:Debian':
 #    - android
 #    - apache2
-    - backup
     - bio
     - dot
 #    - gtalk

@@ -1,6 +1,12 @@
-rsnapshot:
-  pkg:
-    - latest
+backup_pkgs:
+  pkg.installed:
+    - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - ddrescue
+{% else %}
+      - gddrescue
+{% endif %}
+      - rsnapshot
 
 /etc/rsnapshot.conf:
   file.managed:
