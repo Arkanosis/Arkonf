@@ -1,8 +1,8 @@
-heirloom-mailx:
+mutt:
   pkg:
     - latest
 
-mutt:
+s-nail:
   pkg:
     - latest
 
