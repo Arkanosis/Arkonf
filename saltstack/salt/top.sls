@@ -14,6 +14,7 @@ base:
     - kdiff3
     - image
     - java
+    - mail
     - media
     - monitoring
     - network
@@ -52,7 +53,6 @@ base:
     - irc
     - kde
     - lsb
-    - mail
 #    - mysql-server
     - nginx
     - nfs

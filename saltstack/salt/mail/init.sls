@@ -1,14 +1,9 @@
-mutt:
-  pkg:
-    - latest
-
-s-nail:
-  pkg:
-    - latest
-
-ssmtp:
-  pkg:
-    - latest
+mail_pkgs:
+  pkg.installed:
+    - pkgs:
+      - mutt
+      - s-nail
+      - ssmtp
 
 /etc/ssmtp/ssmtp.conf:
   file.managed:
