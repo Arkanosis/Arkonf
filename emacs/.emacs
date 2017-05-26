@@ -364,24 +364,14 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package longlines)
 (use-package highlight-symbol
   :config
-  (add-hook 'exa-mode-hook 'highlight-symbol-mode)
-  (add-hook 'java-mode-hook 'highlight-symbol-mode)
-  (add-hook 'c-mode-hook 'highlight-symbol-mode)
-  (add-hook 'c++-mode-hook 'highlight-symbol-mode)
-  (add-hook 'cc-mode-hook 'highlight-symbol-mode)
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (setq highlight-symbol-idle-delay 0.5))
 
 (use-package ws-butler
   :config
   (ws-butler-global-mode t))
 
-(add-hook 'java-mode-hook (lambda ()
-  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'c-mode-hook (lambda ()
-  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'c++-mode-hook (lambda ()
-  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
-(add-hook 'cc-mode-hook (lambda ()
+(add-hook 'prog-mode-hook (lambda ()
   (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
 
 (add-hook 'c-mode-common-hook 'subword-mode)
@@ -477,8 +467,7 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Hooks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'c-mode-hook 'hs-minor-mode)
-(add-hook 'c++-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 ;(add-hook 'find-file-hooks' hs-hide-all)
 
 (defun exa-check-svn-commit-msg ()
