@@ -248,6 +248,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (require 'use-package)
 
+(use-package diminish)
+
 (use-package fiplr
   :config
   (setq fiplr-root-markers '(".git" ".svn"))
@@ -261,6 +263,7 @@ If region contains less than 2 lines, lines are left untouched."
   (global-linum-mode t))
 
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
 
@@ -308,6 +311,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package two-mode-mode)
 
 (use-package auto-complete-config
+  :diminish auto-complete-mode
   :config
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (ac-config-default))
@@ -363,11 +367,13 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package scroll-all)
 (use-package longlines)
 (use-package highlight-symbol
+  :diminish highlight-symbol-mode
   :config
   (add-hook 'prog-mode-hook 'highlight-symbol-mode)
   (setq highlight-symbol-idle-delay 0.5))
 
 (use-package ws-butler
+  :diminish ws-butler-mode
   :config
   (ws-butler-global-mode t))
 
@@ -462,13 +468,13 @@ If region contains less than 2 lines, lines are left untouched."
 (read-abbrev-file abbrev-file-name t)
 (setq dabbrev-case-replace nil)
 (setq abbrev-mode t)
+(diminish 'abbrev-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Hooks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-hook 'prog-mode-hook 'hs-minor-mode)
-;(add-hook 'find-file-hooks' hs-hide-all)
 
 (defun exa-check-svn-commit-msg ()
   (not
