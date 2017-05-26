@@ -371,6 +371,10 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'cc-mode-hook 'highlight-symbol-mode)
   (setq highlight-symbol-idle-delay 0.5))
 
+(use-package ws-butler
+  :config
+  (ws-butler-global-mode t))
+
 (add-hook 'java-mode-hook (lambda ()
   (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
 (add-hook 'c-mode-hook (lambda ()
@@ -488,7 +492,6 @@ If region contains less than 2 lines, lines are left untouched."
       (y-or-n-p "Missing Mercury(Ref|Close)s. Commit anyway? "))))
 
 (add-hook 'write-file-hooks 'exa-check-svn-commit-msg)
-(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
 (add-hook 'emacs-startup-hook 'delete-other-windows) ;; Ras le bol de cet écran splitté au démarrage
 
@@ -579,7 +582,6 @@ If region contains less than 2 lines, lines are left untouched."
 (setq visible-bell t)
 (setq org-replace-disputed-keys t)
 (setq-default gdb-many-windows t)
-(setq-default show-trailing-whitespace t)
 (setq-default vc-follow-symlinks t)
 
 (custom-set-variables '(fill-column 78))
