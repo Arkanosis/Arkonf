@@ -1,0 +1,6 @@
+.ecryptfs
+/home/*/.thumbnails
+/home/*/.wine*
+/home/*/Programmation
+/srv/rsnapshot
+# TODO FIXME exclude cache directories as well
