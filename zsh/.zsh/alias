@@ -73,3 +73,13 @@ function tig()
 {
     command tig --show-signature $@
 }
+
+function mnt()
+{
+    udisksctl mount -b $@
+}
+
+function umnt()
+{
+    udisksctl unmount -b $@
+}
