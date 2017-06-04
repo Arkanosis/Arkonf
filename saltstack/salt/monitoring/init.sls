@@ -8,14 +8,20 @@ monitoring_pkgs:
       - htop
 {% if grains['os_family'] != 'Arch' %}
       - libncursesw5-dev
-{% endif %}
       - lm-sensors
+{% else %}
+      - lm_sensors
+{% endif %}
       - lsof
       - smartmontools
       - sysstat
       - strace
 
+{% if grains['os_family'] == 'Arch' %}
+smartd:
+{% else %}
 smartmontools:
+{% endif %}
   service.running:
     - require:
       - pkg: monitoring_pkgs
