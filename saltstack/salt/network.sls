@@ -2,6 +2,7 @@ network_pkgs:
   pkg.installed:
     - pkgs:
       - curl
+      - goaccess
       - httpie
       - iftop
 {% if grains['os_family'] != 'Arch' %}
