@@ -246,3 +246,7 @@ guest:
       - pkg: users_pkgs
     - unless: grep -q cryptswap /etc/fstab
 {% endif %}
+
+/etc/shadow:
+  file.managed:
+    - mode: 640
