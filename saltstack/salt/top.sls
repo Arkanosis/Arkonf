@@ -14,6 +14,7 @@ base:
     - ftp
     - kdiff3
     - image
+    - irc
     - java
     - mail
     - media
@@ -50,7 +51,6 @@ base:
     - bio
     - dot
 #    - gtalk
-    - irc
     - kde
     - lsb
 #    - mysql-server

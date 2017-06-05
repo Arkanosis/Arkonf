@@ -1,6 +1,7 @@
-weechat:
-  pkg:
-    - latest
+irc_pkgs:
+  pkg.installed:
+    - pkgs:
+      - weechat
 
 /usr/bin/irc:
   file.managed:
