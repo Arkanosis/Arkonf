@@ -4,6 +4,7 @@
 *.kdb
 *.kdbx
 *.elc
+*.pass
 *.pem
 *.pyc
 .directory
