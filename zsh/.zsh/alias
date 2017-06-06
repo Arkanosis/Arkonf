@@ -1,5 +1,7 @@
 # "-*- sh -*-"
 
+unalias -a
+
 function cx()
 {
     chmod +x $@
