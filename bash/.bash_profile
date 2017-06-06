@@ -7,7 +7,7 @@
 if [[ -t 0 ]]; then
 
     if [[ "$HOSTNAME" = "reddev002" ]]; then
-        exec ssh lenov012cem
+        exec ssh dell2323dsy
     fi
 
     os=$(uname -s)
