@@ -20,7 +20,7 @@ pushd "$ZARKONF_DIR/.zsh" > /dev/null
 source ./zshrc
 
 case $HOST in
-    Edelweiss)
+    Edelweiss|marvin)
 	source ~/.cargo/env
     ;;
     marvin)
