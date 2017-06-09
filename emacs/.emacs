@@ -289,6 +289,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package rust-mode
   :mode "\\.rs$"
   :config
+  (use-package company)
   (use-package s)
   (use-package f)
   (use-package dash)
