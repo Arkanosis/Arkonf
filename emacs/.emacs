@@ -289,6 +289,10 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package rust-mode
   :mode "\\.rs$"
   :config
+  (load-library "s")
+  (load-library "f")
+  (load-library "dash")
+  (load-library "racer")
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode)
