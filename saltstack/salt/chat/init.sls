@@ -1,6 +1,7 @@
-irc_pkgs:
+chat_pkgs:
   pkg.installed:
     - pkgs:
+      - pidgin
       - weechat
 
 /usr/bin/irc:

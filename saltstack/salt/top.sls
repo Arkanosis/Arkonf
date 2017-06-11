@@ -3,6 +3,7 @@ base:
     - arkonf
     - backup
     - banner
+    - chat
     - containers
     - compile
     - compression
@@ -14,7 +15,6 @@ base:
     - ftp
     - kdiff3
     - image
-    - irc
     - java
     - mail
     - media
@@ -57,7 +57,6 @@ base:
     - nginx
     - nfs
 #    - php
-    - pidgin
     - profile
     - publication
     - remmina
