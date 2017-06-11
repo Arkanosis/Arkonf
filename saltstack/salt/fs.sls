@@ -1,3 +1,8 @@
+fs_pkgs:
+  pkg.installed:
+    - pkgs:
+      - ntfs-3g
+
 {% if grains['mem_total'] > 7000 %}
 /tmp:
   mount.mounted:

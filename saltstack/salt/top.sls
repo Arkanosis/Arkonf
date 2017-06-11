@@ -10,7 +10,7 @@ base:
     - document
     - emacs
     - etckeeper
-    - fstab
+    - fs
     - ftp
     - kdiff3
     - image
