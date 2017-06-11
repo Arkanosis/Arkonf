@@ -89,9 +89,9 @@ function search()
     shift
 
     if ((dist)); then
-	command grep -nRI --color=always $casi $=xfile $=xdir $=exclusions_dist -- $exp $dir $@
+	command grep -nRI -Dskip --color=always $casi $=xfile $=xdir $=exclusions_dist -- $exp $dir $@
     else
-	command grep -nRI --color=always $casi $=xfile $=xdir $=exclusions -- $exp $dir $@
+	command grep -nRI -Dskip --color=always $casi $=xfile $=xdir $=exclusions -- $exp $dir $@
     fi
 }
 
