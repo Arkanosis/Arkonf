@@ -1,4 +1,4 @@
-sound_pkgs:
+audio_pkgs:
   pkg.installed:
     - pkgs:
       #- ardour

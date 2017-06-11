@@ -1,6 +1,7 @@
 base:
   '*':
     - arkonf
+    - audio
     - backup
     - banner
     - chat
@@ -60,7 +61,6 @@ base:
     - publication
     - remmina
     - ruby
-    - sound
     - sqlite
 #    - synergy
     - utilities
