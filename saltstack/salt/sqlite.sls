@@ -1,3 +1,0 @@
-sqlite:
-  pkg:
-    - latest

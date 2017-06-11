@@ -9,6 +9,7 @@ base:
     - compile
     - compression
     - crypto
+    - database
     - document
     - emacs
     - etckeeper
@@ -61,7 +62,6 @@ base:
     - publication
     - remmina
     - ruby
-    - sqlite
 #    - synergy
     - utilities
     - vim
