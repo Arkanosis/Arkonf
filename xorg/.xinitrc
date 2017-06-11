@@ -1,16 +1,16 @@
 #!/bin/sh
 
 # Env
-export ARKONF_DIR=~/Arkonf
+export ARKONF_DIR="$HOME/Arkonf"
 export LANG=fr_FR.UTF-8
 export LC_ALL=fr_FR.UTF-8
 
 # Resources
-xrdb -merge ~/.Xresources
+xrdb -merge "$HOME/.Xresources"
 
 # Keyboard
 setxkbmap us
-xmodmap ~/.Xmodmap
+xmodmap "$HOME/.Xmodmap"
 xset r 66
 
 # Touchpad
@@ -26,10 +26,10 @@ xautolock -time 1 -locker 'sxlock -l' &
 eval $(ssh-agent)
 
 # Mozilla cache in RAM
-if ! test -e "~/.cache/mozilla" && ! test -h "~/.cache/mozilla"; then
-    ln -s "/tmp/.mozilla-cache_$USER" "~/.cache/mozilla"
+if ! test -e "$HOME/.cache/mozilla" && ! test -h "$HOME/.cache/mozilla"; then
+    ln -s "/tmp/.mozilla-cache_$USER" "$HOME/.cache/mozilla"
 fi
-if test -h "~/.cache/mozilla"; then
+if test -h "$HOME/.cache/mozilla"; then
     if ! test -e "/tmp/.mozilla-cache_$USER"; then
 	mkdir -p -m 700  "/tmp/.mozilla-cache_$USER"
     elif ! test -o "/tmp/.mozilla-cache_$USER"; then
