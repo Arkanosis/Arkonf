@@ -1,6 +1,8 @@
-emacs:
-  pkg:
-    - latest
+network_pkgs:
+  pkg.installed:
+    - pkgs:
+      - emacs
+      - vim
 
 /usr/bin/emacs-console:
   file.managed:
@@ -27,3 +29,12 @@ emacs:
     - target: /home/arkanosis/Arkonf/emacs/.emacs.d
     - user: arkanosis
 
+/home/arkanosis/.vimrc:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/vim/.vimrc
+    - user: arkanosis
+
+/home/arkanosis/.vim:
+  file.symlink:
+    - target: /home/arkanosis/Arkonf/vim/.vim
+    - user: arkanosis

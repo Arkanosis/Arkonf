@@ -11,7 +11,7 @@ base:
     - crypto
     - database
     - document
-    - emacs
+    - editor
     - etckeeper
     - fs
     - ftp
@@ -62,6 +62,5 @@ base:
     - ruby
 #    - synergy
     - utilities
-    - vim
     - vm
     - wammu
