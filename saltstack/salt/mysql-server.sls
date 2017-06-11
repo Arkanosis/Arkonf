@@ -1,3 +1,0 @@
-mysql-server:
-  pkg:
-    - latest

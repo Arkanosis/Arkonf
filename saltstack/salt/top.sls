@@ -52,10 +52,8 @@ base:
 #    - apache2
     - bio
     - dot
-#    - gtalk
     - kde
     - lsb
-#    - mysql-server
     - nginx
 #    - php
     - profile
