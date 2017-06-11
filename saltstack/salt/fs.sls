@@ -1,6 +1,11 @@
 fs_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] != 'Arch' %}
+      - nfs-common
+{% else %}
+      - nfs-utils
+{% endif %}
       - ntfs-3g
 
 {% if grains['mem_total'] > 7000 %}
