@@ -55,7 +55,6 @@ base:
     - lsb
 #    - mysql-server
     - nginx
-    - nfs
 #    - php
     - profile
     - publication
