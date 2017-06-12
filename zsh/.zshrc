@@ -41,6 +41,7 @@ case $HOST in
 	    export PATH=/udir/jroquet/local_RedHat/bin:$PATH
 	    export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
 	fi
+	source ~/.cargo/env
     ;;
 esac
 
