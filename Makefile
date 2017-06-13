@@ -37,3 +37,8 @@ zsh: ~/.zshrc ~/.zsh
 	ln -s "$(ROOT)zsh/$(notdir $@)" "$@"
 ~/.zsh:
 	ln -s "$(ROOT)zsh/$(notdir $@)" "$@"
+
+rust:
+	curl "https://sh.rustup.rs" -sSf | sh
+	rustup component add rust-src
+	cargo install racer
