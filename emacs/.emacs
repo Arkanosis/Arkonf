@@ -277,8 +277,7 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.jsm?$")
 (use-package python
   :config
-  (add-hook 'python-mode-hook
-	    (lambda () (setq abbrev-mode t)))
+  (add-hook 'python-mode-hook #'abbrev-mode)
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
 (use-package php-mode
   :mode "\\.php[0-9]?$")
@@ -287,7 +286,6 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package java-mode
   :mode "\\.\\(java\\|jj\\)$")
 (use-package rust-mode
-  :mode "\\.rs$"
   :config
   (use-package company)
   (use-package s)
@@ -298,7 +296,8 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode)
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+  :mode "\\.rs$")
 (use-package csharp-mode
   :config
   (use-package flymake)
