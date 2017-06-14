@@ -267,6 +267,10 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (global-undo-tree-mode t))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode t))
+
 (use-package mo-git-blame)
 
 (use-package markdown-mode
@@ -291,9 +295,11 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package eclim)
   (use-package company)
   (use-package company-emacs-eclim)
-  (company-emacs-eclim-setup)
-  (add-hook 'java-mode-hook #'eclim-mode)
-  (add-hook 'java-mode-hook #'company-mode)
+  (add-hook 'java-mode-hook (lambda ()
+    (company-emacs-eclim-setup)
+    (eclim-mode t)
+    (company-mode t)
+    (define-key java-mode-map (kbd "M-.") #'eclim-java-find-declaration)))
   :mode "\\.\\(java\\|jj\\)$")
 (use-package rust-mode
   :config
