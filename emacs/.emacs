@@ -284,6 +284,16 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package lua-mode
   :mode "\\.lua$")
 (use-package java-mode
+  :init
+  (custom-set-variables
+   '(eclim-eclipse-dirs '("~/local/opt/eclipse"))
+   '(eclim-executable "~/local/opt/eclipse/eclim"))
+  (use-package eclim)
+  (use-package company)
+  (use-package company-emacs-eclim)
+  (company-emacs-eclim-setup)
+  (add-hook 'java-mode-hook #'eclim-mode)
+  (add-hook 'java-mode-hook #'company-mode)
   :mode "\\.\\(java\\|jj\\)$")
 (use-package rust-mode
   :config
