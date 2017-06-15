@@ -47,22 +47,30 @@ setopt octal_zeroes
 
 function 0x()
 {
-    echo $(([#16]$1))
+    for arg; do
+	echo $(([#16]$arg))
+    done
 }
 
 function 0()
 {
-    echo $(([#8]$1))
+    for arg; do
+	echo $(([#8]$arg))
+    done
 }
 
 function b()
 {
-    echo $(([#2]$1))
+    for arg; do
+	echo $(([#2]$arg))
+    done
 }
 
 function 10()
 {
-    echo $(($1))
+    for arg; do
+	echo $(($arg))
+    done
 }
 
 entropyfunctions="
