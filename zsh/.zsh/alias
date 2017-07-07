@@ -51,6 +51,26 @@ function mem()
     vmstat -sSM $@
 }
 
+function ht() {
+    ln -sf $ARKONF_DIR/htop/light.htoprc ~/.config/htop/htoprc
+    command htop
+}
+
+function htt() {
+    ln -sf $ARKONF_DIR/htop/light_threads.htoprc ~/.config/htop/htoprc
+    command htop
+}
+
+function htop() {
+    ln -sf $ARKONF_DIR/htop/full.htoprc ~/.config/htop/htoprc
+    command htop
+}
+
+function htopt() {
+    ln -sf $ARKONF_DIR/htop/full_threads.htoprc ~/.config/htop/htoprc
+    command htop
+}
+
 function wa()
 {
     watch $@
