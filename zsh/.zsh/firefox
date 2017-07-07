@@ -3,11 +3,11 @@
 function fx()
 {
     if ! ((#)); then
-	echo "Usage: fx page.htm" >&2
+        echo "Usage: fx page.htm" >&2
 	return 1
     else
 	for i; do
-	    firefox "$(pwd)/$i"
+	    firefox $i:A
 	done
     fi
 }
