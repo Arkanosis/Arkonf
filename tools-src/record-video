@@ -15,7 +15,9 @@ fi
 geometry=$(xrectsel "-s %wx%h -i :0+%x,%y") || exit 1
 
 if $gif; then
-    avconv -f x11grab -show_region 1 -r 25 $=geometry -framerate 15 # TODO FIXME all arguments + conversion from temp .avi to .gif
+    avconv -f x11grab -show_region 1 -framerate 30 $=geometry # TODO FIXME all arguments + conversion from temp .avi to .gif
 else
-    avconv -f x11grab -show_region 1 -r 25 $=geometry -deadline realtime -b 5000000 -minrate 200000 -maxrate 40000000 $1
+    avconv -f x11grab -show_region 1 -framerate 30 $=geometry -vcodec libx264 -preset ultrafast -crf 0 -threads 0 $1.mkv
+    avconv -i $1.mkv -b:v 5000000 -minrate 200000 -maxrate 40000000 -threads 0 $1
+    rm $1.mkv
 fi
