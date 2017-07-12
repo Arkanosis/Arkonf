@@ -23,12 +23,13 @@ function flattendir() {
 function x()
 {
     # Extracteur universel v1.4
-    # (C) 2008-2014 Arkanosis
+    # (C) 2008-2017 Arkanosis
     # jroquet@arkanosis.net
     for arg; do
+	arg=$arg:A
 	case $arg in
 	    *.(tar.bz2|tbz2))
-	        dir=`echo $arg | sed 's/\.\(tbz2\|tar\.bz2\)$//'`
+	        dir=$(basename $arg | sed 's/\.\(tbz2\|tar\.bz2\)$//')
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -36,12 +37,12 @@ function x()
 		mkdir $dir && \
 		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m" && \
-		tar xvjf ../$arg && \
+		tar xvjf $arg && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.(tar.gz|tgz))
-	        dir=`echo $arg | sed 's/\.\(tgz\|tar\.gz\)$//'`
+	        dir=$(basename $arg | sed 's/\.\(tgz\|tar\.gz\)$//')
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -49,12 +50,12 @@ function x()
 		mkdir $dir && \
 		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m" && \
-		tar xvzf ../$arg && \
+		tar xvzf $arg && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.(tar.xz|txz))
-	        dir=`echo $arg | sed 's/\.\(txz\|tar\.xz\)$//'`
+	        dir=$(basename $arg | sed 's/\.\(txz\|tar\.xz\)$//')
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -62,9 +63,7 @@ function x()
 		mkdir $dir && \
 		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m" && \
-		7za x ../$arg && \
-		tar xvf $arg.tar && \
-		rm $arg.tar && \
+		tar xvJf $arg && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
@@ -85,18 +84,17 @@ function x()
 		gunzip $arg
 	    ;;
 	    *.(zip|jar))
-	        dir=`basename $arg | sed 's/\.\(zip\|jar\)$//'`
+	        dir=$(basename $arg | sed 's/\.\(zip\|jar\)$//')
 		arg=`readlink -f $arg`
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
 		fi
 		mkdir $dir && \
-		( \
-		    cd $dir > /dev/null && \
-   		    print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
-		    unzip $arg \
-                ) && \
+                cd $dir > /dev/null && \
+   	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
+	        unzip $arg \
+		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
 	    *.Z)
@@ -112,7 +110,7 @@ function x()
 		unzip $arg
 	    ;;
 	    *.tar)
-	        dir=`echo $arg | sed 's/\.tar$//'`
+	        dir=$(basename $arg | sed 's/\.tar$//')
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -120,7 +118,7 @@ function x()
 		mkdir $dir && \
 		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m" && \
-		tar xvf ../$arg && \
+		tar xvf $arg && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
@@ -129,7 +127,7 @@ function x()
 		dpkg-deb -xv $arg `echo $arg | sed 's/\.deb$//'`
 	    ;;
 	    *.rpm)
-	        dir=`echo $arg | sed 's/\.rpm$//'`
+	        dir=$(basename $arg | sed 's/\.rpm$//')
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -137,7 +135,7 @@ function x()
 		mkdir $dir && \
 		cd $dir > /dev/null && \
 		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m" && \
-		rpm2cpio ../$arg | cpio -idmv && \
+		rpm2cpio $arg | cpio -idmv && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
