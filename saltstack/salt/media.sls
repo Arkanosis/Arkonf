@@ -6,6 +6,7 @@ media_pkgs:
 {% else %}
       - libav-tools
 {% endif %}
+      - mpv
       - vlc
 
 dragonplayer:
