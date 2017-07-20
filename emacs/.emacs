@@ -308,6 +308,7 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package f)
   (use-package dash)
   (use-package racer)
+  (add-hook 'rust-mode-hook #'abbrev-mode)
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode)

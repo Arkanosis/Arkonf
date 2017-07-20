@@ -148,6 +148,45 @@
   >    "pass"
 )
 
+(define-skeleton rif-skel "" nil
+  >    "if " _ " {\n"
+  >    "\n"
+  > -4 "}"
+)
+(define-skeleton relif-skel "" nil
+  >    " else if " _ " {"
+  >    "\n"
+  > -4 "}"
+)
+(define-skeleton rfor-skel "" nil
+  >    "for " _ " in {\n"
+  >    "\n"
+  > -4 "}"
+)
+(define-skeleton rwhile-skel "" nil
+  >    "while " _ " {\n"
+  >    "\n"
+  > -4 "}"
+)
+(define-skeleton rloop-skel "" nil
+  >    "loop {\n"
+  >    "\n"
+  > -4 "}"
+)
+
+(define-skeleton rcout-skel "" nil
+  >    "println!(" _ ");"
+)
+(define-skeleton rcerr-skel "" nil
+  >    "eprintln!(" _ ");"
+)
+
+(define-skeleton rmain-skel "" nil
+  >    "fn main() {\n"
+  >    _ "\n"
+  > -4 "}"
+)
+
 (define-abbrev-table 'c++-mode-abbrev-table '(
   ("vva" "\" <<  << \"" nil 0)
 
@@ -211,6 +250,20 @@
   ("mmain" "" pmain-skel 0)
   ("ddef" "" pdef-skel 0)
   ("cclass" "" pclass-skel 0)
+))
+
+(define-abbrev-table 'rust-mode-abbrev-table '(
+  ("iif" "" rif-skel 0)
+  ("eei" "" relif-skel 0)
+  ("eel" "" else-skel 0)
+  ("ffo" "" rfor-skel 0)
+  ("wwh" "" rwhile-skel 0)
+  ("wwh" "" rloop-skel 0)
+
+  ("cco" "" rcout-skel 0)
+  ("cce" "" rcerr-skel 0)
+
+  ("mmain" "" rmain-skel 0)
 ))
 
 (define-abbrev-table 'global-abbrev-table '(
