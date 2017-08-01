@@ -93,7 +93,7 @@ function x()
 		mkdir $dir && \
                 cd $dir > /dev/null && \
    	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
-	        unzip $arg \
+	        unzip $arg && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
