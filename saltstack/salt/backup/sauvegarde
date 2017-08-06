@@ -1,0 +1,11 @@
+#! /usr/bin/zsh
+
+( \
+    mount /mnt/Heimdal && \
+    rsnapshot -c /etc/rsnapshot.Heimdal.conf sync && \
+    rsnapshot -c /etc/rsnapshot.Heimdal.conf manual && \
+    sync && \
+    umount /mnt/Heimdal \
+) && \
+    ( echo 'Sauvegarde réussie' && exit 0 ) || \
+    ( echo 'Erreur lors de la sauvegarde' && exit 1 )
