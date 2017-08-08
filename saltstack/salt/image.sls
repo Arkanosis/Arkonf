@@ -2,6 +2,11 @@ image_pkgs:
   pkg.installed:
     - pkgs:
       - darktable
+{% if grains['os_family'] != 'Arch' %}
+      - exiftran
+{% else %}
+      - fbida # provides exiftran
+{% endif %}
       - jhead
       - gimp
       - gimp-help-fr
