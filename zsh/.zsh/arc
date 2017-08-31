@@ -75,6 +75,10 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
 		7za x $arg
 	    ;;
+	    *.cab)
+	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
+		7za x $arg
+	    ;;
 	    *.bz2)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
 		bunzip2 $arg
@@ -186,6 +190,10 @@ function t()
 	    ;;
 	    *.xz)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
+		7za l $arg
+	    ;;
+	    *.cab)
+	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
 		7za l $arg
 	    ;;
 	    *.bz2)
