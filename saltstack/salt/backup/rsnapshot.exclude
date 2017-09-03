@@ -1,4 +1,7 @@
 .ecryptfs
+/home/*/.cache
+/home/*/.cargo
+/home/*/.rustup
 /home/*/.thumbnails
 /home/*/.wine*
 /home/*/Programmation
