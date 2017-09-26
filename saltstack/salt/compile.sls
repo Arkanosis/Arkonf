@@ -10,5 +10,6 @@ compile_pkgs:
       - g++
       - autopoint # from gettext
 {% endif %}
+      - gdb
       - libtool
       - pkg-config
