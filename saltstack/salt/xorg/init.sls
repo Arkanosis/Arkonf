@@ -1,6 +1,12 @@
 xorg_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - tigervnc
+{% else %}
+      - tightvncserver
+      - tightvncviewer
+{% endif %}
       - wmctrl
       - xsel
 {% if grains['os_family'] == 'Arch' %}
