@@ -3,6 +3,7 @@ media_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - ffmpeg
+      - libvdpau-va-gl
 {% else %}
       - libav-tools
 {% endif %}
