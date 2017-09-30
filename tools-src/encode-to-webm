@@ -1,0 +1,10 @@
+#! /usr/bin/zsh
+
+if [ $# -ne 2 ]; then
+    echo "Usage: $(basename $0) <input.ext> <output.webm>" >&2
+    exit 1
+fi
+
+yes y | \
+  ffmpeg -i $1 -c:v libvpx-vp9 -pass 1 -b:v 1M -threads 0 -speed 4 -tile-columns 6 -frame-parallel 1 -an -f webm /dev/null && \
+  ffmpeg -i $1 -c:v libvpx-vp9 -pass 2 -b:v 1M -threads 0 -speed 1 -tile-columns 6 -frame-parallel 1 -auto-alt-ref 1 -lag-in-frames 25 -c:a libopus -b:a 64k -f webm $2
