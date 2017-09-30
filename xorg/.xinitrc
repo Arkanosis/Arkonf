@@ -4,6 +4,7 @@
 export ARKONF_DIR="$HOME/Arkonf"
 export LANG=fr_FR.UTF-8
 export LC_ALL=fr_FR.UTF-8
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 # Resources
 xrdb -merge "$HOME/.Xresources"
