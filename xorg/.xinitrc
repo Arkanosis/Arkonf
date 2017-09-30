@@ -33,7 +33,7 @@ fi
 if test -h "$HOME/.cache/mozilla"; then
     if ! test -e "/tmp/.mozilla-cache_$USER"; then
 	mkdir -p -m 700  "/tmp/.mozilla-cache_$USER"
-    elif ! test -o "/tmp/.mozilla-cache_$USER"; then
+    elif ! test -O "/tmp/.mozilla-cache_$USER"; then
 	echo "Security error: /tmp/.mozilla-cache_$USER does not belong to current user" >& 2
 	exit 1
     fi
