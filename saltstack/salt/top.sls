@@ -22,6 +22,7 @@ base:
     - media
     - monitoring
     - network
+    - nginx
     - pass
     - processing
     - python
@@ -54,7 +55,6 @@ base:
     - dot
     - kde
     - lsb
-    - nginx
 #    - php
     - profile
     - publication

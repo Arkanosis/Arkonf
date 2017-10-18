@@ -1,6 +1,13 @@
+nginx_pkgs:
+  pkg.installed:
+    - pkgs:
+{% if grains['os_family'] != 'Arch' %}
+        - nginx
+{% else %}
+      - nginx-mainline
+{% endif %}
+
 nginx:
-  pkg:
-    - latest
   service:
     - running
     - enable: True
@@ -10,37 +17,39 @@ nginx:
       - cmd: /etc/nginx/ssl/localhost.key
       - cmd: /etc/nginx/ssl/localhost.crt
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/sites-available/default:
   file:
     - absent
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/sites-enabled/default:
   file:
     - absent
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/sites-available/userweb:
   file.managed:
+    - makedirs: True
     - source: salt://nginx/userweb
     - mode: 644
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/sites-enabled/userweb:
   file.symlink:
+    - makedirs: True
     - target: /etc/nginx/sites-available/userweb
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/ssl:
   file.directory:
     - require:
-      - pkg: nginx
+      - pkg: nginx_pkgs
 
 /etc/nginx/ssl/localhost.key:
   cmd.run:
