@@ -1,6 +1,7 @@
 document_pkgs:
   pkg.installed:
     - pkgs:
+      - calibre
 {% if grains['os_family'] == 'Arch' %}
       - libreoffice-fresh
       - libreoffice-fresh-fr
