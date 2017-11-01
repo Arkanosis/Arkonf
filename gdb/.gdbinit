@@ -12,6 +12,7 @@ set history filename ~/.zcache/gdb
 set history size 10000
 
 source /ng/sdk/tools/devenv/gdb/gdbinit
+source ~/Arkonf/gdb/plugins/gdb-dashboard
 
 define nsf
   handle SIGSEGV nostop
