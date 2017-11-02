@@ -17,3 +17,9 @@ source ~/Arkonf/gdb/plugins/gdb-dashboard
 define nsf
   handle SIGSEGV nostop
 end
+
+define npf
+  handle SIGPIPE nostop
+end
+
+dashboard -layout source stack expressions
