@@ -15,7 +15,7 @@ readline.set_history_length(-1)
 def clean_and_save_history(history):
     import readline
     commands = set()
-    for commandId in xrange(readline.get_current_history_length(), 0, -1):
+    for commandId in range(readline.get_current_history_length(), 0, -1):
         command = readline.get_history_item(commandId)
         if command in commands:
             readline.remove_history_item(commandId - 1)
