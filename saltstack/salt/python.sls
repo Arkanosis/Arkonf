@@ -9,7 +9,6 @@ python_pkgs:
       - python
 {% if grains['os_family'] == 'Arch' %}
       - cython
-      - ptpython
       # Installer
       - python-pip
       - python2-pip
@@ -70,9 +69,7 @@ python_pkgs:
 
 # UI
 
-{% if grains['os_family'] != 'Arch' %}
 ptpython:
   pip.installed:
     - require:
       - pkg: python_pkgs
-{% endif %}
