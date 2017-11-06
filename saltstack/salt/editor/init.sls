@@ -6,17 +6,17 @@ editor_pkgs:
 
 /usr/bin/emacs-console:
   file.managed:
-    - source: salt://emacs/emacs-console
+    - source: salt://editor/emacs-console
     - mode: 755
 
 /usr/bin/emacs-server:
   file.managed:
-    - source: salt://emacs/emacs-server
+    - source: salt://editor/emacs-server
     - mode: 755
 
 /usr/bin/emacs-client:
   file.managed:
-    - source: salt://emacs/emacs-client
+    - source: salt://editor/emacs-client
     - mode: 755
 
 /home/arkanosis/.emacs:
