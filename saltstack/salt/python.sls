@@ -12,6 +12,7 @@ python_pkgs:
       - python-pip
       - python2-pip
       # Debugger
+      - ptpython
       - python-pudb
       - python2-pudb
       # Modules
