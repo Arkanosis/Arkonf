@@ -1,0 +1,5 @@
+#! /usr/bin/zsh
+
+sudo /usr/bin/sauvegarde && \
+    kdialog --msgbox 'Sauvegarde terminée' || \
+    kdialog --msgbox 'Erreur lors de la sauvegarde'

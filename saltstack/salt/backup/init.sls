@@ -11,14 +11,32 @@ backup_pkgs:
 {% if grains['host'] == 'Cyclamen' %}
 /usr/bin/sauvegarde:
   file.managed:
-    - source: salt://backup/sauvegarde
+    - source: salt://backup/usr_bin_sauvegarde
     - template: jinja
-    - mode: 755 # TODO FIXME group
+    - mode: 755
+
+/home/Daniel/Documents/sauvegarde:
+  file.managed:
+    - source: salt://backup/home_daniel_documents_sauvegarde
+    - template: jinja
+    - user: Daniel
+    - group: Daniel
+    - mode: 755
+
+/mnt/Heimdal:
+  mount.mounted:
+    - device: UUID=e4e07b31-a0c4-44c6-909f-3e6836f543b0
+    - fstype: ext4
+    - mkmnt: True
+    - mount: False
+    - opts:
+      - noauto
+      - nodev
+      - nosuid
 
 # TODO
 # - sudo ALL for /usr/bin/sauvegarde
-# - /mnt/Heimdal in /etc/fstab
-# - Wrapper for /usr/bin/sauvegarde (in /home/Daniel/Documents/sauvegarde)
+
 {% endif %}
 
 /etc/rsnapshot.conf:
