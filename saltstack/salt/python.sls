@@ -8,6 +8,7 @@ python_pkgs:
       # VM
       - python
 {% if grains['os_family'] == 'Arch' %}
+      - cython
       - ptpython
       # Installer
       - python-pip
@@ -27,6 +28,7 @@ python_pkgs:
       - python2-xlrd
       - python-yaml
 {% else %}
+      - cython3
       - python-dev
       # Installer
       - python-pip
