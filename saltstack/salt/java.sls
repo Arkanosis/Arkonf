@@ -3,7 +3,7 @@ java_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - apache-ant
-      - java8-openjdk
+      - jdk8-openjdk
       - java-openjfx
 {% else %}
       - ant
