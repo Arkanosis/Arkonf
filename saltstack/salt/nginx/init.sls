@@ -2,7 +2,7 @@ nginx_pkgs:
   pkg.installed:
     - pkgs:
 {% if grains['os_family'] != 'Arch' %}
-        - nginx
+      - nginx
 {% else %}
       - nginx-mainline
 {% endif %}

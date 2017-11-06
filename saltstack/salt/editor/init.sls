@@ -1,4 +1,4 @@
-network_pkgs:
+editor_pkgs:
   pkg.installed:
     - pkgs:
       - emacs
