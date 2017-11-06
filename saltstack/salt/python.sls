@@ -8,11 +8,11 @@ python_pkgs:
       # VM
       - python
 {% if grains['os_family'] == 'Arch' %}
+      - ptpython
       # Installer
       - python-pip
       - python2-pip
       # Debugger
-      - ptpython
       - python-pudb
       - python2-pudb
       # Modules
@@ -23,6 +23,7 @@ python_pkgs:
       - python-progressbar
       - python2-progressbar
       - python2-requests
+      - python-virtualenv
       - python2-xlrd
       - python-yaml
 {% else %}
@@ -43,8 +44,10 @@ python_pkgs:
       - python-q # TODO FIXME need it for ArchLinux as well
       - python3-q
       - python-requests
+      - python3-virtualenv
       - python-xlrd
       - python3-yaml
+      - virtualenv
 {% endif %}
       # Bindings
       - swig
