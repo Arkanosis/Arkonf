@@ -9,6 +9,6 @@ processing_pkgs:
 {% endif %}
       - jq
 {% if grains['os_family'] != 'Arch' %}
-      - python-csvkit
+      - python3-csvkit
 {% endif %}
       - xmlstarlet
