@@ -11,6 +11,7 @@ install: \
 	dotfiles \
 	git \
 	mercurial \
+	python \
 	zsh
 
 dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
@@ -31,6 +32,16 @@ git: ~/.gitconfig
 mercurial: ~/.hgrc
 ~/.hgrc:
 	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
+
+python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
+~/.pythonrc.py:
+	ln -s "$(ROOT)python/$(notdir $@)" "$@"
+~/.config/pudb/pudb.cfg:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)python/$(notdir $@)" "$@"
+~/.ptpython/config.py:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)python/$(notdir $@)" "$@"
 
 zsh: ~/.zshrc ~/.zsh
 ~/.zshrc:
