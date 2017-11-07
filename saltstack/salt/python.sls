@@ -23,7 +23,6 @@ python_pkgs:
       - python-progressbar
       - python2-progressbar
       - python2-requests
-      - python-virtualenv
       - python2-xlrd
       - python-yaml
 {% else %}
@@ -45,10 +44,9 @@ python_pkgs:
       - python-q # TODO FIXME need it for ArchLinux as well
       - python3-q
       - python-requests
-      - python3-virtualenv
+      - python3-venv
       - python-xlrd
       - python3-yaml
-      - virtualenv
 {% endif %}
       # Bindings
       - swig
