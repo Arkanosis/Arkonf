@@ -1,6 +1,11 @@
 @namespace
   url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
 
-#addonbar-closebutton {
-    visibility: collapse !important;
+#TabsToolbar, #sidebar-header {
+	visibility: collapse !important;
 }
+
+#TabsToolbar {
+	margin-bottom: -21px !important;
+}
+
