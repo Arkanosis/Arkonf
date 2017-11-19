@@ -13,6 +13,7 @@ image_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - gimp-plugin-registry
 {% endif %}
+      - gwenview
       - hugin
       - imagemagick
       - inkscape
