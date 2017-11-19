@@ -8,7 +8,6 @@ typeset -xTU LD_LIBRARY_PATH _ld_library_path
 typeset -xTU C_INCLUDE_PATH _c_include_path
 typeset -xTU CPLUS_INCLUDE_PATH _cplus_include_path
 typeset -xTU PKG_CONFIG_PATH _pkg_config_path
-typeset -xTU PYTHONPATH _python_path
 
 path=(
     $HOME/local_$arch/bin/
@@ -30,14 +29,8 @@ _c_include_path=(
 )
 _cplus_include_path=($_c_include_path)
 _pkg_config_path=($HOME/local_$arch/lib/pkgconfig)
-_python_path=(
-#    $HOME/local_$arch/lib/python2.7
-    $HOME/local_$arch/lib/python2.7/site-packages
-    $HOME/local/lib/python2.7/site-packages
-    /usr/lib/python2.7/dist-packages
-    $_python_path
-)
 
+export PYTHONUSERBASE=$HOME/local_$arch
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 export CONFIG_SITE=$HOME/config.site
