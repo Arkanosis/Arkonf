@@ -1,4 +1,15 @@
-.PHONY: all install
+.PHONY: all install \
+	dotfiles \
+	emacs \
+	gdb \
+	git \
+	mercurial \
+	lxc \
+	python \
+	ssh \
+	tmux \
+	zsh \
+	rust
 
 # TODO port the full install.sh to this Makefile
 
@@ -9,9 +20,14 @@ all:
 
 install: \
 	dotfiles \
+	emacs \
+	gdb \
 	git \
 	mercurial \
+	lxc \
 	python \
+	ssh \
+	tmux \
 	zsh
 
 dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
@@ -26,12 +42,27 @@ dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
 ~/.signature:
 	ln -s "$(ROOT)dotfiles/$(notdir $@)" "$@"
 
+emacs: ~/.emacs ~/.emacs.d
+~/.emacs:
+	ln -s "$(ROOT)emacs/$(notdir $@)" "$@"
+~/.emacs.d:
+	ln -s "$(ROOT)emacs/$(notdir $@)" "$@"
+
+gdb: ~/.gdbinit
+~/.gdbinit:
+	ln -s "$(ROOT)gdb/$(notdir $@)" "$@"
+
 git: ~/.gitconfig
 ~/.gitconfig:
 	ln -s "$(ROOT)git/$(notdir $@)" "$@"
 mercurial: ~/.hgrc
 ~/.hgrc:
 	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
+
+lxc: ~/.config/lxc/default.conf
+~/.config/lxc/default.conf:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)lxc/$(notdir $@)" "$@"
 
 python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 ~/.pythonrc.py:
@@ -42,6 +73,15 @@ python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 ~/.ptpython/config.py:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
+
+ssh: ~/.ssh/config
+~/.ssh/config:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)ssh/.ssh/$(notdir $@)" "$@"
+
+tmux: ~/.tmux.conf
+~/.tmux.conf:
+	ln -s "$(ROOT)tmux/$(notdir $@)" "$@"
 
 zsh: ~/.zshrc ~/.zsh
 ~/.zshrc:
