@@ -1,6 +1,7 @@
 fs_pkgs:
   pkg.installed:
     - pkgs:
+      - exfat-utils
 {% if grains['os_family'] != 'Arch' %}
       - nfs-common
 {% else %}
