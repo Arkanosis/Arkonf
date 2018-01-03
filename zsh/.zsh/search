@@ -35,63 +35,71 @@ excluded_dists=(
 )
 exclusions=()
 for excluded_file in $excluded_files; do
-    exclusions+=(--exclude $excluded_file)
+    exclusions+=(--ignore $excluded_file)
 done
 for excluded_dir in $excluded_dirs; do
-    exclusions+=(--exclude-dir $excluded_dir)
+    exclusions+=(--ignore $excluded_dir)
 done
 exclusions_dist=exclusions
 for excluded_dist in $excluded_dists; do
-    exclusions_dist+=(--exclude $excluded_dist)
+    exclusions_dist+=(--ignore $excluded_dist)
 done
 
 function search()
 {
-    local dist casi xfile xdir dir exp
+    local all dist case exclude dir exp
 
+    all=0
     dist=0
-    casi=
-
-    if ((# < 1)); then
-	echo 'Usage: search [-d] [-i] [dir] <exp>' >&2
-	return 1
-    fi
+    case=-S
 
     if ((# > 1)) && [[ $1 = -i ]]; then
-	casi=-i
-	shift
+        case=-i
+        shift
+    fi
+
+    if ((# > 1)) && [[ $1 = -s ]]; then
+        case=-s
+        shift
     fi
 
     if ((# > 1)) && [[ $1 = -d ]]; then
-	dist=1
-	shift
+        dist=1
+        shift
+    fi
+
+    if ((# > 1)) && [[ $1 = -a ]]; then
+        all=1
+        shift
+    fi
+
+    if ((# < 1)); then
+        echo 'Usage: search [-d] [-i] [dir] <exp>' >&2
+        return 1
     fi
 
     if ((# > 2)) && [[ $1 = -x ]]; then
-	xfile+="--exclude $2"
-	shift 2
-    fi
-
-    if ((# > 2)) && [[ $1 = -xd ]]; then
-	xdir+="--exclude-dir $2"
-	shift 2
+        exclude+="--ignore $2"
+        shift 2
     fi
 
     dir=.
 
     if ((# == 2)); then
-	dir=$1
-	shift
+        dir=$1
+        shift
     fi
 
     exp=$1
 
     shift
 
-    if ((dist)); then
-	command grep -nRI -Dskip --color=always $casi $=xfile $=xdir $=exclusions_dist -- $exp $dir $@
+    if ((all)); then
+        ag -u --depth -1 $=exclude --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
+    elif ((dist)); then
+        ag --depth -1 $=exclude $exclusions_dist --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
     else
-	command grep -nRI -Dskip --color=always $casi $=xfile $=xdir $=exclusions -- $exp $dir $@
+        ag --depth -1 $=exclude $exclusions --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
     fi
 }
 
@@ -123,8 +131,8 @@ function /f()
     dir=.
 
     if ((#)); then
-	dir=$1
-	shift
+        dir=$1
+        shift
     fi
 
     find $dir -type f $@
@@ -134,8 +142,8 @@ function /d()
     dir=.
 
     if ((#)); then
-	dir=$1
-	shift
+        dir=$1
+        shift
     fi
 
     find $dir -type f $@
@@ -153,53 +161,53 @@ function /r()
     local case dir files exp res
 
     if ((# < 2)); then
-	echo 'Usage: /r [dir] <files pattern> <exp>' >&2
-	return 1
+        echo 'Usage: /r [dir] <files pattern> <exp>' >&2
+        return 1
     fi
 
     case=-S
 
     if ((# > 1)) && [[ $1 = -i ]]; then
-	case=-i
-	shift
+        case=-i
+        shift
     fi
 
     if ((# > 1)) && [[ $1 = -s ]]; then
-	case=-s
-	shift
+        case=-s
+        shift
     fi
 
     dir=.
 
     if ((# == 3)); then
-	dir=$1
-	shift
+        dir=$1
+        shift
     fi
 
     files=$1
     exp=$2
 
     case $files in
-	cpp)
-	    files=$csrcexts_pattern
-	;;
-	exa)
-	    files='.*\.exa'
-	;;
-	java)
-	    files='.*\.(java|jj)'
-	;;
-	jexo)
-	    files='.*\.(exa|java|jj|gexo)'
-	;;
-	src)
-	    files=$srcexts_pattern
-	;;
+        cpp)
+            files=$csrcexts_pattern
+        ;;
+        exa)
+            files='.*\.exa'
+        ;;
+        java)
+            files='.*\.(java|jj)'
+        ;;
+        jexo)
+            files='.*\.(exa|java|jj|gexo)'
+        ;;
+        src)
+            files=$srcexts_pattern
+        ;;
     esac
 
     shift 2
 
-    ag --depth 500 --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -G $files -- $exp $dir
+    ag --depth -1 --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -G $files -- $exp $dir
 }
 alias /r="noglob /r"
 function /x()
@@ -207,25 +215,25 @@ function /x()
     local i dir files exp
 
     if [[ $1 = -i ]]; then
-	i=-i
-	shift
+        i=-i
+        shift
     fi
 
     if ((# < 3)); then
-	echo 'Usage: /x [-i] <dir> <files pattern> <exec>' >&2
-	return 1
+        echo 'Usage: /x [-i] <dir> <files pattern> <exec>' >&2
+        return 1
     fi
 
     dir=$1
     files=$2
 
     case $files in
-	cpp)
-	    files=$csrcnames
-	;;
-	src)
-	    files=$srcnames
-	;;
+        cpp)
+            files=$csrcnames
+        ;;
+        src)
+            files=$srcnames
+        ;;
     esac
 
     shift 2
@@ -242,27 +250,27 @@ function /t()
 function rd()
 {
     if ((#)); then
-	if [[ -f $1/README ]]; then
-	    less $1/README
-	    return 0
-	elif [[ -f $1/README.md ]]; then
-	    less $1/README.md
-	    return 0
-	elif [[ -f $1/README.rst ]]; then
-	    less $1/README.rst
-	    return 0
-	fi
+        if [[ -f $1/README ]]; then
+            less $1/README
+            return 0
+        elif [[ -f $1/README.md ]]; then
+            less $1/README.md
+            return 0
+        elif [[ -f $1/README.rst ]]; then
+            less $1/README.rst
+            return 0
+        fi
     else
-	if [[ -f ./README ]]; then
-	    less ./README
-	    return 0
-	elif [[ -f ./README.md ]]; then
-	    less ./README.md
-	    return 0
-	elif [[ -f ./README.rst ]]; then
-	    less ./README.rst
-	    return 0
-	fi
+        if [[ -f ./README ]]; then
+            less ./README
+            return 0
+        elif [[ -f ./README.md ]]; then
+            less ./README.md
+            return 0
+        elif [[ -f ./README.rst ]]; then
+            less ./README.rst
+            return 0
+        fi
     fi
     echo 'No README, README.md or README.rst file in this directory' >&2
     return 1
