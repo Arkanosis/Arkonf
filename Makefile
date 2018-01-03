@@ -52,8 +52,10 @@ gdb: ~/.gdbinit
 ~/.gdbinit:
 	ln -s "$(ROOT)gdb/$(notdir $@)" "$@"
 
-git: ~/.gitconfig
+git: ~/.gitconfig ~/.tigrc
 ~/.gitconfig:
+	ln -s "$(ROOT)git/$(notdir $@)" "$@"
+~/.tigrc:
 	ln -s "$(ROOT)git/$(notdir $@)" "$@"
 mercurial: ~/.hgrc
 ~/.hgrc:
