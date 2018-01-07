@@ -13,6 +13,7 @@ monitoring_pkgs:
       - lm_sensors
 {% endif %}
       - lsof
+      - powertop
       - smartmontools
       - sysstat
       - strace
