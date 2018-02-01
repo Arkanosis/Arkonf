@@ -17,22 +17,25 @@ if [[ -t 0 ]]; then
     export LD_LIBRARY_PATH=~/local_$os-$arch/lib:$LD_LIBRARY_PATH
 
     if [[ -x $(which lsb_release) ]] && lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
-	export PATH=~/local_RedHat/bin:$PATH
-	export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
+        export PATH=~/local_RedHat/bin:$PATH
+        export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
     fi
 
     export TERM=xterm
     if [[ -f /lib/terminfo/x/xterm-256color ]]; then
-	export TERM=xterm-256color
+        export TERM=xterm-256color
     fi
 
     export FULLSHELL=$(which bash)
     if [[ -x $(which zsh) ]]; then
-	export FULLSHELL=$(which zsh)
+        export FULLSHELL=$(which zsh)
     fi
 
     if [[ -z $TMUX && -x $(which tmux) ]]; then
-	exec tmux
+        if [[ -f /lib/terminfo/s/screen-256color ]]; then
+            export TERM=screen-256color
+        fi
+        exec tmux
     fi
 
     exec $FULLSHELL
