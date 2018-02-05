@@ -155,6 +155,10 @@ function x()
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
 		7z x $arg
 	    ;;
+	    *.eml)
+	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mMIME\e[0;32m mail archive)...\e[0m"
+		munpack $arg
+	    ;;
 	    *)
 	        print "\e[91mCannot extract \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
 	    ;;
