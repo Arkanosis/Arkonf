@@ -4,6 +4,7 @@ compression_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - p7zip
 {% else %}
+      - mpack
       - p7zip-full
 {% endif %}
       - unrar
