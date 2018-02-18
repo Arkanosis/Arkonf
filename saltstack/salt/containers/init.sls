@@ -16,3 +16,11 @@ containers_pkgs:
     - target: /home/arkanosis/Arkonf/lxc/default.conf
     - user: arkanosis
     - makedirs: True
+
+{% for directory in ['/home/arkanosis', '/home/arkanosis/.local', '/home/arkanosis/.local/share'] %}
+{{ directory }}:
+  acl.present:
+    - acl_type: user
+    - acl_name: 100000
+    - perms: x
+{% endfor %}
