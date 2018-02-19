@@ -17,6 +17,7 @@ monitoring_pkgs:
       - smartmontools
       - sysstat
       - strace
+      - time
 
 {% if grains['os_family'] == 'Arch' %}
 smartd:
