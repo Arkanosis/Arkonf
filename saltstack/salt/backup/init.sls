@@ -49,6 +49,12 @@ backup_pkgs:
     - template: jinja
     - mode: 644
 
+/etc/rsnapshot.Aegir.conf:
+  file.managed:
+    - source: salt://backup/rsnapshot.Aegir.conf
+    - template: jinja
+    - mode: 644
+
 /etc/rsnapshot.Heimdal.conf:
   file.managed:
     - source: salt://backup/rsnapshot.Heimdal.conf
