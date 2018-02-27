@@ -1,3 +1,6 @@
+include:
+  - users
+
 backup_pkgs:
   pkg.installed:
     - pkgs:
@@ -34,8 +37,16 @@ backup_pkgs:
       - nodev
       - nosuid
 
-# TODO
-# - sudo ALL for /usr/bin/sauvegarde
+/etc/sudoers.d/sauvegarde:
+  file.managed:
+    - makedirs: True
+    - source: salt://backup/sauvegarde_sudoers
+    - user: root
+    - group: root
+    - mode: 440
+    - check-cmd: /usr/sbin/visudo -c -f
+    - require:
+      - pkg: users_pkgs
 
 {% endif %}
 

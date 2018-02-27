@@ -1,0 +1,2 @@
+# Allow members of group famille to make backups
+%famille	ALL= NOPASSWD: /usr/bin/sauvegarde
