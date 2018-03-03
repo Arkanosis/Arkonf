@@ -8,6 +8,7 @@ webbrowser_pkgs:
 {% endif %}
       - firefox
 {% if grains['os_family'] == 'Arch' %}
+      - firefox-developer-edition
       - firefox-i18n-fr
 {% else %}
       - firefox-locale-fr
