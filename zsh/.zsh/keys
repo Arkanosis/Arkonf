@@ -86,8 +86,8 @@ bindkey '^[k' restore-aborted-command
 # Shift + tab pour parcourir l'autocompletion a l'envers
 bindkey '^[[Z' reverse-menu-complete
 
-# Alt + e pour editer la ligne de commande dans un editeur de texte
-#bindkey '^[e' edit-command-line
+# Ctrl + x, ctrl + e pour editer la ligne de commande dans un editeur de texte
+bindkey '^x^e' edit-command-line
 
 # Alt + w pour supprimer ce qui précède jusqu'au dernier slash ou point
 bindkey '^[w' back-to-last-separator
