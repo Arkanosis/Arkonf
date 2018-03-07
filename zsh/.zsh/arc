@@ -9,7 +9,7 @@ function c()
 
     for arg; do
 	print "\e[32mCompressing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-	7za a `echo $arg | sed 's_/\?$_.7z_'` $arg
+	7z a `echo $arg | sed 's_/\?$_.7z_'` $arg
     done
 }
 
@@ -69,15 +69,15 @@ function x()
 	    ;;
 	    *.7z)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-		7za x $arg
+		7z x $arg
 	    ;;
 	    *.xz)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
-		7za x $arg
+		7z x $arg
 	    ;;
 	    *.cab)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
-		7za x $arg
+		7z x $arg
 	    ;;
 	    *.bz2)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
@@ -97,7 +97,7 @@ function x()
 		mkdir $dir && \
                 cd $dir > /dev/null && \
    	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
-		( which 7za >&- && 7za x $arg || unzip $arg ) && \
+		( which 7z >&- && 7z x $arg || unzip $arg ) && \
 		cd - > /dev/null && \
 		flattendir $dir
 	    ;;
@@ -107,11 +107,11 @@ function x()
 	    ;;
 	    *.docx)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
-		which 7za >&- && 7za x $arg || unzip $arg
+		which 7z >&- && 7z x $arg || unzip $arg
 	    ;;
 	    *.od(g|p|s|t))
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
-		which 7za >&- && 7za x $arg || unzip $arg
+		which 7z >&- && 7z x $arg || unzip $arg
 	    ;;
 	    *.tar)
 	        dir=$(basename $arg | sed 's/\.tar$//')
@@ -145,7 +145,7 @@ function x()
 	    ;;
 	    *.xpi)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
-		which 7za >&- && 7za x $arg || unzip $arg
+		which 7z >&- && 7z x $arg || unzip $arg
 	    ;;
 	    *.rar)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
@@ -153,7 +153,7 @@ function x()
 	    ;;
 	    *.iso)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
-		7za x $arg
+		7z x $arg
 	    ;;
 	    *.eml)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mMIME\e[0;32m mail archive)...\e[0m"
@@ -183,22 +183,22 @@ function t()
 	    ;;
 	    *.(tar.xz|txz))
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
-		7za x $arg
+		7z x $arg
 		tarball=`echo $arg | sed 's/\.xz$//'`
 		tar tvf $tarball
 		rm $tarball
 	    ;;
 	    *.7z)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-		7za l $arg
+		7z l $arg
 	    ;;
 	    *.xz)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
-		7za l $arg
+		7z l $arg
 	    ;;
 	    *.cab)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
-		7za l $arg
+		7z l $arg
 	    ;;
 	    *.bz2)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
@@ -210,15 +210,15 @@ function t()
 	    ;;
 	    *.(zip|jar))
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
-		which 7za >&- && 7za l $arg || unzip -l $arg
+		which 7z >&- && 7z l $arg || unzip -l $arg
 	    ;;
 	    *.docx)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
-		which 7za >&- && 7za l $arg || unzip -l $arg
+		which 7z >&- && 7z l $arg || unzip -l $arg
 	    ;;
 	    *.od(g|p|s|t))
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
-		which 7za >&- && 7za l $arg || unzip -l $arg
+		which 7z >&- && 7z l $arg || unzip -l $arg
 	    ;;
 	    *.tar)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
@@ -230,7 +230,7 @@ function t()
 	    ;;
 	    *.xpi)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
-		which 7za >&- && 7za l $arg || unzip -l $arg
+		which 7z >&- && 7z l $arg || unzip -l $arg
 	    ;;
 	    *.rar)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
@@ -238,7 +238,7 @@ function t()
 	    ;;
 	    *.iso)
 	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
-		7za l $arg
+		7z l $arg
 	    ;;
 	    *)
 	        print "\e[91mCannot list \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"

@@ -1,5 +1,19 @@
 # "-*- sh -*-"
 
+if ! which 7z >& /dev/null; then
+    if ! which 7za >& /dev/null; then
+	function 7z()
+	{
+	    7zr $@
+	}
+    else
+	function 7z()
+	{
+	    7za $@
+	}
+    fi
+fi
+
 if which gsed >& /dev/null; then
     function sed()
     {
