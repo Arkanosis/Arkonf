@@ -262,6 +262,10 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (global-linum-mode t))
 
+(use-package xsel-mode
+  :config
+  (xsel-mode))
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
