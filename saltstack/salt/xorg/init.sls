@@ -8,6 +8,7 @@ xorg_pkgs:
       - tightvncviewer
 {% endif %}
       - wmctrl
+      - xdotool
       - xsel
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
