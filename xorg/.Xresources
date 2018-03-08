@@ -49,3 +49,9 @@ Rxvt.searchable-scrollback: CM-s
 Rxvt.borderLess: False
 URxvt.iso14755: False
 URxvt.iso14755_52: False
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.matcher.rend.0: fg9
