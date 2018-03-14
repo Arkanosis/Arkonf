@@ -42,6 +42,7 @@ beautiful.init(os.getenv("ARKONF_DIR") .. "/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = os.getenv("HOME") .. "/local/bin/zmux"
+rterminal = os.getenv("HOME") .. "/local/bin/zssh"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 screenlock = "gnome-screensaver-command --lock"
@@ -254,6 +255,7 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(rterminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
