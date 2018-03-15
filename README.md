@@ -52,11 +52,10 @@ apt upgrade
 
 ## Copyright
 
-Copyright 2001-2017 – Jérémie Roquet <jroquet@arkanosis.net>
+Arkonf is copyright (C) 2001-2018 Jérémie Roquet <jroquet@arkanosis.net> and
+all code except code written by third-parties licensed under the ISC license.
 
-All code except code written by third-parties released under the MIT License.
-
-See the `LICENSE` file for more details.
+See the [LICENSE](/LICENSE) file for more details.
 
 ## Links
 
