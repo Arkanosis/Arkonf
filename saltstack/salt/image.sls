@@ -1,6 +1,7 @@
 image_pkgs:
   pkg.installed:
     - pkgs:
+      - blender
       - darktable
 {% if grains['os_family'] != 'Arch' %}
       - exiftran
