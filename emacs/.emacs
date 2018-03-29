@@ -544,15 +544,11 @@ If region contains less than 2 lines, lines are left untouched."
 ;(setq compile-command "g++ -Wall -Wextra -std=c++98 -pedantic -Wabi *.cc *.cpp *.cxx")
 (setq compile-command "engscons -d -t benchmark")
 
-;; (global-hl-line-mode t)
-;; (set-face-background 'hl-line "#111")
-
 (winner-mode t)
 
 (blink-cursor-mode t)
 (delete-selection-mode t) ;; Efface la selection a la saisie
 (global-font-lock-mode t)
-;(global-hl-line-mode t)
 (icomplete-mode t) ;; Auto completion des commandes
 
 (defun host-name ()
@@ -672,6 +668,15 @@ If region contains less than 2 lines, lines are left untouched."
 ; '(font-lock-comment-face ((t (:foreground "Firebrick"))))
 )
 
+(defun my-change-window-divider ()
+  (let ((display-table (or buffer-display-table standard-display-table)))
+    (set-display-table-slot display-table 5 ?│)
+    (set-window-display-table (selected-window) display-table)))
+
+(add-hook 'window-configuration-change-hook 'my-change-window-divider)
+
+(set-face-background 'vertical-border "black")
+(set-face-foreground 'vertical-border "dim gray")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Old stuff
