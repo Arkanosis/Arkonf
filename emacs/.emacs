@@ -261,7 +261,8 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package linum
   :config
   (global-linum-mode t)
-  (setq linum-format "%4d\u2502 ")
+  (use-package linum-highlight-current-line-number)
+  (setq linum-format 'linum-highlight-current-line-number)
   (add-hook 'prog-mode-hook
     (lambda ()
       (if
