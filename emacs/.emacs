@@ -260,7 +260,14 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package linum
   :config
-  (global-linum-mode t))
+  (global-linum-mode t)
+  (add-hook 'prog-mode-hook
+    (lambda ()
+      (if
+        (or
+          (> (buffer-size) (* 5000 80))
+          (> (line-number-at-pos (point-max)) 5000))
+        (linum-mode -1)))))
 
 (use-package xsel-mode
   :config
