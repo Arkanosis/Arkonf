@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Arkonf for Emacs                                                    ;
-;  (C) 2006-2015 - Jérémie Roquet                                      ;
+;  (C) 2006-2018 - Jérémie Roquet                                      ;
 ;  jroquet@arkanosis.net                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -261,6 +261,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package linum
   :config
   (global-linum-mode t)
+  (setq linum-format "%4d\u2502 ")
   (add-hook 'prog-mode-hook
     (lambda ()
       (if
