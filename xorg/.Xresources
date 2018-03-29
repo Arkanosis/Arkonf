@@ -21,7 +21,7 @@ Rxvt.keysym.M-7: command:\033]710;xft:DejaVu Sans Mono:pixelsize=28:antialias=tr
 Rxvt.keysym.M-8: command:\033]710;xft:DejaVu Sans Mono:pixelsize=34:antialias=true\007
 Rxvt.keysym.M-9: command:\033]710;xft:DejaVu Sans Mono:pixelsize=40:antialias=true\007
 Rxvt.letterSpace: -1
-Rxvt.background: #000000
+Rxvt.background: #101010
 Rxvt.foreground: #ffffff
 Rxvt.color0: #000000
 Rxvt.color1: #cc0000
