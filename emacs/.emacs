@@ -669,7 +669,11 @@ If region contains less than 2 lines, lines are left untouched."
 )
 
 (defun my-change-window-divider ()
-  (let ((display-table (or buffer-display-table standard-display-table)))
+  (let ((display-table
+    (or
+      buffer-display-table
+      standard-display-table
+      (setq standard-display-table (make-display-table)))))
     (set-display-table-slot display-table 5 ?│)
     (set-window-display-table (selected-window) display-table)))
 
