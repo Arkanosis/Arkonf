@@ -321,7 +321,7 @@ function sls()
     vcs=`whichvcs`
     case $vcs in
 	svn)
-	    $vcs ls `svn info | sed -n 's/URL: //p'`
+	    $vcs ls `svn info --xml | xmlstarlet sel -T -t -c '//info/entry/url'`/"$1"
 	;;
     esac
 
