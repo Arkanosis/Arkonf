@@ -14,6 +14,7 @@ monitoring_pkgs:
 {% endif %}
       - lsof
       - powertop
+      - pv
       - smartmontools
       - sysstat
       - strace
