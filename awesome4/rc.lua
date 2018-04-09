@@ -45,13 +45,6 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("ARKONF_DIR") .. "/awesome4/theme.lua")
 
--- This is used later as the default terminal and editor to run.
-terminal = "zmux"
-rterminal = "zssh"
-editor = "emacs-console"
-screenlock = "sxlock -l"
-passman = "keepassx2"
-
 -- Default modkey.
 modkey = "Mod4"
 
@@ -83,14 +76,14 @@ end
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "edit config", editor .. " " .. awesome.conffile },
+   { "edit config", "emacs-console " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
 				    { "hotkeys", function() return false, hotkeys_popup.show_help end},
-                                    { "open terminal", terminal }
+                                    { "open terminal", "zmux" }
                                   }
                         })
 
@@ -98,7 +91,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = "zmux" -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
@@ -230,9 +223,14 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ "Control", "Mod1" }, "l", function () awful.util.spawn(screenlock) end,
+    awful.key({ "Control", "Mod1" }, "l", function () awful.util.spawn("sxlock -l") end,
 	      {description = "lock screen", group = "awesome"}),
-    awful.key({ modkey,           }, "p", function () awful.util.spawn(passman) end,
+    awful.key({ modkey,           }, "p", function ()
+		 local matcher = function (c)
+		    return awful.rules.match(c, {class = "Keepassx2"})
+		 end
+		 awful.client.run_or_raise("keepassx2", matcher)
+	       end,
 	      {description = "password manager", group = "launcher"}),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -279,9 +277,9 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn("zmux") end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn(rterminal) end,
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn("zssh") end,
               {description = "open a remote terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
