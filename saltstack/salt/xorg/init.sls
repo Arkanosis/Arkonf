@@ -16,8 +16,10 @@ xorg_pkgs:
       - xorg-server-xephyr
       - xorg-xinit
       - xorg-xinput
+      - xorg-xprop
       - xorg-xrandr
 {% else %}
+      - x11-utils
       - xpra # TODO FIXME need it for ArchLinux as well
       - xserver-xephyr
 {% endif %}
