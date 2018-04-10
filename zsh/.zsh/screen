@@ -1,0 +1,19 @@
+# "-*- sh -*-"
+
+function xnone()
+{
+    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0
+    xrandr --output HDMI1 --off
+}
+
+function xwsxga+()
+{
+    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 3360x0
+    xrandr --output HDMI1 --mode 1680x1050 --scale 2x2 --fb 6560x2100 --pos 0x0
+}
+
+function xfhd()
+{
+    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0
+    xrandr --output HDMI1 --mode 1920x1080 --scale 2x2 --fb 6560x2100 --right-of eDP1
+}

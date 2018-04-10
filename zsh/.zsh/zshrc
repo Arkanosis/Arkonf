@@ -39,6 +39,7 @@ source proxy
 source rm
 source run
 source quota
+source screen
 source search
 source stats
 #source stderr
