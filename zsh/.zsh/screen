@@ -2,18 +2,28 @@
 
 function xnone()
 {
-    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0
-    xrandr --output HDMI1 --off
+    xrandr \
+	--output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0 \
+        --output HDMI1 --off
 }
 
-function xwsxga+()
+function xlwsxga+()
 {
-    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 3360x0
-    xrandr --output HDMI1 --mode 1680x1050 --scale 2x2 --fb 6560x2100 --pos 0x0
+    xrandr \
+	--output eDP1 --mode 3200x1800 --scale 1x1 --pos 3360x0 \
+	--output HDMI1 --mode 1680x1050 --scale 2x2 --fb 6560x2100 --pos 0x0
 }
 
-function xfhd()
+function xrfhd()
 {
-    xrandr --output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0
-    xrandr --output HDMI1 --mode 1920x1080 --scale 2x2 --fb 6560x2100 --right-of eDP1
+    xrandr \
+	--output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x0 \
+	--output HDMI1 --mode 1920x1080 --scale 1.7x1.7 --fb 6464x1836 --pos 3200x0
+}
+
+function xtfhd()
+{
+    xrandr \
+	--output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x1836 \
+	--output HDMI1 --mode 1920x1080 --scale 1.7x1.7 --fb 3264x3636 --pos 0x0
 }
