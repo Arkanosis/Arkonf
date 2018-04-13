@@ -21,7 +21,7 @@ syndaemon -t -K -R -i .5 -d
 emacs --daemon=emacsconsole &
 
 # Lock
-xautolock -time 1 -locker 'sxlock -l' &
+xautolock -time 1 -locker 'sxlock -l' -notify 10 -notifier '/usr/bin/notify-send "Inactivity detected" -t 2000 -i /usr/share/icons/oxygen/base/128x128/actions/system-lock-screen.png' &
 
 # SSH agent
 eval $(ssh-agent)
