@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function less()
-{
+less() {
     command less -r $@
 }
 

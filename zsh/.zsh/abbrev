@@ -32,8 +32,7 @@ abbrev=(
 
 # TODO revenir entre les parentheses pour 2>>() et entre les slashe pour sed s///
 
-function abbrev-expand()
-{
+abbrev-expand() {
     local MATCH REPL
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9<>|]#}
     REPL=$abbrev[$MATCH]

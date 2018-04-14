@@ -54,12 +54,11 @@ for p in ${(k)namedpathes}; do
 done
 
 # (C) 2011 Mikael Magnusson
-function shadowedpaths()
-{
+shadowedpaths() {
     print -l $^commands(e,'() { (( $# > 1 )) && REPLY=$@ } $^path/$REPLY:t(N)',N)
 }
 
-function path() {
+path() {
     for file; do
 	echo $file:A
     done

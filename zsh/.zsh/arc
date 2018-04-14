@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function c()
-{
+c() {
     if ! ((#)); then
 	echo 'Usage: c <directory> [directory [...]]' >&2
 	return 1
@@ -13,15 +12,14 @@ function c()
     done
 }
 
-function flattendir() {
+flattendir() {
     if test -d $1/$1 && [[ `ls -l $1 | wc -l` = 2 ]]; then
 	command mv $1/$1/*(N) $1/$1/.*(N) $1
 	rmdir $1/$1
     fi
 }
 
-function x()
-{
+x() {
     # Extracteur universel v1.4
     # (C) 2008-2018 Arkanosis
     # jroquet@arkanosis.net
@@ -166,8 +164,7 @@ function x()
     done
 }
 
-function t()
-{
+t() {
     # Listeur universel v1.4
     # (C) 2008-2018 Arkanosis
     # jroquet@arkanosis.net

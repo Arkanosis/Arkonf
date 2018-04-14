@@ -1,30 +1,25 @@
 # "-*- sh -*-"
 
-function ,()
-{
+,() {
     cd - $@
 }
 
-function cdir()
-{
+cdir() {
     cd `\ls -l  $1 | cut -d ' ' -f 10 | sed 's_^\(.\+/\).\+$_\1_'`
 }
 
-function popd()
-{
+popd() {
     builtin popd > /dev/null
 }
 
-function rl()
-{
+rl() {
     cd -P . $@
 }
 
 setopt auto_cd
 setopt auto_pushd
 
-function display-path()
-{
+display-path() {
     local newpath
 
     newpath=`pwd`/`echo $1 | sed 's_\(.* \)\?\([^ ]\+\)$_\2_'`
@@ -32,8 +27,7 @@ function display-path()
 }
 
 # TODO if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
-function magic-dot()
-{
+magic-dot() {
     if [[ $LBUFFER = *. ]]; then
         LBUFFER+=./
         if ((NUMERIC > 0)); then
@@ -59,16 +53,14 @@ function magic-dot()
 }
 zle -N magic-dot
 
-function magic-slash()
-{
+magic-slash() {
     if [[ $LBUFFER != *../ ]]; then
         zle self-insert
     fi
 }
 zle -N magic-slash
 
-function magic-slash2()
-{
+magic-slash2() {
     zle self-insert
 
     if [[ $LBUFFER = / ]]; then

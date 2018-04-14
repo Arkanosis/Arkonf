@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function ma()
-{
+ma() {
     local pass
 
     if ! ((#)); then
@@ -23,8 +22,7 @@ function ma()
     done
 }
 
-function addnode()
-{
+addnode() {
     local i
 
     if ((# != 1)); then

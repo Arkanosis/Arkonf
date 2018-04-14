@@ -126,8 +126,7 @@ bindkey "^[M" insert-files
 bindkey "^[+" incarg
 #bindkey "^[-" decarg
 
-function kbd()
-{
+kbd() {
     setxkbmap us
     xmodmap ~/.Xmodmap
     xset r 66
@@ -135,8 +134,7 @@ function kbd()
 
 closingchars=(\) \] \} \' \" \`)
 
-function no-magic-keys()
-{
+no-magic-keys() {
     bindkey . self-insert
     bindkey / self-insert
     bindkey '^[/' self-insert
@@ -148,8 +146,7 @@ function no-magic-keys()
     done
 }
 
-function magic-keys()
-{
+magic-keys() {
     bindkey . magic-dot
     bindkey / magic-slash
     bindkey '^[/' magic-slash2

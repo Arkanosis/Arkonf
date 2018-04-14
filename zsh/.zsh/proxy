@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function enable_proxy()
-{
+enable_proxy() {
     sed -i 's/^#\(\[http_proxy\]\)$/\1/' ~/.hgrc
     sed -i 's/^#\(host=.*\)$/\1/' ~/.hgrc
     sed -i 's/^#\(user=.*\)$/\1/' ~/.hgrc
@@ -12,8 +11,7 @@ function enable_proxy()
     export RSYNC_PROXY="http://$USER:$SOCKS_PASSWORD@$PROXY_HOST:$PROXY_PORT"
 }
 
-function disable_proxy()
-{
+disable_proxy() {
     sed -i 's/^\(\[http_proxy\]\)$/#\1/' ~/.hgrc
     sed -i 's/^\(host=.*\)$/#\1/' ~/.hgrc
     sed -i 's/^\(user=.*\)$/#\1/' ~/.hgrc

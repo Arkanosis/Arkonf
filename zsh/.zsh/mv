@@ -2,14 +2,12 @@
 
 case `uname -s` in
     SunOS|AIX)
-	function mv()
-	{
+	mv() {
 	    command mv -i $@
 	}
     ;;
     *)
-	function mv()
-	{
+	mv() {
 	    command mv -iv $@
 	}
     ;;
@@ -21,8 +19,7 @@ esac
 # cannot be avoided using `builtin' or `command'
 alias zmv="zmv -M"
 
-function mvi()
-{
+mvi() {
     if ((# < 2)); then
 	mv
 	return $?
@@ -31,13 +28,11 @@ function mvi()
     mv $@[1,-3] $@[-2] $@[-2]:h/$@[-1]
 }
 
-function mvcd()
-{
+mvcd() {
     # TODO
 }
 
-function mvln()
-{
+mvln() {
     if ((# < 2)); then
 	mv
 	return $?

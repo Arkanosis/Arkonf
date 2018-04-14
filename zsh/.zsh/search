@@ -45,8 +45,7 @@ for excluded_dist in $excluded_dists; do
     exclusions_dist+=(--ignore $excluded_dist)
 done
 
-function search()
-{
+search() {
     local all dist case exclude dir exp
 
     all=0
@@ -103,29 +102,24 @@ function search()
     fi
 }
 
-function /()
-{
+/() {
     search $@
 }
 alias /='noglob /'
-function /i()
-{
+/i() {
     search -i $@
 }
 alias /i='noglob /i'
-function /l()
-{
+/l() {
     search $@ | less -r
 }
 alias /l='noglob /l'
-function /il()
-{
+/il() {
     search -i $@ | less -r
 }
 alias /il='noglob /il'
 alias /li='noglob /il'
-function /f()
-{
+/f() {
     local dir
 
     dir=.
@@ -137,8 +131,7 @@ function /f()
 
     find $dir -type f $@
 }
-function /d()
-{
+/d() {
     dir=.
 
     if ((#)); then
@@ -148,16 +141,13 @@ function /d()
 
     find $dir -type f $@
 }
-function /z()
-{
+/z() {
     runin $ZARKONF_DIR search $@
 }
-function /a()
-{
+/a() {
     runin $ARKONF_DIR search $@
 }
-function /r()
-{
+/r() {
     local case dir files exp res
 
     if ((# < 2)); then
@@ -210,8 +200,7 @@ function /r()
     ag --depth -1 --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -G $files -- $exp $dir
 }
 alias /r="noglob /r"
-function /x()
-{
+/x() {
     local i dir files exp
 
     if [[ $1 = -i ]]; then
@@ -242,13 +231,11 @@ function /x()
 }
 alias /x="noglob /x"
 
-function /t()
-{
+/t() {
     search 'TODO\|FIXME\|HACK'
 }
 
-function rd()
-{
+rd() {
     if ((#)); then
         if [[ -f $1/README ]]; then
             less $1/README
@@ -276,8 +263,7 @@ function rd()
     return 1
 }
 
-function checkheaders()
-{
+checkheaders() {
     find . \( -name '*.hh' -o -name '*.hpp' -o -name '*.hxx' \) -exec awk '
 /# *ifndef/ {
   guard = $(NF)

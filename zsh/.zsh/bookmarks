@@ -5,25 +5,21 @@ typeset -A bookmarks
 bookmarkentries=()
 bookmarkcompletions=()
 
-function ba()
-{
+ba() {
     bookmarkentries+=($1)
     bookmarks[$1]=$2
     bookmarkcompletions+=($1:$bookmarks[$1])
 }
 
-function s()
-{
+s() {
     ba $1 `pwd`
 }
 
-function g()
-{
+g() {
     cd $bookmarks[$1]
 }
 
-function d()
-{
+d() {
     newbookmarkentries=()
     newbookmarkcompletions=()
 
@@ -40,8 +36,7 @@ function d()
     unset $bookmarks[$1]
 }
 
-function bk()
-{
+bk() {
     for bookmark in $bookmarkentries; do
 	echo "$bookmark\t$bookmarks[$bookmark]"
     done

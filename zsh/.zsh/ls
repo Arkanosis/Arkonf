@@ -5,70 +5,57 @@ export QUOTING_STYLE=literal
 case `uname -s` in
     *BSD|SunOS)
 	if which gls >& /dev/null; then
-            function ls()
-            {
+            ls() {
 		gls --color -F $@
             }
 	else
-            function ls()
-            {
+            ls() {
 		command ls -F $@
             }
 	fi
     ;;
     OSF1|Darwin|HP-UX)
-        function ls()
-        {
+        ls() {
             command ls -F $@
         }
     ;;
     Linux|AIX)
-        function ls()
-        {
+        ls() {
             command ls --color -F $@
         }
     ;;
 esac
 
 if ls -h >& /dev/null; then
-    function l()
-    {
+    l() {
 	ls -lh $@
     }
 else
-    function l()
-    {
+    l() {
 	ls -l $@
     }
 fi
 
-function ll()
-{
+ll() {
     l -A $@
 }
-function lt()
-{
+lt() {
     ll -t $@
 }
-function lS()
-{
+lS() {
     ll -S $@
 }
-function lx()
-{
+lx() {
     ll -X $@
 }
-function xs()
-{
+xs() {
     echo *(.:e) | tr ' ' '\n' | uniq -c | sort -rn
 }
-function lll()
-{
+lll() {
     ll $@ | less -r
 }
 
-function lp()
-{
+lp() {
     local dir
 
     dir=.
@@ -79,8 +66,7 @@ function lp()
 
     ls -ld $@ $dir/*(-/DN)
 }
-function lf()
-{
+lf() {
     local dir
 
     dir=.
@@ -92,8 +78,7 @@ function lf()
     ls -l $@ $dir/**(.)
 }
 
-function llf()
-{
+llf() {
     local time res oldres
 
     time=5
@@ -110,7 +95,6 @@ function llf()
     done
 }
 
-function lsn()
-{
+lsn() {
     lsof -N
 }

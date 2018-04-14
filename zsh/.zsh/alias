@@ -2,111 +2,96 @@
 
 unalias -a
 
-function cx()
-{
+cx() {
     chmod +x $@
 }
 
 if grep --color . <(echo .) >& /dev/null; then
-    function grep()
-    {
+    grep() {
 	command grep --color=auto $@
     }
 fi
 
-function vd()
-{
+vd() {
     vimdiff -c 'set diffopt+=iwhite' $@
 }
 
-function hx()
-{
+hx() {
     hexdump -C $@
 }
 
-function pf()
-{
+pf() {
     gprof -b $@
 }
 
-function gdb()
-{
+gdb() {
     command gdb -q $@
 }
 
-function jdb()
-{
+jdb() {
     local jdbpath
     jdbpath=$(sed -n 's@^\(.*/bin/\)java.*@\1@p' /proc/$1/cmdline)
     command $jdbpath/jdb -connect sun.jvm.hotspot.jdi.SAPIDAttachingConnector:pid=$1 $@[2,-1]
 }
 
-function sc()
-{
+sc() {
     screen $@
 }
 
-function kp()
-{
+kp() {
     keepassx $@ &!
 }
 
-function mem()
-{
+mem() {
     vmstat -sSM $@
 }
 
-function ht() {
+ht() {
     ln -sf $ARKONF_DIR/htop/light.htoprc ~/.config/htop/htoprc
     command htop
 }
 
-function htt() {
+htt() {
     ln -sf $ARKONF_DIR/htop/light_threads.htoprc ~/.config/htop/htoprc
     command htop
 }
 
-function htop() {
+htop() {
     ln -sf $ARKONF_DIR/htop/full.htoprc ~/.config/htop/htoprc
     command htop
 }
 
-function htopt() {
+htopt() {
     ln -sf $ARKONF_DIR/htop/full_threads.htoprc ~/.config/htop/htoprc
     command htop
 }
 
-function wa()
-{
+wa() {
     watch $@
 }
 
-function py()
-{
+py() {
     python -i -c 'import user'
 }
 
-function pw()
-{
+pw() {
     pwgen --secure --ambiguous 9
 }
 
-function fu()
-{
+fu() {
     sudo aptitude update && sudo aptitude full-upgrade
 }
 
-function tig()
-{
+tig() {
     command tig --show-signature $@
 }
 
-function mnt()
+mnt()
 {
     udisksctl mount -b $@
 }
 
-function umnt()
+umnt()
 {
     udisksctl unmount -b $@
 }

@@ -51,8 +51,7 @@ compdef v=vim >& /dev/null
 
 compdef _precommand runin
 
-function zcl()
-{
+zcl() {
     if ((# != 1)); then
 	echo 'Usage: zcl <command>' >&2
 	return 1
@@ -61,8 +60,7 @@ function zcl()
     rm -f $ZARKONF_CACHE/$1
 }
 
-function magic-tab()
-{
+magic-tab() {
     if [[ -z $LBUFFER && -z $RBUFFER ]]; then
 	LBUFFER+=./
     fi

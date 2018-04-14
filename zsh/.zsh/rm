@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function rmbrute()
-{
+rmbrute() {
     for arg; do
 	if [[ -n $arg && -e $arg ]]; then
 	    find $arg -exec chmod u+rw {} \;
@@ -10,8 +9,7 @@ function rmbrute()
     done
 }
 
-function clean()
-{
+clean() {
     rm -f *.o(N)
     rm -f *.aux(N)
     rm -f *.log(N)

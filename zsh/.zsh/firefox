@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function fx()
-{
+fx() {
     if ! ((#)); then
         echo "Usage: fx page.htm" >&2
 	return 1
@@ -12,23 +11,19 @@ function fx()
     fi
 }
 
-function kf()
-{
+kf() {
     killall firefox-bin firefox
 }
 
-function rfx()
-{
+rfx() {
     kf ; firefox &!
 }
 
-function rmlock()
-{
+rmlock() {
     rm -f ~/.mozilla/firefox/*/{.parentlock,lock}(N)
     rm -f ~/.thunderbird/*/{.parentlock,lock}(N)
 }
 
-function falt()
-{
+falt() {
     firefox -no-remote -Profile ~/.mozilla/firefox/*(oc[2])
 }

@@ -1,14 +1,12 @@
 # "-*- sh -*-"
 
-function each()
-{
+each() {
     for item; do
 	$item
     done
 }
 
-function run()
-{
+run() {
     local program
 
     if ((# < 2)); then
@@ -35,20 +33,17 @@ function run()
     done
 }
 
-function diapo()
-{
+diapo() {
     run xv -shrink \; *.jpg
 }
 
-function runin()
-{
+runin() {
     pushd $1 > /dev/null
     shift
     $@
     popd > /dev/null
 }
 
-function psd()
-{
+psd() {
     pgrep -f $@
 }

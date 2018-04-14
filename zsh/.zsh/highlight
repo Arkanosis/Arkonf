@@ -1,8 +1,7 @@
 # "-*- sh -*-"
 
 # (C) Oliver Kiddle, Arkanosis
-function highlight-paren()
-{
+highlight-paren() {
     local i nested=1 old_region_highlight
 
     typeset -A match

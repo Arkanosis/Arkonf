@@ -46,8 +46,7 @@ for configuration_file in $configuration_files; do
     configuration_files_pathes[$file]=$ARKONF_DIR/$configuration_file
 done
 
-function ze()
-{
+ze() {
     local files configuration_file_path
 
     files=()
@@ -70,10 +69,9 @@ function ze()
     e $files
 }
 
-function zf()
-{
+zf() {
     local match params oldifs
-    match=`command grep -nRI " $1()" $ZARKONF_DIR`
+    match=`command grep -nRI "^[ 	]*$1() {" $ZARKONF_DIR`
 
     oldifs=$IFS
     IFS=':'
@@ -83,74 +81,60 @@ function zf()
     e +$params[2] $params[1]
 }
 
-function cdo()
-{
+cdo() {
     pushd $ARKONF_DIR > /dev/null
     $@
     popd > /dev/null
 }
 
-function cst()
-{
+cst() {
     cdo st $@
 }
 
-function cdf()
-{
+cdf() {
     cdo df $@
 }
 
-function cdfl()
-{
+cdfl() {
     cdo dfl $@
 }
 
-function cci()
-{
+cci() {
     cdo ci $@
 }
 
-function cpush()
-{
+cpush() {
     cdo push $@
 }
 
-function cup()
-{
+cup() {
     cdo up $@
 }
 
-function cadd()
-{
+cadd() {
     cdo add $@
 }
 
-function ctd()
-{
+ctd() {
     e $ZARKONF_DIR/.zsh/TODO $@
 }
 
-function ca()
-{
+ca() {
     cd $ARKONF_DIR $@
 }
 
-function cz()
-{
+cz() {
     cd $ZARKONF_DIR $@
 }
 
-function cv()
-{
+cv() {
     cd $ARKONF_DIR/vim $@
 }
 
-function czz()
-{
+czz() {
     cd $ZARKONF_DIR/.zsh $@
 }
 
-function czc()
-{
+czc() {
     cd $ZARKONF_DIR/.zsh/completions $@
 }

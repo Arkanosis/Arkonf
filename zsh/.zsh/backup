@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function bak()
-{
+bak() {
     if ! ((#)); then
 	echo 'Usage: bak <files>' >&2
 	return 1

@@ -4,8 +4,7 @@ vcsrootpattern='(trunk|branches/([0-9]##(.[0-9]##)#(|dev|-*)|V[0-9]R20[0-9][0-9]
 VCS=
 PREVIOUS_PWD=
 
-function whichvcs()
-{
+whichvcs() {
 	local base_dir
 
 	if [[ -d .svn ]]; then
@@ -31,8 +30,7 @@ typeset -A VCS_REVISION
 VCS_REVISION=()
 
 # TODO regarder http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
-function update_vcs_information()
-{
+update_vcs_information() {
     local base_dir branch
 
     VCS=''
@@ -63,8 +61,7 @@ function update_vcs_information()
     VCS_REVISION[$PWD]=$VCS
 }
 
-function update_vcs_information_if_needed()
-{
+update_vcs_information_if_needed() {
     # TODO idem si derniere commande = git checkout
     VCS=$VCS_REVISION[$PWD]
     if [[ -z $NO_VCS_INFO ]] && [[ -z $VCS ]] && [[ -z $PREVIOUS_PWD || $PREVIOUS_PWD != $PWD ]]; then
@@ -73,8 +70,7 @@ function update_vcs_information_if_needed()
     fi
 }
 
-function vcsroot ()
-{
+vcsroot () {
     local cmd base_dir
 
     cmd=$1
@@ -88,8 +84,7 @@ function vcsroot ()
     $cmd $@ $base_dir
 }
 
-function runinroot ()
-{
+runinroot () {
     local base_dir
 
     base_dir=.
@@ -101,8 +96,7 @@ function runinroot ()
     fi
 }
 
-function co()
-{
+co() {
     hg clone $@ ||
     svn co $@  ||
     git clone $@  ||
@@ -113,22 +107,19 @@ function co()
     )
 }
 
-function ch()
-{
+ch() {
     git checkout $@
     update_vcs_information
 }
 
-function colorizeAdd()
-{
+colorizeAdd() {
     while read line; do
 	line=`echo $line | sed -e 's/^A[ 	].\+/\\\\e[1;32m&\\\\e[0m/'`
 	echo $line
     done
 }
 
-function add()
-{
+add() {
     local vcs
 
     vcs=`whichvcs`
@@ -147,8 +138,7 @@ function add()
     esac
 }
 
-function unadd()
-{
+unadd() {
     local vcs
 
     vcs=`whichvcs`
@@ -162,8 +152,7 @@ function unadd()
     esac
 }
 
-function ci()
-{
+ci() {
     local vcs
 
     # TODO FIXME when vcsroot will be fixed, make so that :
@@ -189,35 +178,30 @@ function ci()
 
     update_vcs_information
 }
-function rci()
-{
+rci() {
     vcsroot ci $@
 }
-function cif()
-{
+cif() {
     ci -F $@
 }
 
-function unci()
-{
+unci() {
     git uncommit $@
 
     update_vcs_information
 }
 
-function am() {
+am() {
     ci --amend $@
 }
 
-function unam()
-{
+unam() {
     git unamend $@
 
     update_vcs_information
 }
 
-function push()
-{
+push() {
     local vcs
 
     vcs=`whichvcs`
@@ -228,8 +212,7 @@ function push()
     esac
 }
 
-function colorizeStatus()
-{
+colorizeStatus() {
     while read line; do
 	line=`echo $line | sed -e '
                 s/^A[ 	].\+/\\\\e[1;32m&\\\\e[0m/' -e '
@@ -242,8 +225,7 @@ function colorizeStatus()
     done
 }
 
-function st()
-{
+st() {
     local vcs
 
     vcs=`whichvcs`
@@ -277,45 +259,36 @@ function st()
 	;;
     esac
 }
-function stf()
-{
+stf() {
     st -f $@
 }
-function sf()
-{
+sf() {
     st -f $@
 }
-function stl()
-{
+stl() {
     st $@ | less
 }
-function stm()
-{
+stm() {
     local files
     for file in `nocolor st -f | grep '^[^X] ' | cut -d ' ' -f 2`; do
 	files+=($file)
     done
     echo $files
 }
-function rst()
-{
+rst() {
     vcsroot st $@
 }
-function rft()
-{
+rft() {
     rst -f $@
 }
-function rsf()
-{
+rsf() {
     rst -f $@
 }
-function rstl()
-{
+rstl() {
     vcsroot stl $@
 }
 
-function sls()
-{
+sls() {
     local vcs
 
     vcs=`whichvcs`
@@ -328,8 +301,7 @@ function sls()
     update_vcs_information
 }
 
-function up()
-{
+up() {
     local vcs
 
     vcs=`whichvcs`
@@ -347,13 +319,11 @@ function up()
 
     update_vcs_information
 }
-function rup()
-{
+rup() {
     vcsroot up $@
 }
 
-function dfcmd()
-{
+dfcmd() {
     local cmd vcs base_dir
 
     cmd=$1
@@ -387,107 +357,82 @@ function dfcmd()
 	;;
     esac
 }
-function df()
-{
+df() {
     dfcmd colordiff $@
 }
-function ds()
-{
+ds() {
     dfcmd colordiff --staged $@
 }
-function vdf()
-{
+vdf() {
     dfcmd vimdiff $@
 }
-function vds()
-{
+vds() {
     dfcmd vimdiff --staged $@
 }
-function kdf()
-{
+kdf() {
     dfcmd kdiff3 $@
 }
-function kds()
-{
+kds() {
     dfcmd kdiff3 --staged $@
 }
-function rdf()
-{
+rdf() {
     vcsroot df $@
 }
-function rds()
-{
+rds() {
     vcsroot df --staged $@
 }
-function rkdf()
-{
+rkdf() {
     vcsroot kdf $@
 }
-function rkds()
-{
+rkds() {
     vcsroot kdf --staged $@
 }
-function dfl()
-{
+dfl() {
     df $@ | less
 }
-function dsl()
-{
+dsl() {
     df --staged $@ | less
 }
 # Exactement pareil que dfl, mais avec une autre completion
-function sdfl()
-{
+sdfl() {
     dfl $@
 }
-function rdfl()
-{
+rdfl() {
     vcsroot dfl $@
 }
-function rdsl()
-{
+rdsl() {
     vcsroot dfl --staged $@
 }
-function dc()
-{
+dc() {
     df -r committed $@
 }
-function rdc()
-{
+rdc() {
     vcsroot dc $@
 }
-function dcl()
-{
+dcl() {
     dfl -r committed $@
 }
-function rdcl()
-{
+rdcl() {
     vcsroot dcl $@
 }
-function dp()
-{
+dp() {
     df -r prev $@
 }
-function rdp()
-{
+rdp() {
     vcsroot dp $@
 }
-function dpl()
-{
+dpl() {
     dfl -r prev $@
 }
-function rdpl()
-{
+rdpl() {
     vcsroot dpl $@
 }
 
-function lcd()
-{
+lcd() {
     colordiff $@ | less
 }
 
-function dlf()
-{
+dlf() {
     local cmd added removed difference
 
     cmd=$1
@@ -505,8 +450,7 @@ function dlf()
     fi
 }
 
-function dla()
-{
+dla() {
     local cmd
 
     cmd=$1
@@ -521,8 +465,7 @@ function dla()
     dlf $cmd $@
 }
 
-function dl()
-{
+dl() {
     local vcs
 
     vcs=`whichvcs`
@@ -533,13 +476,11 @@ function dl()
     esac
 }
 
-function dll()
-{
+dll() {
     dl $@ | less
 }
 
-function rv()
-{
+rv() {
     local vcs
 
     vcs=`whichvcs`
@@ -556,8 +497,7 @@ function rv()
     esac
 }
 
-function bo()
-{
+bo() {
     local vcs
 
     vcs=`whichvcs`
@@ -574,8 +514,7 @@ function bo()
     esac
 }
 
-function lg()
-{
+lg() {
     local vcs
 
     vcs=`whichvcs`
@@ -585,12 +524,10 @@ function lg()
 	;;
     esac
 }
-function rlg()
-{
+rlg() {
     vcsroot lg $@
 }
-function lgv()
-{
+lgv() {
     local vcs
 
     vcs=`whichvcs`
@@ -606,12 +543,10 @@ function lgv()
 	;;
     esac
 }
-function rlgv()
-{
+rlgv() {
     vcsroot lgv $@
 }
-function gl()
-{
+gl() {
     local vcs
 
     vcs=`whichvcs`
@@ -624,17 +559,14 @@ function gl()
 	;;
     esac
 }
-function lc()
-{
+lc() {
     lg -r committed $@
 }
-function lcv()
-{
+lcv() {
     lgv -r committed $@
 }
 
-function purge()
-{
+purge() {
     local files
 
     files=()
@@ -656,33 +588,26 @@ function purge()
     rm -r $files
 }
 
-function fetch()
-{
+fetch() {
     up $@
 }
-function hin()
-{
+hin() {
     hg in $@
 }
-function out()
-{
+out() {
     hg out $@
 }
-function cu()
-{
+cu() {
     svn cleanup $@
 }
-function rcu()
-{
+rcu() {
     vcsroot svn cleanup $@
 }
 
-function av()
-{
+av() {
     svnmerge avail $@
 }
-function ava()
-{
+ava() {
     revs=()
     IFS=,
     for r in `av`; do
@@ -697,33 +622,27 @@ function ava()
     echo $revs
 }
 
-function mg()
-{
+mg() {
     svnmerge merge -r $@
 }
 
-function pmg()
-{
+pmg() {
     svnmerge merge --record-only -r $@
 }
 
-function bl()
-{
+bl() {
     svnmerge block -r $@
 }
 
-function ub()
-{
+ub() {
     svnmerge unblock -r $@
 }
 
-function rb()
-{
+rb() {
     # TODO hg rollback / backout, svnmerge rollback, svn merge -r
 }
 
-function smv()
-{
+smv() {
     vcs=`whichvcs`
     $vcs mv $@
 }

@@ -15,8 +15,7 @@ elif [[ -n $SSH_CLIENT ]]; then
     PROMPT_COLOR=green
 fi
 
-function precmd()
-{
+precmd() {
     local base_dir branch
 
     #monitor_pages &!
@@ -52,8 +51,7 @@ RPROMPT='%(1j.[%j].) %T'
 
 setopt nopromptcr
 
-function xec()
-{
+xec() {
     case $TERM in
 	*xterm*|*rxvt*|Eterm)
             echo -ne "\e]0;$1\007"

@@ -2,56 +2,48 @@
 
 if ! which 7z >& /dev/null; then
     if ! which 7za >& /dev/null; then
-	function 7z()
-	{
+	7z() {
 	    7zr $@
 	}
     else
-	function 7z()
-	{
+	7z() {
 	    7za $@
 	}
     fi
 fi
 
 if which gsed >& /dev/null; then
-    function sed()
-    {
+    sed() {
 	gsed $@
     }
 fi
 
 if which gawk >& /dev/null; then
-    function awk()
-    {
+    awk() {
 	gawk $@
     }
 fi
 
 if which gmake >& /dev/null; then
-    function make()
-    {
+    make() {
 	gmake $@
     }
 fi
 
 if ! which md5 >& /dev/null; then
-    function md5()
-    {
+    md5() {
 	md5sum $@
     }
 fi
 
 if which colordiff >& /dev/null; then
-    function diff()
-    {
+    diff() {
 	colordiff $@
     }
 fi
 
 if which remmina >& /dev/null; then
-    function tsclient()
-    {
+    tsclient() {
 	remmina $@
     }
 fi

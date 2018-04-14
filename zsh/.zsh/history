@@ -8,35 +8,30 @@ setopt inc_append_history
 setopt hist_ignore_all_dups
 setopt hist_ignorespace
 
-function history-globbing-search-backward()
-{
+history-globbing-search-backward() {
     no-magic-keys
     zle history-incremental-pattern-search-backward
     magic-keys
 }
 zle -N history-globbing-search-backward
 
-function history-globbing-search-forward()
-{
+history-globbing-search-forward() {
     no-magic-keys
     zle history-incremental-pattern-search-forward
     magic-keys
 }
 zle -N history-globbing-search-forward
 
-function zshaddhistory()
-{
+zshaddhistory() {
     if [[ ${1%%$'\n'} = (fg|bg|kf|ll|'. ~/.zshrc') ]]; then
 	return 1
     fi
 }
 
-function previous()
-{
+previous() {
     popd > /dev/null
 }
 
-function next()
-{
+next() {
     # TODO implement
 }

@@ -1,12 +1,10 @@
 # "-*- sh -*-"
 
-function ct()
-{
+ct() {
     echo $#
 }
 
-function files()
-{
+files() {
     if [[ $1 = '-s' ]]; then
 	shift
 	for directory; do
@@ -19,8 +17,7 @@ function files()
     fi
 }
 
-function lines()
-{
+lines() {
     if ! ((#)); then
 	echo -n `find . \( $=srcnames \) -exec cat {} \; | wc -l`
 	echo ' .'

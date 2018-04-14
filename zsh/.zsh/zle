@@ -2,8 +2,7 @@
 
 autoload -U read-from-minibuffer
 
-function sed-line ()
-{
+sed-line() {
    read-from-minibuffer 'Sed: '
    if [[ -n $REPLY ]]; then
       BUFFER=`echo $BUFFER | sed $REPLY`
@@ -19,8 +18,7 @@ zle -N sed-line
 autoload -U edit-command-line
 zle -N edit-command-line
 
-function last-arg()
-{
+last-arg() {
     LBUFFER+=' !#$'
     zle complete-word
 }
@@ -32,20 +30,17 @@ zle -N insert-files
 autoload -U incarg
 zle -N incarg
 
-function restore-aborted-command()
-{
+restore-aborted-command() {
     BUFFER=$ZLE_LINE_ABORTED
 }
 zle -N restore-aborted-command
 
-function back-to-last-separator()
-{
+back-to-last-separator() {
     LBUFFER=`echo $LBUFFER | sed 's@\([/\.,]\)[^/\.,]\+[/\.,]*\s*$@\1@'`
 }
 zle -N back-to-last-separator
 
-function forward-to-last-separator()
-{
+forward-to-last-separator() {
     RBUFFER=`echo $RBUFFER | sed 's@^\s*[/\.,]*[^/\.,]\+\([/\.,]\)@\1@'`
 }
 zle -N forward-to-last-separator

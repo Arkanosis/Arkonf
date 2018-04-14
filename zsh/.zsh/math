@@ -3,8 +3,7 @@
 autoload zcalc
 zmodload zsh/mathfunc
 
-function zc()
-{
+zc() {
     python <<EOF
 from math import *
 
@@ -13,8 +12,7 @@ EOF
 }
 alias zc='noglob zc'
 
-function comp()
-{
+comp() {
     local file
 
     file=`tempfile`.d
@@ -45,29 +43,25 @@ EOF
 setopt c_bases
 setopt octal_zeroes
 
-function 0x()
-{
+0x() {
     for arg; do
 	echo $(([#16]$arg))
     done
 }
 
-function 0()
-{
+0() {
     for arg; do
 	echo $(([#8]$arg))
     done
 }
 
-function b()
-{
+b() {
     for arg; do
 	echo $(([#2]$arg))
     done
 }
 
-function 10()
-{
+10() {
     for arg; do
 	echo $(($arg))
     done
@@ -179,8 +173,7 @@ def rice(value, k):
     return (unary(q) + ' ' + b(value, k)).rstrip()
 "
 
-function una()
-{
+una() {
     python <<EOF
 $entropyfunctions
 
@@ -188,13 +181,11 @@ print unary($1)
 EOF
 }
 
-function unal()
-{
+unal() {
     echo $((`una $@ | wc -c` - 1))
 }
 
-function gam()
-{
+gam() {
     python <<EOF
 $entropyfunctions
 
@@ -202,13 +193,11 @@ print gamma($1)
 EOF
 }
 
-function gaml()
-{
+gaml() {
     echo $((`gam $@ | sed 's/ //g' | wc -c` - 1))
 }
 
-function del()
-{
+del() {
     python <<EOF
 $entropyfunctions
 
@@ -216,13 +205,11 @@ print delta($1)
 EOF
 }
 
-function dell()
-{
+dell() {
     echo $((`del $@ | sed 's/ //g' | wc -c` - 1))
 }
 
-function ric()
-{
+ric() {
     python <<EOF
 $entropyfunctions
 
@@ -230,7 +217,6 @@ print rice($2, $1)
 EOF
 }
 
-function ricl()
-{
+ricl() {
     echo $((`ric $@ | sed 's/ //g' | wc -c` - 1))
 }

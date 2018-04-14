@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function dotf()
-{
+dotf() {
     local format
 
     format=$1
@@ -17,15 +16,12 @@ function dotf()
     fi
 }
 
-function png()
-{
+png() {
     dotf png $@
 }
-function jpg()
-{
+jpg() {
     dotf jpg $@
 }
-function svg()
-{
+svg() {
     dotf svg $@
 }

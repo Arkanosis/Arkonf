@@ -8,14 +8,13 @@ else
    export EDITOR='vi'
 fi
 
-function v()
+v()
 {
     $=EDITOR $@
 }
 
 if which emacs >& /dev/null; then
-    function eline()
-    {
+    eline() {
 	local cmd args split
 
 	cmd=($=1)
@@ -39,22 +38,18 @@ if which emacs >& /dev/null; then
 	$cmd $args
     }
 
-    function e()
-    {
+    e() {
 	eline 'emacs -nw' $@
     }
-    function ec()
-    {
+    ec() {
 	eline 'emacsclient -nw' $@
     }
 
-    function re()
-    {
+    re() {
 	e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
     }
 else
-    function e()
-    {
+    e() {
 	$=EDITOR $@
     }
 fi

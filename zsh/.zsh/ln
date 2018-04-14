@@ -1,16 +1,13 @@
 # "-*- sh -*-"
 
-function sln()
-{
+sln() {
     ln -s `pwd` $@
 }
 
-function rln()
-{
+rln() {
     ln -snf $@
 }
 
-function zln()
-{
+zln() {
     zmv -L $@
 }

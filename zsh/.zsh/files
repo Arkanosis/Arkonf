@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function available()
-{
+available() {
     for program in $@[1,-2]; do
 	if which $program >& /dev/null; then
 	    echo $program
@@ -11,8 +10,7 @@ function available()
     echo $@[-1]
 }
 
-function associate()
-{
+associate() {
     for ext in $@[1,-2]; do
 	alias -s $ext=$@[-1]
     done

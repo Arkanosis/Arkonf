@@ -1,7 +1,6 @@
 # "-*- sh -*-"
 
-function pcp()
-{
+pcp() {
     if [[ -f $2 ]]; then
 	echo -n 'cp: overwrite `'$2"'? " >&2
 	read y
@@ -32,13 +31,13 @@ function pcp()
 
 case `uname -s` in
     SunOS)
-	function cp()
+	cp()
 	{
             command cp -i $@
 	}
     ;;
     *)
-	function cp()
+	cp()
 	{
             #if ((# == 2 && `stat -c '%s' $1` > 100000000)); then
 	    #    pcp $@
@@ -49,13 +48,11 @@ case `uname -s` in
     ;;
 esac
 
-function zcp()
-{
+zcp() {
     zmv -C $@
 }
 
-function cpi()
-{
+cpi() {
     if ((# < 2)); then
 	cp
 	return $?
@@ -64,8 +61,7 @@ function cpi()
     cp $@[1,-3] $@[-2] $@[-2]:h/$@[-1]
 }
 
-function mcp()
-{
+mcp() {
     local source
 
     src=$1

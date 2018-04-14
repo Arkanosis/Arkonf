@@ -1,16 +1,13 @@
 # "-*- sh -*-"
 
-function mkdir()
-{
+mkdir() {
     command mkdir -m 755 -p $@
 }
-function mksec()
-{
+mksec() {
     mkdir -m 700 -p $@
 }
 
-function mkcmd()
-{
+mkcmd() {
     local cmd args
 
     cmd=$1
@@ -37,15 +34,12 @@ function mkcmd()
     $cmd $args $1
 }
 
-function mkcd()
-{
+mkcd() {
     mkcmd cd $@
 }
-function mkcp()
-{
+mkcp() {
     mkcmd cp $@
 }
-function mkmv()
-{
+mkmv() {
     mkcmd mv $@
 }

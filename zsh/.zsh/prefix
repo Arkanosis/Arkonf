@@ -1,24 +1,20 @@
 # "-*- sh -*-"
 
-function prefix()
-{
+prefix() {
     LBUFFER="$1 $LBUFFER"
 }
 
-function sudoit()
-{
+sudoit() {
     prefix sudo
 }
 zle -N s sudoit
 
-function distit()
-{
+distit() {
     prefix dist
 }
 zle -N d distit
 
-function xit()
-{
+xit() {
     prefix x
 }
 zle -N x xit

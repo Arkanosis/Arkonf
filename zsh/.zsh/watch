@@ -4,7 +4,7 @@ watch=(notme)
 LOGCHECK=60
 WATCHFMT='%n %a %l from %m at %t.'
 
-function countdown() {
+countdown() {
     local end now left
     if ((# < 1)); then
         echo 'Usage: countdown <time>' >&2

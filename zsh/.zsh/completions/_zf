@@ -8,9 +8,8 @@ typeset -U funs
 
 cache=$ZARKONF_CACHE/zf
 
-parsefiles()
-{
-    cat $ZARKONF_DIR/.zsh/*[a-z]*(.) | sed -n 's/ *function \([^ ]*\)()/\1/p' | while read fun; do
+parsefiles() {
+    sed -n 's/^[ 	]*\([^ ]*\)() {/\1/p' $ZARKONF_DIR/.zsh/*[a-z]*(.) | while read fun; do
 	funs+=(\"$fun\")
     done
     echo "funs=($funs)" >| $cache

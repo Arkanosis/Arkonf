@@ -2,8 +2,7 @@
 
 typeset -A pagehashes
 
-function monitor_pages()
-{
+monitor_pages() {
     local id url cachestring cache
 
     cache=$ZARKONF_CACHE/monitor

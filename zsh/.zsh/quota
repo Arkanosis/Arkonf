@@ -1,28 +1,23 @@
 # "-*- sh -*-"
 
 if [[ `uname -s` = FreeBSD ]]; then
-    function quota()
-    {
+    quota() {
 	\fs quota $@
     }
-    function dud()
-    {
+    dud() {
 	du -d1 $@
     }
 else
-    function dud()
-    {
+    dud() {
 	du --max-depth=1 $@
     }
 fi
 
-function fs()
-{
+fs() {
     dud -h $@
 }
 
-function fsm()
-{
+fsm() {
     local dir
 
     dir=.
@@ -51,8 +46,7 @@ function fsm()
     }'
 }
 
-function sz()
-{
+sz() {
     if ! ((#)); then
         du -hs .
     else
@@ -60,6 +54,6 @@ function sz()
     fi
 }
 
-function dfc() {
+dfc() {
     command dfc -dsTwW $@
 }
