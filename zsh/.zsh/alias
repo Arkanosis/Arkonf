@@ -79,7 +79,14 @@ pw() {
 }
 
 fu() {
-    sudo aptitude update && sudo aptitude full-upgrade
+    if which apt >& /dev/null; then
+	sudo apt update && sudo apt upgrade
+    elif which pacman >& /dev/null; then
+	sudo pacman -Syu
+    else
+	echo 'Package manager is unknown' >&2
+	exit 1
+    fi
 }
 
 tig() {
