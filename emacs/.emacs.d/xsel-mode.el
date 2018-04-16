@@ -20,8 +20,9 @@
 
 (defun xsel-mode ()
   (interactive)
-  (setq interprogram-cut-function 'text-to-clipboard)
-  (setq interprogram-paste-function 'text-from-clipboard)
+  (when (getenv "DISPLAY")
+    (setq interprogram-cut-function 'text-to-clipboard)
+    (setq interprogram-paste-function 'text-from-clipboard))
 )
 
 (provide 'xsel-mode)
