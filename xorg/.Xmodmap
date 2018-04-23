@@ -67,11 +67,11 @@ keycode  32 = o O oe OE
 !! p P ′ ″
 keycode  33 = p P U2032 U2033
 
-!! [ { ⇐ ⇦
-keycode  34 = bracketleft braceleft U21D0 U21E6
+!! [ { ⇐ ⇍
+keycode  34 = bracketleft braceleft U21D0 U21CD
 
-!! ] } ⇒ ⇨
-keycode  35 = bracketright braceright implies U21E8
+!! ] } ⇒ ⇏
+keycode  35 = bracketright braceright U21D2 U21CF
 
 !! a A æ Æ
 keycode  38 = a A ae AE
