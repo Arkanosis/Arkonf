@@ -438,6 +438,8 @@ If region contains less than 2 lines, lines are left untouched."
 (define-key function-key-map "\eOD" [left])
 (define-key function-key-map "\e[D" [left])
 
+(global-set-key "[1;2S"  'execute-extended-command)
+
 (global-set-key [f2]  'scroll-all-mode)
 (global-set-key [f3]  'find-file-at-point)
 (global-set-key [f4]  'hs-toggle-hiding)
