@@ -280,6 +280,8 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (global-undo-tree-mode t))
 
+(use-package urlencode)
+
 (use-package yasnippet
   :config
   (yas-global-mode t))
