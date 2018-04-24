@@ -1,0 +1,34 @@
+#! /bin/bash
+
+WIFI=wlp1s0
+
+offline 2> /dev/null
+
+ip link set "$WIFI" up && \
+    if [ $# -eq 0 ]; then
+	wpa_supplicant -B -m '' -i "$WIFI" -c "/etc/wpa_supplicant/$WIFI.conf"
+    else
+	if ! grep -q '^ *ssid="'"$1"'"$' "/etc/wpa_supplicant/$WIFI.conf"; then
+	    echo "SSID $1 not found in /etc/wpa_supplicant/$WIFI.conf" >&2
+	    exit 1
+	fi
+	wpa_supplicant -B -m '' -i "$WIFI" -c <(awk '
+	    BEGIN {
+		keep = 0
+	    }
+	    /^ *ssid="'"$1"'"$/ {
+		print "network={"
+		keep = 1
+	    }
+	    {
+		if (keep) {
+		    print
+		}
+	    }
+	    /^}$/ {
+		keep = 0
+	    }
+	' "/etc/wpa_supplicant/$WIFI.conf")
+    fi && \
+    dhcpcd "$WIFI" && \
+    iw "$WIFI" link

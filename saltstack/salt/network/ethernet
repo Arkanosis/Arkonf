@@ -1,0 +1,8 @@
+#! /bin/sh
+
+ETHERNET=enp0s20f0u3u1
+
+offline 2> /dev/null
+
+ip link set "$ETHERNET" up && \
+    dhcpcd "$ETHERNET"

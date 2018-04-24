@@ -1,0 +1,9 @@
+#! /bin/sh
+
+ETHERNET=enp0s20f0u3u1
+WIFI=wlp1s0
+
+killall dhcpcd
+killall wpa_supplicant
+ip link set "$ETHERNET" down
+ip link set "$WIFI" down
