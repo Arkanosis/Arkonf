@@ -232,7 +232,7 @@ globalkeys = gears.table.join(
 		 awful.client.run_or_raise("keepassx2", matcher)
 	       end,
 	      {description = "password manager", group = "launcher"}),
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -253,8 +253,6 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -347,6 +345,14 @@ clientkeys = gears.table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
+    awful.key({ modkey,           }, "w",      function (c) awful.placement.top_right(c)     end,
+              {description = "move top right", group = "client"}),
+    awful.key({ modkey,           }, "d",      function (c) awful.placement.bottom_right(c)  end,
+              {description = "move bottom right", group = "client"}),
+    awful.key({ modkey,           }, "s",      function (c) awful.placement.bottom_left(c)   end,
+              {description = "move bottom left", group = "client"}),
+    awful.key({ modkey,           }, "a",      function (c) awful.placement.top_left(c)      end,
+              {description = "move top left", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
