@@ -7,6 +7,7 @@ enable_proxy() {
     sed -i 's/^#\(passwd=.*\)$/\1/' ~/.hgrc
 
     export http_proxy="http://$USER:$SOCKS_PASSWORD@$PROXY_HOST:$PROXY_PORT"
+    export https_proxy="http://$USER:$SOCKS_PASSWORD@$PROXY_HOST:$PROXY_PORT"
     export ftp_proxy="http://$USER:$SOCKS_PASSWORD@$PROXY_HOST:$PROXY_PORT"
     export RSYNC_PROXY="http://$USER:$SOCKS_PASSWORD@$PROXY_HOST:$PROXY_PORT"
 }
@@ -18,6 +19,7 @@ disable_proxy() {
     sed -i 's/^\(passwd=.*\)$/#\1/' ~/.hgrc
 
     export http_proxy=
+    export https_proxy=
     export ftp_proxy=
     export RSYNC_PROXY=
 }
