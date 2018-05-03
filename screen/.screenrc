@@ -2,7 +2,7 @@
 # Configuration
 #####################
 
-shell -$FULLSHELL
+shell -$SHELL
 term xterm-color
 
 startup_message off

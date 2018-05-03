@@ -1,5 +1,4 @@
 #! /bin/sh
 
-export FULLSHELL=/usr/bin/zsh
+export SHELL=/usr/bin/zsh
 exec urxvt -e tmux
-

@@ -46,9 +46,9 @@ if [[ -t 0 ]]; then
 	    export TERM=xterm-256color
 	fi
 
-	export FULLSHELL=$(which bash)
+	export SHELL=$(which bash)
 	if [[ -x $(which zsh) ]]; then
-	    export FULLSHELL=$(which zsh)
+	    export SHELL=$(which zsh)
 	fi
 
 	if [[ -z $TMUX && -x $(which tmux) ]]; then
@@ -58,7 +58,7 @@ if [[ -t 0 ]]; then
 	    exec tmux
 	fi
 
-	exec $FULLSHELL
+	exec $SHELL
 
     fi
 

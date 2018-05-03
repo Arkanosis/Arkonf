@@ -47,5 +47,3 @@ if which remmina >& /dev/null; then
 	remmina $@
     }
 fi
-
-export FULLSHELL=$(which zsh)

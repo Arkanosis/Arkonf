@@ -13,7 +13,7 @@ export REPLYTO=$EMAIL
 export NNTPSERVER=$NNTPSERVER
 export TSOCKS_PASSWORD=$SOCKS_PASSWORD
 
-export SHELL=zsh
+export SHELL=$(which zsh)
 
 export GPG_TTY=$(tty)
 
