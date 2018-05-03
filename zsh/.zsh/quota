@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-if [[ `uname -s` = FreeBSD ]]; then
+if [[ $(uname -s) = FreeBSD ]]; then
     quota() {
 	\fs quota $@
     }

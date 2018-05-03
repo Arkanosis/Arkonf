@@ -1,4 +1,4 @@
 # "-*- sh -*-"
 
-sarch=`uname -s`
-arch=`uname -sm | tr ' ' '-'`
+sarch=$(uname -s)
+arch=$(uname -sm | tr ' ' '-')

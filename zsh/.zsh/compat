@@ -48,4 +48,4 @@ if which remmina >& /dev/null; then
     }
 fi
 
-export FULLSHELL=`which zsh`
+export FULLSHELL=$(which zsh)

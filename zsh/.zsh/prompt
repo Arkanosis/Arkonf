@@ -1,8 +1,8 @@
 # "-*- sh -*-"
 
 if [[ $sarch != AIX ]]; then
-    reset=`print "\e(B\e)B\e*B\e+B"`
-    gray=`print "\e[90m"`
+    reset=$(print "\e(B\e)B\e*B\e+B")
+    gray=$(print "\e[90m")
 fi
 
 source vcs
@@ -43,8 +43,8 @@ autoload -U colors
 colors
 
 if [[ $sarch != AIX ]]; then
-    up=`print "\e[A"`
-    down=`print "\e[B"`
+    up=$(print "\e[A")
+    down=$(print "\e[B")
 fi
 RPROMPT='$up%(1j.[%j].) ${gray}[%T]%{$reset_color%}$down'
 RPROMPT='%(1j.[%j].) %T'

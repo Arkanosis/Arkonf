@@ -2,7 +2,7 @@
 
 export QUOTING_STYLE=literal
 
-case `uname -s` in
+case $(uname -s) in
     *BSD|SunOS)
 	if which gls >& /dev/null; then
             ls() {
@@ -86,7 +86,7 @@ llf() {
         time=$2
     fi
     while true; do
-        res=`ll $1`
+        res=$(ll $1)
         if [[ $res != $oldres ]]; then
             echo $res
             oldres=$res

@@ -30,7 +30,7 @@ zstyle ':completion:*' matcher-list \
   '+m:{e}={ë}'
 
 # Description des groupes de completion
-s=`echo "\e[1;40m%d\e[0m"`
+s=$(echo "\e[1;40m%d\e[0m")
 zstyle '*:descriptions' format $s
 zstyle ':completion:*' group-name ''
 

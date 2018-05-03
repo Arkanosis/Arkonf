@@ -11,7 +11,7 @@ dotf() {
 	return 1
     else
 	for file; do
-	    dot -T$format $file -o `echo $file | sed s/dot$/$format/`
+	    dot -T$format $file -o $(echo $file | sed s/dot$/$format/)
 	done
     fi
 }

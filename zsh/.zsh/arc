@@ -8,12 +8,12 @@ c() {
 
     for arg; do
 	print "\e[32mCompressing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-	7z a `echo $arg | sed 's_/\?$_.7z_'` $arg
+	7z a $(echo $arg | sed 's_/\?$_.7z_') $arg
     done
 }
 
 flattendir() {
-    if test -d $1/$1 && [[ `ls -l $1 | wc -l` = 2 ]]; then
+    if test -d $1/$1 && [[ $(ls -l $1 | wc -l) = 2 ]]; then
 	command mv $1/$1/*(N) $1/$1/.*(N) $1
 	rmdir $1/$1
     fi
@@ -87,7 +87,7 @@ x() {
 	    ;;
 	    *.(zip|jar))
 	        dir=$(basename $arg | sed 's/\.\(zip\|jar\)$//')
-		arg=`readlink -f $arg`
+		arg=$(readlink -f $arg)
 		if test -e $dir; then
 		    echo "$dir already exists, cannot extract $arg" >&2
 		    break
@@ -126,7 +126,7 @@ x() {
 	    ;;
 	    *.deb)
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-		dpkg-deb -xv $arg `echo $arg | sed 's/\.deb$//'`
+		dpkg-deb -xv $arg $(echo $arg | sed 's/\.deb$//')
 	    ;;
 	    *.rpm)
 	        dir=$(basename $arg | sed 's/\.rpm$//')
@@ -181,7 +181,7 @@ t() {
 	    *.(tar.xz|txz))
 	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
 		7z x $arg
-		tarball=`echo $arg | sed 's/\.xz$//'`
+		tarball=$(echo $arg | sed 's/\.xz$//')
 		tar tvf $tarball
 		rm $tarball
 	    ;;

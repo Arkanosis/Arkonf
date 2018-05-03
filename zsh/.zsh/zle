@@ -5,7 +5,7 @@ autoload -U read-from-minibuffer
 sed-line() {
    read-from-minibuffer 'Sed: '
    if [[ -n $REPLY ]]; then
-      BUFFER=`echo $BUFFER | sed $REPLY`
+      BUFFER=$(echo $BUFFER | sed $REPLY)
    fi
 }
 zle -N sed-line
@@ -36,11 +36,11 @@ restore-aborted-command() {
 zle -N restore-aborted-command
 
 back-to-last-separator() {
-    LBUFFER=`echo $LBUFFER | sed 's@\([/\.,]\)[^/\.,]\+[/\.,]*\s*$@\1@'`
+    LBUFFER=$(echo $LBUFFER | sed 's@\([/\.,]\)[^/\.,]\+[/\.,]*\s*$@\1@')
 }
 zle -N back-to-last-separator
 
 forward-to-last-separator() {
-    RBUFFER=`echo $RBUFFER | sed 's@^\s*[/\.,]*[^/\.,]\+\([/\.,]\)@\1@'`
+    RBUFFER=$(echo $RBUFFER | sed 's@^\s*[/\.,]*[^/\.,]\+\([/\.,]\)@\1@')
 }
 zle -N forward-to-last-separator

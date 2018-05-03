@@ -41,7 +41,7 @@ typeset -A configuration_files_pathes
 configuration=()
 
 for configuration_file in $configuration_files; do
-    file=`echo $configuration_file | sed 's_\(.*/\)\?\([^/]\+\)$_\2_'`
+    file=$(echo $configuration_file | sed 's_\(.*/\)\?\([^/]\+\)$_\2_')
     configuration+=($file)
     configuration_files_pathes[$file]=$ARKONF_DIR/$configuration_file
 done
@@ -71,7 +71,7 @@ ze() {
 
 zf() {
     local match params oldifs
-    match=`command grep -nRI "^[ 	]*$1() {" $ZARKONF_DIR`
+    match=$(command grep -nRI "^[ 	]*$1() {" $ZARKONF_DIR)
 
     oldifs=$IFS
     IFS=':'

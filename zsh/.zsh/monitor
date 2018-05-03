@@ -18,7 +18,7 @@ monitor_pages() {
 	id=$page[(ws/|/)1]
 	url=$page[(ws/|/)2]
 
-	newhash=`wget $url -O - 2> /dev/null | md5sum | cut -d ' ' -f 1`
+	newhash=$(wget $url -O - 2> /dev/null | md5sum | cut -d ' ' -f 1)
 
 	if [[ -n $pagehashes[$id] && $newhash != $pagehashes[$id] ]]; then
 	    mail+=" $id:1"

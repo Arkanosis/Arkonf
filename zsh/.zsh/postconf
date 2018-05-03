@@ -1,6 +1,6 @@
 # "-*- sh -*-"
 
-if [[ `uname -s` = 'Linux' ]]; then
+if [[ $(uname -s) = 'Linux' ]]; then
     export MALLOC_OPTIONS=
 else
     export MALLOC_OPTIONS=J

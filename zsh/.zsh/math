@@ -15,7 +15,7 @@ alias zc='noglob zc'
 comp() {
     local file
 
-    file=`tempfile`.d
+    file=$(tempfile).d
     cat > $file <<EOF
 		import std.stdio;
 		import std.math;
@@ -37,7 +37,7 @@ EOF
 		}
 EOF
 
-    `which dmd2` -run $file
+    $(which dmd2) -run $file
 }
 
 setopt c_bases
@@ -182,7 +182,7 @@ EOF
 }
 
 unal() {
-    echo $((`una $@ | wc -c` - 1))
+    echo $(($(una $@ | wc -c) - 1))
 }
 
 gam() {
@@ -194,7 +194,7 @@ EOF
 }
 
 gaml() {
-    echo $((`gam $@ | sed 's/ //g' | wc -c` - 1))
+    echo $(($(gam $@ | sed 's/ //g' | wc -c) - 1))
 }
 
 del() {
@@ -206,7 +206,7 @@ EOF
 }
 
 dell() {
-    echo $((`del $@ | sed 's/ //g' | wc -c` - 1))
+    echo $(($(del $@ | sed 's/ //g' | wc -c) - 1))
 }
 
 ric() {
@@ -218,5 +218,5 @@ EOF
 }
 
 ricl() {
-    echo $((`ric $@ | sed 's/ //g' | wc -c` - 1))
+    echo $(($(ric $@ | sed 's/ //g' | wc -c) - 1))
 }

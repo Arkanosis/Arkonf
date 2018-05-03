@@ -1,7 +1,7 @@
 # "-*- sh -*-"
 
 sln() {
-    ln -s `pwd` $@
+    ln -s $(pwd) $@
 }
 
 rln() {

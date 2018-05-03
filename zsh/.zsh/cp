@@ -26,10 +26,10 @@ pcp() {
     }
     END {
         print ""
-    }' size=`stat -c '%s' $1` count=0
+    }' size=$(stat -c '%s' $1) count=0
 }
 
-case `uname -s` in
+case $(uname -s) in
     SunOS)
 	cp()
 	{
@@ -39,7 +39,7 @@ case `uname -s` in
     *)
 	cp()
 	{
-            #if ((# == 2 && `stat -c '%s' $1` > 100000000)); then
+            #if ((# == 2 && $(stat -c '%s' $1) > 100000000)); then
 	    #    pcp $@
 	    #else
                 command cp -iv $@
