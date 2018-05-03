@@ -1,0 +1,35 @@
+{
+    "version": 3,
+    "lastUserContextId": 1,
+    "identities": [
+        {
+            "userContextId": 1,
+            "public": false,
+            "icon": "",
+            "color": "",
+            "name": "userContextIdInternal.thumbnail",
+            "accessKey": ""
+        },
+        {
+            "userContextId": 2,
+            "public": true,
+            "icon": "chill",
+            "color": "red",
+            "name": "Google"
+        },
+        {
+            "userContextId": 3,
+            "public": true,
+            "icon": "fingerprint",
+            "color": "blue",
+            "name": "Facebook"
+        },
+        {
+            "userContextId": 4,
+            "public": true,
+            "icon": "cart",
+            "color": "orange",
+            "name": "Amazon"
+        }
+    ]
+}
