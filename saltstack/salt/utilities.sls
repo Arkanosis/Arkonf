@@ -1,10 +1,6 @@
-moreutils:
-  pkg:
-    - latest
-
-parallel:
-  pkg:
-    - latest
+utilities_pkgs:
+  pkg.installed:
+    - moreutils
+    - parallel
 
 # TODO install / compile csvfix
-

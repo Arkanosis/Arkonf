@@ -32,6 +32,7 @@ base:
     - ssh
     - term
     - usb
+    - utilities
     - vcs
     - webbrowser
     - xorg
@@ -61,6 +62,5 @@ base:
     - remmina
     - ruby
 #    - synergy
-    - utilities
     - vm
     - wammu
