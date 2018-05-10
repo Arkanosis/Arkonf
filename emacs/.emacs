@@ -481,17 +481,17 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta r)] 'replace-string)
 
 (global-set-key [(control tab)] 'other-window)
-(global-set-key (kbd "M-<left>")  'windmove-left)
+(global-set-key (kbd "M-<left>") 'windmove-left)
 (global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-<up>")  'windmove-up)
+(global-set-key (kbd "M-<up>") 'windmove-up)
 (global-set-key (kbd "M-<down>") 'windmove-down)
-(global-set-key (kbd "ESC <left>")  'windmove-left)
+(global-set-key (kbd "ESC <left>") 'windmove-left)
 (global-set-key (kbd "ESC <right>") 'windmove-right)
-(global-set-key (kbd "ESC <up>")  'windmove-up)
+(global-set-key (kbd "ESC <up>") 'windmove-up)
 (global-set-key (kbd "ESC <down>") 'windmove-down)
-(global-set-key (kbd "\e[1;3D")  'windmove-left)
+(global-set-key (kbd "\e[1;3D") 'windmove-left)
 (global-set-key (kbd "\e[1;3C") 'windmove-right)
-(global-set-key (kbd "\e[1;3A")  'windmove-up)
+(global-set-key (kbd "\e[1;3A") 'windmove-up)
 (global-set-key (kbd "\e[1;3B") 'windmove-down)
 (global-set-key (kbd "C-x v") 'workspace-goto)
 
@@ -502,6 +502,16 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control f9)] 'highlight-symbol-at-point)
 (global-set-key [(control f11)] 'highlight-symbol-prev)
 (global-set-key [(control f12)] 'highlight-symbol-next)
+
+;; Deal with org-mode conflicts
+(setq org-replace-disputed-keys t)
+
+(add-hook 'org-mode-hook
+  (lambda ()
+    (local-set-key "[1;5D" 'org-promote-subtree)
+    (local-set-key "[1;5C" 'org-demote-subtree)
+    (local-set-key "[1;5A" 'org-move-subtree-up)
+    (local-set-key "[1;5B" 'org-move-subtree-down)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
@@ -602,7 +612,6 @@ If region contains less than 2 lines, lines are left untouched."
 (setq next-line-add-newlines nil)
 (setq scroll-step 1) ;; Ne descend que d'une ligne lorsau'on arrive en bas de l'ecran
 (setq visible-bell t)
-(setq org-replace-disputed-keys t)
 (setq-default gdb-many-windows t)
 (setq-default vc-follow-symlinks t)
 
