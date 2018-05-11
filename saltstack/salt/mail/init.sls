@@ -1,6 +1,7 @@
 mail_pkgs:
   pkg.installed:
     - pkgs:
+      - isync
       - mutt
       - s-nail
       - ssmtp

@@ -1,0 +1,47 @@
+# ----------[ arkanosis@live.com ]----------
+
+IMAPAccount arkanosis@live.com
+Host imap-mail.outlook.com
+User arkanosis@live.com
+PassCmd "read -s -p 'Password for arkanosis@live.com: ' pass && echo $pass"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore arkanosis@live.com-remote
+Account arkanosis@live.com
+
+MaildirStore arkanosis@live.com-local
+Subfolders Verbatim
+Path ~/.mail/arkanosis@live.com/
+Inbox ~/.mail/arkanosis@live.com/INBOX
+
+Channel arkanosis@live.com
+Master :arkanosis@live.com-remote:
+Slave :arkanosis@live.com-local:
+Patterns *
+Create Both
+SyncState *
+
+# ---[ high_b_thunderdrone@hotmail.com ]---
+
+IMAPAccount high_b_thunderdrone@hotmail.com
+Host imap-mail.outlook.com
+User high_b_thunderdrone@hotmail.com
+PassCmd "read -s -p 'Password for high_b_thunderdrone@hotmail.com: ' pass && echo $pass"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore high_b_thunderdrone@hotmail.com-remote
+Account high_b_thunderdrone@hotmail.com
+
+MaildirStore high_b_thunderdrone@hotmail.com-local
+Subfolders Verbatim
+Path ~/.mail/high_b_thunderdrone@hotmail.com/
+Inbox ~/.mail/high_b_thunderdrone@hotmail.com/INBOX
+
+Channel high_b_thunderdrone@hotmail.com
+Master :high_b_thunderdrone@hotmail.com-remote:
+Slave :high_b_thunderdrone@hotmail.com-local:
+Patterns *
+Create Both
+SyncState *
