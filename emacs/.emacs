@@ -244,7 +244,7 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Modules
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (require 'use-package)
 
@@ -518,7 +518,7 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (autoload 'expand-abbrev-hook "expand")
-(setq abbrev-file-name "~/.emacs.d/abbrev.el")
+(setq abbrev-file-name "~/.emacs.d/lisp/abbrev.el")
 (read-abbrev-file abbrev-file-name t)
 (setq dabbrev-case-replace nil)
 (setq abbrev-mode t)
