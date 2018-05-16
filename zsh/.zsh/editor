@@ -57,5 +57,5 @@ fi
 PAGER=less
 
 td() {
-    e ~/Documents/Org
+    ec -s emacsconsole ~/Documents/Org
 }
