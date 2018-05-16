@@ -10,6 +10,7 @@ backup_pkgs:
       - gddrescue
 {% endif %}
       - rsnapshot
+      - syncthing
 
 {% if grains['host'] == 'Cyclamen' %}
 /usr/bin/sauvegarde:
