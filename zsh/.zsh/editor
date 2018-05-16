@@ -55,3 +55,7 @@ else
 fi
 
 PAGER=less
+
+td() {
+    e ~/Documents/Org
+}
