@@ -48,6 +48,14 @@ smartctl -s on /dev/sdb:
       - pkg: monitoring_pkgs
 {% endif %}
 
+{% if grains['host'] == 'Cyclamen' %}
+smartctl -s on /dev/sdc:
+  cmd.run:
+    - onlyif: "smartctl -i /dev/sdc | grep -q 'SMART support is: Disabled'"
+    - require:
+      - pkg: monitoring_pkgs
+{% endif %}
+
 /etc/default/smartmontools:
   file.managed:
     - source: salt://monitoring/smartmontools-default
