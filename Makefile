@@ -1,13 +1,20 @@
 .PHONY: all install \
+	awesome \
+	bash \
 	dotfiles \
 	emacs \
 	gdb \
 	git \
 	mercurial \
+	gnupg \
 	lxc \
+	mbsync \
 	python \
+	screen \
+	slrn \
 	ssh \
 	tmux \
+	xorg \
 	zsh \
 	rust
 
@@ -19,16 +26,34 @@ all:
 	@echo 'Run "make install" to install Arkonf'
 
 install: \
+	awesome \
+	bash \
 	dotfiles \
 	emacs \
 	gdb \
 	git \
 	mercurial \
+	gnupg \
 	lxc \
+	mbsync \
 	python \
+	screen \
+	slrn \
 	ssh \
 	tmux \
+	xorg \
 	zsh
+
+awesome: ~/.config/awesome
+~/.config/awesome:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)$(notdir $@)" "$@"
+
+bash: ~/.bashrc ~/.bash_profile
+~/.bashrc:
+	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
+~/.bash_profile:
+	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
 
 dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
 ~/.forward:
@@ -61,10 +86,20 @@ mercurial: ~/.hgrc
 ~/.hgrc:
 	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
 
+gnupg: ~/.gnupg/gpg.conf ~/.gnupg/gpg-agent.conf
+~/.gnupg/gpg.conf:
+	ln -s "$(ROOT)gnupg/$(notdir $@)" "$@"
+~/.gnupg/gpg-agent.conf:
+	ln -s "$(ROOT)gnupg/$(notdir $@)" "$@"
+
 lxc: ~/.config/lxc/default.conf
 ~/.config/lxc/default.conf:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)lxc/$(notdir $@)" "$@"
+
+mbsync: ~/.mbsyncrc
+~/.mbsyncrc:
+	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
 
 python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 ~/.pythonrc.py:
@@ -76,6 +111,14 @@ python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
 
+screen: ~/.screenrc
+~/.screenrc:
+	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
+
+slrn: ~/.slrnrc
+~/.slrnrc:
+	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
+
 ssh: ~/.ssh/config
 ~/.ssh/config:
 	mkdir -p "$(dir $@)"
@@ -84,6 +127,16 @@ ssh: ~/.ssh/config
 tmux: ~/.tmux.conf
 ~/.tmux.conf:
 	ln -s "$(ROOT)tmux/$(notdir $@)" "$@"
+
+xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
+~/.xinitrc:
+	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
+~/.Xdefaults:
+	ln -s "$(ROOT)xorg/.Xresources" "$@"
+~/.Xmodmap:
+	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
+~/.Xresources:
+	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
 
 zsh: ~/.zshrc ~/.zsh
 ~/.zshrc:
