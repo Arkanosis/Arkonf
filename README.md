@@ -26,8 +26,7 @@ pacman -S salt openssh openbsd-netcat git
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
-cd /root
-git clone git@github.com:Arkanosis/Arkonf.git
+git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
 ln -s /root/Arkonf/saltstack/salt /srv/salt
 ln -s /root/Arkonf/saltstack/pillar /srv/pillar
 salt-call --local state.highstate
@@ -41,12 +40,11 @@ apt install salt-minion git
 ssh-keygen -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
-cd /root
-git clone git@github.com:Arkanosis/Arkonf.git
-ln -s /root/Arkonf/saltstack /srv
-sed -i 's/.*file_client:.*/file_client: local/' /etc/salt/minion
+git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
+ln -s /root/Arkonf/saltstack/salt /srv/salt
+ln -s /root/Arkonf/saltstack/pillar /srv/pillar
 apt update
-salt-call state.highstate
+salt-call --local state.highstate
 apt upgrade
 ```
 
