@@ -11,18 +11,6 @@ install()
     ( test -h "$2" || test -e "$2" ) && printf "\033[31m$2 already exist, skipped\033[0m\n" || ( ln -s "$installPath/$1" "$2" && printf "\033[32m$2 succefully installed\033[0m\n" )
 }
 
-install gtk/.gtkrc-2.0 ~/.gtkrc-2.0
-
-install pywikibot/.pywikibot ~/.pywikibot
-
-install pyjab/.pyjabrc ~/.pyjabrc
-install weechat/.weechat ~/.weechat
-
-install tmux/plugins ~/.tmux
-
-install vim/.vimrc ~/.vimrc
-install vim/.vim ~/.vim
-
 install kde/kwinrc ~/.kde/share/config/kwinrc
 install kde/user-places.xbel ~/.local/share/user-places.xbel
 install yakuake/yakuakerc ~/.kde/share/config/yakuakerc

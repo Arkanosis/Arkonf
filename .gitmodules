@@ -1,9 +1,9 @@
-[submodule "tmux/plugins/tmux-copycat"]
-	path = tmux/plugins/tmux-copycat
+[submodule "tmux/.tmux/tmux-copycat"]
+	path = tmux/.tmux/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat.git
 	branch = master
 
-[submodule "tmux/plugins/tmux-yank"]
-	path = tmux/plugins/tmux-yank
+[submodule "tmux/.tmux/tmux-yank"]
+	path = tmux/.tmux/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
 	branch = master

@@ -5,20 +5,23 @@
 	emacs \
 	gdb \
 	git \
+	gtk \
 	mercurial \
 	gnupg \
 	lxc \
 	mbsync \
 	python \
+	pyjab \
+	pywikibot \
 	screen \
 	slrn \
 	ssh \
 	tmux \
+	vim \
+	weechat \
 	xorg \
 	zsh \
 	rust
-
-# TODO port the full install.sh to this Makefile
 
 ROOT=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
@@ -32,15 +35,20 @@ install: \
 	emacs \
 	gdb \
 	git \
+	gtk \
 	mercurial \
 	gnupg \
 	lxc \
 	mbsync \
 	python \
+	pyjab \
+	pywikibot \
 	screen \
 	slrn \
 	ssh \
 	tmux \
+	vim \
+	weechat \
 	xorg \
 	zsh
 
@@ -92,6 +100,13 @@ gnupg: ~/.gnupg/gpg.conf ~/.gnupg/gpg-agent.conf
 ~/.gnupg/gpg-agent.conf:
 	ln -s "$(ROOT)gnupg/$(notdir $@)" "$@"
 
+gtk: ~/.gtkrc-2.0 ~/.config/gtk-3.0/bookmarks
+~/.gtkrc-2.0:
+	ln -s "$(ROOT)gtk/$(notdir $@)" "$@"
+~/.config/gtk-3.0/bookmarks:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)gtk/$(notdir $@)" "$@"
+
 lxc: ~/.config/lxc/default.conf
 ~/.config/lxc/default.conf:
 	mkdir -p "$(dir $@)"
@@ -111,6 +126,14 @@ python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
 
+pyjab: ~/.pyjabrc
+~/.pyjabrc:
+	ln -s "$(ROOT)pyjab/$(notdir $@)" "$@"
+
+pywikibot: ~/.pywikibot
+~/.pywikibot:
+	ln -s "$(ROOT)pywikibot/$(notdir $@)" "$@"
+
 screen: ~/.screenrc
 ~/.screenrc:
 	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
@@ -124,9 +147,17 @@ ssh: ~/.ssh/config
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)ssh/.ssh/$(notdir $@)" "$@"
 
-tmux: ~/.tmux.conf
+tmux: ~/.tmux.conf ~/.tmux
 ~/.tmux.conf:
 	ln -s "$(ROOT)tmux/$(notdir $@)" "$@"
+~/.tmux:
+	ln -s "$(ROOT)tmux/$(notdir $@)" "$@"
+
+vim: ~/.vimrc ~/.vim
+~/.vimrc:
+	ln -s "$(ROOT)vim/$(notdir $@)" "$@"
+~/.vim:
+	ln -s "$(ROOT)vim/$(notdir $@)" "$@"
 
 xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 ~/.xinitrc:
@@ -137,6 +168,10 @@ xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
 ~/.Xresources:
 	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
+
+weechat: ~/.weechat
+~/.weechat:
+	ln -s "$(ROOT)weechat/$(notdir $@)" "$@"
 
 zsh: ~/.zshrc ~/.zsh
 ~/.zshrc:
