@@ -1,4 +1,4 @@
-.PHONY: all install \
+CONFIGS= \
 	autoconf \
 	awesome \
 	bash \
@@ -6,44 +6,12 @@
 	emacs \
 	gdb \
 	git \
-	gtk \
-	mercurial \
 	gnupg \
+	gtk \
 	kde \
 	lxc \
 	mbsync \
-	python \
-	pyjab \
-	pywikibot \
-	screen \
-	slrn \
-	ssh \
-	tmux \
-	vim \
-	weechat \
-	xorg \
-	zsh \
-	rust
-
-ROOT=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-
-all:
-	@echo 'Run "make install" to install Arkonf'
-
-install: \
-	autoconf \
-	awesome \
-	bash \
-	dotfiles \
-	emacs \
-	gdb \
-	git \
-	gtk \
 	mercurial \
-	gnupg \
-	kde \
-	lxc \
-	mbsync \
 	python \
 	pyjab \
 	pywikibot \
@@ -55,6 +23,18 @@ install: \
 	weechat \
 	xorg \
 	zsh
+
+.PHONY: all \
+	install \
+	rust \
+	$(CONFIGS)
+
+ROOT=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+
+help:
+	@echo 'Run "make install" to install Arkonf, or chose a target among: "'$(CONFIGS)'"'
+
+install: $(CONFIGS)
 
 autoconf: ~/.config.site
 ~/.config.site:
@@ -98,9 +78,6 @@ git: ~/.gitconfig ~/.tigrc
 	ln -s "$(ROOT)git/$(notdir $@)" "$@"
 ~/.tigrc:
 	ln -s "$(ROOT)git/$(notdir $@)" "$@"
-mercurial: ~/.hgrc
-~/.hgrc:
-	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
 
 gnupg: ~/.gnupg/gpg.conf ~/.gnupg/gpg-agent.conf
 ~/.gnupg/gpg.conf:
@@ -137,6 +114,10 @@ lxc: ~/.config/lxc/default.conf
 mbsync: ~/.mbsyncrc
 ~/.mbsyncrc:
 	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
+
+mercurial: ~/.hgrc
+~/.hgrc:
+	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
 
 python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py ~/.pydistutils.cfg
 ~/.pythonrc.py:
@@ -184,6 +165,10 @@ vim: ~/.vimrc ~/.vim
 ~/.vim:
 	ln -s "$(ROOT)vim/$(notdir $@)" "$@"
 
+weechat: ~/.weechat
+~/.weechat:
+	ln -s "$(ROOT)weechat/$(notdir $@)" "$@"
+
 xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 ~/.xinitrc:
 	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
@@ -193,10 +178,6 @@ xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
 ~/.Xresources:
 	ln -s "$(ROOT)xorg/$(notdir $@)" "$@"
-
-weechat: ~/.weechat
-~/.weechat:
-	ln -s "$(ROOT)weechat/$(notdir $@)" "$@"
 
 zsh: ~/.zshrc ~/.zsh
 ~/.zshrc:
