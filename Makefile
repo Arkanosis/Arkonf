@@ -1,4 +1,5 @@
 .PHONY: all install \
+	autoconf \
 	awesome \
 	bash \
 	dotfiles \
@@ -8,6 +9,7 @@
 	gtk \
 	mercurial \
 	gnupg \
+	kde \
 	lxc \
 	mbsync \
 	python \
@@ -29,6 +31,7 @@ all:
 	@echo 'Run "make install" to install Arkonf'
 
 install: \
+	autoconf \
 	awesome \
 	bash \
 	dotfiles \
@@ -38,6 +41,7 @@ install: \
 	gtk \
 	mercurial \
 	gnupg \
+	kde \
 	lxc \
 	mbsync \
 	python \
@@ -51,6 +55,10 @@ install: \
 	weechat \
 	xorg \
 	zsh
+
+autoconf: ~/.config.site
+~/.config.site:
+	echo "prefix=$${HOME}/local_$$(uname -sm | tr ' ' '-')" > "$@"
 
 awesome: ~/.config/awesome
 ~/.config/awesome:
@@ -107,6 +115,20 @@ gtk: ~/.gtkrc-2.0 ~/.config/gtk-3.0/bookmarks
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)gtk/$(notdir $@)" "$@"
 
+kde: ~/.kde/share/config/khotkeysrc ~/.kde/share/config/kwinrc ~/.local/share/user-places.xbel ~/.kde/share/config/yakuakerc
+~/.kde/share/config/khotkeysrc:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)kde/$(notdir $@)" "$@"
+~/.kde/share/config/kwinrc:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)kde/$(notdir $@)" "$@"
+~/.local/share/user-places.xbel:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)kde/$(notdir $@)" "$@"
+~/.kde/share/config/yakuakerc:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)kde/$(notdir $@)" "$@"
+
 lxc: ~/.config/lxc/default.conf
 ~/.config/lxc/default.conf:
 	mkdir -p "$(dir $@)"
@@ -116,7 +138,7 @@ mbsync: ~/.mbsyncrc
 ~/.mbsyncrc:
 	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
 
-python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
+python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py ~/.pydistutils.cfg
 ~/.pythonrc.py:
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
 ~/.config/pudb/pudb.cfg:
@@ -125,6 +147,9 @@ python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py
 ~/.ptpython/config.py:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
+~/.pydistutils.cfg:
+	ln -s "$(ROOT)python/$(notdir $@)" "$@"
+	sed -i "s@^prefix=.*@prefix=$${HOME}/local@" "$@"
 
 pyjab: ~/.pyjabrc
 ~/.pyjabrc:
