@@ -201,6 +201,12 @@ unam() {
     update_vcs_information
 }
 
+unrm() {
+    git unrm $@
+
+    update_vcs_information
+}
+
 push() {
     local vcs
 
