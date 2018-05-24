@@ -19,6 +19,7 @@ syndaemon -t -K -R -i .5 -d
 
 # Emacs server
 emacs --daemon=emacsconsole &
+emacs --daemon=org &
 
 # File synchronization
 syncthing &
