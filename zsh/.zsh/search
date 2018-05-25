@@ -94,11 +94,11 @@ search() {
     shift
 
     if ((all)); then
-        ag -u --depth -1 $=exclude --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
+        ag -u --depth -1 --hidden $=exclude --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
     elif ((dist)); then
-        ag --depth -1 $=exclude $exclusions_dist --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
+        ag --depth -1 --hidden $=exclude $exclusions_dist --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
     else
-        ag --depth -1 $=exclude $exclusions --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
+        ag --depth -1 --hidden $=exclude $exclusions --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -- $exp $dir
     fi
 }
 
@@ -197,7 +197,7 @@ alias /li='noglob /il'
 
     shift 2
 
-    ag --depth -1 --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -G $files -- $exp $dir
+    ag --depth -1 --hidden --color-line-number 32 --color-match '1;31' --color-path '1;33' $case -G $files -- $exp $dir
 }
 alias /r="noglob /r"
 /x() {
