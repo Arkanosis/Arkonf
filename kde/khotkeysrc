@@ -425,7 +425,7 @@ Type[$d]
 [Data_2]
 AllowMerge[$d]
 Comment=Commentaire
-DataCount=7
+DataCount=8
 Enabled=true
 ImportId[$d]
 Name=Arkonf
@@ -617,6 +617,32 @@ TriggersCount=1
 Key=Meta+P
 Type=SHORTCUT
 Uuid={648d90ab-f0d4-4901-a702-0f80ad78a580}
+
+[Data_2_8]
+Comment=Commentaire
+Enabled=true
+Name=org
+Type=SIMPLE_ACTION_DATA
+
+[Data_2_8Actions]
+ActionsCount=1
+
+[Data_2_8Actions0]
+CommandURL=/usr/bin/emacs-console -s emacsconsole ~/Documents/Org
+Type=COMMAND_URL
+
+[Data_2_8Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_2_8Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_2_8Triggers0]
+Key=Meta+;
+Type=SHORTCUT
+Uuid={df273276-c42a-43b3-b14b-ad746384b039}
 
 [Data_3]
 Comment=KMenuEdit Global Shortcuts
