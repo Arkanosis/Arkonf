@@ -32,18 +32,3 @@ xorg_pkgs:
     - source: salt://xorg/sxlock.service
     - mode: 644
 {% endif %}
-
-/home/arkanosis/.xinitrc:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/xorg/.xinitrc
-    - user: arkanosis
-
-/home/arkanosis/.Xmodmap:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/xorg/.Xmodmap
-    - user: arkanosis
-
-/home/arkanosis/.Xresources:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/xorg/.Xresources
-    - user: arkanosis

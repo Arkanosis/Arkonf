@@ -8,8 +8,3 @@ git_pkgs:
       - git-svn
 {% endif %}
       - tig
-
-/home/arkanosis/.gitconfig:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/git/.gitconfig
-    - user: arkanosis

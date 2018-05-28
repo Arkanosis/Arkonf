@@ -22,8 +22,3 @@ ssh_pkgs:
     - source: salt://ssh/pam.d_sshd
     - mode: 644
 {% endif %}
-
-/home/arkanosis/.ssh/config:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/ssh/.ssh/config
-    - user: arkanosis

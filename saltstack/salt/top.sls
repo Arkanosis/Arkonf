@@ -1,6 +1,5 @@
 base:
   '*':
-    - arkonf
     - audio
     - backup
     - banner
@@ -54,7 +53,6 @@ base:
 #    - apache2
     - bio
     - dot
-    - kde
     - lsb
 #    - php
     - profile

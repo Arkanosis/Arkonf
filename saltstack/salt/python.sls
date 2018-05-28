@@ -51,20 +51,6 @@ python_pkgs:
       # Bindings
       - swig
 
-# Startup configuration
-
-/home/arkanosis/.pythonrc.py:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/python/.pythonrc.py
-    - user: arkanosis
-
-{% if grains['os_family'] != 'Arch' %}
-/home/arkanosis/local/lib/python2.7/usercustomize.py:
-  file.symlink:
-    - target: /home/arkanosis/Arkonf/python/usercustomize.py
-    - user: arkanosis
-{% endif %}
-
 # UI
 
 ptpython:

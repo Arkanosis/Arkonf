@@ -93,6 +93,19 @@ arkanosis:
     - unless: test -d /home/.ecryptfs/arkanosis
 {% endif %}
 
+git@github.com:Arkanosis/Arkonf.git:
+  git.latest:
+    - rev: master
+    - target: /home/arkanosis/Arkonf
+    - user: arkanosis
+
+make -C /home/arkanosis/Arkonf:
+  cmd.run:
+    - require:
+      - pkg: users_pkgs
+      - user: arkanosis
+    - unless: test -d /home/arkanosis/.zshrc
+
 snad:
   user.present:
     - fullname: Sandrine Roquet
