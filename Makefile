@@ -18,6 +18,7 @@ CONFIGS= \
 	screen \
 	slrn \
 	ssh \
+	totp \
 	tmux \
 	vim \
 	weechat \
@@ -152,6 +153,10 @@ ssh: ~/.ssh/config
 ~/.ssh/config:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)ssh/.ssh/$(notdir $@)" "$@"
+
+totp: ~/.google_authenticator
+~/.google_authenticator:
+	google-authenticator
 
 tmux: ~/.tmux.conf ~/.tmux
 ~/.tmux.conf:

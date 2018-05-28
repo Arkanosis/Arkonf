@@ -72,16 +72,6 @@ arkanosis:
   group.present:
     - gid: 1000
 
-{% if grains['os_family'] != 'Arch' %}
-/home/arkanosis/.google_authenticator:
-  cmd.run:
-    - name: '! echo "Please run as arkanosis: google-authenticator'
-    - require:
-      - pkg: ssh_pkgs
-      - user: arkanosis
-    - unless: test -f /home/arkanosis/.google_authenticator
-{% endif %}
-
 {% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/arkanosis:
   cmd.run:
