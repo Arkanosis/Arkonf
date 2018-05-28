@@ -38,7 +38,7 @@ base:
 
     - users
 
-  'P@host:(marvin|taz)':
+  'P@host:(marvin|taz|Bruyere)':
     - touchpad
 
   'G@gpus:vendor:intel':
