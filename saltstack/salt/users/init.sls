@@ -138,6 +138,7 @@ snad_a:
     - unless: test -d /home/.ecryptfs/snad
 {% endif %}
 
+{% if grains['host'] != 'Bruyere' %}
 oodna:
   user.present:
     #- fullname: 'Anne-Sophie Denommé-Pichon'
@@ -170,7 +171,9 @@ oodna_a:
       - user: oodna
     - unless: test -d /home/.ecryptfs/oodna
 {% endif %}
+{% endif %}
 
+{% if grains['host'] != 'Bruyere' %}
 albinou:
   user.present:
     - fullname: Albin Kauffmann
@@ -202,6 +205,7 @@ albinou_a:
       - pkg: users_pkgs
       - user: albinou
     - unless: test -d /home/.ecryptfs/albinou
+{% endif %}
 {% endif %}
 
 guest:

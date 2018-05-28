@@ -32,7 +32,7 @@ smartmontools:
       - file: /etc/default/smartmontools
       - file: /etc/smartd.conf
 
-{% if grains['host'] in ['Cyclamen', 'Edelweiss'] %}
+{% if grains['host'] in ['Cyclamen', 'Edelweiss', 'taz', 'marvin', 'Bruyere'] %}
 smartctl -s on /dev/sda:
   cmd.run:
     - onlyif: "smartctl -i /dev/sda | grep -q 'SMART support is: Disabled'"
@@ -40,7 +40,7 @@ smartctl -s on /dev/sda:
       - pkg: monitoring_pkgs
 {% endif %}
 
-{% if grains['host'] in ['Cyclamen', 'Edelweiss'] %}
+{% if grains['host'] in ['Cyclamen', 'Edelweiss', 'Bruyere'] %}
 smartctl -s on /dev/sdb:
   cmd.run:
     - onlyif: "smartctl -i /dev/sdb | grep -q 'SMART support is: Disabled'"
