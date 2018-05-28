@@ -2,7 +2,8 @@
 
 crypto_pkgs:
   pkg.installed:
-    - gnupg
+    - pkgs:
+      - gnupg
 {% if grains['os_family'] == 'Arch' %}
-    - veracrypt  # TODO FIXME need it for Debian / Kubuntu as well
+      - veracrypt  # TODO FIXME need it for Debian / Kubuntu as well
 {% endif %}
