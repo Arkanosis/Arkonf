@@ -154,6 +154,7 @@ Annette:
     - gid: 1003
 {% endif %}
 
+{% if grains['host'] != 'Bruyere' %}
 snad: # TODO FIXME replace with Sandrine above
   user.present:
     - fullname: Sandrine Roquet
@@ -184,6 +185,7 @@ snad_a:
       - pkg: users_pkgs
       - user: snad
     - unless: test -d /home/.ecryptfs/snad
+{% endif %}
 {% endif %}
 
 {% if grains['host'] == 'Bruyere' %}
