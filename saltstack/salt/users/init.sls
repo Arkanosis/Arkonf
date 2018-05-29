@@ -30,7 +30,7 @@ users_pkgs:
 
 famille:
   group.present:
-    - gid: 1100
+    - gid: 1100 # TODO FIXME on Cyclamen, it's 1004
 
 amis:
   group.present:
@@ -96,7 +96,58 @@ make -C /home/arkanosis/Arkonf:
       - user: arkanosis
     - unless: test -d /home/arkanosis/.zshrc
 
-snad:
+{% if grains['host'] == 'Cyclamen' %}
+Sandrine:
+  user.present:
+    - fullname: Sandrine Roquet
+    - shell: /usr/bin/zsh
+    - home: /home/Sandrine
+    - uid: 1001
+    - gid: 1001
+    - groups:
+      - famille
+    - remove_groups: False
+    - require:
+      - pkg: shell_pkgs
+  group.present:
+    - gid: 1001
+{% endif %}
+
+{% if grains['host'] in ['Cyclamen', 'Bruyere'] %}
+Daniel:
+  user.present:
+    - fullname: Daniel Roquet
+    - shell: /usr/bin/zsh
+    - home: /home/Daniel
+    - uid: 1002
+    - gid: 1002
+    - groups:
+      - famille
+    - remove_groups: False
+    - require:
+      - pkg: shell_pkgs
+  group.present:
+    - gid: 1002
+{% endif %}
+
+{% if grains['host'] == 'Cyclamen' %}
+Annette:
+  user.present:
+    - fullname: Annette Menguy
+    - shell: /usr/bin/zsh
+    - home: /home/Annette
+    - uid: 1003
+    - gid: 1003
+    - groups:
+      - famille
+    - remove_groups: False
+    - require:
+      - pkg: shell_pkgs
+  group.present:
+    - gid: 1003
+{% endif %}
+
+snad: # TODO FIXME replace with Sandrine above
   user.present:
     - fullname: Sandrine Roquet
     - shell: /usr/bin/zsh
@@ -126,6 +177,40 @@ snad_a:
       - pkg: users_pkgs
       - user: snad
     - unless: test -d /home/.ecryptfs/snad
+{% endif %}
+
+{% if grains['host'] == 'Bruyere' %}
+Simonne:
+  user.present:
+    - fullname: Simonne Roquet
+    - shell: /usr/bin/zsh
+    - home: /home/Simonne
+    - uid: 1005
+    - gid: 1005
+    - groups:
+      - famille
+    - remove_groups: False
+    - require:
+      - pkg: shell_pkgs
+  group.present:
+    - gid: 1005
+{% endif %}
+
+{% if grains['host'] == 'Bruyere' %}
+Marie-Christine:
+  user.present:
+    #- fullname: Marie-Christine Tréfond
+    - shell: /usr/bin/zsh
+    - home: /home/Marie-Chrisine
+    - uid: 1006
+    - gid: 1006
+    - groups:
+      - famille
+    - remove_groups: False
+    - require:
+      - pkg: shell_pkgs
+  group.present:
+    - gid: 1006
 {% endif %}
 
 {% if grains['host'] != 'Bruyere' %}
