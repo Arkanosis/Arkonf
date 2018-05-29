@@ -96,7 +96,7 @@ git@github.com:Arkanosis/Arkonf.git:
     - target: /home/arkanosis/Arkonf
     - user: arkanosis
 
-make -C /home/arkanosis/Arkonf:
+make -C /home/arkanosis/Arkonf install:
   cmd.run:
     - require:
       - pkg: users_pkgs
