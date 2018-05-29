@@ -28,9 +28,16 @@ users_pkgs:
 {% endif %}
       - sudo
 
+# TODO FIXME same gid everywhere for famille (ie. 1004, as 1100 doesn't own anything anywhere AFAIR)
+{% if grains['host'] in ['Cyclamen', 'Bruyere'] %}
 famille:
   group.present:
-    - gid: 1100 # TODO FIXME on Cyclamen, it's 1004
+    - gid: 1004
+{% elif grains['host'] in ['Edelweiss', 'taz', 'marvin'] %}
+famille:
+  group.present:
+    - gid: 1100
+{% endif %}
 
 amis:
   group.present:
