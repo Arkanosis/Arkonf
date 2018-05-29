@@ -47,3 +47,5 @@ source synergy
 source truecrypt
 source watch
 source zle
+
+source plugins/fast-syntax-highlighting.plugin.zsh
