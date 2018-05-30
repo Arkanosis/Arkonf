@@ -5,7 +5,7 @@ xorg_pkgs:
       - tigervnc
 {% else %}
       - tightvncserver
-      - tightvncviewer
+      - xtightvncviewer
 {% endif %}
       - wmctrl
       - xdotool

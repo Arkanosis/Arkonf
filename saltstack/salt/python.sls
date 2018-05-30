@@ -36,9 +36,9 @@ python_pkgs:
       - python3-pudb
       # Modules
       - python3-click
-      - python-imaging
       - python3-jinja2
       - python-lxml
+      - python-pil
       - python-progressbar
       - python3-progressbar
       - python-q # TODO FIXME need it for ArchLinux as well
