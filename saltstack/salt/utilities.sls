@@ -1,6 +1,8 @@
 utilities_pkgs:
   pkg.installed:
-    - moreutils
-    - parallel
+    - pkgs:
+      - lsb
+      - moreutils
+      - parallel
 
 # TODO install / compile csvfix

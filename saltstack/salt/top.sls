@@ -52,8 +52,6 @@ base:
 #    - android
 #    - apache2
     - bio
-    - dot
-    - lsb
 #    - php
     - profile
     - publication

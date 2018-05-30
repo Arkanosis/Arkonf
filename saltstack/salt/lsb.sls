@@ -1,3 +1,0 @@
-lsb:
-  pkg:
-    - latest
