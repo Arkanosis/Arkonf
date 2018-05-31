@@ -437,7 +437,7 @@ If region contains less than 2 lines, lines are left untouched."
   (ws-butler-global-mode t))
 
 (add-hook 'prog-mode-hook (lambda ()
-  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" "hi-red-b")))
+  (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" 'hi-red-b)))
 
 (add-hook 'c-mode-common-hook 'subword-mode)
 (add-hook 'c-mode-common-hook 'cwarn-mode)
