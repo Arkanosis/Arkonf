@@ -5,10 +5,10 @@ if [ -t 0 ]; then
 
     if [ $EUID -ne 0 ]; then
 
-	if [[ -x $(which bash) ]]; then
-	    export SHELL=$(which bash)
-	    exec $SHELL
-	fi
+        if [[ -x $(which bash) ]]; then
+            export SHELL=$(which bash)
+            exec $SHELL
+        fi
 
     fi
 
