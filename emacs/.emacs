@@ -608,9 +608,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (defun kill-useless-buffers ()
   (if (get-buffer "*scratch*")
-      (kill-buffer "*scratch*"))
-    (if (get-buffer "*Warnings*")
-      (kill-buffer "*Warnings*")))
+      (kill-buffer "*scratch*")))
+;    (if (get-buffer "*Warnings*")
+;      (kill-buffer "*Warnings*")))
 (add-hook 'after-change-major-mode-hook 'kill-useless-buffers)
 
 (add-hook 'minibuffer-exit-hook
