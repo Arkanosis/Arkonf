@@ -59,3 +59,7 @@ PAGER=less
 td() {
     ec -s org ~/Documents/Org
 }
+
+utd() {
+    kill -18 $(ps aux | grep 'emac[s].*org' | awk '{ print $2 }')
+}
