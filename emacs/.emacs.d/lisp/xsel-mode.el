@@ -12,7 +12,7 @@
 
 (defun text-to-clipboard (text)
   (let ((process-connection-type nil))
-    (let ((xsel (start-process "xsel" "*Messages*" "xsel" "-i" "-b")))
+    (let ((xsel (start-process "xsel" nil "xsel" "-i" "-b")))
       (process-send-string xsel text)
       (process-send-eof xsel))))
 (defun text-from-clipboard ()
