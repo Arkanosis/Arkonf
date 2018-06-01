@@ -9,6 +9,7 @@ CONFIGS= \
 	gnupg \
 	gtk \
 	kde \
+	ksh \
 	lxc \
 	mbsync \
 	mercurial \
@@ -106,6 +107,10 @@ kde: ~/.kde/share/config/khotkeysrc ~/.kde/share/config/kwinrc ~/.local/share/us
 ~/.kde/share/config/yakuakerc:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)kde/$(notdir $@)" "$@"
+
+ksh: ~/.kshrc
+~/.kshrc:
+	ln -s "$(ROOT)ksh/$(notdir $@)" "$@"
 
 lxc: ~/.config/lxc/default.conf
 ~/.config/lxc/default.conf:
