@@ -603,8 +603,8 @@ If region contains less than 2 lines, lines are left untouched."
  )
 )
 
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
+;(setq-default message-log-max nil)
+;(kill-buffer "*Messages*")
 
 (defun kill-useless-buffers ()
   (if (get-buffer "*scratch*")
