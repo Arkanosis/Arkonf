@@ -1,7 +1,3 @@
-^-L : Effacer l'ecran
-^-R : Chercher dans l'historique
-^-x : Executer une commande zsh
-^-_ : Undo
 M-^_ : Recopie l'argument précédent une deuxième fois
 M-a : Valider la commande mais la garder tapée
 <cmd> !:<n>[-<m>] : Execute cmd avec le n argument de la commande precedente (jusqu'au m)
@@ -19,22 +15,6 @@ cd <a> <b> : remplace <a> par <b> dans pwd. L'autocomplétion marche sur <b>
 
 zmv au lieu de mv pour faire des déplacements / renommages complexes, plus d'infos dans ${^fpath}/zmv(N)
 idem zcp et zln
-
-lsof pour lister les fichiers ouverts (dont les bibliotheques)
-lsusb pour lister les périphériques usb connectés
-dmesg pour voir les derniers évènements
-
-trap <code> <signal> : executera <code> a chaque <signal>
-
-vared : pour éditer une variable d'environnement
-zed -f : pour éditer une fonction
-
-$var:gs/<from>/<to> : pour modifier une variable à la volée
-$var:u : majuscule
-$var:l : minuscule
-$var:h : chemin uniquement
-$var:r : fichier uniquement
-$var:e : extension uniquement
 
 cmd ~+<tab> : autocomplète avec les chemins de l'historique
 
@@ -58,38 +38,11 @@ fusermount -u sunet/
 
 write <username> # envoie un message à l'utilisateur (dans le genre net send sous windows, pourrit la console et tout)
 
-*.txt<tab> -> toto.txt titi.txt
-*.txt<shift+tab> -> menu de sélection dans les .txt
-
-En ZSH, inutile de mettre des quotes autour des variables : elles sont quotées implicitement (contrairement a avec sh).
-a="toto lol" => $a n'est *pas* un tableau (utiliser $=a pour transformer en tableau à deux éléments)
-
-Pour évaluer du globbing stocké dans une variable, utiliser $~var.
-Exemple :
- echo $a => *.txt
- echo $~a => toto.txt tutu.txt
-
-Utiliser [[ ]] plutôt que [ ]. Avantages :
- - Robuste aux variables vides : [ $x = "toto" ] casse si $x est vide, pas [[ $x = "toto" ]]
- - [[ toto && titi ]] est supporté (|| aussi)
-
-Pour les tests arithmétiques, utiliser (( )), exemple : if ((x > 5)); then
-
-sux: comme su, mais permet d'utiliser le serveux X
-
-namei -m `pwd` pour avoir les droits de tous les répertoires du courant jusqu'à la racine
-getconf LONG_BIT ; getconf LEVEL1_DCACHE_LINESIZE… → 32 ou 64 bits, taille des lignes de cache…
-
-ncdu pour un fsm amélioré / un baobab en ncurses
-
 pour prendre un screenshot sous X :
   chvt 7;sleep 10;import -display :0.0 -window root image.png
 dans un vt. chvt passe sur le vt de X
 
 Quand en ssh, taper "~C" permet de taper une commande SSH (créer un tunnel par exemple)
-
-Pour lancer un serveur http servant le répertoire courant sur le port 8000
-  python -m SimpleHTTPServer
 
 Sous emacs :
  - query-replace : alt + %
@@ -101,12 +54,8 @@ Sous emacs :
  - M-x vc-annotate pour svn blame
  - ctrl+x r t (avec région sélectionnée et curseur en début de ligne): préfixe toutes les lignes (pour augmenter l'indentation, par exemple)
 
-Sous TSClient :
- - ctrl+alt+entrée pour sortir du mode plein-écran
-
 Sous SSH :
  - entrée, ~, . pour quitter ssh
  - entrée, ~, ctrl+z pour suspendre ssh
-
 
 Sortir de qemu: ctrl+a x

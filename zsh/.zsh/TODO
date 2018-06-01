@@ -15,11 +15,7 @@
 - Amélioration de runin pour avoir l'autocomplétion dans le répertoire cible
 - Wrapper autour de runin pour profiter de l'autocomplétion, par exemple "ee" est un wrapper pour "runin edk emacs -nw" et autocomplète dans edk
 
-- gestion des priorités / dates de fin pour la todo list
-
 - Trouver un moyen de faire dialoguer le shell avec ses sous process détachés (&!) (pour monitor_pages et update_cvs_information)
-
-- Réindenter tout le code proprement
 
 - mvcd, cpcd, lncd
 - mkcpcd, mkmvcd
@@ -38,9 +34,6 @@
   zm '/\.mp3$/ s/ /_/g'
   zt affiche les modifications potentielles sans les effectuer
 
-- zf : autocomplétion sur les fonctions, alias, bindkeys... de zArkonf, ouvre le bon fichier à la bonne ligne
-  Alternative à zed -f en plus complet et avec un vrai éditeur de texte
-
 - /r fait comme / (search), mais prend en premier argument une regexp sur le nom des fichiers dans lesquels checher (utiliser -exec grep -exec)
 - /g idem, mais globbing au lieu de regexp (utiliser -name -exec)
 
@@ -48,9 +41,6 @@
 
 - Améliorer le support des caractères accentués pour zstyle (au besoin, patcher ZSH qui supporte ça très mal)
 - Dans la coloration des options (-<nomOption>), colorer en rouge l'option (et laisser la description en blanc)
-
-- Révision / branche dans le prompt pour CVS, Darcs
-- vcsroot pour hg et darcs
 
 - Arc plus complet :
  - factorisation du code
@@ -65,17 +55,6 @@
 
 - Raccouci 'suivant' symétrique à popd ; voire gestion d'un arbre de parcours
 
-- Notes :
- - tuto rapide du globbing (soustraction *et* répertoires avec attributs des fichiers...)
- - récapitulatif des raccourcis claviers
- - Version actuelle de zArkonf
- - Note temporaires
-
-- Notes temporaires :
- - note <arg> ajoute arg dans les notes temporaires ~/.znotes
- - ^[? affiche les notes temporaires numérotées
- - rmnote <num> supprime la note num de ~/.znotes
-
 - Développements spécifiques
  - Nombres de mails non lus dans le prompt (GMail, Hotmail, Facebook, page de discussion Wikipédia, Exalead, BuildBot...)
  - Nombre en rouge foncé lorsqu'il a changé depuis le dernier prompt, en gris sinon (pour ne pas attirer inutilement l'attention)
@@ -89,3 +68,9 @@
 - Bindings clavier :
  - utiliser loadkeys plutôt que xkb ou xmodmap (fonctionne en console, ssh...)
  - /usr/share/keymaps/i386/qwerty/us-acentos.map.gz ...
+
+For install of Arkonf: shell script to automatize what's in the README.md; handles:
+ - Arch vs Ubuntu/Debian;
+ - Install of git / gmake if not already available
+ - Clone with push or not (ssh-keygen, git@ vs https).
+Available as https://arkanosis.net/conf.sh, with sha256sum.
