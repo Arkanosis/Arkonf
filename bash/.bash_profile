@@ -24,6 +24,9 @@ if [[ -t 0 ]]; then
 	    exec ssh dell2323dsy
 	fi
 
+	# Set a basic prompt to feel at home even if ending up having only bash available
+	export PS1='\033[1;36m\h\033[0;36m \w\n\!\033[1;36m $\033[0m '
+
 	# This works on most machines, given they have up-to-date zsh and tmux binaries.
 	# Not having zsh or tmux is not an issue, but having an outdated version can be.
 	# For RedHat, prefer building zsh on RHEL 5 with --disable-gdbm to avoid dependencies
@@ -36,7 +39,7 @@ if [[ -t 0 ]]; then
 	export PATH=~/local_$os-$arch/bin:$PATH
 	export LD_LIBRARY_PATH=~/local_$os-$arch/lib:$LD_LIBRARY_PATH
 
-	if [[ -x $(which lsb_release) ]] && lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
+	if [[ -x $(which lsb_release 2> /dev/null) ]] && lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
 	    export PATH=~/local_RedHat/bin:$PATH
 	    export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
 	fi
@@ -46,19 +49,21 @@ if [[ -t 0 ]]; then
 	    export TERM=xterm-256color
 	fi
 
-	export SHELL=$(which bash)
-	if [[ -x $(which zsh) ]]; then
-	    export SHELL=$(which zsh)
+	export SHELL=$(which bash 2> /dev/null)
+	if [[ -x $(which zsh 2> /dev/null) ]]; then
+	    export SHELL=$(which zsh 2> /dev/null)
 	fi
 
-	if [[ -z $TMUX && -x $(which tmux) ]]; then
+	if [[ -z $TMUX && -x $(which tmux 2> /dev/null) ]]; then
 	    if [[ -f /lib/terminfo/s/screen-256color ]]; then
 		export TERM=screen-256color
 	    fi
 	    exec tmux
 	fi
 
-	exec $SHELL
+	if [[ $SHELL != $(which bash 2> /dev/null) ]]; then
+	    exec $SHELL
+	fi
 
     fi
 
