@@ -26,11 +26,12 @@ smartd:
 smartmontools:
 {% endif %}
   service.running:
-    - require:
-      - pkg: monitoring_pkgs
+    - enable: True
     - watch:
       - file: /etc/default/smartmontools
       - file: /etc/smartd.conf
+    - require:
+      - pkg: monitoring_pkgs
 
 {% if grains['host'] in ['Cyclamen', 'Edelweiss', 'taz', 'marvin', 'Bruyere'] %}
 smartctl -s on /dev/sda:

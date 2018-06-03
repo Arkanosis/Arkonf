@@ -19,8 +19,7 @@ ftp_pkgs:
     - mode: 644
 
 vsftpd:
-  service:
-    - running
+  service.running:
     - enable: True
     - watch:
       - file: /etc/vsftpd.conf

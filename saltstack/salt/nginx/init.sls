@@ -8,8 +8,7 @@ nginx_pkgs:
 {% endif %}
 
 nginx:
-  service:
-    - running
+  service.running:
     - enable: True
     - watch:
       - file: /etc/nginx/sites-available/userweb
