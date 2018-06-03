@@ -28,7 +28,7 @@ excluded_files=(
     'Makefile\.in' 'autom4te\.cache' 'callgrind\.out' 'configure'
 )
 excluded_dirs=(
-    '*\.bak' '\.git' '\.hg' '\.svn'
+    '*\.bak' '.git' '.hg' '.svn'
 )
 excluded_dists=(
     'ChangeLog' 'INSTALL' 'Makefile' 'NEWS' 'NOTES' 'README' 'README\.md' 'TODO' 'TODO\.md'
