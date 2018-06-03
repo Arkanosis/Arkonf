@@ -22,3 +22,16 @@ ssh_pkgs:
     - source: salt://ssh/pam.d_sshd
     - mode: 644
 {% endif %}
+
+{% if grains['os_family'] == 'Arch' %}
+sshd.socket:
+{% else %}
+ssh:
+{% endif %}
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/ssh/sshd_config
+      - file: /etc/pam.d/sshd
+    - require:
+      - pkg: ssh_pkgs
