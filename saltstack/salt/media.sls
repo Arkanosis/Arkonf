@@ -1,6 +1,7 @@
 media_pkgs:
   pkg.installed:
     - pkgs:
+      - asciinema
 {% if grains['os_family'] == 'Arch' %}
       - ffmpeg
       - libvdpau-va-gl
