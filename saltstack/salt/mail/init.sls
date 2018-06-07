@@ -5,6 +5,12 @@ mail_pkgs:
       - mutt
       - s-nail
       - ssmtp
+      - thunderbird
+{% if grains['os_family'] == 'Arch' %}
+      - thunderbird-i18n-fr
+{% else %}
+      - thunderbird-locale-fr
+{% endif %}
 
 /etc/ssmtp/ssmtp.conf:
   file.managed:
