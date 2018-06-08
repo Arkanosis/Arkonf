@@ -12,4 +12,5 @@ qt_pkgs:
       - qml-module-qtgraphicaleffects
       - qml-module-qtquick-controls2
       - qml-module-qtwebsockets
+      - qt5-qmake
 {% end %}
