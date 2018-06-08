@@ -25,6 +25,7 @@ base:
     - pass
     - processing
     - python
+    - qt
     - search
     - shell
     - space
