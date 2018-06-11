@@ -17,6 +17,7 @@ base:
     - kdiff3
     - image
     - java
+    - language
     - mail
     - media
     - monitoring
