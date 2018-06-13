@@ -79,6 +79,10 @@ arkanosis:
   group.present:
     - gid: 1000
 
+/var/lib/systemd/linger/arkanosis:
+  file.managed:
+    - makedirs: True
+
 {% if grains['os_family'] == 'Arch' %}
 /home/.ecryptfs/arkanosis:
   cmd.run:
@@ -135,6 +139,10 @@ Daniel:
       - pkg: shell_pkgs
   group.present:
     - gid: 1002
+
+/var/lib/systemd/linger/Daniel:
+  file.managed:
+    - makedirs: True
 {% endif %}
 
 {% if grains['host'] == 'Cyclamen' %}
@@ -203,6 +211,10 @@ Simonne:
       - pkg: shell_pkgs
   group.present:
     - gid: 1005
+
+/var/lib/systemd/linger/Simonne:
+  file.managed:
+    - makedirs: True
 {% endif %}
 
 {% if grains['host'] == 'Bruyere' %}
