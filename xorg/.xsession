@@ -19,7 +19,7 @@ emacs --daemon=emacsconsole &
 emacs --daemon=org &
 
 # Lock
-xautolock -time 1 -locker 'gnome-screensaver-command --lock' -notify 10 -notifier '/usr/bin/notify-send "Inactivity detected" -t 2000 -i /usr/share/icons/oxygen/128x128/actions/system-run.png'
+xautolock -time 1 -locker 'gnome-screensaver-command --lock' -notify 10 -notifier '/usr/bin/notify-send "Inactivity detected" -t 2000 -i /usr/share/icons/oxygen/128x128/actions/system-run.png' &
 
 # Keyring
 if type gnome-keyring-daemon >/dev/null 2>&1; then
