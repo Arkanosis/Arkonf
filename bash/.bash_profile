@@ -54,14 +54,19 @@ if [[ -t 0 ]]; then
             export SHELL=$(which zsh 2> /dev/null)
         fi
 
-        if [[ -z $TMUX && -x $(which tmux 2> /dev/null) ]]; then
-            if [[ -f /lib/terminfo/s/screen-256color ]]; then
-                export TERM=screen-256color
+        if [[ -z $TMUX && -z $STY ]]; then
+	    if [[ -x $(which tmux 2> /dev/null) ]]; then
+		if [[ -f /lib/terminfo/s/screen-256color ]]; then
+                    export TERM=screen-256color
+		fi
+		exec tmux
+            elif [[ -x $(which screen 2> /dev/null) ]]; then
+		if [[ -f /lib/terminfo/s/screen-256color ]]; then
+                    export TERM=screen-256color
+		fi
+		exec screen
             fi
-            exec tmux
-        elif [[ -z $STY && -x $(which screen 2> /dev/null) ]]; then
-            exec screen
-        fi
+	fi
 
         if [[ $SHELL != $(which bash 2> /dev/null) ]]; then
             exec $SHELL
