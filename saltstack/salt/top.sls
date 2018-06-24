@@ -61,4 +61,3 @@ base:
     - ruby
 #    - synergy
     - vm
-    - wammu

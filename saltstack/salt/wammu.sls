@@ -1,3 +1,0 @@
-wammu:
-  pkg:
-    - latest

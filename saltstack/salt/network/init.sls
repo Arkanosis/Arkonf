@@ -12,6 +12,7 @@ network_pkgs:
       - nethogs
       - rsync
       - traceroute
+      - wammu
       - wget
       - whois
 {% if grains['os_family'] == 'Arch' %}
