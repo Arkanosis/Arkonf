@@ -111,7 +111,7 @@ bindkey -s ';3D' '^[pprevious\n'
 bindkey -s ';3C' '^[pnext\n'
 
 # Alt + ? pour voir l'aide
-bindkey -s '^[?' "^[pless $ZARKONF_DIR/.zsh/NOTES\n"
+bindkey -s '^[?' "^[pec -s org ~/Documents/Org/Notes/Linux.org\n"
 
 # Alt + e pour appliquer un coup de sed sur la ligne de commande
 bindkey "^[e" sed-line
