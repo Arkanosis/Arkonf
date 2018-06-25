@@ -46,7 +46,14 @@ if which emacs >& /dev/null; then
     }
 
     re() {
-	e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
+	if [[ -f Cargo.toml ]]; then
+	    e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
+	elif [[ -f pom.xml ]]; then
+	    e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
+	elif [[ -f Makefile ]]; then
+	    e $@ Makefile --eval '(setq compile-command "make")'
+	fi
+
     }
 else
     e() {
