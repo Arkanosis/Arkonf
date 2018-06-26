@@ -338,6 +338,11 @@ If region contains less than 2 lines, lines are left untouched."
     (eclim-mode t)
     (company-mode t)
     (define-key java-mode-map (kbd "M-.") #'eclim-java-find-declaration)))
+  (add-to-list 'compilation-error-regexp-alist 'maven)
+  (add-to-list
+   'compilation-error-regexp-alist-alist
+   '(maven
+     "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].\*" 1 2 3))
   :mode "\\.\\(java\\|jj\\)$")
 (use-package rust-mode
   :config
