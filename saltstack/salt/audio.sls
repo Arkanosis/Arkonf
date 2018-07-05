@@ -5,5 +5,6 @@ audio_pkgs:
       - audacity
       - hydrogen
       #- jackd
+      - paprefs
       - pavucontrol
       - pulseaudio
