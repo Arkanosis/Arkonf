@@ -30,12 +30,6 @@ if which gmake >& /dev/null; then
     }
 fi
 
-if ! which md5 >& /dev/null; then
-    md5() {
-	md5sum $@
-    }
-fi
-
 if which colordiff >& /dev/null; then
     diff() {
 	colordiff $@
