@@ -15,6 +15,11 @@ network_pkgs:
       - smstools # TODO FIXME need smstools3 for ArchLinux as well
 {% endif %}
       - traceroute
+{% if grains['os_family'] != 'Arch' %}
+      - usb-modeswitch
+{% else %}
+      - usb_modeswitch
+{% endif %}
       - wammu
       - wget
       - whois
@@ -27,6 +32,11 @@ network_pkgs:
 /usr/bin/ethernet:
   file.managed:
     - source: salt://network/ethernet
+    - mode: 755
+
+/usr/bin/lte:
+  file.managed:
+    - source: salt://network/lte
     - mode: 755
 
 /usr/bin/offline:

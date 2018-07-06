@@ -1,0 +1,8 @@
+#! /bin/sh
+
+LTE=enp0s20f0u1
+
+offline 2> /dev/null
+
+ip link set "$LTE" up && \
+    dhcpcd "$LTE"
