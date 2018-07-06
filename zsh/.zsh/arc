@@ -91,13 +91,29 @@ x() {
                 uncompress $arg
             ;;
             *.docx)
-                extract() { which 7z >&- && 7z x $1 || unzip $1 }
+                extract() { which 7z >&- && 7z x $1 || unzip $1 &&
+		    if which xmlstarlet >& /dev/null; then
+			for xml in **/*.xml; do
+			    formatted=$(tempfile)
+			    xmlstarlet fo $xml >| $formatted
+			    mv -f $formatted $xml
+			done
+		    fi
+                }
                 extractandflatten $arg extract \
                     's/\.docx$//' \
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
             ;;
             *.od(g|p|s|t))
-                extract() { which 7z >&- && 7z x $1 || unzip $1 }
+                extract() { which 7z >&- && 7z x $1 || unzip $1 &&
+		    if which xmlstarlet >& /dev/null; then
+			for xml in **/*.xml; do
+			    formatted=$(tempfile)
+			    xmlstarlet fo $xml >| $formatted
+			    mv -f $formatted $xml
+			done
+		    fi
+                }
                 extractandflatten $arg extract \
                     's/\.od[gpst]$//' \
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
