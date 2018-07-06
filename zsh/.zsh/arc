@@ -2,244 +2,219 @@
 
 c() {
     if ! ((#)); then
-	echo 'Usage: c <directory> [directory [...]]' >&2
-	return 1
+        echo 'Usage: c <directory> [directory [...]]' >&2
+        return 1
     fi
 
     for arg; do
-	print "\e[32mCompressing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-	7z a $(echo $arg | sed 's_/\?$_.7z_') $arg
+        print "\e[32mCompressing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
+        7z a $(echo $arg | sed 's_/\?$_.7z_') $arg
     done
 }
 
 flattendir() {
     if test -d $1/$1 && [[ $(ls -l $1 | wc -l) = 2 ]]; then
-	command mv $1/$1/*(N) $1/$1/.*(N) $1
-	rmdir $1/$1
+        command mv $1/$1/*(N) $1/$1/.*(N) $1
+        rmdir $1/$1
     fi
 }
 
+extractandflatten() {
+    dir=$(basename $1 | sed $3)
+    if test -e $dir; then
+        echo "$dir already exists, cannot extract $1" >&2
+        break
+    fi
+    mkdir $dir && \
+        cd $dir > /dev/null && \
+        print $4 && \
+        $2 $arg && \
+        cd - > /dev/null && \
+        flattendir $dir
+}
+
 x() {
-    # Extracteur universel v1.4
+    # Extracteur universel v1.5
     # (C) 2008-2018 Arkanosis
     # jroquet@arkanosis.net
     for arg; do
-	arg=$arg:A
-	case $arg in
-	    *.(tar.bz2|tbz2))
-	        dir=$(basename $arg | sed 's/\.\(tbz2\|tar\.bz2\)$//')
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m" && \
-		tar xvjf $arg && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.(tar.gz|tgz))
-	        dir=$(basename $arg | sed 's/\.\(tgz\|tar\.gz\)$//')
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m" && \
-		tar xvzf $arg && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.(tar.xz|txz))
-	        dir=$(basename $arg | sed 's/\.\(txz\|tar\.xz\)$//')
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m" && \
-		tar xvJf $arg && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.7z)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-		7z x $arg
-	    ;;
-	    *.xz)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
-		7z x $arg
-	    ;;
-	    *.cab)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
-		7z x $arg
-	    ;;
-	    *.bz2)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
-		bunzip2 $arg
-	    ;;
-	    *.gz)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
-		gunzip $arg
-	    ;;
-	    *.(zip|jar))
-	        dir=$(basename $arg | sed 's/\.\(zip\|jar\)$//')
-		arg=$(readlink -f $arg)
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-                cd $dir > /dev/null && \
-   	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m" && \
-		( which 7z >&- && 7z x $arg || unzip $arg ) && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.Z)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZ\e[0;32m compressed file)...\e[0m"
-		uncompress $arg
-	    ;;
-	    *.docx)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
-		which 7z >&- && 7z x $arg || unzip $arg
-	    ;;
-	    *.od(g|p|s|t))
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
-		which 7z >&- && 7z x $arg || unzip $arg
-	    ;;
-	    *.tar)
-	        dir=$(basename $arg | sed 's/\.tar$//')
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m" && \
-		tar xvf $arg && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.deb)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-		dpkg-deb -xv $arg $(echo $arg | sed 's/\.deb$//')
-	    ;;
-	    *.rpm)
-	        dir=$(basename $arg | sed 's/\.rpm$//')
-		if test -e $dir; then
-		    echo "$dir already exists, cannot extract $arg" >&2
-		    break
-		fi
-		mkdir $dir && \
-		cd $dir > /dev/null && \
-		print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m" && \
-		rpm2cpio $arg | cpio -idmv && \
-		cd - > /dev/null && \
-		flattendir $dir
-	    ;;
-	    *.xpi)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
-		which 7z >&- && 7z x $arg || unzip $arg
-	    ;;
-	    *.rar)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
-		unrar x $arg
-	    ;;
-	    *.iso)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
-		7z x $arg
-	    ;;
-	    *.eml)
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mMIME\e[0;32m mail archive)...\e[0m"
-		munpack $arg
-	    ;;
-	    *)
-	        print "\e[91mCannot extract \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
-	    ;;
+        arg=$arg:A
+        case $arg in
+            *.(tar.bz2|tbz2))
+                extract() { tar xvjf $1 }
+                extractandflatten $arg extract \
+                    's/\.\(tbz2\|tar\.bz2\)$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.(tar.gz|tgz))
+                extract() { tar xvzf $1 }
+                extractandflatten $arg extract \
+                    's/\.\(tgz\|tar\.gz\)$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.(tar.xz|txz))
+                extract() { tar xvJf $1 }
+                extractandflatten $arg extract \
+                    's/\.\(txz\|tar\.xz\)$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.7z)
+                extract() { 7z x $1 }
+                extractandflatten $arg extract \
+                    's/\.7z$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.xz)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
+                7z x $arg
+            ;;
+            *.cab)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
+                7z x $arg
+            ;;
+            *.bz2)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
+                bunzip2 $arg
+            ;;
+            *.gz)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
+                gunzip $arg
+            ;;
+            *.(zip|jar|xpi))
+                extract() { which 7z >&- && 7z x $1 || unzip $1 }
+                extractandflatten $arg extract \
+                    's/\.\(zip\|jar\)$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.Z)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZ\e[0;32m compressed file)...\e[0m"
+                uncompress $arg
+            ;;
+            *.docx)
+                extract() { which 7z >&- && 7z x $1 || unzip $1 }
+                extractandflatten $arg extract \
+                    's/\.docx$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
+            ;;
+            *.od(g|p|s|t))
+                extract() { which 7z >&- && 7z x $1 || unzip $1 }
+                extractandflatten $arg extract \
+                    's/\.od[gpst]$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
+            ;;
+            *.tar)
+                extract() { tar xvzf $1 }
+                extractandflatten $arg extract \
+                    's/\.tar$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
+            ;;
+            *.deb)
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
+                dpkg-deb -xv $arg $(echo $arg | sed 's/\.deb$//')
+            ;;
+            *.rpm)
+                extract() { rpm2cpio $1 | cpio -idmv }
+                extractandflatten $arg extract \
+                    's/\.rpm$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m"
+            ;;
+            *.rar)
+                extract() { unrar x $1 }
+                extractandflatten $arg extract \
+                    's/\.rar$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
+            ;;
+            *.iso)
+                extract() { 7z x $1 }
+                extractandflatten $arg extract \
+                    's/\.iso$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
+            ;;
+            *.eml)
+                extract() { munpack $1 }
+                extractandflatten $arg extract \
+                    's/\.eml$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mMIME\e[0;32m mail archive)...\e[0m"
+            ;;
+            *)
+                print "\e[91mCannot extract \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
+            ;;
         esac
     done
 }
 
 t() {
-    # Listeur universel v1.4
+    # Listeur universel v1.5
     # (C) 2008-2018 Arkanosis
     # jroquet@arkanosis.net
     for arg; do
-	case $arg in
-	    *.(tar.bz2|tbz2))
+        case $arg in
+            *.(tar.bz2|tbz2))
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed archive)...\e[0m"
-		tar tvjf $arg
-	    ;;
-	    *.(tar.gz|tgz))
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m"
-		tar tvzf $arg
-	    ;;
-	    *.(tar.xz|txz))
-	        print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
-		7z x $arg
-		tarball=$(echo $arg | sed 's/\.xz$//')
-		tar tvf $tarball
-		rm $tarball
-	    ;;
-	    *.7z)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
-		7z l $arg
-	    ;;
-	    *.xz)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
-		7z l $arg
-	    ;;
-	    *.cab)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
-		7z l $arg
-	    ;;
-	    *.bz2)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
-		echo $arg | sed -e 's/.bz2$//'
-	    ;;
-	    *.gz)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
-		echo $arg | sed -e 's/.gz$//'
-	    ;;
-	    *.(zip|jar))
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
-		which 7z >&- && 7z l $arg || unzip -l $arg
-	    ;;
-	    *.docx)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
-		which 7z >&- && 7z l $arg || unzip -l $arg
-	    ;;
-	    *.od(g|p|s|t))
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
-		which 7z >&- && 7z l $arg || unzip -l $arg
-	    ;;
-	    *.tar)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
-		tar tvf $arg
-	    ;;
-	    *.deb)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-		echo 'Not implemented'
-	    ;;
-	    *.xpi)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mxpi\e[0;32m plugin)...\e[0m"
-		which 7z >&- && 7z l $arg || unzip -l $arg
-	    ;;
-	    *.rar)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
-		unrar l $arg
-	    ;;
-	    *.iso)
-	        print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
-		7z l $arg
-	    ;;
-	    *)
-	        print "\e[91mCannot list \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
-	    ;;
-	esac
+                tar tvjf $arg
+            ;;
+            *.(tar.gz|tgz))
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed archive)...\e[0m"
+                tar tvzf $arg
+            ;;
+            *.(tar.xz|txz))
+                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed archive)...\e[0m"
+                7z x $arg
+                tarball=$(echo $arg | sed 's/\.xz$//')
+                tar tvf $tarball
+                rm $tarball
+            ;;
+            *.7z)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1m7-Zip\e[0;32m compressed archive)...\e[0m"
+                7z l $arg
+            ;;
+            *.xz)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mXz\e[0;32m compressed file)...\e[0m"
+                7z l $arg
+            ;;
+            *.cab)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mCAB\e[0;32m compressed file)...\e[0m"
+                7z l $arg
+            ;;
+            *.bz2)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mBZip2\e[0;32m compressed file)...\e[0m"
+                echo $arg | sed -e 's/.bz2$//'
+            ;;
+            *.gz)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mGZip\e[0;32m compressed file)...\e[0m"
+                echo $arg | sed -e 's/.gz$//'
+            ;;
+            *.(zip|jar|xpi))
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
+                which 7z >&- && 7z l $arg || unzip -l $arg
+            ;;
+            *.docx)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
+                which 7z >&- && 7z l $arg || unzip -l $arg
+            ;;
+            *.od(g|p|s|t))
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
+                which 7z >&- && 7z l $arg || unzip -l $arg
+            ;;
+            *.tar)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
+                tar tvf $arg
+            ;;
+            *.deb)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
+                echo 'Not implemented'
+            ;;
+            *.rar)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
+                unrar l $arg
+            ;;
+            *.iso)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mISO\e[0;32m image)...\e[0m"
+                7z l $arg
+            ;;
+            *)
+                print "\e[91mCannot list \e[1m$arg\e[0;31m (\e[1mUnknown\e[0;31m archive type)...\e[0m"
+            ;;
+        esac
     done
 }
