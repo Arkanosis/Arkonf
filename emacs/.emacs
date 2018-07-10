@@ -321,6 +321,18 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.jsm?$")
 (use-package typescript-mode
   :mode "\\.ts$")
+(use-package seq)
+(setq tide-tsserver-executable
+ (seq-find #'file-exists-p
+  '("~/local/opt/tsserver/tsserver.js"              ; Manual install (eg. Exalead)
+    "/usr/lib/node_modules/typescript/bin/tsserver" ; ArchLinux
+    "/usr/lib/nodejs/typescript/lib/tsserver.js"    ; Debian / Ubuntu (Bionic)
+    "/usr/lib/nodejs/typescript/tsserver.js")))     ; Debian / Ubuntu (Xenial)
+(use-package tide
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+	 (typescript-mode . tide-hl-identifier-mode)
+	 (before-save . tide-format-before-save)))
 (use-package python
   :config
   (add-hook 'python-mode-hook #'abbrev-mode)

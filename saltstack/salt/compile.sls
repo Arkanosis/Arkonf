@@ -13,3 +13,8 @@ compile_pkgs:
       - gdb
       - libtool
       - pkg-config
+{% if grains['os_family'] == 'Arch' %}
+      - typescript
+{% else %}
+      - node-typescript
+{% endif %}

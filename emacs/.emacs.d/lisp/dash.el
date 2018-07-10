@@ -3,7 +3,8 @@
 ;; Copyright (C) 2012-2016 Free Software Foundation, Inc.
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 2.13.0
+;; Version: 2.14.1
+;; Package-Version: 20180413.30
 ;; Keywords: lists
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -651,7 +652,8 @@ See also: `-last-item'."
   (declare (pure t) (side-effect-free t))
   (car (cdr (cdr (cdr (cdr list))))))
 
-;; TODO: emacs23 support, when dropped remove the condition
+;; TODO: gv was introduced in 24.3, so we can remove the if statement
+;; when support for earlier versions is dropped
 (eval-when-compile
   (require 'cl)
   (if (fboundp 'gv-define-simple-setter)
@@ -665,7 +667,8 @@ See also: `-last-item'."
   (declare (pure t) (side-effect-free t))
   (car (last list)))
 
-;; TODO: emacs23 support, when dropped remove the condition
+;; TODO: gv was introduced in 24.3, so we can remove the if statement
+;; when support for earlier versions is dropped
 (eval-when-compile
   (if (fboundp 'gv-define-setter)
       (gv-define-setter -last-item (val x) `(setcar (last ,x) ,val))
@@ -2508,12 +2511,15 @@ structure such as plist or alist."
   (eval-after-load 'lisp-mode
     '(progn
        (let ((new-keywords '(
+                             "!cons"
+                             "!cdr"
                              "-each"
                              "--each"
                              "-each-indexed"
                              "--each-indexed"
                              "-each-while"
                              "--each-while"
+                             "-doto"
                              "-dotimes"
                              "--dotimes"
                              "-map"
@@ -2586,6 +2592,10 @@ structure such as plist or alist."
                              "-last"
                              "--last"
                              "-first-item"
+                             "-second-item"
+                             "-third-item"
+                             "-fourth-item"
+                             "-fifth-item"
                              "-last-item"
                              "-butlast"
                              "-count"
@@ -2598,8 +2608,13 @@ structure such as plist or alist."
                              "--any-p"
                              "-some-p"
                              "--some-p"
+                             "-some->"
+                             "-some->>"
+                             "-some-->"
                              "-all?"
+                             "-all-p"
                              "--all?"
+                             "--all-p"
                              "-every?"
                              "--every?"
                              "-all-p"
@@ -2617,6 +2632,8 @@ structure such as plist or alist."
                              "-slice"
                              "-take"
                              "-drop"
+                             "-drop-last"
+                             "-take-last"
                              "-take-while"
                              "--take-while"
                              "-drop-while"
@@ -2640,6 +2657,10 @@ structure such as plist or alist."
                              "-partition-in-steps"
                              "-partition-all"
                              "-partition"
+                             "-partition-after-item"
+                             "-partition-after-pred"
+                             "-partition-before-item"
+                             "-partition-before-pred"
                              "-partition-by"
                              "--partition-by"
                              "-partition-by-header"
@@ -2648,10 +2669,12 @@ structure such as plist or alist."
                              "--group-by"
                              "-interpose"
                              "-interleave"
+                             "-unzip"
                              "-zip-with"
                              "--zip-with"
                              "-zip"
                              "-zip-fill"
+                             "-zip-pair"
                              "-cycle"
                              "-pad"
                              "-annotate"
@@ -2675,6 +2698,7 @@ structure such as plist or alist."
                              "->"
                              "->>"
                              "-->"
+                             "-as->"
                              "-when-let"
                              "-when-let*"
                              "--when-let"
