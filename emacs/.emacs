@@ -320,7 +320,7 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package js2-imenu-extras)
   :mode "\\.jsm?$")
 (use-package typescript-mode
-  :mode "\\.ts$")
+  :mode "\\.tsx?$")
 (use-package seq)
 (setq tide-tsserver-executable
  (seq-find #'file-exists-p
