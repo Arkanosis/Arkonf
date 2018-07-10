@@ -319,6 +319,8 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (use-package js2-imenu-extras)
   :mode "\\.jsm?$")
+(use-package typescript-mode
+  :mode "\\.ts$")
 (use-package python
   :config
   (add-hook 'python-mode-hook #'abbrev-mode)
