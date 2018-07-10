@@ -90,7 +90,7 @@ x() {
                 print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mZ\e[0;32m compressed file)...\e[0m"
                 uncompress $arg
             ;;
-            *.docx)
+            *.(doc|xls)x)
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&
 		    if which xmlstarlet >& /dev/null; then
 			for xml in **/*.xml; do
@@ -101,8 +101,8 @@ x() {
 		    fi
                 }
                 extractandflatten $arg extract \
-                    's/\.docx$//' \
-                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
+                    's/\.\(doc\|xls\)x$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m document)...\e[0m"
             ;;
             *.od(g|p|s|t))
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&

@@ -44,7 +44,7 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 
-zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|cab|deb|docx|eml|gz|iso|jar|lzma|od(g|p|s|t)|rar|rpm|tar|tbz2|tgz|xpi|xz|zip|Z):files *(-/):directories'
+zstyle ':completion:*:*:(x|t):*' file-patterns '*.(7z|bz2|cab|deb|docx|eml|gz|iso|jar|lzma|od(g|p|s|t)|rar|rpm|tar|tbz2|tgz|xlsx|xpi|xz|zip|Z):files *(-/):directories'
 
 compdef sc=screen >& /dev/null
 compdef v=vim >& /dev/null
