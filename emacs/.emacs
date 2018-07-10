@@ -50,6 +50,8 @@
 ;; Désactiver le gc le temps du chargement de la configuration
 (setq gc-cons-threshold 100000000)
 
+(setq debug-on-error t)
+
 ;; Pour Exalead
 (setq standard-indent 2)
 (setq tab-width 2)
