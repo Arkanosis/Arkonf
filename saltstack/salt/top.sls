@@ -4,7 +4,6 @@ base:
     - backup
     - banner
     - chat
-    - containers
     - compile
     - compression
     - crypto
@@ -35,6 +34,7 @@ base:
     - usb
     - utilities
     - vcs
+    - vm
     - webbrowser
     - xorg
 
@@ -60,4 +60,3 @@ base:
     - remmina
     - ruby
 #    - synergy
-    - vm

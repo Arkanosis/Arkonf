@@ -5,8 +5,8 @@
 
 include:
 {% if grains['os_family'] != 'Arch' %}
-  - containers
   - ssh
+  - vm
 {% endif %}
   - monitoring
   - network
@@ -73,7 +73,7 @@ arkanosis:
     - remove_groups: False
     - require:
 {% if grains['os_family'] != 'Arch' %}
-      - pkg: containers_pkgs
+      - pkg: vm_pkgs
 {% endif %}
       - pkg: shell_pkgs
   group.present:
