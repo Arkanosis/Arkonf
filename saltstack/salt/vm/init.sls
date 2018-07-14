@@ -14,6 +14,29 @@ vm_pkgs:
       - qemu-kvm
 {% endif %}
       - wine
+      - winetricks
+
+ # 32 bit libraries for Wine on Arch; not sure if it's really necessary
+{% if grains['os_family'] == 'Arch' %}
+arch_multilib:
+  cmd.run:
+    - name: 'echo "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf'
+    - unless: grep -q '^\[multilib\]$' /etc/pacman.conf
+
+vm_pkgs32:
+  pkg.installed:
+    - require:
+      - cmd: arch_multilib
+    - pkgs:
+      - lib32-alsa-plugins
+      - lib32-libpulse
+      - lib32-libjpeg-turbo
+      - lib32-libldap
+      - lib32-libpng
+{% if salt['grains.get']('gpus:vendor') == 'intel' %}
+      - lib32-mesa
+{% endif %}
+{% endif %}
 
 {% if grains['os_family'] != 'Arch' %}
 /etc/subuid:
