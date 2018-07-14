@@ -14,6 +14,7 @@ compile_pkgs:
       - libtool
       - pkg-config
 {% if grains['os_family'] == 'Arch' %}
+      - rustup
       - typescript
 {% else %}
       - node-typescript
