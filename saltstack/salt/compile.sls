@@ -12,6 +12,9 @@ compile_pkgs:
 {% endif %}
       - gdb
       - libtool
+{% if grains['os_family'] == 'Arch' %}
+      - namcap
+{% endif %}
       - pkg-config
 {% if grains['os_family'] == 'Arch' %}
       - rustup
