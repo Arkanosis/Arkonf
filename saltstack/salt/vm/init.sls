@@ -38,7 +38,7 @@ vm_pkgs32:
 {% endif %}
 {% endif %}
 
-{% if grains['os_family'] != 'Arch' %}
+{% if grains['os_family'] == 'Arch' %}
 /etc/subuid:
   file.managed:
     - source: salt://vm/subuid
@@ -53,6 +53,11 @@ vm_pkgs32:
   cmd.run:
     - name: 'echo "session optional pam_cgfs.so -c freezer,memory,name=systemd,unified" >> /etc/pam.d/system-login'
     - unless: grep -q pam_cgfs /etc/pam.d/system-login
+
+/etc/sysctl.d/userns.conf:
+  cmd.run:
+    - name: 'echo "kernel.unprivileged_userns_clone=1" >> /etc/sysctl.d/userns.conf'
+    - unless: grep -q "kernel.unprivileged_userns_clone=1" /etc/sysctl.d/userns.conf
 
 /etc/lxc/default.conf:
   file.managed:
