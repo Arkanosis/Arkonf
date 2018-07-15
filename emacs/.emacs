@@ -395,6 +395,8 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'write-file-hooks 'exa-check-svn-commit-branch)
   :mode "\\.tmp$")
 (use-package two-mode-mode)
+(use-package dockerfile-mode
+  :mode "Dockerfile$")
 
 (use-package auto-complete-config
   :diminish auto-complete-mode
