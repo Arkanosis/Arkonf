@@ -247,6 +247,7 @@ If region contains less than 2 lines, lines are left untouched."
 (setq org-agenda-start-day "-2d")
 (setq org-agenda-span 15)
 (setq org-agenda-start-on-weekday nil)
+(add-hook 'org-archive-hook #'org-save-all-org-buffers)
 
 ;; Archive whole org-mode file at once
 (defun org-archive-done-tasks ()
