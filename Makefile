@@ -166,8 +166,7 @@ ssh: ~/.ssh/config
 
 systemd: /var/lib/systemd/linger/${USER} $(patsubst %,~/.config/systemd/user/%.service,$(SERVICES))
 /var/lib/systemd/linger/${USER}:
-	@echo 'Ask your administrator to run "sudo touch '$@'" to enable systemd user services'
-	@false
+	@echo 'Ask your administrator to run "sudo loginctl enable-linger '${USER}'" to enable session-independant systemd user services'
 %.service:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)systemd/$(notdir $@)" "$@"
@@ -175,7 +174,7 @@ systemd: /var/lib/systemd/linger/${USER} $(patsubst %,~/.config/systemd/user/%.s
 
 totp: ~/.google_authenticator
 ~/.google_authenticator:
-	google-authenticator
+	-google-authenticator
 
 tmux: ~/.tmux.conf ~/.tmux
 ~/.tmux.conf:
