@@ -1,0 +1,12 @@
+[Unit]
+Description=Emacs
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon=emacsconsole
+ExecStop=/usr/bin/emacsclient -s emacsconsole --eval "(kill-emacs)"
+TimeoutStartSec=0
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

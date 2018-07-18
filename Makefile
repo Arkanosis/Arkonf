@@ -19,12 +19,17 @@ CONFIGS= \
 	screen \
 	slrn \
 	ssh \
+	systemd \
 	totp \
 	tmux \
 	vim \
 	weechat \
 	xorg \
 	zsh
+
+SERVICES= \
+	emacs \
+	org
 
 .PHONY: all \
 	install \
@@ -158,6 +163,15 @@ ssh: ~/.ssh/config
 ~/.ssh/config:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)ssh/.ssh/$(notdir $@)" "$@"
+
+systemd: /var/lib/systemd/linger/${USER} $(patsubst %,~/.config/systemd/user/%.service,$(SERVICES))
+/var/lib/systemd/linger/${USER}:
+	@echo 'Ask your administrator to run "sudo touch '$@'" to enable systemd user services'
+	@false
+%.service:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)systemd/$(notdir $@)" "$@"
+	systemctl --user enable --now "$(notdir $@)"
 
 totp: ~/.google_authenticator
 ~/.google_authenticator:

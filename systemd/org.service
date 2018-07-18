@@ -1,0 +1,12 @@
+[Unit]
+Description=Emacs org-mode
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon=org
+ExecStop=/usr/bin/emacsclient -s org --eval "(kill-emacs)"
+TimeoutStartSec=0
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
