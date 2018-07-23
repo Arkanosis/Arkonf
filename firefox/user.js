@@ -1,59 +1,31 @@
-/*
-** Firefox
-*/
+user_pref("breakpad.reportURL", "");
+
 user_pref("browser.cache.disk.capacity", 1000000);
+user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.showQuitWarning", true);
-user_pref("browser.startup.homepage", "http://gmail.com");
-user_pref("browser.startup.page", 3);
-user_pref("browser.tabs.animate", false);
-user_pref("browser.tabs.closeButtons", 2);
+user_pref("browser.tabs.crashReporting.sendReport", false);
+user_pref("browser.urlbar.autoFill", false);
+user_pref("browser.urlbar.autoFill.typed", false);
 user_pref("browser.urlbar.trimURLs", false);
 
-user_pref("general.smoothScroll", false);
+user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("datareporting.healthreport.service.enabled", false);
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
 
-user_pref("network.http.pipelining", true);
+user_pref("experiments.supported", false);
+user_pref("experiments.enabled", false);
+user_pref("experiments.manifest.uri", "");
 
-user_pref("security.warn_viewing_mixed", false);
+user_pref("mousewheel.with_control.action", 0);
+
+user_pref("network.allow-experiments", false);
+user_pref("network.proxy.socks_remote_dns", true);
 
 user_pref("signon.rememberSignons", false);
 
-/*
-** GreaseMonkey
-*/
-user_pref("greasemonkey.editor", "/udir/jroquet/local/bin/emacs-console");
-
-/*
-** It's all text
-*/
-user_pref("extensions.itsalltext.editor", "/udir/jroquet/local/bin/emacs-console");
-user_pref("extensions.itsalltext.extensions", ".txt,.html,.css,.xml,.xsl,.js,.wiki,.xhtml");
-user_pref("extensions.itsalltext.gumdrop_position", "none");
-user_pref("extensions.itsalltext.hotkey", "0:1:0:0:0:13");
-
-/*
-** LocationBar2
-*/
-user_pref("extensions.locationbar2.alternate.breadcrumb-all", true);
-user_pref("extensions.locationbar2.alternate.domain-strong", true);
-user_pref("extensions.locationbar2.alternate.segments-margin", true);
-
-/*
-** LongURLPlease
-*/
-user_pref("extensions.longurlplease.expandstyle", "full");
-
-/*
-** NoScript
-*/
-user_pref("noscript.allowURLBarJS", true);
-
-/*
-** TabMix Plus
-*/
-user_pref("extensions.tabmix.appearance_tab", 3);
-user_pref("extensions.tabmix.loadOnNewTab.type", 0);
-user_pref("extensions.tabmix.newTabButton", false);
-user_pref("extensions.tabmix.tabs.closeButtons.enable", false);
+user_pref("toolkit.telemetry.enabled", false);
+user_pref("toolkit.telemetry.prompted", 2);
+user_pref("toolkit.telemetry.rejected", true);
+user_pref("toolkit.telemetry.unified", false);

@@ -32,6 +32,7 @@ SERVICES= \
 	org
 
 .PHONY: all \
+	firefox \
 	install \
 	rust \
 	$(CONFIGS)
@@ -207,6 +208,23 @@ zsh: ~/.zshrc ~/.zsh
 	ln -s "$(ROOT)zsh/$(notdir $@)" "$@"
 ~/.zsh:
 	ln -s "$(ROOT)zsh/$(notdir $@)" "$@"
+
+FIREFOX_FILES= \
+	chrome/userChrome.css \
+	chrome/userContent.css \
+	containers.json \
+	storage.js \
+	user.js
+
+firefox:
+	for profile in ~/.mozilla/firefox/*.*/; do \
+		for file in $(FIREFOX_FILES); do \
+			if ! [ -e "$${profile}$${file}" ]; then \
+				mkdir -p $$(dirname "$${profile}$${file}"); \
+				ln -s "$(ROOT)firefox/$${file}" "$${profile}$${file}"; \
+			fi; \
+		done; \
+	done
 
 rust:
 	curl "https://sh.rustup.rs" -sSf | sh
