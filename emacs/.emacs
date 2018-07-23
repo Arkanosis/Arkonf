@@ -632,6 +632,11 @@ If region contains less than 2 lines, lines are left untouched."
    	       (define-key ido-completion-map
    		 (kbd "C-c e")
    		 "data")))
+   (defun ido-kill-emacs-hook ()
+     (lambda ()
+       (if (file-writable-p ido-save-directory-list-file)
+	   (ido-save-history)
+ 	   nil)))
  )
 )
 
