@@ -44,6 +44,10 @@ set fileencoding=utf8
 
 syntax on
 
+if &diff
+    colorscheme industry
+endif
+
 " Raccourcis clavier
 map <C-t> :tabnew .<CR>
 imap <C-t> <Esc>:tabnew .<CR>i
