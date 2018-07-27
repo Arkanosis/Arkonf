@@ -19,7 +19,7 @@ case $(uname -s) in
             command ls -F $@
         }
     ;;
-    Linux|AIX)
+    Linux|AIX|MSYS_NT*)
         ls() {
             command ls --color -F $@
         }
