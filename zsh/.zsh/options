@@ -4,7 +4,9 @@ export REPORTTIME=10
 
 setopt shortloops
 
-limit coredumpsize 0
+if ! [[ $OS =~ 'Windows' ]]; then
+    limit coredumpsize 0
+fi
 
 setopt longlistjobs
 
