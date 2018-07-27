@@ -15,56 +15,60 @@ v()
 
 if which emacs >& /dev/null; then
     eline() {
-	local cmd args split
+        local cmd args split
 
-	cmd=($=1)
-	shift
+        cmd=($=1)
+        shift
 
-	args=()
+        args=()
 
-	for arg; do
-	    if test -r $arg; then
-		args+=$arg
-	    else
-		split=(${(s.:.)arg})
-		if [[ $split[2] = <-> ]]; then
-		    args+=(+$split[2] $split[1])
-		else
-		    args+=$arg
-		fi
-	    fi
-	done
+        for arg; do
+            if test -r $arg; then
+                args+=$arg
+            else
+                split=(${(s.:.)arg})
+                if [[ $split[2] = <-> ]]; then
+                    args+=(+$split[2] $split[1])
+                else
+                    args+=$arg
+                fi
+            fi
+        done
 
-	$cmd $args
+        $cmd $args
     }
 
     e() {
-	eline 'emacs -nw' $@
+        eline 'emacs -nw' $@
     }
     ec() {
-	eline 'emacsclient -nw' $@
+        eline 'emacsclient -nw' $@
     }
 
     re() {
-	if [[ -f Cargo.toml ]]; then
-	    e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
-	elif [[ -f pom.xml ]]; then
-	    e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
-	elif [[ -f Makefile ]]; then
-	    e $@ Makefile --eval '(setq compile-command "make")'
-	fi
+        if [[ -f Cargo.toml ]]; then
+            e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
+        elif [[ -f pom.xml ]]; then
+            e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
+        elif [[ -f Makefile ]]; then
+            e $@ Makefile --eval '(setq compile-command "make")'
+        fi
 
     }
 else
     e() {
-	$=EDITOR $@
+        $=EDITOR $@
     }
 fi
 
 PAGER=less
 
 td() {
-    ec -s org ~/Documents/Org
+    if [[ $OS =~ 'Windows' ]]; then
+        e "/c/Users/$USER/Org"
+    else
+        ec -s org ~/Documents/Org
+    fi
 }
 
 utd() {
