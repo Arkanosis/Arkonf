@@ -1,6 +1,10 @@
 .ecryptfs
+/home/guest
+/home/nonfreegaming
+/home/*/Téléchargements/Distributions
 /home/*/.cache
 /home/*/.cargo
+/home/*/.local/share/lxc
 /home/*/.rustup
 /home/*/.thumbnails
 /home/*/.wine*
