@@ -119,7 +119,7 @@ x() {
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mOpenDocument\e[0;32m document)...\e[0m"
             ;;
             *.tar)
-                extract() { tar xvzf $1 }
+                extract() { tar xvf $1 }
                 extractandflatten $arg extract \
                     's/\.tar$//' \
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
