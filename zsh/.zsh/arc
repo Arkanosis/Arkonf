@@ -226,7 +226,13 @@ t() {
             ;;
             *.deb)
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-                echo 'Not implemented'
+		ar t $arg
+		algo=$(ar t $arg | sed -n 's/data\.tar\.//p')
+		ar p $arg data.tar.$algo | case $algo in
+		    gz) tar tz;;
+		    bz2) tar tj;;
+		    xz) tar tJ;;
+		esac | sed 's/^\./data/'
             ;;
             *.rar)
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
