@@ -125,8 +125,16 @@ x() {
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
             ;;
             *.deb)
-                print "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-                dpkg-deb -xv $arg $(echo $arg | sed 's/\.deb$//')
+		extract() {
+		    ar xv $1
+		    if [[ -f control.tar.gz ]]; then
+			tar xvzf control.tar.gz && rm control.tar.gz
+		    fi
+		    ( x data.tar.* && rm data.tar.* )
+		}
+                extractandflatten $arg extract \
+                    's/\.deb$//' \
+                    "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
             ;;
             *.rpm)
                 extract() { rpm2cpio $1 | cpio -idmv }
