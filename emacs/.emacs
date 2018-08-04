@@ -555,6 +555,7 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-hook 'org-mode-hook
   (lambda ()
+    (local-set-key (kbd "C-c a") 'org-agenda)
     (local-set-key "[1;5D" 'org-promote-subtree)
     (local-set-key "[1;5C" 'org-demote-subtree)
     (local-set-key "[1;5A" 'org-move-subtree-up)
