@@ -23,7 +23,7 @@ This is the prefered way to install the full Arkonf (including packages).
 
 ```sh
 pacman -S salt openssh openbsd-netcat git
-ssh-keygen -t rsa -b 4096
+ssh-keygen -o -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
 git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
@@ -37,7 +37,7 @@ pacman -Syu
 
 ```sh
 apt install salt-minion git
-ssh-keygen -t rsa -b 4096
+ssh-keygen -o -t rsa -b 4096
 < /root/.ssh/id_rsa.pub nc termbin.com 9999
 # Add your public key on GitHub
 git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
