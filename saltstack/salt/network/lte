@@ -1,6 +1,6 @@
 #! /bin/sh
 
-LTE=enp0s20f0u1
+LTE=$(ip a | sed -n 's/.*\(enp0s20f0u[0-9]\).*/\1/p')
 
 offline 2> /dev/null
 
