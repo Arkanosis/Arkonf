@@ -1,11 +1,6 @@
-python-pelican:
-  pkg:
-    - latest
-
-python-sphinx:
-  pkg:
-    - latest
-
-scribus:
-  pkg:
-    - latest
+publication_pkgs:
+  pkg.installed:
+    - pkgs:
+      - hugo
+      - python-sphinx
+      - scribus
