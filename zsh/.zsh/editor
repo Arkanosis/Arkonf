@@ -49,7 +49,11 @@ if which emacs >& /dev/null; then
         if [[ -f Cargo.toml ]]; then
             e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
         elif [[ -f main.go || -f lib.go ]]; then
-            e $@ (main|lib).go --eval '(setq compile-command "go build")'
+	    if [[ -f Makefile ]]; then
+		e $@ Makefile (main|lib).go --eval '(setq compile-command "make")'
+	    else
+		e $@ (main|lib).go --eval '(setq compile-command "go build")'
+	    fi
         elif [[ -f pom.xml ]]; then
             e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
         elif [[ -f Makefile ]]; then
