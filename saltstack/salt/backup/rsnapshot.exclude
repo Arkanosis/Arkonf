@@ -4,6 +4,7 @@
 /home/*/Téléchargements/Distributions
 /home/*/.cache
 /home/*/.cargo
+/home/*/.go
 /home/*/.local/share/Steam
 /home/*/.local/share/Trash
 /home/*/.local/share/lxc
