@@ -11,6 +11,11 @@ compile_pkgs:
       - autopoint # from gettext
 {% endif %}
       - gdb
+{% if grains['os_family'] == 'Arch' %}
+      - go
+{% else %}
+      - golang-go
+{% endif %}
       - libtool
 {% if grains['os_family'] == 'Arch' %}
       - namcap
