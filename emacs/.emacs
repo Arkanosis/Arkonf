@@ -373,6 +373,10 @@ If region contains less than 2 lines, lines are left untouched."
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t)
   :mode "\\.rs$")
+(use-package go-mode
+  :config
+  (add-hook 'before-save-hook #'gofmt-before-save)
+  :mode "\\.go$")
 (use-package csharp-mode
   :config
   (use-package flymake)
