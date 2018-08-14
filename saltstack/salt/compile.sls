@@ -13,8 +13,10 @@ compile_pkgs:
       - gdb
 {% if grains['os_family'] == 'Arch' %}
       - go
+      - go-tools
 {% else %}
       - golang-go
+      - golang-golang-x-tools
 {% endif %}
       - libtool
 {% if grains['os_family'] == 'Arch' %}
