@@ -33,6 +33,8 @@ _pkg_config_path=($HOME/local_$arch/lib/pkgconfig)
 export PYTHONUSERBASE=$HOME/local_$arch
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 
+export GOPATH=$HOME/.go
+
 export CONFIG_SITE=$HOME/config.site
 
 typeset -A namedpathes
