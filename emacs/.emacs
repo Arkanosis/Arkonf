@@ -377,6 +377,14 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (add-hook 'before-save-hook #'gofmt-before-save)
   :mode "\\.go$")
+(use-package kotlin-mode
+  :config
+  (add-to-list 'compilation-error-regexp-alist 'kotlin)
+  (add-to-list
+   'compilation-error-regexp-alist-alist
+   '(kotlin
+     ".*: \\(.+?\\.kt\\): (\\([0-9]+\\), \\([0-9]+\\)): .*" 1 2 3))
+  :mode "\\.kt$")
 (use-package csharp-mode
   :config
   (use-package flymake)
