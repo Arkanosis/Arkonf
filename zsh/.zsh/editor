@@ -56,6 +56,8 @@ if which emacs >& /dev/null; then
 	    fi
         elif [[ -f pom.xml ]]; then
             e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
+        elif [[ -f gradlew ]]; then
+            e $@ app/src/main/java --eval '(setq compile-command "cd '"$(pwd)"' && JAVA_HOME=/opt/android-studio/jre/ ./gradlew build")'
         elif [[ -f Makefile ]]; then
             e $@ Makefile --eval '(setq compile-command "make")'
         fi
