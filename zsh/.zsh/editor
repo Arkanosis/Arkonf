@@ -47,21 +47,21 @@ if which emacs >& /dev/null; then
 
     re() {
         if [[ -f Cargo.toml ]]; then
-            e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cargo run -- --version")'
+            e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cd '"$(pwd)"' && cargo run -- --version")'
         elif [[ -f main.go || -f lib.go ]]; then
 	    if [[ -f Makefile ]]; then
-		e $@ Makefile (main|lib).go --eval '(setq compile-command "make")'
+		e $@ Makefile (main|lib).go --eval '(setq compile-command "cd '"$(pwd)"' && make")'
 	    else
-		e $@ (main|lib).go --eval '(setq compile-command "go build")'
+		e $@ (main|lib).go --eval '(setq compile-command "cd '"$(pwd)"' && go build")'
 	    fi
         elif [[ -f pom.xml ]]; then
-            e $@ pom.xml --eval '(setq compile-command "mvn package && java -jar target/*-SNAPSHOT.jar")'
+            e $@ pom.xml --eval '(setq compile-command "cd '"$(pwd)"' && mvn package && java -jar target/*-SNAPSHOT.jar")'
         elif [[ -f gradlew ]]; then
             e $@ app/src/main/java --eval '(setq compile-command "cd '"$(pwd)"' && JAVA_HOME=/opt/android-studio/jre/ ./gradlew build")'
         elif [[ -f package.json ]]; then
             e $@ src/index.(html|js|jsx|ts|tsx) --eval '(setq compile-command "cd '"$(pwd)"' && yarn run dev")'
         elif [[ -f Makefile ]]; then
-            e $@ Makefile --eval '(setq compile-command "make")'
+            e $@ Makefile --eval '(setq compile-command "cd '"$(pwd)"' && make")'
         fi
     }
 else
