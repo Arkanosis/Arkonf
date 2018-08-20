@@ -482,7 +482,7 @@ If region contains less than 2 lines, lines are left untouched."
 (add-hook 'c-mode-common-hook 'subword-mode)
 (add-hook 'c-mode-common-hook 'cwarn-mode)
 
-(setq auto-mode-alist (append '(("/PKGBUILD$" . sh-mode)) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("/PKGBUILD$" . sh-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Bindings
