@@ -1231,10 +1231,6 @@ If region contains less than 2 lines, lines are left untouched."
 
 (put 'narrow-to-region 'disabled nil)
 
-;; Réactivation du gc après le chargement de la conf
-(setq gc-cons-threshold 800000)
-
-
 (defun nxml-where ()
   "Display the hierarchy of XML elements the point is on as a path."
   (interactive)
@@ -1254,3 +1250,6 @@ If region contains less than 2 lines, lines are left untouched."
 	  (format "/%s" (mapconcat 'identity path "/")))))))
 
 (add-hook 'which-func-functions 'nxml-where)
+
+;; Réactivation du gc après le chargement de la conf
+(setq gc-cons-threshold 800000)
