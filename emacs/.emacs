@@ -50,23 +50,10 @@
 ;; Désactiver le gc le temps du chargement de la configuration
 (setq gc-cons-threshold 100000000)
 
-;; Pour Exalead
 (setq standard-indent 2)
 (setq tab-width 2)
-(set-variable 'c-argdecl-indent   0)
+(set-variable 'c-argdecl-indent 0)
 (setq c-basic-offset 2)
-(setq c-mode-hook
-    (function (lambda ()
-                (setq indent-tabs-mode nil)
-                (setq c-indent-level 2))))
-(setq c++-mode-hook
-    (function (lambda ()
-                (setq indent-tabs-mode nil)
-                (setq c-indent-level 2))))
-(setq java-mode-hook
-    (function (lambda ()
-                (setq indent-tabs-mode nil)
-                (setq c-basic-offset 4))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fonctions
@@ -438,7 +425,6 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package exa-mode
   :config
   (defun my-exa-hook ()
-    (setq indent-tabs-mode nil)
     (setq compilation-error-regexp-alist
       (append
         compilation-error-regexp-alist
@@ -479,6 +465,10 @@ If region contains less than 2 lines, lines are left untouched."
   :diminish ws-butler-mode
   :config
   (ws-butler-global-mode t))
+
+(use-package dtrt-indent
+  :config
+  (add-hook 'c-mode-common-hook 'dtrt-indent-mode))
 
 (add-hook 'prog-mode-hook (lambda ()
   (highlight-regexp "\\(TODO\\|FIXME\\|HACK\\)" 'hi-red-b)))
