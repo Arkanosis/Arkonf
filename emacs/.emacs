@@ -460,7 +460,11 @@ If region contains less than 2 lines, lines are left untouched."
   (defun xterm-mode()
     (interactive)
     (ansi-color-apply-on-region (point-min) (point-max)))
-  :mode ("\\.log$" . xterm-mode))
+  (add-to-list 'auto-mode-alist '("\\.log$" . xterm-mode))
+  (defun colorize-compilation-buffer ()
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region (point-min) (point-max))))
+  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
 
 (use-package workspaces)
 (use-package scroll-all)
