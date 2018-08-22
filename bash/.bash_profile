@@ -15,14 +15,21 @@ if [[ -t 0 ]]; then
             export LC_ALL=fr_FR.utf-8
         fi
 
+    elif [[ "$HOSTNAME" = "reddev002" ]]; then
+
+        # Don't do anything too fancy on the gateway, go to the right machine instead
+
+        exec ssh dell2323dsy
+
+    elif [[ "$TERM" = "dumb" ]]; then
+
+        # Don't do anything too fancy on a dumb terminal (eg. Emacs TRAMP)
+
+        export PS1='> '
+
     else
 
-        # Not root, so got to the right machine if on a gateway and
-        # spawn a fancy shell in a fancy virtual terminal, if available for the platform
-
-        if [[ "$HOSTNAME" = "reddev002" ]]; then
-            exec ssh dell2323dsy
-        fi
+        # Spawn a fancy shell in a fancy virtual terminal, if available for the platform
 
         # Set a basic prompt to feel at home even if ending up having only bash available
         export PS1='\033[1;33m\h\033[0;33m \w\n\!\033[1;33m $\033[0m '
@@ -55,18 +62,18 @@ if [[ -t 0 ]]; then
         fi
 
         if [[ -z $TMUX && -z $STY ]]; then
-	    if [[ -x $(which tmux 2> /dev/null) ]]; then
-		if [[ -f /lib/terminfo/s/screen-256color ]]; then
+            if [[ -x $(which tmux 2> /dev/null) ]]; then
+                if [[ -f /lib/terminfo/s/screen-256color ]]; then
                     export TERM=screen-256color
-		fi
-		exec tmux
+                fi
+                exec tmux
             elif [[ -x $(which screen 2> /dev/null) ]]; then
-		if [[ -f /lib/terminfo/s/screen-256color ]]; then
+                if [[ -f /lib/terminfo/s/screen-256color ]]; then
                     export TERM=screen-256color
-		fi
-		exec screen
+                fi
+                exec screen
             fi
-	fi
+        fi
 
         if [[ $SHELL != $(which bash 2> /dev/null) ]]; then
             exec $SHELL
