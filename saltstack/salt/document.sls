@@ -1,6 +1,9 @@
 document_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - bat
+{% endif %}
       - calibre
       - ruby-ronn
 {% if grains['os_family'] == 'Arch' %}
