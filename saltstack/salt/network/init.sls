@@ -9,6 +9,7 @@ network_pkgs:
       - iptables-persistent
 {% endif %}
       #- knemo
+      - mtr
       - nethogs
       - rsync
 {% if grains['os_family'] != 'Arch' %}
