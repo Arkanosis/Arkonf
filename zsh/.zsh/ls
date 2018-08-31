@@ -37,7 +37,7 @@ else
 fi
 
 ll() {
-    l -A $@
+    l -A --time-style=long-iso $@
 }
 lt() {
     ll -t $@
