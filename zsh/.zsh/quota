@@ -57,3 +57,7 @@ sz() {
 dfc() {
     command dfc -dsTwW $@
 }
+
+ncdu() {
+    command ncdu -x --color dark $@
+}
