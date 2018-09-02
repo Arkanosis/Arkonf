@@ -5,7 +5,9 @@ utilities_pkgs:
       - exa
 {% endif %}
       - lsb
+      - lsb-release
       - moreutils
+      - neofetch
       - parallel
 
 # TODO install / compile csvfix
