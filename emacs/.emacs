@@ -483,6 +483,9 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(when (eq window-system nil)
+    (xterm-mouse-mode t))
+
 (define-key function-key-map "\eOA" [up])
 (define-key function-key-map "\e[A" [up])
 (define-key function-key-map "\eOB" [down])
