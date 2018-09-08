@@ -515,6 +515,8 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control f12)] 'previous-error)
 
 (global-set-key "[34~" 'kill-compilation)
+(global-set-key "[19;5~" 'kill-compilation)
+(global-set-key "[19;2~" 'kill-compilation)
 
 (global-set-key "\C-c\C-c" 'comment-region)
 (global-set-key "\C-c\C-v" 'uncomment-region)
