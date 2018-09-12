@@ -26,6 +26,10 @@ hx() {
     hexdump -C $@
 }
 
+dm() {
+    LC_NUMERIC=C datamash $@
+}
+
 pf() {
     gprof -b $@
 }
