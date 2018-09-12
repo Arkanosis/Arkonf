@@ -17,7 +17,7 @@ vd() {
 }
 
 ed() {
-    if ! diff -q $1 $2 > /dev/null; then
+    if ! cmp -s $1 $2 > /dev/null; then
 	e --eval '(ediff-files "'$(readlink -f $1)'" "'$(readlink -f $2)'")'
     fi
 }
