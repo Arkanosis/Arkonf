@@ -24,6 +24,7 @@ base:
     - nginx
     - pass
     - processing
+    - profiling
     - publication
     - python
     - qt
@@ -56,7 +57,6 @@ base:
 #    - apache2
     - bio
 #    - php
-    - profile
     - remmina
     - ruby
 #    - synergy
