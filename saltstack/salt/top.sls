@@ -1,5 +1,6 @@
 base:
   '*':
+    - android
     - audio
     - backup
     - banner
@@ -53,7 +54,6 @@ base:
     - pacman
 
   'G@os_family:Debian':
-#    - android
 #    - apache2
     - bio
 #    - php
