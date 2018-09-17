@@ -1,6 +1,6 @@
 # Arkonf
 
-Arkonf is system configuration including:
+Arkonf is a system configuration including:
 * a list of packages to install, managed using Salt;
 * a collection of configuration files for these tools.
 
@@ -23,10 +23,7 @@ This is the prefered way to install the full Arkonf (including packages).
 
 ```sh
 pacman -S salt openssh openbsd-netcat git
-ssh-keygen -o -t rsa -b 4096
-< /root/.ssh/id_rsa.pub nc termbin.com 9999
-# Add your public key on GitHub
-git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
+git clone https://github.com/Arkanosis/Arkonf.git /root/Arkonf
 ln -s /root/Arkonf/saltstack/salt /srv/salt
 ln -s /root/Arkonf/saltstack/pillar /srv/pillar
 salt-call --local state.highstate
@@ -37,10 +34,7 @@ pacman -Syu
 
 ```sh
 apt install salt-minion git
-ssh-keygen -o -t rsa -b 4096
-< /root/.ssh/id_rsa.pub nc termbin.com 9999
-# Add your public key on GitHub
-git clone git@github.com:Arkanosis/Arkonf.git /root/Arkonf
+git clone https://github.com/Arkanosis/Arkonf.git /root/Arkonf
 ln -s /root/Arkonf/saltstack/salt /srv/salt
 ln -s /root/Arkonf/saltstack/pillar /srv/pillar
 apt update
