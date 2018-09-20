@@ -15,7 +15,7 @@ alias zc='noglob zc'
 comp() {
     local file
 
-    file=$(tempfile).d
+    file=$(mktemp).d
     cat > $file <<EOF
 		import std.stdio;
 		import std.math;

@@ -94,7 +94,7 @@ x() {
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&
 		    if which xmlstarlet >& /dev/null; then
 			for xml in **/*.xml; do
-			    formatted=$(tempfile)
+			    formatted=$(mktemp)
 			    xmlstarlet fo $xml >| $formatted
 			    mv -f $formatted $xml
 			done
@@ -108,7 +108,7 @@ x() {
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&
 		    if which xmlstarlet >& /dev/null; then
 			for xml in **/*.xml; do
-			    formatted=$(tempfile)
+			    formatted=$(mktemp)
 			    xmlstarlet fo $xml >| $formatted
 			    mv -f $formatted $xml
 			done
