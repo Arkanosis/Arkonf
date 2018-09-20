@@ -44,3 +44,30 @@ forward-to-last-separator() {
     RBUFFER=$(echo $RBUFFER | sed 's@^\s*[/\.,]*[^/\.,]\+\([/\.,]\)@\1@')
 }
 zle -N forward-to-last-separator
+
+export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>+:@'
+export FINER_WORDCHARS='?~&!%'
+
+finer-forward-word() {
+    local WORDCHARS=$FINER_WORDCHARS
+    zle forward-word
+}
+zle -N finer-forward-word
+
+finer-backward-word() {
+    local WORDCHARS=$FINER_WORDCHARS
+    zle backward-word
+}
+zle -N finer-backward-word
+
+finer-delete-word() {
+    local WORDCHARS=$FINER_WORDCHARS
+    zle delete-word
+}
+zle -N finer-delete-word
+
+finer-backward-delete-word() {
+    local WORDCHARS=$FINER_WORDCHARS
+    zle backward-delete-word
+}
+zle -N finer-backward-delete-word

@@ -63,7 +63,6 @@ bindkey -s '^[=' '^[ppopd > /dev/null\n'
 
 # Alt + r pour aller modifier la commande precedente
 bindkey -s '^[r' "!!:gs///^b^b"
-bindkey -s '^[h' "history\n"
 
 # Alt + l pour lister le contenu d'un repertoire
 bindkey -s '^[l' '^[pll\n'
@@ -94,6 +93,22 @@ bindkey '^[w' back-to-last-separator
 
 # Alt + W pour supprimer ce qui suit jusqu'au prochain slash ou point
 bindkey '^[W' forward-to-last-separator
+
+# Alt + shift + d pour supprimer la suite, mais moins que sans shift
+bindkey '^[D' finer-delete-word
+
+# Alt + shift + h pour supprimer ce qui précède, mais moins que sans shift
+bindkey '^[H' finer-backward-delete-word
+bindkey '2~' finer-backward-delete-word
+
+# Alt + h pour supprimer ce qui précède
+bindkey '^[h' backward-delete-word
+
+# Alt + shift + f pour avancer, mais moins que sans shift
+bindkey '^[F' finer-forward-word
+
+# Alt + shift + b pour reculer, mais moins que sans shift
+bindkey '^[B' finer-backward-word
 
 # Alt + i pour inserer le dernier argument de la commande precedente
 bindkey '^[i' insert-last-word
