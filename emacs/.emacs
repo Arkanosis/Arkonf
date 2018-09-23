@@ -385,6 +385,13 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.\\(toml\\|tml\\)$")
 (use-package hexl-mode
   :mode "\\.bin$")
+(use-package ob-sparql
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sparql . t))))
+(use-package sparql-mode
+  :mode "\\.sparql$")
 (use-package ellql-mode
   :mode "\\.ellql$")
 (use-package svn-commit-hooks
