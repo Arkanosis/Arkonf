@@ -41,6 +41,7 @@ source run
 source quota
 source screen
 source search
+source services
 source stats
 #source stderr
 source synergy

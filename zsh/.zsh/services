@@ -1,0 +1,12 @@
+# "-*- sh -*-"
+
+sysre() {
+    systemctl --user daemon-reload
+    systemctl --user restart emacs.service
+    systemctl --user restart org.service
+}
+
+systp() {
+    systemctl --user stop emacs.service
+    systemctl --user stop org.service
+}
