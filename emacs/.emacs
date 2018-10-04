@@ -125,6 +125,11 @@
   (interactive "r")
   (firefox-search-region "enwiki" "http://en.wikipedia.org/wiki/Template:%s" begin end))
 
+;; Open links in Firefox (includes org-mode)
+(setq browse-url-browser-function 'browse-url-firefox
+  browse-url-new-window-flag  t
+  browse-url-firefox-new-window-is-tab t)
+
 ;; Highlight WikiLinks
 ;; (C) 2009 - Arkanosis
 
