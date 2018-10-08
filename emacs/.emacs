@@ -495,8 +495,14 @@ If region contains less than 2 lines, lines are left untouched."
 ;; Bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (eq window-system nil)
-    (xterm-mouse-mode t))
+(defun enable-mouse-mode (&optional frame)
+  (when (eq window-system nil)
+    (if (not frame)
+	(xterm-mouse-mode t)
+      (if xterm-mouse-mode
+          (xterm-mouse-mode t)))))
+(enable-mouse-mode)
+(add-hook 'after-make-frame-functions 'enable-mouse-mode)
 
 (define-key function-key-map "\eOA" [up])
 (define-key function-key-map "\e[A" [up])
