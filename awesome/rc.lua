@@ -232,13 +232,13 @@ root.buttons(gears.table.join(
 -- }}}
 
 local lock = 'sxlock -l'
-if not file_exists('/usr/bin/' .. lock) then
+if not file_exists('/usr/bin/sxlock') then
    lock = 'gnome-screensaver-command --lock'
 end
 
 local pass = 'keepassx2'
 local pass_class = 'Keepassx2'
-if not file_exists('/usr/bin/' .. pass) then
+if not file_exists('/usr/bin/keepassx2') then
    pass = 'keepassx'
    pass_class = 'Keepassx'
 end
