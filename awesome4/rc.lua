@@ -10,8 +10,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-local battery_widget = require("battery-widget")
-
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable VIM help for hotkeys widget when client with matching name is opened:
 require("awful.hotkeys_popup.keys.vim")
@@ -59,6 +57,12 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Helper functions
+local function file_exists(command)
+    local f = io.open(command)
+    if f then f:close() end
+    return f and true or false
+end
+
 local function client_menu_toggle_fn()
     local instance = nil
 
@@ -97,9 +101,6 @@ menubar.utils.terminal = "zmux" -- Set the terminal for applications that requir
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-
--- Create a battery widget
-mybattery = battery_widget({adapter = "BAT0"}).widget
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -159,6 +160,12 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local mybattery = nil
+if file_exists("/sys/class/power_supply/BAT0") then
+   local battery_widget = require("battery-widget")
+   mybattery = battery_widget({adapter = "BAT0"}).widget
+end
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -191,6 +198,16 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local right_widgets = { -- Right widgets
+	layout = wibox.layout.fixed.horizontal,
+	wibox.widget.systray(),
+	mytextclock
+    }
+    if mybattery then
+       right_widgets[#right_widgets + 1] = mybattery
+    end
+    right_widgets[#right_widgets + 1] = s.mylayoutbox
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -201,14 +218,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            mybattery,
-            s.mylayoutbox,
-        },
+        right_widgets,
     }
 end)
 -- }}}
