@@ -231,15 +231,27 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+local lock = 'sxlock -l'
+if not file_exists('/usr/bin/' .. lock) then
+   lock = 'gnome-screensaver-command --lock'
+end
+
+local pass = 'keepassx2'
+local pass_class = 'Keepassx2'
+if not file_exists('/usr/bin/' .. pass) then
+   pass = 'keepassx'
+   pass_class = 'Keepassx'
+end
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ "Control", "Mod1" }, "l", function () awful.util.spawn("sxlock -l") end,
+    awful.key({ "Control", "Mod1" }, "l", function () awful.util.spawn(lock) end,
 	      {description = "lock screen", group = "awesome"}),
     awful.key({ modkey,           }, "p", function ()
 		 local matcher = function (c)
-		    return awful.rules.match(c, {class = "Keepassx2"})
+		    return awful.rules.match(c, {class = pass_class})
 		 end
-		 awful.client.run_or_raise("keepassx2", matcher)
+		 awful.client.run_or_raise(pass, matcher)
 	       end,
 	      {description = "password manager", group = "launcher"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
