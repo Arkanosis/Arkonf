@@ -43,12 +43,12 @@ if [[ -t 0 ]]; then
         os=$(uname -s)
         arch=$(uname -p)
 
-        export PATH=~/local_$os-$arch/bin:$PATH
-        export LD_LIBRARY_PATH=~/local_$os-$arch/lib:$LD_LIBRARY_PATH
+        export PATH=~/.local_$os-$arch/bin:$PATH
+        export LD_LIBRARY_PATH=~/.local_$os-$arch/lib:$LD_LIBRARY_PATH
 
         if [[ -x $(which lsb_release 2> /dev/null) ]] && lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
-            export PATH=~/local_RedHat/bin:$PATH
-            export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
+            export PATH=~/.local_RedHat/bin:$PATH
+            export LD_LIBRARY_PATH=~/.local_RedHat/lib:$LD_LIBRARY_PATH
         fi
 
         export TERM=xterm

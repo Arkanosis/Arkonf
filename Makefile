@@ -46,7 +46,7 @@ install: $(CONFIGS)
 
 autoconf: ~/.config.site
 ~/.config.site:
-	echo "prefix=$${HOME}/local_$$(uname -sm | tr ' ' '-')" > "$@"
+	echo "prefix=$${HOME}/.local_$$(uname -sm | tr ' ' '-')" > "$@"
 
 awesome: ~/.config/awesome
 ~/.config/awesome:
@@ -142,7 +142,7 @@ python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py ~/.pydistut
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
 ~/.pydistutils.cfg:
 	ln -s "$(ROOT)python/$(notdir $@)" "$@"
-	sed -i "s@^prefix=.*@prefix=$${HOME}/local@" "$@"
+	sed -i "s@^prefix=.*@prefix=$${HOME}/.local@" "$@"
 
 pyjab: ~/.pyjabrc
 ~/.pyjabrc:

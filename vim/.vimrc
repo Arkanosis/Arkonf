@@ -110,4 +110,4 @@ autocmd BufWritePre * :%g!/^-- $/ s/\s\+$//e
 
 " NOTES
 " - cscope -Rb pour générer la base de tags
-" - CFLAGS="-O3" ./configure --prefix=/udir/jroquet/local_Linux-x86_64/ --enable-pythoninterp --disable-gtktest --with-modified-by=Arkanosis --with-compiledby=Arkanosis --with-features=huge
+" - CFLAGS="-O3" ./configure --prefix=/udir/jroquet/.local_Linux-x86_64/ --enable-pythoninterp --disable-gtktest --with-modified-by=Arkanosis --with-compiledby=Arkanosis --with-features=huge

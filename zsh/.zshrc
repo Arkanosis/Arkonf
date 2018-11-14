@@ -38,8 +38,8 @@ case $HOST in
     reddev*|tcdev*|*dsy|lenov*|ngci*|ngdev*|nglqa*|nglapo*|lxc*|local_Linux-x86_64)
 	source ./exalead
 	if lsb_release -i | grep -q "RedHat\|CentOS\|Scientific"; then
-	    export PATH=/udir/jroquet/local_RedHat/bin:$PATH
-	    export LD_LIBRARY_PATH=~/local_RedHat/lib:$LD_LIBRARY_PATH
+	    export PATH=/udir/jroquet/.local_RedHat/bin:$PATH
+	    export LD_LIBRARY_PATH=~/.local_RedHat/lib:$LD_LIBRARY_PATH
 	fi
 	source ~/.cargo/env
     ;;

@@ -4,7 +4,7 @@
 export ARKONF_DIR="/udir/jroquet/Arkonf"
 export LANG=fr_FR.UTF-8
 export LC_ALL=fr_FR.UTF-8
-export PATH="/udir/jroquet/local_Linux-x86_64/bin:/udir/jroquet/local/bin:$PATH"
+export PATH="/udir/jroquet/.local_Linux-x86_64/bin:/udir/jroquet/.local/bin:$PATH"
 
 # Resources
 xrdb -merge "$HOME/.Xresources"

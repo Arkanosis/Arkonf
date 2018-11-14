@@ -23,7 +23,7 @@ abbrev=(
     ty    "-type"
     ex    "-exec echo {} \;"
 
-    lo    "$HOME/local_$arch"
+    lo    "$HOME/.local_$arch"
 
     ">>>" ">&|"
     "<<<" "<(__CURSOR__) "
