@@ -254,6 +254,8 @@ globalkeys = gears.table.join(
 		 awful.client.run_or_raise(pass, matcher)
 	       end,
 	      {description = "password manager", group = "launcher"}),
+    awful.key({                   }, "Print", function () awful.util.spawn("spectacle")      end,
+              {description = "Print screen", group = "launcher"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
