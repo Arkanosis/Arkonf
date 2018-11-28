@@ -1,6 +1,7 @@
 term_pkgs:
   pkg.installed:
     - pkgs:
+      - reptyr
 {% if grains['os_family'] == 'Arch' %}
       - rxvt-unicode
 {% else %}
