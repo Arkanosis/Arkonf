@@ -240,6 +240,17 @@ If region contains less than 2 lines, lines are left untouched."
 (setq calendar-week-start-day 1)
 (add-hook 'org-archive-hook #'org-save-all-org-buffers)
 
+(defun org-refresh-agenda ()
+  (interactive)
+  (dolist (buf (buffer-list))
+    (let ((filename (buffer-file-name buf)))
+      (when (and filename
+		 (string-match "\\.org" filename)
+                 (not (buffer-modified-p buf)))
+        (with-current-buffer buf
+          (revert-buffer :ignore-auto :noconfirm :preserve-modes)))))
+  (org-agenda))
+
 ;; Archive whole org-mode file at once
 (defun org-archive-done-tasks ()
   (interactive)
@@ -585,7 +596,7 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-hook 'org-mode-hook
   (lambda ()
-    (local-set-key (kbd "C-c a") 'org-agenda)
+    (local-set-key (kbd "C-c a") 'org-refresh-agenda)
     (local-set-key "[1;5D" 'org-promote-subtree)
     (local-set-key "[1;5C" 'org-demote-subtree)
     (local-set-key "[1;5A" 'org-move-subtree-up)
