@@ -17,3 +17,23 @@ kb() {
 eip() {
     curl ipinfo.io
 }
+
+wttr() {
+    case $(iw wlp1s0 link | sed -n 's/\s*SSID: //p') in
+	TNCAP335EA7)
+	    curl 'https://wttr.in/Paris?lang=fr'
+        ;;
+	"Capricorn U/V")
+	    curl 'https://wttr.in/Hardricourt?lang=fr'
+        ;;
+	Bbox-C77A0BDC*)
+	    curl 'https://wttr.in/Malzéville?lang=fr'
+        ;;
+	SFR-c618)
+	    curl 'https://wttr.in/Dijon?lang=fr'
+        ;;
+	*)
+	    curl 'https://wttr.in/?lang=fr'
+        ;;
+    esac
+}
