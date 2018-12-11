@@ -240,6 +240,11 @@ If region contains less than 2 lines, lines are left untouched."
 (setq calendar-week-start-day 1)
 (add-hook 'org-archive-hook #'org-save-all-org-buffers)
 
+(defun org-thunderlink-open (path)
+  "Opens a specified email in Thunderbird with the help of the add-on ThunderLink."
+  (start-process "myname" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
+(org-add-link-type "thunderlink" 'org-thunderlink-open)
+
 (defun org-refresh-agenda ()
   (interactive)
   (dolist (buf (buffer-list))
