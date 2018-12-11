@@ -243,7 +243,9 @@ If region contains less than 2 lines, lines are left untouched."
 (defun org-thunderlink-open (path)
   "Opens a specified email in Thunderbird with the help of the add-on ThunderLink."
   (start-process "myname" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
-(org-add-link-type "thunderlink" 'org-thunderlink-open)
+(add-hook 'org-mode-hook
+  (lambda ()
+    (org-add-link-type "thunderlink" 'org-thunderlink-open)))
 
 (defun org-refresh-agenda ()
   (interactive)
