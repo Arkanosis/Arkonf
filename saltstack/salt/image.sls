@@ -23,3 +23,4 @@ image_pkgs:
       - kipi-plugins
 {% endif %}
       - rawtherapee
+      - sxiv
