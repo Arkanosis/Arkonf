@@ -1,9 +1,19 @@
 @-moz-document
   url-prefix("http://www.google."),
-  url-prefix("https://www.google."),
+  url-prefix("https://www.google.")
 {
   button.esw
   {
     display: none !important;
+  }
+}
+
+@-moz-document domain(confluence.paris.exalead.com)
+{
+  #main-content code
+  {
+    padding: 0.2em;
+    margin: 0;
+    background-color: rgba(17, 31, 35, 0.05);
   }
 }
