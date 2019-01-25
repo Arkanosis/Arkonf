@@ -10,7 +10,7 @@
 
 @-moz-document domain(confluence.paris.exalead.com)
 {
-  #main-content code
+  #main-content code, #tinymce.mceContentBody code
   {
     padding: 0.2em;
     margin: 0;
