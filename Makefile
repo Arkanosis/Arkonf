@@ -2,6 +2,7 @@ CONFIGS= \
 	autoconf \
 	awesome \
 	bash \
+	dhex \
 	dotfiles \
 	emacs \
 	gdb \
@@ -58,6 +59,10 @@ bash: ~/.bashrc ~/.bash_profile
 	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
 ~/.bash_profile:
 	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
+
+dhex: ~/.dhexrc
+~/.dhexrc:
+	ln -s "$(ROOT)dhexrc/$(notdir $@)" "$@"
 
 dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
 ~/.forward:
