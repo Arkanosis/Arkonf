@@ -8,6 +8,7 @@ xorg_pkgs:
       - xtightvncviewer
 {% endif %}
       - wmctrl
+      - x11vnc
       - xdotool
       - xsel
 {% if grains['os_family'] == 'Arch' %}
