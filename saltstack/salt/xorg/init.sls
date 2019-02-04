@@ -14,6 +14,7 @@ xorg_pkgs:
       - xautolock
       - xorg-server
       - xorg-server-xephyr
+      - xorg-xev
       - xorg-xinit
       - xorg-xinput
       - xorg-xprop
