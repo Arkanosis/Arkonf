@@ -1,6 +1,7 @@
 editor_pkgs:
   pkg.installed:
     - pkgs:
+      - dhex
       - emacs
       - vim
 
