@@ -308,6 +308,15 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
+    awful.key({ modkey, "Control" }, "a", function () awful.spawn("setxkbmap fr") end,
+              {description = "Switch to French AZERTY", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "q", function () awful.spawn("zsh -i -c 'kbd'") end,
+              {description = "Switch to Qolemax", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "f", function () awful.spawn("xmodmap -e 'keycode 52 = z Z guillemotleft guillemotright' -e 'keycode 94 = less greater U201C U201D'") end,
+              {description = "Switch to French Qolemax", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "e", function () awful.spawn("xmodmap -e 'keycode 52 = z Z U201C U201D' -e 'keycode 94 = less greater guillemotleft guillemotright'") end,
+              {description = "Switch to English Qolemax", group = "launcher"}),
+
     awful.key({ modkey,           }, ";", function () awful.spawn("emacs-console -s emacsconsole ~/Documents/Org") end,
               {description = "open a task list", group = "launcher"}),
 

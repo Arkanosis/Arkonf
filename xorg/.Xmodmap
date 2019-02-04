@@ -109,8 +109,8 @@ keycode  49 = grave asciitilde dead_grave dead_acute
 !! \ | ↖ ↑
 keycode  51 = backslash bar U2196 uparrow
 
-!! z Z “ ”
-keycode  52 = z Z U201C U201D
+!! z Z « »
+keycode  52 = z Z guillemotleft guillemotright
 
 !! x X ☐ ☑
 keycode  53 = x X U2610 U2611
@@ -175,8 +175,8 @@ keycode  89 = 3 U00B3
 !! 0 ⁰
 keycode  90 = 0 U2070
 
-!! < > « »
-keycode  94 = less greater guillemotleft guillemotright
+!! < > “ ”
+keycode  94 = less greater U201C U201D
 
 !! Alt Gr
 keycode 108 = Mode_switch
