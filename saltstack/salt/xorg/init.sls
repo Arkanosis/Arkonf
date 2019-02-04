@@ -15,6 +15,7 @@ xorg_pkgs:
       - xautolock
       - xorg-server
       - xorg-server-xephyr
+      - xorg-xbacklight
       - xorg-xev
       - xorg-xinit
       - xorg-xinput
@@ -22,6 +23,7 @@ xorg_pkgs:
       - xorg-xrandr
 {% else %}
       - x11-utils
+      - xbacklight
       - xpra # TODO FIXME need it for ArchLinux as well
       - xserver-xephyr
 {% endif %}
