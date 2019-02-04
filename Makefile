@@ -20,6 +20,7 @@ CONFIGS= \
 	screen \
 	slrn \
 	ssh \
+	sxhkd \
 	systemd \
 	totp \
 	tmux \
@@ -169,6 +170,11 @@ ssh: ~/.ssh/config
 ~/.ssh/config:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)ssh/.ssh/$(notdir $@)" "$@"
+
+sxhkd: ~/.config/sxhkd/sxhkdrc
+~/.config/sxhkd/sxhkdrc:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)sxhkd/$(notdir $@)" "$@"
 
 systemd: /var/lib/systemd/linger/${USER} $(patsubst %,~/.config/systemd/user/%.service,$(SERVICES))
 /var/lib/systemd/linger/${USER}:

@@ -1,6 +1,7 @@
 xorg_pkgs:
   pkg.installed:
     - pkgs:
+      - sxhkd
 {% if grains['os_family'] == 'Arch' %}
       - tigervnc
 {% else %}
