@@ -1,0 +1,12 @@
+[Unit]
+Description=Simple X hotkey daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sxhkd
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+TimeoutStartSec=0
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
