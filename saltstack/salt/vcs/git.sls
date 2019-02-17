@@ -7,4 +7,5 @@ git_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - git-svn
 {% endif %}
+      - repo
       - tig
