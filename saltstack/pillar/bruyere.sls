@@ -1,0 +1,5 @@
+roles:
+  - graphical
+
+users:
+  - arkanosis
