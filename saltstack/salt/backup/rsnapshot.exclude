@@ -1,16 +1,20 @@
 .ecryptfs
 /home/guest
 /home/nonfreegaming
-/home/*/Téléchargements/Distributions
+/home/*/.AndroidStudio*
+/home/*/.android
 /home/*/.cache
 /home/*/.cargo
 /home/*/.go
+/home/*/.gradle
 /home/*/.local/share/Steam
 /home/*/.local/share/Trash
 /home/*/.local/share/lxc
 /home/*/.rustup
 /home/*/.thumbnails
 /home/*/.wine*
+/home/*/Android
 /home/*/Programmation
+/home/*/Téléchargements/Distributions
 /srv/rsnapshot
 # TODO FIXME exclude cache directories as well
