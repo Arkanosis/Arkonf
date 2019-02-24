@@ -12,6 +12,7 @@ monitoring_pkgs:
 {% else %}
       - lm_sensors
 {% endif %}
+      - lshw
       - lsof
       - powertop
       - pv
