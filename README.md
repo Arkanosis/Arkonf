@@ -42,6 +42,22 @@ salt-call --local state.highstate
 apt upgrade
 ```
 
+## Applying individual states
+
+Individual states may rely on custom grains, which must be synchronized.
+
+```sh
+salt-call --local state.highstate saltutil.sync_grains
+```
+
+Afterwards, indidual states can be applied.
+
+```sh
+salt-call --local state.sls mail
+```
+
+Synchronization of custom grains is done automatically when running `state.highstate`, so there's no need to run `saltutil.sync_grains` when applying the highstate.
+
 ## Copyright
 
 Arkonf is copyright (C) 2001-2018 Jérémie Roquet <jroquet@arkanosis.net> and
