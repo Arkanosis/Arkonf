@@ -1,3 +1,0 @@
-remmina:
-  pkg:
-    - latest

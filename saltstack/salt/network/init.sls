@@ -11,6 +11,7 @@ network_pkgs:
       #- knemo
       - mtr
       - nethogs
+      - remmina
       - rsync
 {% if grains['os_family'] != 'Arch' %}
       - smstools # TODO FIXME need smstools3 for ArchLinux as well

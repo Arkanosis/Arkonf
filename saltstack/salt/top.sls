@@ -52,11 +52,3 @@ base:
   'G@os_family:Arch':
     - awesome
     - pacman
-
-  'G@os_family:Debian':
-#    - apache2
-    - bio
-#    - php
-    - remmina
-    - ruby
-#    - synergy
