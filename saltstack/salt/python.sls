@@ -23,6 +23,7 @@ python_pkgs:
       - python-progressbar
       - python2-progressbar
       - python2-requests
+      - python2-virtualenv
       - python2-xlrd
       - python-yaml
 {% else %}
