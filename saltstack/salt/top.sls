@@ -43,10 +43,10 @@ base:
 
     - users
 
-  'G@touchpad':
+  'G@virtual:physical and G@touchpad':
     - touchpad
 
-  'G@gpus:vendor:intel':
+  'G@virtual:physical and G@gpus:vendor:intel':
     - intel_gpu
 
   'G@os_family:Arch':
