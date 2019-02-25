@@ -9,10 +9,10 @@ XF86MonBrightnessUp
 # TODO change external screen configuration
 
 XF86AudioMute
-	pavucontrol
+	pactl set-sink-mute 0 toggle
 
 XF86AudioLowerVolume
-	pavucontrol
+	pactl set-sink-volume 0 -5%
 
 XF86AudioRaiseVolume
-	pavucontrol
+	pactl set-sink-volume 0 +5%
