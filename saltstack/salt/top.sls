@@ -2,48 +2,16 @@ base:
   '*':
     - repos
 
-    - android
-    - audio
-    - backup
-    - banner
-    - chat
-    - compile
     - compression
-    - crypto
-    - database
-    - document
     - editor
     - etckeeper
-    - fs
-    - ftp
-    - kdiff3
-    - image
-    - java
-    - language
-    - mail
-    - media
     - monitoring
-    - network
-    - nginx
-    - pass
-    - processing
-    - profiling
-    - publication
-    - python
-    - qt
     - search
     - shell
     - space
     - ssh
-    - term
-    - usb
     - utilities
     - vcs
-    - vm
-    - webbrowser
-    - xorg
-
-    - users
 
   'G@virtual:physical and G@touchpad':
     - touchpad
@@ -54,3 +22,37 @@ base:
   'G@os_family:Arch':
     - awesome
     - pacman
+
+  'I@roles:graphical':
+    - android
+    - audio
+    - backup
+    - banner
+    - chat
+    - compile
+    - crypto
+    - database
+    - document
+    - fs
+    - ftp
+    - kdiff3
+    - image
+    - java
+    - language
+    - mail # TODO some stuff should be in base
+    - media
+    - network # TODO some stuff should be in base
+    - nginx
+    - pass
+    - processing
+    - profiling
+    - publication
+    - python
+    - qt
+    - term # TODO tmux should be in base
+    - usb
+    - vm
+    - webbrowser
+    - xorg
+
+    - users
