@@ -19,10 +19,18 @@ make -C Arkonf install
 
 This is the prefered way to install the full Arkonf (including packages).
 
+Before anything else, the host name must be set properly. All hosts will get
+the base packages and configuration, but only some hosts will get additional
+packages, depending on which roles are associated to their names in the pillar.
+
+```sh
+hostnamectl set-hostname $HOSTNAME
+```
+
 ### On Arch Linux
 
 ```sh
-pacman -S salt openssh openbsd-netcat git
+pacman -S salt git
 git clone https://github.com/Arkanosis/Arkonf.git /root/Arkonf
 ln -s /root/Arkonf/saltstack/salt /srv/salt
 ln -s /root/Arkonf/saltstack/pillar /srv/pillar
@@ -42,7 +50,7 @@ salt-call --local state.highstate
 apt upgrade
 ```
 
-## Applying individual states
+## Application of individual states
 
 Individual states may rely on custom grains, which must be synchronized.
 
@@ -56,7 +64,9 @@ Afterwards, indidual states can be applied.
 salt-call --local state.sls mail
 ```
 
-Synchronization of custom grains is done automatically when running `state.highstate`, so there's no need to run `saltutil.sync_grains` when applying the highstate.
+Synchronization of custom grains is done automatically when running
+`state.highstate`, so there's no need to run `saltutil.sync_grains` when
+applying the highstate.
 
 ## Copyright
 
