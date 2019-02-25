@@ -3,6 +3,7 @@ Description=Simple X hotkey daemon
 
 [Service]
 Type=simple
+Environment=DISPLAY=:0
 ExecStart=/usr/bin/sxhkd
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 TimeoutStartSec=0
