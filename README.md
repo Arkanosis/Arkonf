@@ -70,7 +70,7 @@ applying the highstate.
 
 ## Copyright
 
-Arkonf is copyright (C) 2001-2018 Jérémie Roquet <jroquet@arkanosis.net> and
+Arkonf is copyright (C) 2001-2019 Jérémie Roquet <jroquet@arkanosis.net> and
 all code except code written by third-parties licensed under the ISC license.
 
 See the [LICENSE](/LICENSE) file for more details.
