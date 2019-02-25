@@ -13,4 +13,4 @@ qt_pkgs:
       - qml-module-qtquick-controls2
       - qml-module-qtwebsockets
       - qt5-qmake
-{% end %}
+{% endif %}
