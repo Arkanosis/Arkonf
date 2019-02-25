@@ -1,5 +1,7 @@
 base:
   '*':
+    - repos
+
     - android
     - audio
     - backup
