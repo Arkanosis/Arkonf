@@ -195,6 +195,10 @@ am() {
     ci --amend $@
 }
 
+amn() {
+    am --no-edit $@
+}
+
 unam() {
     git unamend $@
 
