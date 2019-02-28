@@ -1,9 +1,9 @@
-Port 12678
+Port 22
 
 UsePrivilegeSeparation sandbox
 
 SyslogFacility AUTH
-LogLevel VERBOSE
+LogLevel INFO
 
 Protocol 2
 HostKey /etc/ssh/ssh_host_rsa_key
