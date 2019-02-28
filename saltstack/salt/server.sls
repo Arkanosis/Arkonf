@@ -61,5 +61,11 @@ ntp:
 arkanosis:
   user.present:
     - home: /home/arkanosis
-  group:
-    - present
+    - shell: /bin/bash
+    - uid: 1000
+    - gid: 1000
+    - remove_groups: False
+    - require:
+      - group: arkanosis
+  group.present:
+    - gid: 1000
