@@ -50,6 +50,19 @@ salt-call --local state.highstate
 apt upgrade
 ```
 
+For convenience purposes, installation can be performed automatically on any
+distribution using `curl | sh`.
+
+```sh
+curl 'https://arkanosis.net/bootstrap.sh' | /bin/sh
+```
+
+This approach, however, should only be used on non-critical systems (such as
+disposable containers used for tests), as the shell script downloaded from
+`arkanosis.net` is only protected by SSL, which does *not* ensure integrity in
+the event of an unavailable or compromised server, or more simply of a lost
+connexion during download.
+
 ## Application of individual states
 
 Individual states may rely on custom grains, which must be synchronized.
