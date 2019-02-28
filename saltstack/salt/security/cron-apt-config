@@ -1,0 +1,4 @@
+APTCOMMAND=/usr/bin/apt-get
+OPTIONS="-o quiet=1 -o Dir::Etc::SourceList=/etc/apt/sources.list.d/security.list"
+MAILTO="jroquet@arkanosis.net"
+MAILON="always"

@@ -56,3 +56,7 @@ base:
     - xorg
 
     - users
+
+  'I@roles:server':
+    - security
+    - server # TODO should be mutualized with other states

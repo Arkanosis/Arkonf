@@ -1,0 +1,7 @@
+[DEFAULT]
+ignoreip = 127.0.0.1/8 109.190.87.126 176.145.226.136
+bantime  = 2592000
+findtime = 3600
+maxretry = 3
+destemail = jroquet@arkanosis.net
+sender = admin@arkanosis.net

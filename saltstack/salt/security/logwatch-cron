@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#Check if removed-but-not-purged
+test -x /usr/share/logwatch/scripts/logwatch.pl || exit 0
+
+#execute
+/usr/sbin/logwatch --detail med --mailto jroquet@arkanosis.net
