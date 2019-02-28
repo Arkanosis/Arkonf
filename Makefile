@@ -63,7 +63,7 @@ bash: ~/.bashrc ~/.bash_profile
 
 dhex: ~/.dhexrc
 ~/.dhexrc:
-	ln -s "$(ROOT)dhexrc/$(notdir $@)" "$@"
+	ln -s "$(ROOT)dhex/$(notdir $@)" "$@"
 
 dotfiles: ~/.forward ~/.pgpkey ~/.plan ~/.project ~/.signature
 ~/.forward:
@@ -95,8 +95,10 @@ git: ~/.gitconfig ~/.tigrc
 
 gnupg: ~/.gnupg/gpg.conf ~/.gnupg/gpg-agent.conf
 ~/.gnupg/gpg.conf:
+	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)gnupg/$(notdir $@)" "$@"
 ~/.gnupg/gpg-agent.conf:
+	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)gnupg/$(notdir $@)" "$@"
 
 gtk: ~/.gtkrc-2.0 ~/.config/gtk-3.0/bookmarks
@@ -104,7 +106,7 @@ gtk: ~/.gtkrc-2.0 ~/.config/gtk-3.0/bookmarks
 	ln -s "$(ROOT)gtk/$(notdir $@)" "$@"
 ~/.config/gtk-3.0/bookmarks:
 	mkdir -p "$(dir $@)"
-	ln -s "$(ROOT)gtk/$(notdir $@)" "$@"
+	ln -s "$(ROOT)gtk/gtk-3.0/$(notdir $@)" "$@"
 
 kde: ~/.kde/share/config/khotkeysrc ~/.kde/share/config/kwinrc ~/.local/share/user-places.xbel ~/.kde/share/config/yakuakerc
 ~/.kde/share/config/khotkeysrc:
@@ -160,11 +162,11 @@ pywikibot: ~/.pywikibot
 
 screen: ~/.screenrc
 ~/.screenrc:
-	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
+	ln -s "$(ROOT)screen/$(notdir $@)" "$@"
 
 slrn: ~/.slrnrc
 ~/.slrnrc:
-	ln -s "$(ROOT)mbsync/$(notdir $@)" "$@"
+	ln -s "$(ROOT)slrn/$(notdir $@)" "$@"
 
 ssh: ~/.ssh/config
 ~/.ssh/config:
