@@ -16,11 +16,14 @@ monitoring_pkgs:
       - lsof
       - powertop
       - pv
+{% if grains['virtual'] == 'physical' %}
       - smartmontools
+{% endif %}
       - sysstat
       - strace
       - time
 
+{% if grains['virtual'] == 'physical' %}
 {% if grains['os_family'] == 'Arch' %}
 smartd:
 {% else %}
@@ -76,3 +79,4 @@ smartctl -s on /dev/sdc:
     - mode: 644
     - require:
       - pkg: monitoring_pkgs
+{% endif %}
