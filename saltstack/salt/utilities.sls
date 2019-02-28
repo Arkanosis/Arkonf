@@ -9,6 +9,7 @@ utilities_pkgs:
       - moreutils
       - neofetch
       - parallel
+      - tree
       - typespeed
 
 # TODO install / compile csvfix
