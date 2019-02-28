@@ -13,7 +13,7 @@ base:
     - utilities
     - vcs
 
-  'G@virtual:physical and G@touchpad':
+  'G@virtual:physical and G@touchpad:true':
     - touchpad
 
   'G@virtual:physical and G@gpus:vendor:intel':
