@@ -1,0 +1,4 @@
+Package: *
+Pin: release a=stretch-backports
+Pin-Priority: -1
+
