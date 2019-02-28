@@ -196,10 +196,8 @@ tmux: ~/.tmux.conf ~/.tmux
 ~/.tmux:
 	ln -s "$(ROOT)tmux/$(notdir $@)" "$@"
 
-vim: ~/.vimrc ~/.vim
+vim: ~/.vimrc
 ~/.vimrc:
-	ln -s "$(ROOT)vim/$(notdir $@)" "$@"
-~/.vim:
 	ln -s "$(ROOT)vim/$(notdir $@)" "$@"
 
 weechat: ~/.weechat
