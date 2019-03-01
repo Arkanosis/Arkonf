@@ -19,6 +19,8 @@ server_pkgs:
 
       - tmux
 
+      - make
+
 server_pkgs_extras:
   pkg.installed:
     - pkgs:
