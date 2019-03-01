@@ -49,10 +49,16 @@ psd() {
 }
 
 lxc-boot() {
+    local dir=''
+    if [[ $1 = '-t' ]]; then
+        shift
+        dir="--dir /tmp/$1"
+    fi
+
     if ! lxc-ls --line --active | grep -q "^$1\$"; then
-	if ! lxc-ls --line --stopped | grep -q "^$1\$"; then
-	    lxc-create -n $1 -t download -- -d debian -r stretch -a amd64
-	fi
+        if ! lxc-ls --line --stopped | grep -q "^$1\$"; then
+            lxc-create -n $1 $=dir -t download -- -d debian -r stretch -a amd64
+        fi
         lxc-start -n $1
     fi
     SHELL=/bin/sh PATH=/bin:/sbin:/usr/bin:/usr/sbin lxc-attach -n $1
