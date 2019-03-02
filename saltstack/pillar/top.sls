@@ -4,22 +4,22 @@ base:
     - users
 
   'P@host:Tantale':
-    - tantale
+    - hosts.tantale
 
   'P@host:Bismuth':
-    - bismuth
+    - hosts.bismuth
 
   'P@host:taz':
-    - taz
+    - hosts.taz
 
   'P@host:Edelweiss':
-    - edelweiss
+    - hosts.edelweiss
 
   'P@host:Cyclamen':
-    - cyclamen
+    - hosts.cyclamen
 
   'P@host:marvin':
-    - marvin
+    - hosts.marvin
 
   'P@host:Bruyere':
-    - bruyere
+    - hosts.bruyere
