@@ -128,7 +128,6 @@ make -C /home/{{ user.login }}/Arkonf install:
 #  - ssh for asdp on Bismuth
 #  - linger for Daniel on Cyclamen and Bruyere
 #  - linger for Simonne on Bruyere
-#  - authorized_keys rssht-user
 
 {% endif %}
 
