@@ -188,7 +188,7 @@ systemd: /var/lib/systemd/linger/${USER} $(patsubst %,~/.config/systemd/user/%.s
 
 totp: ~/.google_authenticator
 ~/.google_authenticator:
-	-google-authenticator
+	echo 'y\ny\ny\nn\ny' | google-authenticator
 
 tmux: ~/.tmux.conf ~/.tmux
 ~/.tmux.conf:
