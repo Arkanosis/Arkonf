@@ -6,6 +6,7 @@ utilities_pkgs:
 {% endif %}
       - lsb
       - lsb-release
+      - man
       - moreutils
       - neofetch
       - parallel
