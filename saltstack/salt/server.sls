@@ -17,6 +17,8 @@ server_pkgs:
       - nginx
       - nginx-extras
 
+      - sudo
+
       - tmux
 
       - make
