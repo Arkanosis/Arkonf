@@ -1,5 +1,5 @@
 roles:
   - server
 
-users:
+local_users:
   - arkanosis

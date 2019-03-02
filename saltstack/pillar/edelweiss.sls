@@ -2,6 +2,7 @@ roles:
   - development
   - graphical
 
-users:
+local_users:
   - arkanosis
   - asdp
+  - rssht-user

@@ -1,5 +1,7 @@
 roles:
   - server
 
-users:
+local_users:
   - arkanosis
+  - asdp
+  - rssht-user

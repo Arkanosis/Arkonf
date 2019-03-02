@@ -1,6 +1,6 @@
 base:
   '*':
-    - common
+    - users
 
   'P@host:Tantale':
     - tantale

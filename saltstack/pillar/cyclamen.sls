@@ -2,5 +2,8 @@ roles:
   - development
   - graphical
 
-users:
+local_users:
   - arkanosis
+  - Sandrine
+  - Daniel
+  - Annette
