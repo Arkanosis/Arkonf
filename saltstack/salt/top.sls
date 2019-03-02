@@ -42,7 +42,7 @@ base:
     - mail # TODO some stuff should be in base
     - media
     - network # TODO some stuff should be in base
-    - nginx
+    - nginx # TODO some stuff should also be in server
     - pass
     - processing
     - profiling

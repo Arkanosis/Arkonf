@@ -3,6 +3,7 @@ nginx_pkgs:
     - pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - nginx
+      - nginx-extras
 {% else %}
       - nginx-mainline
 {% endif %}

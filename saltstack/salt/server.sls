@@ -29,6 +29,12 @@ server_pkgs_extras:
       - certbot
     - fromrepo: stretch-backports
 
+nginx:
+  service.running:
+    - enable: True
+    - require:
+      - pkg: server_pkgs
+
 /etc/ssmtp/ssmtp.conf:
   file.managed:
     - source: salt://mail/ssmtp.conf
@@ -57,6 +63,8 @@ ntp:
 #     - user: root
 #     - mode: 644
 
+# TODO generate and install nginx letsencrypt certificates
+# TODO auto-renew certificates
 # /etc/cron.daily/certbot:
 #   file.managed:
 #     - source: salt://webservers/certbot-cron
@@ -132,3 +140,7 @@ make -C /home/{{ user.login }}/Arkonf install:
 {% endif %}
 
 {% endfor %}
+
+# TODO clone sites configuration
+# TODO clone sites content
+# TODO create symlinks in sites-available
