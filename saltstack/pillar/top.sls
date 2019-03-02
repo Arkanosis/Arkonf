@@ -1,5 +1,6 @@
 base:
   '*':
+    - settings
     - users
 
   'P@host:Tantale':

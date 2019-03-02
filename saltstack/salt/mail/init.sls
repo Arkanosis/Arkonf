@@ -16,14 +16,13 @@ mail_pkgs:
   file.managed:
     - source: salt://mail/ssmtp.conf
     - template: jinja
-    - user: root
     - group: mail
     - mode: 640
 
 /etc/ssmtp/revaliases:
   file.managed:
     - source: salt://mail/revaliases
-    - user: root
+    - template: jinja
     - group: mail
     - mode: 640
 

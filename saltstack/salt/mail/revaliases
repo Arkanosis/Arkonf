@@ -1,2 +1,2 @@
-root:admin@arkanosis.net
+root:{{ pillar['sender_email'] }}
 arkanosis:jroquet@arkanosis.net
