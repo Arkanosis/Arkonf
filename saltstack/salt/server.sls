@@ -62,14 +62,74 @@ ntp:
 #     - source: salt://webservers/certbot-cron
 #     - mode: 755
 
-arkanosis:
+{% for user in pillar['users'] %}
+
+{% if user.login in pillar['local_users'] %}
+
+{{ user.login }}:
   user.present:
-    - home: /home/arkanosis
-    - shell: /bin/bash
-    - uid: 1000
-    - gid: 1000
+    - fullname: {{ user.fullname | default('') }}
+    - home: /home/{{ user.login }}
+    - shell: {{ user.shell | default('/bin/bash') }}
+    - system: {{ user.system | default(False) }}
+    - uid: {{ user.id }}
+    - gid: {{ user.id }}
+{% if user.sudo | default(False) %}
+    - groups:
+      - sudo
+{% endif %}
+# TODO handle groups
     - remove_groups: False
     - require:
-      - group: arkanosis
+      - group: {{ user.login }}
   group.present:
-    - gid: 1000
+    - gid: {{ user.id }}
+
+/home/{{ user.login }}/.ssh/authorized_keys:
+  file.managed:
+    - contents: {{ user.authorized_keys | default('') | yaml_encode }}
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 644
+    - makedirs: True
+    - require:
+      - user: {{ user.login }}
+
+{% if user.linger | default(False) %}
+/var/lib/systemd/linger/{{ user.login }}:
+  file.managed:
+    - makedirs: True
+{% endif %}
+
+{% if user.arkonf | default(False) %}
+{{ user.login }}_arkonf:
+  git.latest:
+    - name: https://github.com/Arkanosis/Arkonf.git
+    - rev: master
+    - target: /home/{{ user.login }}/Arkonf
+    - user: {{ user.login }}
+    - unless: test -d /home/{{ user.login }}/Arkonf
+
+rm -f /home/{{ user.login }}/.bashrc:
+  cmd.run:
+    - require:
+      - user: {{ user.login }}
+    - unless: test -f /home/{{ user.login }}/.zshrc
+
+make -C /home/{{ user.login }}/Arkonf install:
+  cmd.run:
+    - require:
+      - user: {{ user.login }}
+    - runas: {{ user.login }}
+    - unless: test -f /home/{{ user.login }}/.zshrc
+{% endif %}
+
+# TODO enable local override
+#  - ssh for asdp on Bismuth
+#  - linger for Daniel on Cyclamen and Bruyere
+#  - linger for Simonne on Bruyere
+#  - authorized_keys rssht-user
+
+{% endif %}
+
+{% endfor %}
