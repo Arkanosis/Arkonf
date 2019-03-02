@@ -6,3 +6,7 @@ local_users:
   - Daniel
   - Simonne
   - Marie-Christine
+
+smart_drives:
+  - sda
+  - sdb

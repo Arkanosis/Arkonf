@@ -37,29 +37,13 @@ smartmontools:
     - require:
       - pkg: monitoring_pkgs
 
-{% if grains['host'] in ['Cyclamen', 'Edelweiss', 'taz', 'marvin', 'Bruyere'] %}
-smartctl -s on /dev/sda:
+{% for smart_drive in pillar['smart_drives'] %}
+smartctl -s on /dev/{{ smart_drive }}:
   cmd.run:
-    - onlyif: "smartctl -i /dev/sda | grep -q 'SMART support is: Disabled'"
+    - onlyif: "smartctl -i /dev/{{ smart_drive }} | grep -q 'SMART support is: Disabled'"
     - require:
       - pkg: monitoring_pkgs
-{% endif %}
-
-{% if grains['host'] in ['Cyclamen', 'Edelweiss', 'Bruyere'] %}
-smartctl -s on /dev/sdb:
-  cmd.run:
-    - onlyif: "smartctl -i /dev/sdb | grep -q 'SMART support is: Disabled'"
-    - require:
-      - pkg: monitoring_pkgs
-{% endif %}
-
-{% if grains['host'] == 'Cyclamen' %}
-smartctl -s on /dev/sdc:
-  cmd.run:
-    - onlyif: "smartctl -i /dev/sdc | grep -q 'SMART support is: Disabled'"
-    - require:
-      - pkg: monitoring_pkgs
-{% endif %}
+{% endfor %}
 
 /etc/default/smartmontools:
   file.managed:

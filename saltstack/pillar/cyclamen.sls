@@ -7,3 +7,8 @@ local_users:
   - Sandrine
   - Daniel
   - Annette
+
+smart_drives:
+  - sda
+  - sdb
+  - sdc
