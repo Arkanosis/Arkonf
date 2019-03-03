@@ -1,6 +1,7 @@
 users:
   - login: arkanosis
 #    fullname: 'Jérémie Roquet'
+    email: jroquet@arkanosis.net
     id: 1301
     groups:
       - famille
