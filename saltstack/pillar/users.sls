@@ -8,6 +8,7 @@ users:
       - amis
     sudo: True
     ssh: True
+    ftp: True
     linger: True
     arkonf: True
     authorized_keys: |
