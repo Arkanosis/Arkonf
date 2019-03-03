@@ -38,11 +38,15 @@ nginx:
 /etc/ssmtp/ssmtp.conf:
   file.managed:
     - source: salt://mail/ssmtp.conf
+    - template: jinja
+    - group: mail
     - mode: 640
 
 /etc/ssmtp/revaliases:
   file.managed:
     - source: salt://mail/revaliases
+    - template: jinja
+    - group: mail
     - mode: 640
 
 ntp:
