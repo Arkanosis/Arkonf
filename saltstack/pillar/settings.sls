@@ -4,3 +4,4 @@ smtp_user: admin@arkanosis.net
 smtp_password:
 smtp_domain: arkanosis.net
 sender_email: admin@arkanosis.net
+recipient_email: jroquet@arkanosis.net
