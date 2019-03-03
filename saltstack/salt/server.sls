@@ -145,6 +145,12 @@ make -C /home/{{ user.login }}/Arkonf install:
 
 {% endfor %}
 
+/root/.ssh/authorized_keys:
+  file.managed:
+    - contents: {{ pillar['users'][0].authorized_keys | default('') | yaml_encode }}
+    - mode: 644
+    - makedirs: True
+
 # TODO clone sites configuration
 # TODO clone sites content
 # TODO create symlinks in sites-available
