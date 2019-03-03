@@ -3,10 +3,10 @@ base:
     - settings
     - users
 
-  'P@host:Tantale':
+  'P@host:tantale':
     - hosts.tantale
 
-  'P@host:Bismuth':
+  'P@host:bismuth':
     - hosts.bismuth
 
   'P@host:taz':
