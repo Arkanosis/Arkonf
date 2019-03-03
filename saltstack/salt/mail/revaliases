@@ -1,6 +1,6 @@
 root:{{ pillar['sender_email'] }}
-{% for user in pillar['users'] %}
-{% if user.login in pillar['local_users'] and 'email' in user %}
+{% for user in pillar['users'] -%}
+{% if user.login in pillar['local_users'] and 'email' in user -%}
 {{ user.login }}:{{ user.email }}
-{% endif %}
-{% endfor %}
+{%- endif %}
+{%- endfor %}
