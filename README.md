@@ -27,6 +27,9 @@ packages, depending on which roles are associated to their names in the pillar.
 hostnamectl set-hostname $HOSTNAME
 ```
 
+Also, make sure that the name (and the FQDN) is correct in `/etc/hosts` as it
+will be used by some packages (such as the MTA).
+
 ### On Arch Linux
 
 ```sh
