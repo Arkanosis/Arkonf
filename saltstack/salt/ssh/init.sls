@@ -14,6 +14,7 @@ ssh_pkgs:
 /etc/ssh/sshd_config:
   file.managed:
     - source: salt://ssh/sshd_config
+    - template: jinja
     - mode: 644
 
 {% if grains['os_family'] != 'Arch' %}

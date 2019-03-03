@@ -21,7 +21,7 @@ AuthenticationMethods publickey,keyboard-interactive:pam
 PermitRootLogin no
 PermitEmptyPasswords no
 StrictModes yes
-AllowUsers arkanosis sshbridge
+AllowUsers {{ pillar['users'] | selectattr("ssh", "defined") | selectattr("ssh") | sort(attribute='login') | join(' ', attribute='login') }}
 
 LoginGraceTime 30
 MaxAuthTries 3
@@ -39,5 +39,5 @@ AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
 
-Match Address 192.168.1.112,192.168.1.113,192.168.1.116
+Match Address {{ pillar['known_ips'] | default([]) | join(',') }}
       AuthenticationMethods publickey
