@@ -27,13 +27,37 @@ server_pkgs_extras:
   pkg.installed:
     - pkgs:
       - certbot
+      - python-certbot-nginx
     - fromrepo: stretch-backports
+
+{% if grains['host'] == 'bismuth' %}
+
+# TODO clone site configurations in sites-available
+
+/etc/nginx/sites-enabled/bismuth.arkanosis.net:
+  file.symlink:
+    - makedirs: True
+    - target: ../sites-available/bismuth.arkanosis.net
+
+certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --domain bismuth.arkanosis.net:
+  cmd.run:
+    - unless: test -f /etc/letsencrypt/live/bismuth.arkanosis.net/fullchain.pem
+
+{% endif %}
 
 nginx:
   service.running:
     - enable: True
     - require:
       - pkg: server_pkgs
+
+/etc/nginx/sites-available/default:
+  file:
+    - absent
+
+/etc/nginx/sites-enabled/default:
+  file:
+    - absent
 
 /etc/ssmtp/ssmtp.conf:
   file.managed:
