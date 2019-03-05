@@ -16,3 +16,6 @@ XF86AudioLowerVolume
 
 XF86AudioRaiseVolume
 	pactl set-sink-volume 0 +5%
+
+Print
+	spectacle
