@@ -95,7 +95,7 @@ fu() {
 	sudo pacman -Syu
     else
 	echo 'Package manager is unknown' >&2
-	exit 1
+	return 1
     fi
 }
 
