@@ -49,15 +49,37 @@ psd() {
 }
 
 lxc-boot() {
-    local dir=''
-    if [[ $1 = '-t' ]]; then
-        shift
+    local dir='' distribution=debian release=stretch
+    while [[ $1 = -* ]]; do
+        case $1 in
+            -t)
+                shift
+                dir="--dir"
+            ;;
+            -bionic)
+                shift
+                distribution=ubuntu
+                release=bionic
+            ;;
+            -stretch)
+                shift
+                distribution=debian
+                release=stretch
+            ;;
+            *)
+                echo "Unknown option $1" >&2
+                return 1
+            ;;
+        esac
+    done
+
+    if [[ -n $dir ]]; then
         dir="--dir /tmp/$1"
     fi
 
     if ! lxc-ls --line --active | grep -q "^$1\$"; then
         if ! lxc-ls --line --stopped | grep -q "^$1\$"; then
-            lxc-create -n $1 $=dir -t download -- -d debian -r stretch -a amd64
+            lxc-create -n $1 $=dir -t download -- -d $distribution -r $release -a amd64
         fi
         lxc-start -n $1
     fi
