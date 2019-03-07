@@ -1,21 +1,17 @@
 # TODO enable / disable networking
 
-XF86MonBrightnessDown
-	xbacklight -dec 10
-
-XF86MonBrightnessUp
-	xbacklight -inc 10
+XF86MonBrightness{Down,Up}
+	xbacklight -{dec,inc} 10
 
 # TODO change external screen configuration
+
+# TODO previous / next / play / pause / stop for media in VLC / MPV / MPD
 
 XF86AudioMute
 	pactl set-sink-mute 0 toggle
 
-XF86AudioLowerVolume
-	pactl set-sink-volume 0 -5%
-
-XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +5%
+XF86Audio{Lower,Raise}Volume
+	pactl set-sink-volume 0 {-,+}5%
 
 Print
 	spectacle
