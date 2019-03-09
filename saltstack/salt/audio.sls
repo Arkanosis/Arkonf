@@ -8,3 +8,7 @@ audio_pkgs:
       - paprefs
       - pavucontrol
       - pulseaudio
+{% if grains['os_family'] == 'Arch' %}
+      - pulseaudio-bluetooth
+      - bluez-utils
+{% endif %}
