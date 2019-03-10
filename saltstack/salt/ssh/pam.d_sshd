@@ -53,5 +53,8 @@ session    required     pam_env.so user_readenv=1 envfile=/etc/default/locale
 # to run in the user's context should be run after this.
 session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so open
 
+# Send an email
+session    optional     pam_exec.so seteuid /usr/bin/notify_ssh_login
+
 # Standard Un*x password updating.
 @include common-password

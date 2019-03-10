@@ -17,6 +17,12 @@ ssh_pkgs:
     - template: jinja
     - mode: 644
 
+/usr/bin/notify_ssh_login:
+  file.managed:
+    - source: salt://ssh/notify_ssh_login
+    - template: jinja
+    - mode: 755
+
 {% if grains['os_family'] != 'Arch' %}
 /etc/pam.d/sshd:
   file.managed:

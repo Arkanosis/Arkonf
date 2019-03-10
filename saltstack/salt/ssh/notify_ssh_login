@@ -1,0 +1,11 @@
+#! /bin/sh
+
+if [ "$PAM_TYPE" != "close_session" ]; then
+  {
+    echo "User: $PAM_USER"
+    echo "Remote Host: $PAM_RHOST"
+    echo "Service: $PAM_SERVICE"
+    echo "TTY: $PAM_TTY"
+    echo "Date: $(date)"
+  } | mail -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST" {{ pillar['recipient_email'] }}
+fi
