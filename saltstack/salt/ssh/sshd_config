@@ -21,7 +21,8 @@ AuthenticationMethods publickey,keyboard-interactive:pam
 PermitRootLogin no
 PermitEmptyPasswords no
 StrictModes yes
-AllowUsers {{ pillar['users'] | selectattr("ssh", "defined") | selectattr("ssh") | sort(attribute='login') | join(' ', attribute='login') }}
+
+AllowUsers {{ salt['arkonf.allowed_ssh_users'](pillar['users']) | sort(attribute='login') | join(' ', attribute='login') }}
 
 LoginGraceTime 30
 MaxAuthTries 3
@@ -41,3 +42,13 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 
 Match Address {{ pillar['known_ips'] | default([]) | join(',') }}
       AuthenticationMethods publickey
+
+{% if salt['arkonf.allowed_sftp_users'](pillar['users']) %}
+Match User {{ salt['arkonf.allowed_sftp_users'](pillar['users']) | sort(attribute='login') | join(' ', attribute='login') }}
+      ForceCommand internal-sftp
+      ChrootDirectory /var/sftp/%u
+      PermitTunnel no
+      AllowAgentForwarding no
+      AllowTcpForwarding no
+      X11Forwarding no
+{% endif %}
