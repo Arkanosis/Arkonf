@@ -2,15 +2,8 @@ mail_pkgs:
   pkg.installed:
     - pkgs:
       - isync
-      - mutt
       - s-nail
       - ssmtp
-      - thunderbird
-{% if grains['os_family'] == 'Arch' %}
-      - thunderbird-i18n-fr
-{% else %}
-      - thunderbird-locale-fr
-{% endif %}
 
 /etc/ssmtp/ssmtp.conf:
   file.managed:
@@ -46,3 +39,17 @@ workaround_for_19834:
     - name: /usr/sbin/ssmtp
 {% endif %}
     - mode: 2755
+
+{% if grains['os_family'] == 'Debian' %}
+/usr/bin/mail:
+  file.symlink:
+    - user: root
+    - mode: 755
+    - target: s-nail
+
+/usr/bin/mailx:
+  file.symlink:
+    - user: root
+    - mode: 755
+    - target: s-nail
+{% endif %}

@@ -5,6 +5,7 @@ base:
     - compression
     - editor
     - etckeeper
+    - mail
     - monitoring
     - search
     - shell
@@ -39,7 +40,6 @@ base:
     - image
     - java
     - language
-    - mail # TODO some stuff should be in base
     - media
     - network # TODO some stuff should be in base
     - nginx # TODO some stuff should also be in server
