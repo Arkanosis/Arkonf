@@ -1,13 +1,11 @@
 term_pkgs:
   pkg.installed:
     - pkgs:
-      - reptyr
 {% if grains['os_family'] == 'Arch' %}
       - rxvt-unicode
 {% else %}
       - rxvt-unicode-256color
 {% endif %}
-      - tmux
 {% if grains['os_family'] != 'Arch' %}
       - yakuake
 {% endif %}

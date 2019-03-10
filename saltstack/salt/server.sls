@@ -16,8 +16,6 @@ server_pkgs:
 
       - sudo
 
-      - tmux
-
       - make
 
 server_pkgs_extras:

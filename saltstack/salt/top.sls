@@ -49,7 +49,7 @@ base:
     - publication
     - python
     - qt
-    - term # TODO tmux should be in base
+    - term
     - usb
     - vm
     - webbrowser
