@@ -112,6 +112,21 @@ ntp:
     - require:
       - user: {{ user.login }}
 
+{% if user.sftp | default(False) %}
+/var/sftp/{{ user.login }}:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+
+/var/sftp/{{ user.login }}/incoming:
+  file.directory:
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 700
+{% endif %}
+
 {% if user.linger | default(False) %}
 /var/lib/systemd/linger/{{ user.login }}:
   file.managed:

@@ -55,10 +55,11 @@ apt upgrade
 
 ## Application of individual states
 
-Individual states may rely on custom grains, which must be synchronized.
+Individual states may rely on custom grains and custom modules, which
+must be synchronized.
 
 ```sh
-salt-call --local state.highstate saltutil.sync_grains
+salt-call --local state.highstate saltutil.sync_all
 ```
 
 Afterwards, indidual states can be applied.
@@ -67,8 +68,8 @@ Afterwards, indidual states can be applied.
 salt-call --local state.sls mail
 ```
 
-Synchronization of custom grains is done automatically when running
-`state.highstate`, so there's no need to run `saltutil.sync_grains` when
+Synchronization of custom grains and custom modules is done automatically when
+running`state.highstate`, so there's no need to run `saltutil.sync_all` when
 applying the highstate.
 
 ## Copyright
