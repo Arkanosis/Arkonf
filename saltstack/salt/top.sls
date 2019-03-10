@@ -28,7 +28,7 @@ base:
     - audio
     - backup
     - banner
-    - chat
+    - communication
     - compile
     - crypto
     - database

@@ -1,4 +1,4 @@
-chat_pkgs:
+communication_pkgs:
   pkg.installed:
     - pkgs:
       - pidgin
