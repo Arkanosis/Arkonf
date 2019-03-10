@@ -12,6 +12,7 @@ xorg_pkgs:
       - wmctrl
       - x11vnc
       - xdotool
+      - xpra
       - xsel
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
@@ -26,7 +27,6 @@ xorg_pkgs:
 {% else %}
       - x11-utils
       - xbacklight
-      - xpra # TODO FIXME need it for ArchLinux as well
       - xserver-xephyr
 {% endif %}
 
