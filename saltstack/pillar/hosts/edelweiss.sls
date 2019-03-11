@@ -7,6 +7,9 @@ local_users:
   - asdp
   - rssht-user
 
+domains:
+  - studio1094.arkanosis.net
+
 smart_drives:
   - sda
   - sdb

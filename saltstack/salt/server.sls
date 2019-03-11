@@ -25,16 +25,17 @@ server_pkgs_extras:
       - python-certbot-nginx
     - fromrepo: stretch-backports
 
-{% if grains['host'] == 'bismuth' %}
+{% if pillar['domains'] %}
 
-# TODO clone site configurations in sites-available
+# TODO clone site configurations in sites-available based on domains
 
+# TODO enable sites based on domains
 /etc/nginx/sites-enabled/bismuth.arkanosis.net:
   file.symlink:
     - makedirs: True
     - target: ../sites-available/bismuth.arkanosis.net
 
-certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --domain bismuth.arkanosis.net:
+certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --expand {% for domain in pillar['domains'] %} --domain {{ domain }} {% endfor %}:
   cmd.run:
     - unless: test -f /etc/letsencrypt/live/bismuth.arkanosis.net/fullchain.pem
 
