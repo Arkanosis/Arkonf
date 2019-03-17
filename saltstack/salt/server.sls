@@ -125,7 +125,7 @@ ntp:
   file.directory:
     - user: {{ user.login }}
     - group: {{ user.login }}
-    - mode: 700
+    - mode: 711
 {% endif %}
 
 {% if user.linger | default(False) %}
