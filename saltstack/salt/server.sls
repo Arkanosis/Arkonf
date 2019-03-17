@@ -121,7 +121,7 @@ ntp:
     - mode: 755
     - makedirs: True
 
-/var/sftp/{{ user.login }}/incoming:
+/var/sftp/{{ user.login }}/www:
   file.directory:
     - user: {{ user.login }}
     - group: {{ user.login }}
