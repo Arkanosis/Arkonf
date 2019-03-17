@@ -121,11 +121,31 @@ ntp:
     - mode: 755
     - makedirs: True
 
+{% if user.www | default(False) %}
 /var/sftp/{{ user.login }}/www:
   file.directory:
     - user: {{ user.login }}
     - group: {{ user.login }}
     - mode: 711
+
+/etc/nginx/sites-available/{{ user.www }}:
+  file.managed:
+    - makedirs: True
+    - source: salt://server/site.conf
+    - template: jinja
+    - defaults:
+        login: {{ user.login }}
+        domain: {{ user.www }}
+        main_domain: "bismuth.arkanosis.net"
+    - mode: 644
+
+/etc/nginx/sites-enabled/{{ user.www }}:
+  file.symlink:
+    - makedirs: True
+    - target: /etc/nginx/sites-available/{{ user.www }}
+
+{% endif %}
+
 {% endif %}
 
 {% if user.linger | default(False) %}
