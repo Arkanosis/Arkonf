@@ -44,6 +44,8 @@ certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }
 nginx:
   service.running:
     - enable: True
+    - watch:
+      - file: /etc/nginx/nginx.conf # TODO also watch all sites-available confs
     - require:
       - pkg: server_pkgs
 
@@ -148,7 +150,7 @@ ntp:
 /etc/nginx/sites-enabled/{{ user.www }}:
   file.symlink:
     - makedirs: True
-    - target: /etc/nginx/sites-available/{{ user.www }}
+    - target: ../sites-available/{{ user.www }}
 
 {% endif %}
 
