@@ -47,6 +47,12 @@ nginx:
     - require:
       - pkg: server_pkgs
 
+/etc/nginx/nginx.conf:
+  file.managed:
+    - makedirs: True
+    - source: salt://server/nginx.conf
+    - mode: 644
+
 /etc/nginx/sites-available/default:
   file:
     - absent
