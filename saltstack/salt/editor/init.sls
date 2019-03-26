@@ -10,7 +10,7 @@ editor_pkgs:
     - source: salt://editor/emacs-console
     - mode: 755
 
-/usr/bin/emacs-client:
+/usr/bin/org-console:
   file.managed:
-    - source: salt://editor/emacs-client
+    - source: salt://editor/org-console
     - mode: 755

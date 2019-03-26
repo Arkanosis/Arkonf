@@ -315,7 +315,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "e", function () awful.spawn("xmodmap -e 'keycode 52 = z Z U201C U201D' -e 'keycode 94 = less greater guillemotleft guillemotright'") end,
               {description = "Switch to English Qolemax", group = "launcher"}),
 
-    awful.key({ modkey,           }, ";", function () awful.spawn("emacs-console -s emacsconsole ~/Documents/Org") end,
+    awful.key({ modkey,           }, ";", function () awful.spawn("org-console") end,
               {description = "open a task list", group = "launcher"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,

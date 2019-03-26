@@ -1,4 +1,0 @@
-#! /bin/sh
-
-emacsclient -nw -s emacsconsole $@
-
