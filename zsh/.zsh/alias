@@ -112,5 +112,5 @@ umnt() {
 }
 
 scp() {
-    rsync -aAXz --info=progress2 $@
+    rsync -aAXz --info=progress2 --partial-dir=.rsync-partial $@
 }
