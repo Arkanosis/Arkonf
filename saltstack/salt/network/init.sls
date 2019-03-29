@@ -50,3 +50,8 @@ network_pkgs:
   file.managed:
     - source: salt://network/wifi
     - mode: 755
+
+/usr/bin/assistance:
+  file.managed:
+    - source: salt://network/assistance
+    - mode: 755
