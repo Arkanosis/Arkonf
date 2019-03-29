@@ -13,6 +13,7 @@ vm_pkgs:
 {% else %}
       - qemu-kvm
 {% endif %}
+      - vkd3d
       - wine
       - winetricks
 
@@ -37,6 +38,9 @@ vm_pkgs32:
 {% if salt['grains.get']('gpus:vendor') == 'intel' %}
       - lib32-mesa
 {% endif %}
+      - lib32-mpg123
+      - lib32-vkd3d
+      - lib32-vulkan-icd-loader
 {% endif %}
 
 {% if grains['os_family'] == 'Arch' %}
