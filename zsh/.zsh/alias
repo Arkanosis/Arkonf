@@ -103,12 +103,14 @@ tig() {
     command tig --show-signature $@
 }
 
-mnt()
-{
+mnt() {
     udisksctl mount -b $@
 }
 
-umnt()
-{
+umnt() {
     udisksctl unmount -b $@
+}
+
+scp() {
+    rsync -aAXz --info=progress2 $@
 }
