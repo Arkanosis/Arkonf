@@ -33,6 +33,7 @@ vm_pkgs32:
       - lib32-libjpeg-turbo
       - lib32-libldap
       - lib32-libpng
+      - lib32-gnutls
 {% if salt['grains.get']('gpus:vendor') == 'intel' %}
       - lib32-mesa
 {% endif %}
