@@ -1,3 +1,3 @@
 #! /bin/sh
 
-x11vnc -display "$DISPLAY" -forever -loop -noxdamage -repeat -rfbauth "$HOME/.vnc/passwd" -rfbport 5900 -shared
+x11vnc -display "$DISPLAY" -localhost -loop -forever -shared -repeat -rfbauth "$HOME/.vnc/passwd" -rfbport 5900
