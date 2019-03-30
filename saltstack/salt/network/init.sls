@@ -55,3 +55,18 @@ network_pkgs:
   file.managed:
     - source: salt://network/assistance
     - mode: 755
+
+/etc/systemd/resolved.conf:
+  file.managed:
+    - source: salt://network/resolved.conf
+    - mode: 644
+
+/etc/resolv.conf:
+  file.symlink:
+    - target: /run/systemd/resolve/stub-resolv.conf
+    - force: True
+    - backupname: /etc/resolv.conf.bak
+
+systemd-resolved:
+  service.running:
+    - enable: True
