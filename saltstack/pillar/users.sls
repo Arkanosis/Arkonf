@@ -51,6 +51,8 @@ users:
     arkonf: True
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDT2DnTMUJzr/mxFWm2tQ2PPDu16FO8oTiFDlw/Iq7kBYxFJWnBTHpxUWZiBzWZi9qZPFlVrz3v84UGEUcuFIy7Es2XTtFGI11dFJTkSngU/dCttrM0CmVPqqJ8t/4eFB+ZrSS5vBOAagRX2Ot+nhbh0+csi9Ejp7xpWLvCOxZ1NQShAY7TRQs0hBHwjOJ6389IUCgW8NZqoAsRF4Vs1B9ac3jBdb1YOZKK8LPHrSd7/UsUoQzDulQ1/iwfSKLn3QaqOFPbGwUNtpsbH/aWdOAW1li8Sd7mQN+U88gB0bs67ysg1a0pUSI6WrNAQIafyvWfhP1I3dQMY1MpKVyLZeNIzl2wLMKtjHzwd6KoIEkcdLzic6AzywdLHwTADHA8+iSqUosGT4gC5WCb3pUOSpVp5x5pbrOhRkN5E0q3jxPrLtg+Vrp5LXBTw+e6d0NLaBSqtqnNMMib4bws9RAFuRHK3MWSpaJo4BT/w2qT28f8CxI0E+IEmYu8lGOSWPDtpqXLzMwRhUge85zN0mrJbYbxsp8MywCQazJVsdWHL+w3FZY5RwiR3LfDZ62z0fTmB73sT2HuFjbAz0WhGc7sP0sDz9v/dP0MSpWF+ziv2f3fIxEamVimBgpv8mMZFp+DOyd1OtiUwbSONt7fe82rbrCVChV5R9ifdym92IK4wb0L9w== asdp@asdp-UX305CA
+  - login: nonfreegaming
+    id: 1901
   - login: dl-denomme-fr
     id: 1211
     sftp: True

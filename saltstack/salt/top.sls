@@ -57,6 +57,9 @@ base:
 
     - users
 
+  'I@roles:gaming':
+    - gaming
+
   'I@roles:server':
     - security
     - server # TODO should be mutualized with other states
