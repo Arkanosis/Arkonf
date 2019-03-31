@@ -28,6 +28,7 @@ def lines(file_path):
     try:
         with open(file_path) as file:
             for line in file:
-                yield line.rstrip()
+                if not line.startswith('#'):
+                    yield line.rstrip()
     except IOError:
         return
