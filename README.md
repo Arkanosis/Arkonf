@@ -59,7 +59,7 @@ Individual states may rely on custom grains and custom modules, which
 must be synchronized.
 
 ```sh
-salt-call --local state.highstate saltutil.sync_all
+salt-call --local saltutil.sync_all
 ```
 
 Afterwards, indidual states can be applied.
