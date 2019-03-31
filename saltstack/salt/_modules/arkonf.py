@@ -23,3 +23,11 @@ def _allowed_users(users, *conditions):
                 break
     logger.debug('allowed_users ({}): {}'.format(conditions, allowed_users))
     return allowed_users
+
+def lines(file_path):
+    try:
+        with open(file_path) as file:
+            for line in file:
+                yield line.rstrip()
+    except IOError:
+        return
