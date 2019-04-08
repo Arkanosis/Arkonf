@@ -187,6 +187,9 @@ keycode 133 = Super_L
 !! Win R
 keycode 134 = Multi_key
 
+!! Menu
+keycode 135 = Multi_key
+
 clear shift
 clear lock
 clear control
@@ -202,8 +205,8 @@ add control = Control_L Control_R
 add mod1 = Alt_L Mode_switch
 add mod2 = Num_Lock
 !add mod3 =
-add mod4 = Super_L Multi_key
+add mod4 = Super_L
 !add mod5 =
 
 ! Shift_L ... Shift_R
-! Control_L Super_L Alt_L Space Mode_switch Multi_key Menu Control_R
+! Control_L Super_L Alt_L Space Mode_switch Multi_key Multi_key Control_R
