@@ -1,6 +1,7 @@
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Arkonf for Emacs                                                    ;
-;  (C) 2006-2018 - Jérémie Roquet                                      ;
+;  (C) 2006-2019 - Jérémie Roquet                                      ;
 ;  jroquet@arkanosis.net                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -247,16 +248,24 @@ If region contains less than 2 lines, lines are left untouched."
   (lambda ()
     (org-add-link-type "thunderlink" 'org-thunderlink-open)))
 
-(defun org-refresh-agenda ()
-  (interactive)
+(defun org-revert-buffers ()
   (dolist (buf (buffer-list))
     (let ((filename (buffer-file-name buf)))
       (when (and filename
 		 (string-match "\\.org" filename)
                  (not (buffer-modified-p buf)))
         (with-current-buffer buf
-          (revert-buffer :ignore-auto :noconfirm :preserve-modes)))))
+          (revert-buffer :ignore-auto :noconfirm :preserve-modes))))))
+
+(defun org-show-agenda ()
+  (interactive)
+  (org-revert-buffers)
   (org-agenda))
+
+(defun org-agenda-refresh ()
+  (interactive)
+  (org-revert-buffers)
+  (org-agenda-redo))
 
 ;; Archive whole org-mode file at once
 (defun org-archive-done-tasks ()
@@ -603,11 +612,15 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-hook 'org-mode-hook
   (lambda ()
-    (local-set-key (kbd "C-c a") 'org-refresh-agenda)
+    (local-set-key (kbd "C-c a") 'org-show-agenda)
     (local-set-key "[1;5D" 'org-promote-subtree)
     (local-set-key "[1;5C" 'org-demote-subtree)
     (local-set-key "[1;5A" 'org-move-subtree-up)
     (local-set-key "[1;5B" 'org-move-subtree-down)))
+
+(add-hook 'org-agenda-mode-hook
+  (lambda ()
+    (local-set-key "r" 'org-agenda-refresh)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
