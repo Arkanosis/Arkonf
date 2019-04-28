@@ -37,3 +37,7 @@ wttr() {
         ;;
     esac
 }
+
+exp() {
+    whois $1 | grep -i 'expir[^ ]*'
+}
