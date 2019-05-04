@@ -1,3 +1,5 @@
+user_pref("app.normandy.enabled", false);
+
 user_pref("breakpad.reportURL", "");
 
 user_pref("browser.cache.disk.capacity", 1000000);
