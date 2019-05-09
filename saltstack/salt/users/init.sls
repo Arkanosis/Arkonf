@@ -33,7 +33,7 @@ users_pkgs:
 famille:
   group.present:
     - gid: 1004
-{% elif grains['host'] in ['Edelweiss', 'taz', 'marvin'] %}
+{% elif grains['host'] in ['Amaryllis', 'Edelweiss', 'gossamer', 'marvin', 'taz'] %}
 famille:
   group.present:
     - gid: 1100
