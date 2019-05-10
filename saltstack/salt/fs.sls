@@ -20,6 +20,10 @@ fs_pkgs:
       - nosuid
 {% if grains['mem_total'] > 32000 %}
       - size=10G
+{% elif grains['mem_total'] > 24000 %}
+      - size=8G
+{% elif grains['mem_total'] > 16000 %}
+      - size=6G
 {% else %}
       - size=2G
 {% endif %}
