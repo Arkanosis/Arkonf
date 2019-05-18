@@ -14,4 +14,4 @@ XF86Audio{Lower,Raise}Volume
 	pactl set-sink-volume 0 {-,+}5%
 
 Print
-	spectacle
+	spectacle || maim -s | xclip -selection clipboard -t image/png

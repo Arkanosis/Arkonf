@@ -22,5 +22,6 @@ image_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - kipi-plugins
 {% endif %}
+      - maim
       - rawtherapee
       - sxiv
