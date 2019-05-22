@@ -10,5 +10,5 @@ local_users:
   - rssht-user
 
 smart_drives:
+  - nvme0n1
   - sda
-  - sdb
