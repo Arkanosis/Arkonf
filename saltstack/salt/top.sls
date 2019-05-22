@@ -20,6 +20,9 @@ base:
   'G@virtual:physical and G@gpus:vendor:intel':
     - intel_gpu
 
+  'G@virtual:physical and G@cpu_model:*Intel*':
+    - intel_cpu
+
   'G@os_family:Arch':
     - awesome
     - pacman
