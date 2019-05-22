@@ -7,7 +7,11 @@ utilities_pkgs:
       - lsb
 {% endif %}
       - lsb-release
+{% if grains['os_family'] == 'Arch' %}
+      - man-db
+{% else %}
       - man
+{% endif %}
       - moreutils
       - neofetch
       - parallel
