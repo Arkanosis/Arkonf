@@ -3,8 +3,9 @@ utilities_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - exa
-{% endif %}
+{% else %}
       - lsb
+{% endif %}
       - lsb-release
       - man
       - moreutils
