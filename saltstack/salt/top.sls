@@ -37,7 +37,6 @@ base:
     - database
     - document
     - fs
-    - kdiff3
     - image
     - java
     - language

@@ -2,7 +2,7 @@ document_pkgs:
   pkg.installed:
     - pkgs:
       - calibre
-      - ruby-ronn
+      - kdiff3
 {% if grains['os_family'] == 'Arch' %}
       - libreoffice-fresh
       - libreoffice-fresh-fr
@@ -18,3 +18,4 @@ document_pkgs:
       - okular
       - pdftk # TODO FIXME need it for ArchLinux as well
 {% endif %}
+      - ruby-ronn
