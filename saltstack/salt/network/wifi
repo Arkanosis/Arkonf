@@ -1,22 +1,18 @@
 #! /bin/bash
 
-CONF=wlp1s0
-
-if test -z "$WIFI"; then
-    WIFI=wlp1s0
-fi
+IF=$(ip a | sed -n 's/^[0-9]\+: \(w[a-z0-9]\+\): .*/\1/p')
 
 offline 2> /dev/null
 
-ip link set "$WIFI" up && \
+ip link set "$IF" up && \
     if [ $# -eq 0 ]; then
-        wpa_supplicant -B -m '' -i "$WIFI" -c "/etc/wpa_supplicant/$CONF.conf"
+        wpa_supplicant -B -m '' -i "$IF" -c "/etc/wpa_supplicant/$IF.conf"
     else
-        if ! grep -q '^ *ssid="'"$1"'"$' "/etc/wpa_supplicant/$CONF.conf"; then
-            echo "SSID $1 not found in /etc/wpa_supplicant/$CONF.conf" >&2
+        if ! grep -q '^ *ssid="'"$1"'"$' "/etc/wpa_supplicant/$IF.conf"; then
+            echo "SSID $1 not found in /etc/wpa_supplicant/$IF.conf" >&2
             exit 1
         fi
-        wpa_supplicant -B -m '' -i "$WIFI" -c <(awk '
+        wpa_supplicant -B -m '' -i "$IF" -c <(awk '
             BEGIN {
                 keep = 0
             }
@@ -32,7 +28,7 @@ ip link set "$WIFI" up && \
             /^}$/ {
                 keep = 0
             }
-        ' "/etc/wpa_supplicant/$CONF.conf")
+        ' "/etc/wpa_supplicant/$IF.conf")
     fi && \
-    dhcpcd "$WIFI" && \
-    iw "$WIFI" link
+    dhcpcd "$IF" && \
+    iw "$IF" link

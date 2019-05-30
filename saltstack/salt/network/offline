@@ -1,9 +1,7 @@
 #! /bin/sh
 
-ETHERNET=enp0s20f0u3u1
-WIFI=wlp1s0
-
 killall dhcpcd
 killall wpa_supplicant
-ip link set "$ETHERNET" down
-ip link set "$WIFI" down
+for IF in $(ip a | sed -n 's/^[0-9]\+: \(\(w\|enp\)[^:]*\): .*/\1/p'); do
+    ip link set "$IF" down
+done

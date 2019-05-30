@@ -1,8 +1,8 @@
 #! /bin/sh
 
-LTE=$(ip a | sed -n 's/.*\(enp0s20f0u[0-9]\).*/\1/p')
+IF=$(ip a | sed -n 's/^[0-9]\+: \(enp0s20f0u[0-9]\).*/\1/p')
 
 offline 2> /dev/null
 
-ip link set "$LTE" up && \
-    dhcpcd "$LTE"
+ip link set "$IF" up && \
+    dhcpcd "$IF"
