@@ -2,6 +2,7 @@ network_pkgs:
   pkg.installed:
     - pkgs:
       - curl
+      - filezilla
       - goaccess
       - httpie
       - iftop

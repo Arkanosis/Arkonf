@@ -1,1 +1,0 @@
-{{ pillar['users'] | selectattr("ftp", "defined") | selectattr("ftp") | sort(attribute='login') | join('\n', attribute='login') }}

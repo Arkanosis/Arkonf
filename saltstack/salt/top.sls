@@ -37,7 +37,6 @@ base:
     - database
     - document
     - fs
-    - ftp
     - kdiff3
     - image
     - java
