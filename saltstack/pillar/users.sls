@@ -1,9 +1,22 @@
+# TODO change uid of arkanosis from 1000 to 1301 where applicable (1000 is for Debian / Ubuntu)
+# TODO change gid of famille from 1100 to 1004 where applicable
+# TODO change login of sshbridge to rssht-user where applicable (and update rssht installs)
+# TODO change login of oodna to asdp where applicable
+# TODO change login of snad to Sandrine where applicable
+# TODO change uid of Sandrine from 1101 to 1001 where applicable
+# TODO names in UTF-8
+# TODO user emails
+# TODO user pictures (KDM)
+# TODO guest account with no password and home on tmpfs
+
 users:
   - login: arkanosis
 #    fullname: 'Jérémie Roquet'
     email: jroquet@arkanosis.net
     id: 1301
     groups:
+      - dialout # access to /dev/tty* for (g|w)ammu
+      - docker
       - famille
       - amis
     sudo: True
@@ -26,6 +39,7 @@ users:
     id: 1002
     groups:
       - famille
+    linger: True
   - login: Annette
     fullname: 'Annette Menguy'
     id: 1003
@@ -36,6 +50,7 @@ users:
     id: 1005
     groups:
       - famille
+    linger: True
   - login: Marie-Christine
 #    fullname: 'Marie-Christine Tréfond'
     id: 1006
@@ -71,7 +86,8 @@ users:
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcw5psAGP01fGrQSbQWnz/SLVJZeBSbgBSAQUff3dPPvbr/LrmW2hjY5NL58NCU1KnjQzm0gFEZWHYZxZKkzLUIQb9q+trQXOYz/ui1TIzvdu+dtcrQF4TjtJVbJfM9ljaOeDXNuScbZgHTJirl1VSf9n3pZsLDl038ici4gHAFvQOdfxKR7rbBxyiXVyIYl3qbBZSUJwhsYl0U6asdYFHTdBsy8v4gd+QUt2Lkoi2VVVxM4nCKKAUtBLvI98zo0NWeWDhWuLY+e1JEWX2g1ak4TUiMmRRaCYnt2bHV3aSKjDNd8fFxO0ERR52xe6N7UIpAwDyI1ITft5cGfL8kVLzi5BMu+P/o4JwMA88S9GqLeA4gwHRiP+iBg+WadfqHT6/ZSLjFP9V0Mm5XlGhEW+HIfF7UEUqudP9V8RY89frSG9pTl2imrJszmIrNolWtUB/pHBUq2lgYW65jzGnbt5kQqy9DeAGTMd2o+YR3Al1nSp3RGLEMcM9VgX/Y4IitrDgn4tnr1TW1KKOyARNaVoICGAlQ1WxZon0XLGNaD0j5x52fbzbL2SarskOsjEX8dFSqb/hlh1ngp8k9TvJu9HgaFgvhIty+wceXfqUdPjj/cYhpT1XEAlvjjWRO+UBvZUImI+5OSzbJkNRG5tqMe7iP57afoAbAMReWFB7KNYVnw== asdp_rssht@Cookie
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJYvAi+0y2mxzNmuCjOZndjWErJjdLexYww5fGF/eu1n0jTopAbUDHxeDiQhLPCUStlrdFVdcpxTqif8vyobxJe/obKOwdJknapm4GUNK6fFulNRR3/xbm6FuGrb809ctdHYcF9vtgW+j086IVnB7jCX8oIqdFCGWoUztzzlgFMQptfO6EpsPRyaGHx23IGxDrWCknTAjzguDCgiD3gcd+qD0S8px9oOb0xKC43AfKY4IVME/pJkbWrfSk3QWA7PWWA0tymh8TqbcgwNzPGUt5feMq4kU49DSFQDeyQSdeXeaPRN4R7S2SurZxZIUMvSwf2oVqWrawfB3aExC32EzLIT/IGJ+157BBnJQ2BPkX0WrcQM+e8YDJflXiwoIB4ZxXyOYUpu+RBaXLNk+hsgkpxH4rhMyhAzJWiro/XNm7B9hTzNVdAanBN/g+vvO2kkof48SIV5YXGkyhj+D4bXy5SM03zhR/F/LfxQInmPOr6p/o0a93uNl8lRRvHk06SJVhzaxPsXfjo3trIH9Q8jFtdVf83YpzuvW9L9cy5IDOMIb9SjhvfCAWOg0qdJwGJNiPmDnUn2imF4iQV2VxIibyaxqVD3XFGkTqvCakHE8Pi2JXMg+31HghR+ecBeghUmmPXa+02W3jLxVyDqrvEpltYvSanXjS+ccuC4FvMxYxvQ== arkanosis_rssht@Brownie
 
-# TODO names in UTF-8
-# TODO user emails
-# TODO user pictures (KDM)
-# TODO guest account with no password and home on tmpfs
+groups:
+  - name: famille
+    id: 1004
+  - name: amis
+    id: 1200

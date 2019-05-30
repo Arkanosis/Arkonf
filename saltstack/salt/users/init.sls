@@ -1,17 +1,3 @@
-# TODO names in UTF-8
-# TODO user emails
-# TODO user pictures (KDM)
-# TODO guest home on tmpfs
-
-include:
-{% if grains['os_family'] != 'Arch' %}
-  - ssh
-  - vm
-{% endif %}
-  - monitoring
-  - network
-  - shell
-
 {% if grains['os_family'] == 'Arch' %}
 users_mods:
   kmod.present:
@@ -28,306 +14,132 @@ users_pkgs:
 {% endif %}
       - sudo
 
-# TODO FIXME same gid everywhere for famille (ie. 1004, as 1100 doesn't own anything anywhere AFAIR)
-{% if grains['host'] in ['Cyclamen', 'Bruyere'] %}
-famille:
-  group.present:
-    - gid: 1004
-{% elif grains['host'] in ['Amaryllis', 'Edelweiss', 'gossamer', 'marvin', 'taz'] %}
-famille:
-  group.present:
-    - gid: 1100
-{% endif %}
+{% for user in pillar['users'] %}
 
-amis:
-  group.present:
-    - gid: 1200
+{% if user.login in pillar['local_users'] %}
 
-sshbridge:
+{{ user.login }}:
   user.present:
-    - shell: /bin/false
-    - home: /home/sshbridge
-    - uid: 900
-    - gid: 900
-    - remove_groups: False
-  group.present:
-    - gid: 900
-
-arkanosis:
-  user.present:
-    #- fullname: 'Jérémie Roquet'
-    - shell: /usr/bin/zsh
-    - home: /home/arkanosis
-    - uid: 1000
-    - gid: 1000
+    - fullname: {{ user.fullname | default('') }}
+    - home: /home/{{ user.login }}
+    - shell: {{ user.shell | default('/bin/bash') }}
+    - system: {{ user.system | default(False) }}
+    - uid: {{ user.id }}
+    - gid: {{ user.id }}
+{% if user.sudo | default(False) %}
     - groups:
-{% if grains['os_family'] != 'Arch' %}
-      - dialout # access to /dev/tty* for (g|w)ammu
-      - docker
-{% endif %}
-{% if grains['os_family'] == 'Arch' %}
+{% if grains['os_family'] == 'Debian' %}
+      - sudo
+{% else %}
       - wheel
 {% endif %}
-      - famille
-      - amis
+{% endif %}
+# TODO handle groups
     - remove_groups: False
     - require:
-{% if grains['os_family'] != 'Arch' %}
-      - pkg: vm_pkgs
-{% endif %}
-      - pkg: shell_pkgs
+      - group: {{ user.login }}
   group.present:
-    - gid: 1000
+    - gid: {{ user.id }}
 
-/var/lib/systemd/linger/arkanosis:
+/home/{{ user.login }}/.ssh/authorized_keys:
   file.managed:
+    - contents: {{ user.authorized_keys | default('') | yaml_encode }}
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 644
     - makedirs: True
+    - require:
+      - user: {{ user.login }}
 
 {% if grains['os_family'] == 'Arch' %}
-/home/.ecryptfs/arkanosis:
+/home/.ecryptfs/{{ user.login }}:
   cmd.run:
-    - name: '! echo "Please run as root and then login: passwd arkanosis; ps -u arkanosis && ecryptfs-migrate-home -u arkanosis"'
+    - name: '! echo "Please run as root and then login: passwd {{ user.login }}; ps -u {{ user.login }} && ecryptfs-migrate-home -u {{ user.login }}"'
     - require:
       - kmod: users_mods
       - pkg: users_pkgs
-      - user: arkanosis
-    - unless: test -d /home/.ecryptfs/arkanosis
+      - user: {{ user.login }}
+    - unless: test -d /home/.ecryptfs/{{ user.login }}
 {% endif %}
 
-git@github.com:Arkanosis/Arkonf.git:
+{% if user.sftp | default(False) %}
+/var/sftp/{{ user.login }}:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+
+{% if user.www | default(False) %}
+/var/sftp/{{ user.login }}/www:
+  file.directory:
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 711
+
+/etc/nginx/sites-available/{{ user.www }}:
+  file.managed:
+    - makedirs: True
+    - source: salt://server/site.conf
+    - template: jinja
+    - defaults:
+        login: {{ user.login }}
+        domain: {{ user.www }}
+        main_domain: "bismuth.arkanosis.net"
+    - mode: 644
+
+/etc/nginx/sites-enabled/{{ user.www }}:
+  file.symlink:
+    - makedirs: True
+    - target: ../sites-available/{{ user.www }}
+
+{% endif %}
+
+{% endif %}
+
+{% if user.linger | default(False) %}
+/var/lib/systemd/linger/{{ user.login }}:
+  file.managed:
+    - makedirs: True
+{% endif %}
+
+{% if user.arkonf | default(False) %}
+{{ user.login }}_arkonf:
   git.latest:
+    - name: https://github.com/Arkanosis/Arkonf.git
     - rev: master
-    - target: /home/arkanosis/Arkonf
-    - user: arkanosis
+    - target: /home/{{ user.login }}/Arkonf
+    - user: {{ user.login }}
+    - unless: test -d /home/{{ user.login }}/Arkonf
 
-make -C /home/arkanosis/Arkonf install:
+rm -f /home/{{ user.login }}/.bashrc:
   cmd.run:
     - require:
-      - pkg: users_pkgs
-      - user: arkanosis
-    - unless: test -d /home/arkanosis/.zshrc
+      - user: {{ user.login }}
+    - unless: test -f /home/{{ user.login }}/.zshrc
 
-{% if grains['host'] == 'Cyclamen' %}
-Sandrine:
-  user.present:
-    - fullname: Sandrine Roquet
-    - shell: /usr/bin/zsh
-    - home: /home/Sandrine
-    - uid: 1001
-    - gid: 1001
-    - groups:
-      - famille
-    - remove_groups: False
+make -C /home/{{ user.login }}/Arkonf install:
+  cmd.run:
     - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1001
+      - user: {{ user.login }}
+    - runas: {{ user.login }}
+    - unless: test -f /home/{{ user.login }}/.zshrc
 {% endif %}
 
-{% if grains['host'] in ['Cyclamen', 'Bruyere'] %}
-Daniel:
-  user.present:
-    - fullname: Daniel Roquet
-    - shell: /usr/bin/zsh
-    - home: /home/Daniel
-    - uid: 1002
-    - gid: 1002
-    - groups:
-      - famille
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1002
+# TODO enable local override
+#  - ssh for asdp on Bismuth
+#  - linger for Daniel on Cyclamen and Bruyere
+#  - linger for Simonne on Bruyere
 
-/var/lib/systemd/linger/Daniel:
+{% endif %}
+
+{% endfor %}
+
+/root/.ssh/authorized_keys:
   file.managed:
+    - contents: {{ pillar['users'][0].authorized_keys | default('') | yaml_encode }}
+    - mode: 644
     - makedirs: True
-{% endif %}
-
-{% if grains['host'] == 'Cyclamen' %}
-Annette:
-  user.present:
-    - fullname: Annette Menguy
-    - shell: /usr/bin/zsh
-    - home: /home/Annette
-    - uid: 1003
-    - gid: 1003
-    - groups:
-      - famille
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1003
-{% endif %}
-
-{% if grains['host'] != 'Bruyere' %}
-snad: # TODO FIXME replace with Sandrine above
-  user.present:
-    - fullname: Sandrine Roquet
-    - shell: /usr/bin/zsh
-    - home: /home/snad
-    - uid: 1101
-    - gid: 1101
-    - groups:
-      - famille
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1101
-snad_a:
-  group.present:
-    - gid: 1102
-    - members:
-      - arkanosis
-      - snad
-
-{% if grains['os_family'] == 'Arch' %}
-/home/.ecryptfs/snad:
-  cmd.run:
-    - name: '! echo "Please run as root and then login: passwd snad; ps -u snad && ecryptfs-migrate-home -u snad"'
-    - require:
-      - kmod: users_mods
-      - pkg: users_pkgs
-      - user: snad
-    - unless: test -d /home/.ecryptfs/snad
-{% endif %}
-{% endif %}
-
-{% if grains['host'] == 'Bruyere' %}
-Simonne:
-  user.present:
-    - fullname: Simonne Roquet
-    - shell: /usr/bin/zsh
-    - home: /home/Simonne
-    - uid: 1005
-    - gid: 1005
-    - groups:
-      - famille
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1005
-
-/var/lib/systemd/linger/Simonne:
-  file.managed:
-    - makedirs: True
-{% endif %}
-
-{% if grains['host'] == 'Bruyere' %}
-Marie-Christine:
-  user.present:
-    #- fullname: Marie-Christine Tréfond
-    - shell: /usr/bin/zsh
-    - home: /home/Marie-Chrisine
-    - uid: 1006
-    - gid: 1006
-    - groups:
-      - famille
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1006
-{% endif %}
-
-{% if grains['host'] != 'Bruyere' %}
-oodna:
-  user.present:
-    #- fullname: 'Anne-Sophie Denommé-Pichon'
-    - shell: /usr/bin/zsh
-    - home: /home/oodna
-    - uid: 1201
-    - gid: 1201
-    - groups:
-      - famille
-      - amis
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1201
-oodna_a:
-  group.present:
-    - gid: 1202
-    - members:
-      - arkanosis
-      - oodna
-
-{% if grains['os_family'] == 'Arch' %}
-/home/.ecryptfs/oodna:
-  cmd.run:
-    - name: '! echo "Please run as root and then login: passwd oodna; ps -u oodna && ecryptfs-migrate-home -u oodna"'
-    - require:
-      - kmod: users_mods
-      - pkg: users_pkgs
-      - user: oodna
-    - unless: test -d /home/.ecryptfs/oodna
-{% endif %}
-{% endif %}
-
-{% if grains['host'] != 'Bruyere' %}
-albinou:
-  user.present:
-    - fullname: Albin Kauffmann
-    - shell: /usr/bin/zsh
-    - home: /home/albinou
-    - uid: 1203
-    - gid: 1203
-    - groups:
-      - amis
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1203
-albinou_a:
-  group.present:
-    - gid: 1204
-    - members:
-      - arkanosis
-      - albinou
-
-
-{% if grains['os_family'] == 'Arch' %}
-/home/.ecryptfs/albinou:
-  cmd.run:
-    - name: '! echo "Please run as root and then login: passwd albinou; ps -u albinou && ecryptfs-migrate-home -u albinou"'
-    - require:
-      - kmod: users_mods
-      - pkg: users_pkgs
-      - user: albinou
-    - unless: test -d /home/.ecryptfs/albinou
-{% endif %}
-{% endif %}
-
-guest:
-  user.present:
-    #- fullname: 'Guest'
-    - shell: /usr/bin/zsh
-    - home: /home/guest
-    - uid: 1900
-    - gid: 1900
-    - groups:
-    - remove_groups: False
-    - require:
-      - pkg: shell_pkgs
-  group.present:
-    - gid: 1900
-
-{% if grains['os_family'] == 'Arch' %}
-/home/.ecryptfs/guest:
-  cmd.run:
-    - name: '! echo "Please run as root and then login: passwd guest; ps -u guest && ecryptfs-migrate-home -u guest"'
-    - require:
-      - kmod: users_mods
-      - pkg: users_pkgs
-      - user: guest
-    - unless: test -d /home/.ecryptfs/guest
-{% endif %}
 
 {% if grains['os_family'] == 'Arch' %}
 /etc/sudoers:

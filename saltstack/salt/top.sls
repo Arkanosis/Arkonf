@@ -11,6 +11,7 @@ base:
     - shell
     - space
     - ssh
+    - users
     - utilities
     - vcs
 
@@ -55,7 +56,6 @@ base:
     - webbrowser
     - xorg
 
-    - users
 
   'I@roles:gaming':
     - gaming
