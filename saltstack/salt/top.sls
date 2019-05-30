@@ -3,10 +3,15 @@ base:
     - repos
 
     - compression
+    - crypto
+    - database
     - editor
     - etckeeper
+    - fs
     - mail
     - monitoring
+    - processing
+    - python
     - search
     - shell
     - space
@@ -29,33 +34,29 @@ base:
     - pacman
 
   'I@roles:graphical':
-    - android
     - audio
     - backup
     - communication
-    - compile
-    - crypto
-    - database
     - document
-    - fs
     - image
-    - java
     - language
     - media
     - network # TODO some stuff should be in base
     - nginx # TODO some stuff should also be in server
     - pass
-    - processing
-    - profiling
     - publication
-    - python
-    - qt
     - term
     - usb
     - vm
     - webbrowser
     - xorg
 
+  'I@roles:development':
+    - android
+    - compile
+    - java
+    - profiling
+    - qt
 
   'I@roles:gaming':
     - gaming
