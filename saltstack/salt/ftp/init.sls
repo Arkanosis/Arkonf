@@ -5,7 +5,6 @@ ftp_pkgs:
   pkg.installed:
     - pkgs:
       - filezilla
-      - openssl
       - vsftpd
 
 /etc/vsftpd.conf:
