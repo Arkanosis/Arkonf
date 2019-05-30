@@ -5,6 +5,11 @@ editor_pkgs:
       - emacs
       - vim
 
+editor_pkgs_removed: # https://github.com/saltstack/salt/issues/35592
+  pkg.removed:
+    - pkgs:
+      - nano
+
 /usr/bin/emacs-console:
   file.managed:
     - source: salt://editor/emacs-console
