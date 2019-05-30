@@ -102,7 +102,11 @@ ntp:
     - gid: {{ user.id }}
 {% if user.sudo | default(False) %}
     - groups:
+{% if grains['os_family'] == 'Debian' %}
       - sudo
+{% else %}
+      - wheel
+{% endif %}
 {% endif %}
 # TODO handle groups
     - remove_groups: False
