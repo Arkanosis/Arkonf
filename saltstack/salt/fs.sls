@@ -18,11 +18,11 @@ fs_pkgs:
     - opts:
       - nodev
       - nosuid
-{% if grains['mem_total'] > 32000 %}
+{% if grains['mem_total'] > 31000 %}
       - size=10G
-{% elif grains['mem_total'] > 24000 %}
+{% elif grains['mem_total'] > 23000 %}
       - size=8G
-{% elif grains['mem_total'] > 16000 %}
+{% elif grains['mem_total'] > 15000 %}
       - size=6G
 {% else %}
       - size=2G
