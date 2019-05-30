@@ -31,7 +31,6 @@ base:
     - android
     - audio
     - backup
-    - banner
     - communication
     - compile
     - crypto

@@ -2,6 +2,7 @@ utilities_pkgs:
   pkg.installed:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
+      - banner
       - exa
 {% else %}
       - lsb
@@ -15,6 +16,9 @@ utilities_pkgs:
       - moreutils
       - neofetch
       - parallel
+{% if grains['os_family'] != 'Arch' %}
+      - sysvbanner
+{% endif %}
       - tree
       - typespeed
 
