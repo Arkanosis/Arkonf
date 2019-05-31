@@ -112,7 +112,7 @@ users_pkgs:
     - user: {{ user.login }}
     - unless: test -d /home/{{ user.login }}/Arkonf
 
-rm -f /home/{{ user.login }}/.bashrc:
+rm -f /home/{{ user.login }}/.bashrc && rm -f /home/{{ user.login }}/.bash_profile:
   cmd.run:
     - require:
       - user: {{ user.login }}
