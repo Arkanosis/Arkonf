@@ -13,5 +13,5 @@ communication_pkgs:
 
 /usr/bin/irc:
   file.managed:
-    - source: salt://chat/irc
+    - source: salt://communication/irc
     - mode: 755
