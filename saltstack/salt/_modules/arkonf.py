@@ -17,7 +17,7 @@ def _allowed_users(users, local_users, *conditions):
     logger.debug('users ({}): {}'.format(conditions, users))
     allowed_users = []
     for user in users:
-        if user in local_users:
+        if user['login'] in local_users:
             for condition in conditions:
                 if user.get(condition, False):
                     allowed_users.append(user)

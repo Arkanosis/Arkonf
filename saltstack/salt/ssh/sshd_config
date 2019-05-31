@@ -40,6 +40,9 @@ AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
 
+Match User rssht-user
+      AuthenticationMethods publickey
+
 {% if pillar['known_ips'] %}
 Match Address {{ pillar['known_ips'] | default([]) | join(',') }}
       AuthenticationMethods publickey

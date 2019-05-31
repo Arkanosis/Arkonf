@@ -1,6 +1,9 @@
 #%PAM-1.0
-auth [success=done new_authtok_reqd=done default=die] pam_google_authenticator.so nullok
+auth requisite pam_google_authenticator.so nullok
 auth      include   system-remote-login
 account   include   system-remote-login
 password  include   system-remote-login
 session   include   system-remote-login
+
+# Send an email
+session    optional     pam_exec.so seteuid /usr/bin/notify_ssh_login
