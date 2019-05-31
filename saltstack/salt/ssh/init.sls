@@ -22,12 +22,14 @@ ssh_pkgs:
     - template: jinja
     - mode: 755
 
-{% if grains['os_family'] != 'Arch' %}
 /etc/pam.d/sshd:
   file.managed:
+{% if grains['os_family'] == 'Arch' %}
+    - source: salt://ssh/pam.d_sshd.arch
+{% else %}
     - source: salt://ssh/pam.d_sshd
-    - mode: 644
 {% endif %}
+    - mode: 644
 
 {% if grains['os_family'] == 'Arch' %}
 sshd.socket:
