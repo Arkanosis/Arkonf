@@ -22,7 +22,7 @@ PermitRootLogin no
 PermitEmptyPasswords no
 StrictModes yes
 
-AllowUsers {{ salt['arkonf.allowed_ssh_users'](pillar['users']) | sort(attribute='login') | join(' ', attribute='login') }}
+AllowUsers {{ salt['arkonf.allowed_ssh_users'](pillar['users'], pillar['local_users']) | sort(attribute='login') | join(' ', attribute='login') }}
 
 LoginGraceTime 30
 MaxAuthTries 3
@@ -40,11 +40,13 @@ AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
 
+{% if pillar['known_ips'] %}
 Match Address {{ pillar['known_ips'] | default([]) | join(',') }}
       AuthenticationMethods publickey
+{% endif %}
 
-{% if salt['arkonf.allowed_sftp_users'](pillar['users']) %}
-Match User {{ salt['arkonf.allowed_sftp_users'](pillar['users']) | sort(attribute='login') | join(' ', attribute='login') }}
+{% if salt['arkonf.allowed_sftp_users'](pillar['users'], pillar['local_users']) %}
+Match User {{ salt['arkonf.allowed_sftp_users'](pillar['users'], pillar['local_users']) | sort(attribute='login') | join(' ', attribute='login') }}
       ForceCommand internal-sftp
       ChrootDirectory /var/sftp/%u
       PermitTunnel no
