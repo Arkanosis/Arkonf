@@ -12,6 +12,8 @@ users_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - ecryptfs-utils
 {% endif %}
+      - libpam-google-authenticator
+      - qrencode
       - sudo
 
 {% for user in pillar['users'] %}
