@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ "x$HOSTNAME" = "xgossamer" ]; then
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+    xrandr --dpi 96
+fi
+
 # Env
 export ARKONF_DIR="$HOME/Arkonf"
 export LANG=fr_FR.UTF-8
