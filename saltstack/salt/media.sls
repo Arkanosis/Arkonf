@@ -2,12 +2,14 @@ media_pkgs:
   pkg.installed:
     - pkgs:
       - asciinema
+      - flac
 {% if grains['os_family'] == 'Arch' %}
       - ffmpeg
       - libvdpau-va-gl
 {% else %}
       - libav-tools
 {% endif %}
+      - opus-tools
       - mpv
       - vlc
 
