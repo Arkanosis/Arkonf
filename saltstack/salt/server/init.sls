@@ -25,7 +25,40 @@ server_pkgs_extras:
 
 {% if pillar['domains'] %}
 
-# TODO clone site configurations in sites-available based on domains
+{% for site in pillar['sites'] %}
+
+{% if site.domain in pillar['domains'] %}
+
+# TODO clone site content in root based on site.repository
+
+{{ site.root }}:
+  file.directory:
+    - user: {{ site.owner }}
+    - group: {{ site.owner }}
+    - mode: 711
+
+# TODO clone site configurations in sites-available based on site.config (if any)
+# TODO otherwise, use the default configuration as follow
+
+/etc/nginx/sites-available/{{ site.domain }}:
+  file.managed:
+    - makedirs: True
+    - source: salt://server/site.conf
+    - template: jinja
+    - defaults:
+        domain: {{ site.domain }}
+        root: {{ site.root }}
+        main_domain: "bismuth.arkanosis.net"
+    - mode: 644
+
+/etc/nginx/sites-enabled/{{ site.domain }}:
+  file.symlink:
+    - makedirs: True
+    - target: ../sites-available/{{ site.domain }}
+
+{% endif %}
+
+{% endfor %}
 
 # TODO enable sites based on domains
 /etc/nginx/sites-enabled/bismuth.arkanosis.net:

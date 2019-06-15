@@ -14,4 +14,5 @@ known_ips:
 
 domains:
   - bismuth.arkanosis.net
-  - dl2.denomme.fr
+
+  - dl.denomme.fr

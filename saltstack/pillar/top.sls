@@ -1,6 +1,7 @@
 base:
   '*':
     - settings
+    - sites
     - users
 
   'P@host:Amaryllis':
