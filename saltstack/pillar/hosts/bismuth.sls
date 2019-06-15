@@ -4,7 +4,7 @@ roles:
 local_users:
   - arkanosis
   - asdp
-  - dl-denomme-fr
+  - sftp-denomme-fr
   - rssht-user
 
 known_ips:
