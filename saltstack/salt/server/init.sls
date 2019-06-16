@@ -33,7 +33,6 @@ server_pkgs_extras:
 
 {{ site.root }}:
   file.directory:
-    - makedirs: True
     - user: {{ site.owner }}
     - group: {{ site.owner }}
     - mode: 711

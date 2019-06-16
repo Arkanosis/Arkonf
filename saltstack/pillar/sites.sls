@@ -10,5 +10,5 @@ sites:
 
   # regovar.org
   - domain: dl.regovar.org
-    root: /var/sftp/sftp-regovar.org/dl
+    root: /var/sftp/sftp-regovar-org/dl
     owner: sftp-regovar-org
