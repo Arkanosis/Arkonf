@@ -7,3 +7,8 @@ sites:
   - domain: qr.denomme.fr
     root: /var/sftp/sftp-denomme-fr/qr
     owner: sftp-denomme-fr
+
+  # regovar.org
+  - domain: dl.regovar.org
+    root: /var/sftp/sftp-regovar.org/dl
+    owner: sftp-regovar-org
