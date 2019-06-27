@@ -92,13 +92,13 @@ x() {
             ;;
             *.(doc|xls)x)
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&
-		    if which xmlstarlet >& /dev/null; then
-			for xml in **/*.xml; do
-			    formatted=$(mktemp)
-			    xmlstarlet fo $xml >| $formatted
-			    mv -f $formatted $xml
-			done
-		    fi
+                    if which xmlstarlet >& /dev/null; then
+                        for xml in **/*.xml; do
+                            formatted=$(mktemp)
+                            xmlstarlet fo $xml >| $formatted
+                            mv -f $formatted $xml
+                        done
+                    fi
                 }
                 extractandflatten $arg extract \
                     's/\.\(doc\|xls\)x$//' \
@@ -106,13 +106,13 @@ x() {
             ;;
             *.od(g|p|s|t))
                 extract() { which 7z >&- && 7z x $1 || unzip $1 &&
-		    if which xmlstarlet >& /dev/null; then
-			for xml in **/*.xml; do
-			    formatted=$(mktemp)
-			    xmlstarlet fo $xml >| $formatted
-			    mv -f $formatted $xml
-			done
-		    fi
+                    if which xmlstarlet >& /dev/null; then
+                        for xml in **/*.xml; do
+                            formatted=$(mktemp)
+                            xmlstarlet fo $xml >| $formatted
+                            mv -f $formatted $xml
+                        done
+                    fi
                 }
                 extractandflatten $arg extract \
                     's/\.od[gpst]$//' \
@@ -125,13 +125,13 @@ x() {
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mNon-compressed\e[0;32m archive)...\e[0m"
             ;;
             *.deb)
-		extract() {
-		    ar xv $1
-		    if [[ -f control.tar.gz ]]; then
-			tar xvzf control.tar.gz && rm control.tar.gz
-		    fi
-		    ( x data.tar.* && rm data.tar.* )
-		}
+                extract() {
+                    ar xv $1
+                    if [[ -f control.tar.gz ]]; then
+                        tar xvzf control.tar.gz && rm control.tar.gz
+                    fi
+                    ( x data.tar.* && rm data.tar.* )
+                }
                 extractandflatten $arg extract \
                     's/\.deb$//' \
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
@@ -212,7 +212,7 @@ t() {
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mZip\e[0;32m compressed archive)...\e[0m"
                 which 7z >&- && 7z l $arg || unzip -l $arg
             ;;
-            *.docx)
+            *.(doc|xls)x)
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mOpenXML\e[0;32m text document)...\e[0m"
                 which 7z >&- && 7z l $arg || unzip -l $arg
             ;;
@@ -226,13 +226,17 @@ t() {
             ;;
             *.deb)
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
-		ar t $arg
-		algo=$(ar t $arg | sed -n 's/data\.tar\.//p')
-		ar p $arg data.tar.$algo | case $algo in
-		    gz) tar tz;;
-		    bz2) tar tj;;
-		    xz) tar tJ;;
-		esac | sed 's/^\./data/'
+                ar t $arg
+                algo=$(ar t $arg | sed -n 's/data\.tar\.//p')
+                ar p $arg data.tar.$algo | case $algo in
+                    gz) tar tz;;
+                    bz2) tar tj;;
+                    xz) tar tJ;;
+                esac | sed 's/^\./data/'
+            ;;
+            *.rpm)
+                print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m"
+                 ( which 7z >&- && 7z x -so $1 || rpm2cpio $1 ) | cpio -t
             ;;
             *.rar)
                 print "\e[32mListing \e[1m$arg\e[0;32m (\e[1mRar\e[0;32m compressed archive)...\e[0m"
