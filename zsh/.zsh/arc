@@ -137,7 +137,7 @@ x() {
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mDebian\e[0;32m package)...\e[0m"
             ;;
             *.rpm)
-                extract() { rpm2cpio $1 | cpio -idmv }
+                extract() { ( which 7z >&- && 7z x -so $1 || rpm2cpio $1 ) | cpio -idmv }
                 extractandflatten $arg extract \
                     's/\.rpm$//' \
                     "\e[32mExtracting \e[1m$arg\e[0;32m (\e[1mRedHat\e[0;32m package)...\e[0m"
