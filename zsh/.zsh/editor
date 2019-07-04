@@ -74,7 +74,7 @@ PAGER=less
 
 td() {
     if [[ $OS =~ 'Windows' ]]; then
-        e "/c/Users/$USER/Org"
+        e ~/Documents/Org
     else
         ec -s org ~/Documents/Org
     fi
