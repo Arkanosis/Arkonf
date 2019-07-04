@@ -72,13 +72,15 @@ fi
 
 PAGER=less
 
-td() {
-    if [[ $OS =~ 'Windows' ]]; then
-        e ~/Documents/Org
-    else
+if [[ $OS =~ 'Windows' ]]; then
+    td() {
+	e ~/Documents/Org
+    }
+else
+    td() {
         ec -s org ~/Documents/Org
-    fi
-}
+    }
+fi
 
 utd() {
     kill -18 $(ps aux | grep 'emac[s].*org' | awk '{ print $2 }')
