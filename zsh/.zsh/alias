@@ -111,6 +111,12 @@ umnt() {
     udisksctl unmount -b $@
 }
 
-scp() {
-    rsync -aAXz --info=progress2 --partial-dir=.rsync-partial $@
-}
+if [[ $OS =~ 'Windows' ]]; then
+    scp() {
+	rsync -aAz --info=progress2 --partial-dir=.rsync-partial $@
+    }
+else
+    scp() {
+	rsync -aAXz --info=progress2 --partial-dir=.rsync-partial $@
+    }
+fi
