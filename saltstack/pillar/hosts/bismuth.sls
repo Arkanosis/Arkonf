@@ -17,5 +17,6 @@ domains:
   - bismuth.arkanosis.net
 
   - dl.denomme.fr
+  - qr.denomme.fr
 
   - dl.regovar.org
