@@ -33,3 +33,7 @@ def lines(file_path):
                     yield line.rstrip()
     except IOError:
         return
+
+def key_values(file_path):
+    for line in lines(file_path):
+        yield line.split(' ')
