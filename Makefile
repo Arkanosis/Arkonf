@@ -1,3 +1,4 @@
+
 CONFIGS= \
 	autoconf \
 	awesome \
@@ -25,6 +26,7 @@ CONFIGS= \
 	tmux \
 	vim \
 	weechat \
+	xdg \
 	xorg \
 	zsh
 
@@ -202,6 +204,11 @@ vim: ~/.vimrc
 weechat: ~/.weechat
 ~/.weechat:
 	ln -s "$(ROOT)weechat/$(notdir $@)" "$@"
+
+xdg: ~/.config/mimeapps.list
+~/.config/mimeapps.list:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)xdg/$(notdir $@)" "$@"
 
 xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 ~/.xinitrc:

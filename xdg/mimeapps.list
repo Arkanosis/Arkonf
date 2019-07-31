@@ -1,0 +1,13 @@
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop;org.kde.okular.desktop;
+image/gif=sxiv.desktop;org.kde.gwenview.desktop;
+image/jpeg=sxiv.desktop;org.kde.gwenview.desktop;
+image/png=sxiv.desktop;org.kde.gwenview.desktop;
+image/svg+xml=inkscape.desktop;
+image/tiff=sxiv.desktop;org.kde.gwenview.desktop;
+image/webp=vlc.desktop;
+text/csv=libreoffice-calc.desktop;
+text/plain=emacs27.desktop;emacs26.desktop;emacs25.desktop;emacs24.desktop;
+text/x-log=emacs27.desktop;emacs26.desktop;emacs25.desktop;emacs24.desktop;
+video/mp4=vlc.desktop;
+video/quicktime=vlc.desktop;
