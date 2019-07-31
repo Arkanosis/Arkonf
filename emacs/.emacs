@@ -248,6 +248,10 @@ If region contains less than 2 lines, lines are left untouched."
   (lambda ()
     (org-add-link-type "thunderlink" 'org-thunderlink-open)))
 
+(setq org-file-apps '(
+  ("\\.pdf\\'" . "xdg-open \"%s\"")
+  (auto-mode . emacs)))
+
 (defun org-revert-buffers ()
   (dolist (buf (buffer-list))
     (let ((filename (buffer-file-name buf)))
