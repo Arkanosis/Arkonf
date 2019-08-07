@@ -759,21 +759,6 @@ If region contains less than 2 lines, lines are left untouched."
 (c-set-offset 'block-open '0)
 (c-set-offset 'catch-clause '0)
 
-;(server-mode t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Exalead specifics
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun ht()
-  (interactive)
-  (highlight-regexp "VlHMM: Next: token is '.+', [0-9]+ path(es) left" 'hi-red-b)
-  (highlight-regexp "VlHMM: Order: >> switching to order [0-9+]" 'hi-green-b)
-  (highlight-regexp "nextProbability of [01]\\(\\.[0-9]+\\)? was [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)? \\* [01]\\(\\.[0-9]+\\)?" 'hi-blue-b)
-  (highlight-regexp "fetching for state [0-9]+" 'linum)
-  (highlight-regexp "looking for [a-z]+ in context '.+" 'font-lock-keyword-face)
-)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MediaWiki specifics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -862,38 +847,6 @@ If region contains less than 2 lines, lines are left untouched."
    " << ")
 (global-set-key "\M-q" 'auto_cc)
 
-;; ns_who
-;; (C) 2007 - Arkanosis
-
-(defun ns_who()
-  (interactive)
-  (setq
-   login
-   (read-string "ns_who " "" nil "" nil))
-  (princ
-   (shell-command-to-string
-    (format
-     "ns_who | grep %s | sed 's/@/  @ /' | sed 's/ *$//'"
-     login
-     login))))
-
-;; ns_send
-;; (C) 2007 - Arkanosis
-
-(defun ns_send()
-  (interactive)
-  (setq
-   login
-   (read-string "ns_send " "" nil "" nil))
-  (princ
-   (shell-command-to-string
-    (format
-     "ns_send_msg %s %s"
-     login
-     (buffer-substring
-      (point)
-      (point+2))))))
-
 ;; Auto-class
 ;; (C) 2007 - Arkanosis
 
@@ -922,96 +875,10 @@ If region contains less than 2 lines, lines are left untouched."
 	  (error "Aborted"))
 	)))
 )
-
-; (defun put-header()
-;   (interactive)
-;   (when buffer-file-name
-;     (save-excursion
-;       (goto-char (point-min))
-;       (while (looking-at "[/*][/*]")
-;        (forward-line 1))
-;       (unless (looking-at "#ifndef")
-;        (let ((fname (upcase (file-name-nondirectory buffer-file-name))))
-;          (while (string-match "\\." fname)
-;            (setq fname (replace-match "_" nil nil fname)))
-;          (insert "#ifndef " fname "_
-;"
-;                  "# define " fname "_
-;
-;")
-;          (goto-char (point-max))
-;          (insert "
-;#endif /* !" fname "_ */
-;"))))))
-
-;;(define-key global-map "\C-cjjh" 'put-header)
-;(global-set-key [f10] 'put-header)
-
-
-;   (when buffer-file-name
-;     (save-excursion
-;
-;       (unless (looking-at "#include")
-;        (let ((fname (file-name-nondirectory buffer-file-name)))
-;          (while (string-match "\\.c" fname)
-;            (setq fname (replace-match ".h" nil nil fname)))
-;          (insert "\n#include \"" fname "\"
-;")))))
-
-;(define-key global-map "\C-cjji" 'put-include)
-;(global-set-key [f9] 'put-include)
-
-
-;(defun rec-lines (count)
-;  (forward-line count)
-;  (when (not (= (char-after) (if (= count 1) ?} ?{)))
-;    (rec-lines count)
-;    )
-;  (point)
-;  )
-;(defun lines ()
-;  "Count number of lines of a C function"
-;  (interactive)
-;  (let ((old-pt (point))
-;        (pt1 (rec-lines 1))
-;        (pt2 (rec-lines -1)))
-;    (goto-char old-pt)
-;    (message (format "Lines : %d" (1- (count-lines pt1 pt2))))
-;    )
-;  )
-;;  (when buffer-file-name
-;;    (save-excursion
-;;      (goto-char (point-min))
-;;      (while (looking-at "[/*][/*]")
-;;        (forward-line 1))
-;;      (unless (looking-at "#ifndef")
-;;        (let ((fname (upcase (file-name-nondirectory buffer-file-name))))
-;;          (while (string-match "\\." fname)
-;;            (setq fname (replace-match "_" nil nil fname)))
-;;  ;        (insert "#ifndef " fname "_
-;;"
-;;                  "# define " fname "_
-;;
-;;")
-;;          (goto-char (point-max))
-;;          (insert "
-;;#endif /* !" fname "_ */
-;;"))))))
-
 (define-key global-map "\C-cjm" 'make-class)
 
 ;; Macros
 ;; (C) 2007 - Arkanosis
-
-(fset 'auto_location
-   "\C-[w</ENAMEX>\C-x\C-x\C-[w</\C-?ENAMEX TYPE=\"LOCATION\">")
-(define-key global-map "\C-xrel" 'auto_location)
-(fset 'auto_organization
-   "\C-[w</ENAMEX>\C-x\C-x\C-[w</\C-?ENAMEX TYPE=\"ORGANIZATION\">")
-(define-key global-map "\C-xreo" 'auto_organization)
-(fset 'auto_person
-   "\C-[w</ENAMEX>\C-x\C-x\C-[w</\C-?ENAMEX TYPE=\"PERSON\">")
-(define-key global-map "\C-xrep" 'auto_person)
 
 (fset 'auto_ife
    "if ()\C-m{\C-m\C-m}\C-melse\C-m{\C-m\C-m}\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-[OA\C-[OF\C-[OD")
@@ -1131,7 +998,6 @@ If region contains less than 2 lines, lines are left untouched."
 "))))))
 
 (define-key global-map "\C-cjjh" 'put-header)
-;(global-set-key [f10] 'put-header)
 
  (defun put-include()
    (interactive)
@@ -1148,8 +1014,6 @@ If region contains less than 2 lines, lines are left untouched."
 "))))))
 
 (define-key global-map "\C-cjji" 'put-include)
-;(global-set-key [f9] 'put-include)
-
 
 (defun rec-lines (count)
   (forward-line count)
@@ -1208,24 +1072,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;; 			     (or (getenv "CPPFLAGS") "-DDEBUG=9")
 ;; 			     (or (getenv "CFLAGS") "-ansi -pedantic -Wall -g")
 ;; 			     file))))))
-
-
-(defun oa()
-  (interactive)
-  (highlight-regexp "CrossChecker" 'hi-red-b)
-  (highlight-regexp "orange" 'hi-green-b)
-  (highlight-regexp "HMMBuilder" 'hi-blue-b))
-
-
-
-
-
-
-
-
-
-
-
 
 ;;     (setq-default tab-width 1) ; or any other preferred value
 ;;     (defvaralias 'c-basic-offset 'tab-width)
