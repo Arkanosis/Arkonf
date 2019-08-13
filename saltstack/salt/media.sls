@@ -11,6 +11,7 @@ media_pkgs:
 {% endif %}
       - opus-tools
       - mpv
+      - v4l-utils
       - vlc
 
 dragonplayer:
