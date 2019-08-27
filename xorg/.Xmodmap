@@ -202,7 +202,7 @@ clear mod5
 add shift = Shift_L Shift_R
 !add lock =
 add control = Control_L Control_R
-add mod1 = Alt_L Mode_switch
+add mod1 = Alt_L Alt_R Mode_switch
 add mod2 = Num_Lock
 !add mod3 =
 add mod4 = Super_L
