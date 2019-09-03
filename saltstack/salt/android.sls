@@ -5,4 +5,5 @@ android_pkgs:
       - android-tools
 {% else %}
       - android-tools-adb
+      - fdroidserver # TODO FIXME need it for ArchLinux as well
 {% endif %}
