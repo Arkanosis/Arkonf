@@ -27,6 +27,8 @@ user_pref("network.proxy.socks_remote_dns", true);
 
 user_pref("signon.rememberSignons", false);
 
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
 user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.prompted", 2);
 user_pref("toolkit.telemetry.rejected", true);
