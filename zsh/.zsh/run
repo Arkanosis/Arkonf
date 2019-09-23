@@ -49,7 +49,7 @@ psd() {
 }
 
 lxc-boot() {
-    local dir='' distribution=debian release=stretch
+    local dir='' distribution=debian release=buster
     while [[ $1 = -* ]]; do
         case $1 in
             -t)
@@ -65,6 +65,11 @@ lxc-boot() {
                 shift
                 distribution=debian
                 release=stretch
+            ;;
+            -buster)
+                shift
+                distribution=debian
+                release=buster
             ;;
             *)
                 echo "Unknown option $1" >&2
