@@ -1,28 +1,28 @@
-{% if grains['oscodename'] == 'stretch' %}
+{% if grains['oscodename'] == 'buster' %}
 
 /etc/apt/preferences:
   file.managed:
     - source: salt://repos/apt-preferences
     - mode: 644
 
-deb http://deb.debian.org/debian stretch contrib:
+deb http://deb.debian.org/debian buster contrib:
   pkgrepo.managed:
-    - dist: stretch
+    - dist: buster
     - file: /etc/apt/sources.list.d/contrib.list
 
-deb http://deb.debian.org/debian stretch non-free:
+deb http://deb.debian.org/debian buster non-free:
   pkgrepo.managed:
-    - dist: stretch
+    - dist: buster
     - file: /etc/apt/sources.list.d/non-free.list
 
-deb http://ftp.debian.org/debian stretch-backports main:
+deb http://ftp.debian.org/debian buster-backports main:
   pkgrepo.managed:
-    - dist: stretch-backports
+    - dist: buster-backports
     - file: /etc/apt/sources.list.d/backports.list
 
-deb http://security.debian.org/ stretch/updates main:
+deb http://security.debian.org/ buster/updates main:
   pkgrepo.managed:
-    - dist: stretch/updates
+    - dist: buster/updates
     - file: /etc/apt/sources.list.d/security.list
 
 {% elif grains['oscodename'] == 'xenial' %}

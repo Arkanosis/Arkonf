@@ -4,6 +4,7 @@ include:
 server_pkgs:
   pkg.installed:
     - pkgs:
+      - certbot
       - curl
       - rsync
 
@@ -16,12 +17,7 @@ server_pkgs:
 
       - make
 
-server_pkgs_extras:
-  pkg.installed:
-    - pkgs:
-      - certbot
       - python-certbot-nginx
-    - fromrepo: stretch-backports
 
 {% if pillar['domains'] %}
 

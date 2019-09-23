@@ -3,6 +3,4 @@ space_pkgs:
     - pkgs:
       - dfc
       - ncdu
-{% if grains['oscodename'] != 'stretch' %} # Only available starting with buster
       - rmlint
-{% endif %}

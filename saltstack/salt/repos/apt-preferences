@@ -1,4 +1,4 @@
 Package: *
-Pin: release a=stretch-backports
+Pin: release a=buster-backports
 Pin-Priority: -1
 
