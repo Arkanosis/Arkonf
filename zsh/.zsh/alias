@@ -85,7 +85,7 @@ py() {
 }
 
 pw() {
-    pwgen --secure --ambiguous 9
+    pwgen --secure --ambiguous 12
 }
 
 fu() {
