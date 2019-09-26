@@ -233,7 +233,7 @@ If region contains less than 2 lines, lines are left untouched."
         (cons "index6" (svnpath "platform/index6/trunk"))
         (cons "semantic" (svnpath "platform/semantic/trunk"))))
 
-(setq org-agenda-files '("~/Documents/Org"))
+(setq org-agenda-files '("~/Documents/Org" "~/Documents/Org/Notes" "~/Documents/Org/Exalead"))
 
 (setq org-agenda-start-day "-2d")
 (setq org-agenda-span 15)
