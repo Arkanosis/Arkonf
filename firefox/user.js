@@ -24,6 +24,7 @@ user_pref("mousewheel.with_control.action", 0);
 
 user_pref("network.allow-experiments", false);
 user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.IDN_show_punycode", true);
 
 user_pref("permissions.default.desktop-notification", 2);
 
