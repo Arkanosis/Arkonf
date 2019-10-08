@@ -15,7 +15,7 @@ kb() {
 }
 
 eip() {
-    curl ipinfo.io
+    curl ipinfo.io/$1
 }
 
 wttr() {
