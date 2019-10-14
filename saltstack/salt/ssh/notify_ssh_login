@@ -1,11 +1,13 @@
 #! /bin/sh
 
 if [ "$PAM_TYPE" != "close_session" ]; then
+  DETAILS=$(curl -s "https://ipinfo.io/$PAM_RHOST" | jq -r '"\(.hostname), \(.org), \(.city), \(.region)"')
   {
     echo "User: $PAM_USER"
     echo "Remote Host: $PAM_RHOST"
     echo "Service: $PAM_SERVICE"
     echo "TTY: $PAM_TTY"
     echo "Date: $(date)"
-  } | mail -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST" {{ pillar['recipient_email'] }}
+    echo "Details: $DETAILS"
+  } | mail -Sttycharset=utf8 -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST ($DETAILS)" jroquet@arkanosis.net
 fi
