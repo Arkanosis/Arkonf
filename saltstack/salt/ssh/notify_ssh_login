@@ -9,5 +9,8 @@ if [ "$PAM_TYPE" != "close_session" ]; then
     echo "TTY: $PAM_TTY"
     echo "Date: $(date)"
     echo "Details: $DETAILS"
-  } | mail -Sttycharset=utf8 -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST ($DETAILS)" jroquet@arkanosis.net
+  } | (
+    mail -Sttycharset=utf8 -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST ($DETAILS)" jroquet@arkanosis.net ||
+    mail -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $PAM_RHOST" jroquet@arkanosis.net
+  )
 fi
