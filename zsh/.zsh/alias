@@ -22,9 +22,15 @@ ed() {
     fi
 }
 
-hx() {
-    hexdump -C $@
-}
+if which hexyl >& /dev/null; then
+    hx() {
+	hexyl $@
+    }
+else
+    hx() {
+	hexdump -C $@
+    }
+fi
 
 dm() {
     LC_NUMERIC=C datamash $@

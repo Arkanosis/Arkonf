@@ -4,6 +4,7 @@ utilities_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
       - exa
+      - hexyl # TODO FIXME need it for Debian / Kubuntu as well
 {% else %}
       - lsb
 {% endif %}
