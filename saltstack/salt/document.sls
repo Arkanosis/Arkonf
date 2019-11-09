@@ -16,6 +16,6 @@ document_pkgs:
 {% else %}
       - libreoffice
       - okular
-      - pdftk # TODO FIXME need it for ArchLinux as well
 {% endif %}
+      - pdftk
       - ruby-ronn
