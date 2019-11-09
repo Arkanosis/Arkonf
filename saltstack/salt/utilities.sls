@@ -4,8 +4,11 @@ utilities_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
       - exa
-      - hexyl # TODO FIXME need it for Debian / Kubuntu as well
-{% else %}
+{% endif %}
+{% if grains['oscodename'] not in ['xenial', 'bionic'] %}
+      - hexyl
+{% endif %}
+{% if grains['os_family'] != 'Arch' %}
       - lsb
 {% endif %}
       - lsb-release
