@@ -9,9 +9,6 @@ local_users:
   - nonfreegaming
   - rssht-user
 
-domains:
-  - studio1094.arkanosis.net
-
 smart_drives:
   - sda
   - sdb
