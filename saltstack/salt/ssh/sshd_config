@@ -50,6 +50,7 @@ Match Address {{ pillar['known_ips'] | default([]) | join(',') }}
 
 {% if salt['arkonf.allowed_sftp_users'](pillar['users'], pillar['local_users']) %}
 Match User {{ salt['arkonf.allowed_sftp_users'](pillar['users'], pillar['local_users']) | sort(attribute='login') | join(',', attribute='login') }}
+      AuthenticationMethods publickey
       ForceCommand internal-sftp
       ChrootDirectory /var/sftp/%u
       PermitTunnel no
