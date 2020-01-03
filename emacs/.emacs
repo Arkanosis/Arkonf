@@ -701,22 +701,9 @@ If region contains less than 2 lines, lines are left untouched."
        (if (file-writable-p ido-save-directory-list-file)
 	   (ido-save-history)
  	   nil)))
+   (setq ido-ignore-buffers '("\\` " "^\*"))
  )
 )
-
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
-
-(defun kill-useless-buffers ()
-  (if (get-buffer "*scratch*")
-      (kill-buffer "*scratch*")))
-(add-hook 'after-change-major-mode-hook 'kill-useless-buffers)
-
-(add-hook 'minibuffer-exit-hook
-      '(lambda ()
-         (let ((buffer "*Ido Completions*"))
-           (and (get-buffer buffer)
-                (kill-buffer buffer)))))
 
 (menu-bar-mode -1)
 (normal-erase-is-backspace-mode 0)
