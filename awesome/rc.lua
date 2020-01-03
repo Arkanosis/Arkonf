@@ -164,6 +164,9 @@ local mybattery = nil
 if file_exists("/sys/class/power_supply/BAT0") then
    local battery_widget = require("battery-widget")
    mybattery = battery_widget({adapter = "BAT0"}).widget
+elseif file_exists("/sys/class/power_supply/BAT1") then
+   local battery_widget = require("battery-widget")
+   mybattery = battery_widget({adapter = "BAT1"}).widget
 end
 
 awful.screen.connect_for_each_screen(function(s)
