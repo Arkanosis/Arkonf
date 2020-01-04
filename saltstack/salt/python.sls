@@ -20,6 +20,7 @@ python_pkgs:
       - python2-pillow
       - python-jinja
       - python2-lxml
+      - python-openpyxl
       - python-progressbar
       - python2-progressbar
       - python2-requests
@@ -40,6 +41,7 @@ python_pkgs:
       - python3-jinja2
       - python-lxml
       - python-pil
+      - python3-openpyxl
       - python-progressbar
       - python3-progressbar
       - python-q # TODO FIXME need it for ArchLinux as well
