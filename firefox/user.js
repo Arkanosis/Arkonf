@@ -4,6 +4,7 @@ user_pref("breakpad.reportURL", "");
 
 user_pref("browser.cache.disk.capacity", 1000000);
 user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
+user_pref("browser.ctrlTab.recentlyUsedOrder", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.shell.checkDefaultBrowser", false);
