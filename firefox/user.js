@@ -11,6 +11,7 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
+user_pref("browser.urlbar.suggest.searches", false);
 user_pref("browser.urlbar.trimURLs", false);
 
 user_pref("datareporting.healthreport.uploadEnabled", false);
