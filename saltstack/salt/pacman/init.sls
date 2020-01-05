@@ -3,8 +3,7 @@ pacman_pkgs:
     - pkgs:
       - base-devel
 
-# AUR cower
-# AUR pacaur
+# AUR yay
 
 /etc/pacman.conf:
   file.managed:
