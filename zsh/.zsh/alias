@@ -126,3 +126,15 @@ else
 	rsync -aAXz --info=progress2 --partial-dir=.rsync-partial $@
     }
 fi
+
+if [[ $USER != nonfreegaming ]]; then
+    wine() {
+	echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
+	return 1
+    }
+
+    steam() {
+	echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
+	return 1
+    }
+fi

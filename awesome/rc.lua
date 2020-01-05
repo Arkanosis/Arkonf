@@ -183,7 +183,17 @@ awful.screen.connect_for_each_screen(function(s)
     end
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+    s.mypromptbox = awful.widget.prompt {
+       hooks = {
+	  {{}, "Return", function(command)
+	      if os.getenv("USER") ~= "nonfreegaming" and command == "steam" then
+		 naughty.notify{ text = "Currently logged in as '".. os.getenv("USER") .."', consider using the 'nonfreegaming' account instead" }
+	      else
+		 return command
+	      end
+	  end}
+       }
+    }
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
