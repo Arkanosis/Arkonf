@@ -2,6 +2,9 @@ compile_pkgs:
   pkg.installed:
     - pkgs:
       - autoconf
+{% if grains['os_family'] == 'Arch' %}
+      - cargo-tree
+{% endif %}
       - cmake
 {% if grains['os_family'] == 'Arch' %}
       - gcc
