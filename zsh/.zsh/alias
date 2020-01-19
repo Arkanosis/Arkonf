@@ -119,11 +119,11 @@ umnt() {
 
 if [[ $OS =~ 'Windows' ]]; then
     scp() {
-	rsync -aAz --info=progress2 --partial-dir=.rsync-partial $@
+	rsync -aAzz --info=progress2 --partial-dir=.rsync-partial $@
     }
 else
     scp() {
-	rsync -aAXz --info=progress2 --partial-dir=.rsync-partial $@
+	rsync -aAXzz --info=progress2 --partial-dir=.rsync-partial $@
     }
 fi
 
