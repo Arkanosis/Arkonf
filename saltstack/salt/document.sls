@@ -2,6 +2,7 @@ document_pkgs:
   pkg.installed:
     - pkgs:
       - calibre
+      - docx2txt
       - kdiff3
 {% if grains['os_family'] == 'Arch' %}
       - libreoffice-fresh
@@ -15,6 +16,7 @@ document_pkgs:
       - zathura-ps
 {% else %}
       - libreoffice
+      - odt2txt
       - okular
 {% endif %}
       - pdftk
