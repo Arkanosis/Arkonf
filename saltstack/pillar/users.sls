@@ -17,6 +17,7 @@ users:
     groups:
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
+      - wireshark
       - famille
       - amis
     sudo: True

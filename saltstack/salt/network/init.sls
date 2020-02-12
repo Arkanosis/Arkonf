@@ -27,6 +27,7 @@ network_pkgs:
       - wget
       - whois
 {% if grains['os_family'] == 'Arch' %}
+      - wireshark-cli
       - wireshark-qt
 {% else %}
       - wireshark
