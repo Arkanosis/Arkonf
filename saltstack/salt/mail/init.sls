@@ -2,43 +2,44 @@ mail_pkgs:
   pkg.installed:
     - pkgs:
       - isync
+      - postfix
       - s-nail
-      - ssmtp
 
-/etc/ssmtp/ssmtp.conf:
+/etc/postfix/main.cf:
   file.managed:
-    - source: salt://mail/ssmtp.conf
+    - source: salt://mail/postfix_main.cf
     - template: jinja
-    - group: mail
-    - mode: 640
+    - mode: 644
 
-/etc/ssmtp/revaliases:
+/etc/postfix/passwd:
   file.managed:
-    - source: salt://mail/revaliases
+    - source: salt://mail/postfix_passwd
     - template: jinja
-    - group: mail
-    - mode: 640
+    - mode: 600
+  cmd.run:
+    - name: postmap /etc/postfix/passwd
+    - onchanges:
+      - file: /etc/postfix/passwd
 
-{% if grains['os_family'] == 'Arch' %}
-/usr/bin/ssmtp:
-{% else %}
-/usr/sbin/ssmtp:
-{% endif %}
+/etc/postfix/generic:
   file.managed:
-    - user: root
-    - group: mail
-    - mode: 2755
+    - source: salt://mail/postfix_generic
+    - template: jinja
+    - mode: 600
+  cmd.run:
+    - name: postmap /etc/postfix/generic
+    - onchanges:
+      - file: /etc/postfix/generic
 
-workaround_for_19834:
-  # Bug #19834: SaltStack can't change the group of a file
-  # and its setgid bit at the same time
-  file.managed:
-  {% if grains['os_family'] == 'Arch' %}
-    - name: /usr/bin/ssmtp
-{% else %}
-    - name: /usr/sbin/ssmtp
-{% endif %}
-    - mode: 2755
+postfix:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/postfix/main.cf
+      - cmd: /etc/postfix/passwd
+      - cmd: /etc/postfix/generic
+    - require:
+      - pkg: mail_pkgs
 
 {% if grains['os_family'] == 'Debian' %}
 /usr/bin/mail:
