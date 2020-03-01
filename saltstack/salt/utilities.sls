@@ -17,6 +17,7 @@ utilities_pkgs:
 {% else %}
       - man
 {% endif %}
+      - mlocate
       - moreutils
       - neofetch
       - parallel
