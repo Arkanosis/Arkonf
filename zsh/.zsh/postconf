@@ -8,6 +8,7 @@ fi
 
 export RUST_BACKTRACE=1
 
+export NAME=$NAME
 export EMAIL=$EMAIL
 export REPLYTO=$EMAIL
 export NNTPSERVER=$NNTPSERVER

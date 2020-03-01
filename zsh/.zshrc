@@ -1,5 +1,6 @@
 # "-*- sh -*-"
 
+NAME='Jérémie Roquet'
 EMAIL='jroquet@arkanosis.net'
 SOCKS_PASSWORD=''
 PROXY_HOST=''
