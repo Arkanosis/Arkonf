@@ -31,6 +31,16 @@ mail_pkgs:
     - onchanges:
       - file: /etc/postfix/generic
 
+/etc/postfix/header_checks:
+  file.managed:
+    - source: salt://mail/postfix_header_checks
+    - template: jinja
+    - mode: 600
+  cmd.run:
+    - name: postmap /etc/postfix/header_checks
+    - onchanges:
+      - file: /etc/postfix/header_checks
+
 postfix:
   service.running:
     - enable: True
@@ -38,6 +48,7 @@ postfix:
       - file: /etc/postfix/main.cf
       - cmd: /etc/postfix/passwd
       - cmd: /etc/postfix/generic
+      - cmd: /etc/postfix/header_checks
     - require:
       - pkg: mail_pkgs
 
