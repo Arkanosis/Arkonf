@@ -1,6 +1,6 @@
 {% for user in pillar['users'] -%}
 {% if user.login in pillar['local_users'] and 'email' in user -%}
-{{ user.login }}@{{ grains['host'] }}.localdomain {{ user.email }}
+{{ user.login }}@{{ pillar['smtp_domain'] }} {{ user.email }}
 {%- endif %}
 {%- endfor %}
-@{{ grains['host'] }}.localdomain {{ pillar['sender_email'] }}
+@{{ pillar['smtp_domain'] }} {{ pillar['sender_email'] }}

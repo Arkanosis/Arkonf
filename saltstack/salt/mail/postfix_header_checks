@@ -1,3 +1,2 @@
-/^From:\s+root@{{ grains['host'] }}.localdomain/ REPLACE From: "{{ grains['host'] }} admin" <{{ pillar['sender_email'] }}>
-/^Message-Id:\s+<(.*?)@{{ grains['host'] }}.localdomain>/ REPLACE Message-Id: <$1@{{ pillar['smtp_domain'] }}>
-/^Received:\s+(.*?).localdomain(.*)/ REPLACE Received: $1.{{ pillar['smtp_domain'] }}$2
+/^From:\s+root@{{ pillar['smtp_domain'] }}/ REPLACE From: "{{ grains['host'] }} admin" <{{ pillar['sender_email'] }}>
+/^Message-Id:\s+<(.*?)@{{ grains['host'] }}.{{ pillar['smtp_domain'] }}>/ REPLACE Message-Id: <$1@{{ pillar['smtp_domain'] }}>
