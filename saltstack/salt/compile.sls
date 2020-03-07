@@ -2,10 +2,12 @@ compile_pkgs:
   pkg.installed:
     - pkgs:
       - autoconf
+      - bison
 {% if grains['os_family'] == 'Arch' %}
       - cargo-tree
 {% endif %}
       - cmake
+      - flex
 {% if grains['os_family'] == 'Arch' %}
       - gcc
       - gettext
