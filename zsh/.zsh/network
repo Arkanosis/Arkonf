@@ -1,5 +1,13 @@
 # "-*- sh -*-"
 
+ipa() {
+    ip -br -c a
+}
+
+ipl() {
+    ip -br -c l
+}
+
 netuse() {
     netstat -a -e -e -p $@ | grep $HOST
 }
