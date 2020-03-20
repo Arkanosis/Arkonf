@@ -16,3 +16,4 @@ pywikibot/.pywikibot/throttle.ctrl
 ssh/.ssh/config.local
 weechat/.weechat/logs
 weechat/.weechat/weechat.log
+zsh/.zsh/exalead
