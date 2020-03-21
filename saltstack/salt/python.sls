@@ -21,6 +21,7 @@ python_pkgs:
       - python-jinja
       - python2-lxml
       - python-openpyxl
+      - python-poetry
       - python-progressbar
       - python2-progressbar
       - python2-requests
