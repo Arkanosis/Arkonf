@@ -33,10 +33,19 @@ network_pkgs:
       - wireshark
 {% endif %}
 
+{% if pillar.network_interfaces is defined %}
+{% if pillar.network_interfaces.wired is defined %}
+{% for network_interface in pillar['network_interfaces']['wired'] %}
 /usr/bin/ethernet:
   file.managed:
     - source: salt://network/ethernet
+    - template: jinja
+    - defaults:
+        network_interface: {{ network_interface }}
     - mode: 755
+{% endfor %}
+{% endif %}
+{% endif %}
 
 /usr/bin/lte:
   file.managed:

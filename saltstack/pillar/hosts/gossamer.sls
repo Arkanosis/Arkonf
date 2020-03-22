@@ -14,5 +14,7 @@ smart_drives:
   - sda
 
 network_interfaces:
+  wired:
+    - enp3s0
   wireless:
     - wlo1
