@@ -2,14 +2,16 @@
 
 IF=$(ip a | sed -n 's/^[0-9]\+: \(w[a-z0-9]\+\): .*/\1/p')
 
+CONFIG="/etc/wpa_supplicant/wpa_supplicant-$IF.conf"
+
 offline 2> /dev/null
 
 ip link set "$IF" up && \
     if [ $# -eq 0 ]; then
-        wpa_supplicant -B -m '' -i "$IF" -c "/etc/wpa_supplicant/$IF.conf"
+        wpa_supplicant -B -m '' -i "$IF" -c "$CONFIG"
     else
-        if ! grep -q '^ *ssid="'"$1"'"$' "/etc/wpa_supplicant/$IF.conf"; then
-            echo "SSID $1 not found in /etc/wpa_supplicant/$IF.conf" >&2
+        if ! grep -q '^ *ssid="'"$1"'"$' "$CONFIG"; then
+            echo "SSID $1 not found in $CONFIG" >&2
             exit 1
         fi
         wpa_supplicant -B -m '' -i "$IF" -c <(awk '
@@ -28,7 +30,7 @@ ip link set "$IF" up && \
             /^}$/ {
                 keep = 0
             }
-        ' "/etc/wpa_supplicant/$IF.conf")
+        ' "$CONFIG")
     fi && \
     dhcpcd "$IF" && \
     iw "$IF" link
