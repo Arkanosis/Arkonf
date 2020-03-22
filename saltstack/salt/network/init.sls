@@ -58,6 +58,12 @@ network_pkgs:
     - source: salt://network/assistance
     - mode: 755
 
+{% for network_interface in pillar['network_interfaces']['wireless'] %}
+wpa_supplicant@{{ network_interface }}:
+  service.running:
+    - enable: True
+{% endfor %}
+
 /etc/systemd/resolved.conf:
   file.managed:
     - source: salt://network/resolved.conf

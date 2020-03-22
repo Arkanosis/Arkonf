@@ -12,3 +12,7 @@ local_users:
 smart_drives:
   - nvme0n1
   - sda
+
+network_interfaces:
+  wireless:
+    - wlo1

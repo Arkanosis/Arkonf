@@ -11,3 +11,7 @@ local_users:
 
 smart_drives:
   - sda
+
+network_interfaces:
+  wireless:
+    - wlo1
