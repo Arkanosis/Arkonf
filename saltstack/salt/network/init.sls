@@ -43,6 +43,14 @@ network_pkgs:
     - defaults:
         network_interface: {{ network_interface }}
     - mode: 755
+
+/etc/systemd/network/10-dhcp-{{ network_interface }}.network:
+  file.managed:
+    - source: salt://network/dhcp.network
+    - template: jinja
+    - defaults:
+        network_interface: {{ network_interface }}
+    - mode: 644
 {% endfor %}
 {% endif %}
 {% endif %}
@@ -67,11 +75,27 @@ network_pkgs:
     - source: salt://network/assistance
     - mode: 755
 
+{% if pillar.network_interfaces is defined %}
+{% if pillar.network_interfaces.wireless is defined %}
 {% for network_interface in pillar['network_interfaces']['wireless'] %}
 wpa_supplicant@{{ network_interface }}:
   service.running:
     - enable: True
+
+/etc/systemd/network/10-dhcp-{{ network_interface }}.network:
+  file.managed:
+    - source: salt://network/dhcp.network
+    - template: jinja
+    - defaults:
+        network_interface: {{ network_interface }}
+    - mode: 644
 {% endfor %}
+{% endif %}
+{% endif %}
+
+systemd-networkd:
+  service.running:
+    - enable: True
 
 /etc/systemd/resolved.conf:
   file.managed:
