@@ -413,6 +413,11 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (use-package flymake)
   :mode "\\.cs$")
+(use-package csv-mode
+  :config
+  (global-set-key (kbd "M-F") 'csv-forward-field)
+  (global-set-key (kbd "M-B") 'csv-backward-field)
+  :mode "\\.\\(csv\\|tsv\\|vcf\\)$")
 (use-package xml-mode
   :mode "\\.\\(xsd\\|xul\\)$")
 (use-package yaml-mode
