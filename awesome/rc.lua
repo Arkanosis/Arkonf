@@ -160,15 +160,6 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local mybattery = nil
-if file_exists("/sys/class/power_supply/BAT0") then
-   local battery_widget = require("battery-widget")
-   mybattery = battery_widget({adapter = "BAT0"}).widget
-elseif file_exists("/sys/class/power_supply/BAT1") then
-   local battery_widget = require("battery-widget")
-   mybattery = battery_widget({adapter = "BAT1"}).widget
-end
-
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -216,9 +207,7 @@ awful.screen.connect_for_each_screen(function(s)
 	wibox.widget.systray(),
 	mytextclock
     }
-    if mybattery then
-       right_widgets[#right_widgets + 1] = mybattery
-    end
+    right_widgets[#right_widgets + 1] = require("battery-widget") {}
     right_widgets[#right_widgets + 1] = s.mylayoutbox
 
     -- Add widgets to the wibox

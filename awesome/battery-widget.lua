@@ -3,6 +3,7 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
+local naughty = require("naughty")
 
 local timer = gears.timer or timer
 local watch = awful.spawn and awful.spawn.with_line_callback
@@ -43,6 +44,10 @@ local function trim(s)
     return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
+local function read_trim(filename)
+    return trim(readfile(filename)) or ""
+end
+
 local function substitute(template, context)
     if type(template) == "string" then
         return (template:gsub("%${([%w_]+)}", function(key)
@@ -51,6 +56,23 @@ local function substitute(template, context)
     else
         -- function / functor:
         return template(context)
+    end
+end
+
+local function lookup_by_limits(limits, value)
+    if type(limits) == "table" then
+        local last = nil
+        if value then
+            for k, v in ipairs(limits) do
+                if (value <= v[1]) then
+                    return v[2]
+                end
+                last = v[2]
+            end
+        end
+        return last
+    else
+        return limits
     end
 end
 
@@ -67,7 +89,6 @@ local sysfs_names = {
         charge    = "charge_now",
         capacity  = "charge_full",
         design    = "charge_full_design",
-        ac_state  = "AC/online",
         percent   = "capacity",
     },
     discharging = {
@@ -77,23 +98,44 @@ local sysfs_names = {
         charge    = "energy_now",
         capacity  = "energy_full",
         design    = "energy_full_design",
-        ac_state  = "AC/online",
         percent   = "capacity"
     },
 }
 
 function battery_widget:new(args)
-    return setmetatable({}, {__index = self}):init(args)
+    if args.adapter then
+        return setmetatable({}, {__index = self}):init(args)
+    end
+    -- creates an empty container wibox, which can be added to your panel even if its empty
+    local widgets = { layout = wibox.layout.fixed.horizontal }
+    local batteries, mains, usb, ups = self:discover()
+    local ac = mains[1] or usb[1] or ups[1]
+    for i, adapter in ipairs(batteries) do
+        local _args = setmetatable({adapter = adapter, ac = ac}, {__index = args})
+        table.insert(widgets, self(_args).widget)
+    end
+    return widgets
+end
+
+function battery_widget:discover()
+    local pow      = "/sys/class/power_supply/"
+    local adapters = { Battery = {}, UPS = {}, Mains = {}, USB = {} }
+    for adapter in io.popen("ls -1 " .. pow):lines() do
+        local type = read_trim(pow .. adapter .. "/type")
+        table.insert(adapters[type], adapter)
+    end
+    return adapters.Battery, adapters.Mains, adapters.USB, adapters.UPS
 end
 
 function battery_widget:init(args)
+    self.ac = args.ac or "AC"
     self.adapter = args.adapter or "BAT0"
     self.ac_prefix = args.ac_prefix or "AC: "
     self.battery_prefix = args.battery_prefix or "Bat: "
-    self.limits = args.limits or {
+    self.percent_colors = args.percent_colors or args.limits or {
         { 25, "red"   },
         { 50, "orange"},
-        {100, "green" }
+        {999, "green" },
     }
 
     self.widget_text = args.widget_text or (
@@ -101,9 +143,17 @@ function battery_widget:init(args)
     self.tooltip_text = args.tooltip_text or (
         "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%")
 
+    self.alert_threshold = args.alert_threshold or 5
+    self.alert_timeout = args.alert_timeout or 0
+    self.alert_title = args.alert_title or "Low battery !"
+    self.alert_text = args.alert_text or "${AC_BAT}${time_est}"
+
     self.widget = wibox.widget.textbox()
     self.widget.set_align("right")
+    self.widget.font = args.widget_font
     self.tooltip = awful.tooltip({objects={self.widget}})
+
+    self.warn_full_battery = args.warn_full_battery
 
     self.widget:buttons(awful.util.table.join(
         awful.button({ }, 1, function() self:update() end),
@@ -120,7 +170,7 @@ function battery_widget:init(args)
             stdout = function(line) self:update() end,
         })
         awesome.connect_signal("exit", function()
-            awesome.kill(self.listener, 9)
+            awesome.kill(self.listener, awesome.unix_signal.SIGTERM)
         end)
     end
 
@@ -129,14 +179,14 @@ end
 
 function battery_widget:get_state()
     local pow   = "/sys/class/power_supply/"
+    local ac    = pow .. self.ac
     local bat   = pow .. self.adapter
     local sysfs = (file_exists(bat.."/"..sysfs_names.charging.rate)
                    and sysfs_names.charging
                    or sysfs_names.discharging)
 
-    local function read_trim(filename)
-        return trim(readfile(filename))
-    end
+    -- If there is no battery on this machine.
+    if not sysfs.state then return nil end
 
     -- return value
     local r = {
@@ -146,9 +196,10 @@ function battery_widget:get_state()
         charge    = tonumber(read_trim(bat.."/"..sysfs.charge)),
         capacity  = tonumber(read_trim(bat.."/"..sysfs.capacity)),
         design    = tonumber(read_trim(bat.."/"..sysfs.design)),
-        ac_state  = tonumber(read_trim(pow.."/"..sysfs.ac_state)),
         percent   = tonumber(read_trim(bat.."/"..sysfs.percent)),
     }
+
+    r.ac_state = tonumber(read_trim(ac.."/online"))
 
     if r.state == "unknown" then
         r.state = "charged"
@@ -164,20 +215,18 @@ end
 function battery_widget:update()
     local ctx = self:get_state()
 
+    -- If there is no battery on this machine.
+    if not ctx then return nil end
+
     -- AC/battery prefix
-    ctx.AC_BAT  = ctx.ac_state == 1 and self.ac_prefix or self.battery_prefix
+    ctx.AC_BAT  = (ctx.ac_state == 1
+                   and lookup_by_limits(self.ac_prefix, ctx.percent)
+                   or lookup_by_limits(self.battery_prefix, ctx.percent)
+                   or "Err!")
 
     -- Colors
-    ctx.color_on = ""
-    ctx.color_off = ""
-    if ctx.percent then
-        for k, v in ipairs(self.limits) do
-            if ctx.percent <= v[1] then
-                ctx.color_on, ctx.color_off = color_tags(v[2])
-                break
-            end
-        end
-    end
+    ctx.color_on, ctx.color_off = color_tags(
+        lookup_by_limits(self.percent_colors, ctx.percent))
 
     -- estimate time
     ctx.charge_dir = 0    -- +1|0|-1 -> charging|static|discharging
@@ -216,6 +265,37 @@ function battery_widget:update()
     -- update text
     self.widget:set_markup(substitute(self.widget_text, ctx))
     self.tooltip:set_text(substitute(self.tooltip_text, ctx))
+
+    -- low battery notification
+    if naughty then
+        if (ctx.state == "discharging" and
+                ctx.percent and ctx.percent <= self.alert_threshold) then
+            self:notify(substitute(self.alert_title, ctx),
+                        substitute(self.alert_text, ctx))
+        elseif ctx.state == "full" and self.warn_full_battery then
+            self:notify('Battery Full!', 'Remove power chord')
+        else
+            if self.alert then
+                naughty.destroy(
+                    self.alert,
+                    naughty.notificationClosedReason.dismissedByCommand)
+                self.alert = nil
+            end
+        end
+    end
+end
+
+function battery_widget:notify(title, text)
+    if self.alert then
+        naughty.replace_text(self.alert, title, text)
+    else
+        self.alert = naughty.notify({
+            title = title,
+            text = text,
+            preset = naughty.config.presets.critical,
+            timeout = self.alert_timeout
+        })
+    end
 end
 
 return setmetatable(battery_widget, {
