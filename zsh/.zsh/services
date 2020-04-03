@@ -12,3 +12,45 @@ systp() {
     systemctl --user stop org.service
     systemctl --user stop sxhkd.service
 }
+
+btconnect() {
+    local mac id
+
+    if ! systemctl status bluetooth | grep -q 'Active: active'; then
+	sudo systemctl start bluetooth && \
+	    bluetoothctl agent on && \
+	    bluetoothctl power on || return 1
+    fi
+
+    mac=$(bluetoothctl devices | awk '/'"$1"'/ { print $2 }')
+    id=$(echo $mac | sed 's/:/_/g')
+
+    if ! pactl list cards short | grep -q bluez_card.$id; then
+	if pactl list cards short | grep -q bluez_card; then
+	    bluetoothctl disconnect $(pactl list cards short | awk '/bluez_card/ { print $2 }' | cut -d '.' -f 2 | sed 's/_/:/g')
+	fi
+	bluetoothctl connect $mac || return 1
+    fi
+
+    if ! pactl list sinks short | grep -q bluez_sink.$id.$2; then
+       pactl set-card-profile bluez_card.$id $2 || return 1
+    fi
+
+    pactl set-default-sink bluez_sink.$id.$2
+}
+
+jabra_audio() {
+    btconnect Jabra a2dp_sink
+}
+
+jabra_talk() {
+    btconnect Jabra headset_head_unit
+}
+
+edifier() {
+    btconnect EDIFIER a2dp_sink
+}
+
+btstop() {
+    sudo systemctl stop bluetooth
+}
