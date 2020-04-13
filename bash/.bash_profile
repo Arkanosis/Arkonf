@@ -15,6 +15,14 @@ if [[ -t 0 ]]; then
             export LC_ALL=fr_FR.utf-8
         fi
 
+    elif [[ "$USER" = "nonfreegaming" ]]; then
+
+        # Since we're there for gaming, start a graphical environment right now if there isn't one already
+
+        if systemctl -q is-active graphical.target && [[ ! $DISPLAY ]]; then
+            exec startx
+        fi
+
     elif [[ "$HOSTNAME" = "reddev002" ]]; then
 
         # Don't do anything too fancy on the gateway, go to the right machine instead
