@@ -24,7 +24,8 @@ xset r 66
 syndaemon -t -K -R -i .5 -d
 
 if [ "x$USER" = "xnonfreegaming" ]; then
-    # Steam
+    # Game centers
+    lutris &
     steam &
 else
     # File synchronization
