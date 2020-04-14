@@ -27,6 +27,7 @@ CONFIGS= \
 	vim \
 	weechat \
 	xdg \
+	xlunch \
 	xorg \
 	zsh
 
@@ -209,6 +210,17 @@ xdg: ~/.config/mimeapps.list
 ~/.config/mimeapps.list:
 	mkdir -p "$(dir $@)"
 	ln -s "$(ROOT)xdg/$(notdir $@)" "$@"
+
+xlunch: ~/.config/xlunch/xlunch.conf ~/.local/share/xlunch/background.jpg ~/.local/share/xlunch/icons
+~/.config/xlunch/xlunch.conf:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)xlunch/$(notdir $@)" "$@"
+~/.local/share/xlunch/background.jpg:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)xlunch/$(notdir $@)" "$@"
+~/.local/share/xlunch/icons:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)xlunch/$(notdir $@)" "$@"
 
 xorg: ~/.xinitrc ~/.Xdefaults ~/.Xmodmap ~/.Xresources
 ~/.xinitrc:
