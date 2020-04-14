@@ -26,6 +26,8 @@ syndaemon -t -K -R -i .5 -d
 if [ "x$USER" = "xnonfreegaming" ]; then
     # Steam
     steam -silent &
+    # xlunch
+    xlunch --config "$HOME/.config/xlunch/xlunch.conf" &
 else
     # File synchronization
     syncthing -no-browser -no-restart & > /dev/null 2>&1
