@@ -2,7 +2,7 @@
 
 each() {
     for item; do
-	$item
+        $item
     done
 }
 
@@ -10,26 +10,26 @@ run() {
     local program
 
     if ((# < 2)); then
-	echo 'Usage: run <program> [options] \; [arguments]' >&2
-	return 1
+        echo 'Usage: run <program> [options] \; [arguments]' >&2
+        return 1
     fi
 
     program=$1
     shift
 
     while ((# > 1)) && [[ $1 != \; ]]; do
-	program+=($1)
-	shift
+        program+=($1)
+        shift
     done
 
     if ! ((#)); then
-	return
+        return
     fi
 
     shift
 
     for item; do
-	$program $item
+        $program $item
     done
 }
 
@@ -86,6 +86,14 @@ lxc-boot() {
     if [[ -n $dir ]]; then
         dir="--dir /tmp/$1"
         mkdir -p "/tmp/$1"
+    fi
+
+    if ! systemctl status lxc | grep -q 'Active: active'; then
+        sudo systemctl start lxc || return 1
+    fi
+
+    if ! systemctl status lxc-net | grep -q 'Active: active'; then
+        sudo systemctl start lxc-net || return 1
     fi
 
     if ! lxc-ls --line --active | grep -q "^$1\$"; then
