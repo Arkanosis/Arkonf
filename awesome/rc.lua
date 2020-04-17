@@ -263,9 +263,9 @@ globalkeys = gears.table.join(
 	      {description = "password manager", group = "launcher"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+    awful.key({ modkey, "Control" }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+    awful.key({ modkey, "Control" }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
@@ -282,6 +282,47 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
+
+    awful.key({ modkey,           }, "Left",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.left
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.5})
+            end
+        end,
+        {description = "Snap window on the left", group = "client"}),
+    awful.key({ modkey,           }, "Right",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.right
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.5})
+            end
+        end,
+        {description = "Snap window on the right", group = "client"}),
+    awful.key({ modkey,           }, "Up",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.top
+                        + awful.placement.maximize_horizontally
+                f(client.focus, {honor_workarea=true, to_percent = 0.5})
+            end
+        end,
+        {description = "Snap window on the top", group = "client"}),
+    awful.key({ modkey,           }, "Down",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.bottom
+                        + awful.placement.maximize_horizontally
+                f(client.focus, {honor_workarea=true, to_percent = 0.5})
+            end
+        end,
+        {description = "Snap window on the bottom", group = "client"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
