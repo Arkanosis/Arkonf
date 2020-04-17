@@ -252,7 +252,7 @@ end
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ "Control", "Mod1" }, "l", function () awful.util.spawn(lock) end,
+    awful.key({ modkey,           }, "l", function () awful.util.spawn(lock) end,
 	      {description = "lock screen", group = "awesome"}),
     awful.key({ modkey,           }, "p", function ()
 		 local matcher = function (c)
@@ -261,6 +261,8 @@ globalkeys = gears.table.join(
 		 awful.client.run_or_raise(pass, matcher)
 	       end,
 	      {description = "password manager", group = "launcher"}),
+    awful.key({ "Control", "Shift"}, "Escape", function () awful.util.spawn("/usr/bin/urxvt -e /usr/bin/htop", { maximized = true }) end,
+	      {description = "lock screen", group = "awesome"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey, "Control" }, "Left",   awful.tag.viewprev,
@@ -366,9 +368,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, ";", function () awful.spawn("org-console") end,
               {description = "open a task list", group = "launcher"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ modkey, "Mod1"    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+    awful.key({ modkey, "Mod1"    }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
