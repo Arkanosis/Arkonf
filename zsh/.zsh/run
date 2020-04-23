@@ -66,6 +66,11 @@ lxc-boot() {
                 distribution=ubuntu
                 release=bionic
             ;;
+            -focal)
+                shift
+                distribution=ubuntu
+                release=focal
+            ;;
             -stretch)
                 shift
                 distribution=debian
