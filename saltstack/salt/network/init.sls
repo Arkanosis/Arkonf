@@ -9,9 +9,11 @@ network_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - iptables-persistent
 {% endif %}
+      #- kdeconnect
       #- knemo
       - mtr
       - nethogs
+      #- qrcp
       - remmina
       - rsync
 {% if grains['os_family'] != 'Arch' %}
