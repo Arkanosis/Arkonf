@@ -61,6 +61,7 @@ users:
   - login: asdp
 #    fullname: 'Anne-Sophie Denommé-Pichon'
     id: 1201
+    sftp: True
     groups:
       - famille
       - amis
