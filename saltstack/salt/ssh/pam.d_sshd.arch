@@ -1,5 +1,5 @@
 #%PAM-1.0
-auth requisite pam_google_authenticator.so nullok
+auth      sufficient pam_google_authenticator.so nullok
 auth      include   system-remote-login
 account   include   system-remote-login
 password  include   system-remote-login
