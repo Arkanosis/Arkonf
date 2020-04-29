@@ -9,6 +9,7 @@ vm_pkgs:
 {% endif %}
       - lxc
 {% if grains['os_family'] == 'Arch' %}
+      - podman
       - qemu-headless
 {% else %}
       - qemu-kvm
