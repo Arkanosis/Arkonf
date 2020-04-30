@@ -5,8 +5,10 @@ ssh_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - openssh
+      - putty
 {% else %}
       - openssh-server
+      - putty-tools
 {% endif %}
       - sshfs
 
