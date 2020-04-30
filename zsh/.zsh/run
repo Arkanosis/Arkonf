@@ -81,6 +81,11 @@ lxc-boot() {
                 distribution=debian
                 release=buster
             ;;
+            -custom)
+                distribution=$2
+                release=$3
+                shift 3
+            ;;
             *)
                 echo "Unknown option $1" >&2
                 return 1
