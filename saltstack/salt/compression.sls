@@ -9,3 +9,4 @@ compression_pkgs:
 {% endif %}
       - unrar
       - unzip
+      - zip
