@@ -1,7 +1,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Arkonf for Emacs                                                    ;
-;  (C) 2006-2019 - Jérémie Roquet                                      ;
+;  (C) 2006-2020 - Jérémie Roquet                                      ;
 ;  jroquet@arkanosis.net                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -323,6 +323,10 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (xsel-mode))
 
+(use-package temove-mode
+  :config
+  (temove-mode))
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
@@ -594,18 +598,18 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(meta r)] 'replace-string)
 
 (global-set-key [(control tab)] 'other-window)
-(global-set-key (kbd "M-<left>") 'windmove-left)
-(global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-<up>") 'windmove-up)
-(global-set-key (kbd "M-<down>") 'windmove-down)
-(global-set-key (kbd "ESC <left>") 'windmove-left)
-(global-set-key (kbd "ESC <right>") 'windmove-right)
-(global-set-key (kbd "ESC <up>") 'windmove-up)
-(global-set-key (kbd "ESC <down>") 'windmove-down)
-(global-set-key (kbd "\e[1;3D") 'windmove-left)
-(global-set-key (kbd "\e[1;3C") 'windmove-right)
-(global-set-key (kbd "\e[1;3A") 'windmove-up)
-(global-set-key (kbd "\e[1;3B") 'windmove-down)
+(global-set-key (kbd "M-<left>") 'temove-left)
+(global-set-key (kbd "M-<right>") 'temove-right)
+(global-set-key (kbd "M-<up>") 'temove-up)
+(global-set-key (kbd "M-<down>") 'temove-down)
+(global-set-key (kbd "ESC <left>") 'temove-left)
+(global-set-key (kbd "ESC <right>") 'temove-right)
+(global-set-key (kbd "ESC <up>") 'temove-up)
+(global-set-key (kbd "ESC <down>") 'temove-down)
+(global-set-key (kbd "\e[1;3D") 'temove-left)
+(global-set-key (kbd "\e[1;3C") 'temove-right)
+(global-set-key (kbd "\e[1;3A") 'temove-up)
+(global-set-key (kbd "\e[1;3B") 'temove-down)
 (global-set-key (kbd "C-x v") 'workspace-goto)
 
 (global-set-key [(meta h)] 'switch-or-open-header)
