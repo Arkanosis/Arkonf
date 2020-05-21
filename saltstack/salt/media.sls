@@ -9,8 +9,16 @@ media_pkgs:
 {% else %}
       - libav-tools
 {% endif %}
+      - opusfile
       - opus-tools
       - mpv
+{% if grains['os_family'] == 'Arch' %}
+      - sdl2
+      - sdl2_image
+{% else %}
+      - libsdl2
+      - libsdl2-image
+{% endif %}
       - v4l-utils
       - vlc
 
