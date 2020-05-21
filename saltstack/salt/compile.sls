@@ -7,6 +7,7 @@ compile_pkgs:
       - cargo-tree
 {% endif %}
       - cmake
+      - eigen3
       - flex
 {% if grains['os_family'] == 'Arch' %}
       - gcc
