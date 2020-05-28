@@ -1,4 +1,3 @@
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Arkonf for Emacs                                                    ;
 ;  (C) 2006-2020 - Jérémie Roquet                                      ;
@@ -49,6 +48,9 @@
 ; - Support du open-file-at-point
 
 ;; Désactiver le gc le temps du chargement de la configuration
+
+(package-initialize)
+
 (setq gc-cons-threshold 100000000)
 
 (setq standard-indent 2)
@@ -294,17 +296,13 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+	("melpa" . "https://melpa.org/packages/")))
+
 (require 'use-package)
 
 (use-package diminish)
-
-(use-package fiplr
-  :config
-  (setq fiplr-root-markers '(".git" ".svn"))
-  (setq fiplr-ignored-globs '(
-    (directories (".git" ".svn" "bin" "generated" "python-cache" "scripts"))
-    (files ("*.class" "*.bak" "*.pyc" "*.log"))))
-  (global-set-key (kbd "C-x f") 'fiplr-find-file))
 
 (use-package linum
   :config
@@ -370,17 +368,9 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.lua$")
 (use-package java-mode
   :init
-  (custom-set-variables
-   '(eclim-eclipse-dirs '("~/.local/opt/eclipse"))
-   '(eclim-executable "~/.local/opt/eclipse/eclim"))
-  (use-package eclim)
   (use-package company)
-  (use-package company-emacs-eclim)
   (add-hook 'java-mode-hook (lambda ()
-    (company-emacs-eclim-setup)
-    (eclim-mode t)
-    (company-mode t)
-    (define-key java-mode-map (kbd "M-.") #'eclim-java-find-declaration)))
+    (company-mode t)))
   (add-to-list 'compilation-error-regexp-alist 'maven)
   (add-to-list
    'compilation-error-regexp-alist-alist
@@ -393,11 +383,8 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package s)
   (use-package f)
   (use-package dash)
-  (use-package racer)
   (add-hook 'rust-mode-hook #'abbrev-mode)
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode)
+  (add-hook 'rust-mode-hook #'lsp)
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t)
   :mode "\\.rs$")
@@ -414,8 +401,6 @@ If region contains less than 2 lines, lines are left untouched."
      ".*: \\(.+?\\.kt\\): (\\([0-9]+\\), \\([0-9]+\\)): .*" 1 2 3))
   :mode "\\.kt$")
 (use-package csharp-mode
-  :config
-  (use-package flymake)
   :mode "\\.cs$")
 (use-package csv-mode
   :config
@@ -454,11 +439,6 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (ac-config-default))
-
-(use-package rtags
-  :config
-  (global-set-key  [(meta v)] 'rtags-find-symbol-at-point)
-  (global-set-key  [(meta V)] 'rtags-location-stack-back))
 
 (use-package mediawiki
   :config
@@ -744,7 +724,9 @@ If region contains less than 2 lines, lines are left untouched."
 (setq-default gdb-many-windows t)
 (setq-default vc-follow-symlinks t)
 
-(custom-set-variables '(fill-column 78))
+(custom-set-variables
+ '(lsp-rust-server (quote rust-analyzer))
+ '(package-selected-packages (quote (company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
