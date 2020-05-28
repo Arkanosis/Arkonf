@@ -30,6 +30,7 @@ compile_pkgs:
 {% endif %}
       - pkg-config
 {% if grains['os_family'] == 'Arch' %}
+      - rust-analyzer
       - rustup
       - typescript
 {% else %}
