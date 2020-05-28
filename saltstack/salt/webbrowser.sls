@@ -13,6 +13,7 @@ webbrowser_pkgs:
 {% else %}
       - firefox-locale-fr
 {% endif %}
+      - geckodriver
 
 /home/arkanosis/.cache/mozilla:
   file.symlink:
