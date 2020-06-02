@@ -19,6 +19,7 @@ python_pkgs:
       - python-click
       - python2-pillow
       - python-jinja
+      - python-language-server
       - python2-lxml
       - python-openpyxl
       - python-poetry
