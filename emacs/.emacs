@@ -331,9 +331,7 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (xsel-mode))
 
-(use-package temove-mode
-  :config
-  (temove-mode))
+(use-package temove-mode)
 
 (use-package undo-tree
   :diminish undo-tree-mode
@@ -382,6 +380,7 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package company)
   (add-hook 'java-mode-hook (lambda ()
     (company-mode t)))
+  (require 'compile)
   (add-to-list 'compilation-error-regexp-alist 'maven)
   (add-to-list
    'compilation-error-regexp-alist-alist
@@ -405,6 +404,7 @@ If region contains less than 2 lines, lines are left untouched."
   :mode "\\.go$")
 (use-package kotlin-mode
   :config
+  (require 'compile)
   (add-to-list 'compilation-error-regexp-alist 'kotlin)
   (add-to-list
    'compilation-error-regexp-alist-alist
