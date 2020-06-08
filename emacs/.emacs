@@ -243,6 +243,16 @@ If region contains less than 2 lines, lines are left untouched."
 (setq calendar-week-start-day 1)
 (add-hook 'org-archive-hook #'org-save-all-org-buffers)
 
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "STRT(s)" "|" "DONE(d)")
+    (sequence "|" "ABRT(a)")))
+
+(setq org-todo-keyword-faces
+  '(("TODO" . org-todo)
+    ("STRT" . "yellow")
+    ("DONE" . org-done)
+    ("ABRT" . "grey")))
+
 (defun org-thunderlink-open (path)
   "Opens a specified email in Thunderbird with the help of the add-on ThunderLink."
   (start-process "myname" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
