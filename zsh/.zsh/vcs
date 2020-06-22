@@ -184,6 +184,9 @@ rci() {
 cif() {
     ci -F $@
 }
+cir() {
+    ci --allow-empty-message -t .git/COMMIT_EDITMSG $@
+}
 
 unci() {
     git uncommit $@
