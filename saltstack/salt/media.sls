@@ -9,6 +9,7 @@ media_pkgs:
 {% else %}
       - libav-tools
 {% endif %}
+      - kdenlive
       - obs-studio
       - opusfile
       - opus-tools
