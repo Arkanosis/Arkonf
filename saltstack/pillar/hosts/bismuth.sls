@@ -5,7 +5,6 @@ local_users:
   - arkanosis
   - asdp
   - sftp-denomme-fr
-  - sftp-regovar-org
   - rssht-user
 
 known_ips:
@@ -16,5 +15,3 @@ domains:
 
   - dl.denomme.fr
   - qr.denomme.fr
-
-  - dl.regovar.org
