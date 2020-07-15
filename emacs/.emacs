@@ -328,6 +328,7 @@ If region contains less than 2 lines, lines are left untouched."
         (linum-mode -1)))))
 
 (use-package highlight-indent-guides
+  :diminish highlight-indent-guides-mode
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (set-face-foreground 'highlight-indent-guides-character-face "black")
@@ -520,6 +521,7 @@ If region contains less than 2 lines, lines are left untouched."
   (ws-butler-global-mode t))
 
 (use-package dtrt-indent
+  :diminish dtrt-indent-mode
   :config
   (add-hook 'c-mode-common-hook 'dtrt-indent-mode))
 
