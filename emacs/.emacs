@@ -327,6 +327,10 @@ If region contains less than 2 lines, lines are left untouched."
           (> (line-number-at-pos (point-max)) 5000))
         (linum-mode -1)))))
 
+(use-package indent-guide
+  :config
+  (indent-guide-global-mode))
+
 (use-package xsel-mode
   :config
   (xsel-mode))
