@@ -327,15 +327,20 @@ If region contains less than 2 lines, lines are left untouched."
           (> (line-number-at-pos (point-max)) 5000))
         (linum-mode -1)))))
 
+(defun highlight-indent-guides-custom-highlight (level responsive display)
+  (if (> 1 level)
+      nil
+    (highlight-indent-guides--highlighter-default level responsive display)))
 (use-package highlight-indent-guides
   :diminish highlight-indent-guides-mode
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (set-face-foreground 'highlight-indent-guides-character-face "black")
+  (set-face-foreground 'highlight-indent-guides-character-face "#101010")
   (set-face-foreground 'highlight-indent-guides-stack-character-face "#303030")
   (set-face-foreground 'highlight-indent-guides-top-character-face "dim gray")
   (setq highlight-indent-guides-method 'character)
-  (setq highlight-indent-guides-responsive 'stack))
+  (setq highlight-indent-guides-responsive 'stack)
+  (setq highlight-indent-guides-highlighter-function 'highlight-indent-guides-custom-highlight))
 
 (use-package xsel-mode
   :config
