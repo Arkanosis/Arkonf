@@ -314,19 +314,6 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package diminish)
 
-(use-package linum
-  :config
-  (global-linum-mode t)
-  (use-package linum-highlight-current-line-number)
-  (setq linum-format 'linum-highlight-current-line-number)
-  (add-hook 'prog-mode-hook
-    (lambda ()
-      (if
-        (or
-          (> (buffer-size) (* 5000 80))
-          (> (line-number-at-pos (point-max)) 5000))
-        (linum-mode -1)))))
-
 (defun highlight-indent-guides-custom-highlight (level responsive display)
   (if (> 1 level)
       nil
@@ -728,6 +715,10 @@ If region contains less than 2 lines, lines are left untouched."
 (transient-mark-mode t)
 
 (which-func-mode t)
+
+(global-display-line-numbers-mode t)
+(set-face-attribute 'line-number-current-line nil :background "#222" :foreground "goldenrod" :weight 'bold)
+(set-face-attribute 'line-number nil :background "#222")
 
 (prefer-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
