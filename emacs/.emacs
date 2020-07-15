@@ -724,6 +724,9 @@ If region contains less than 2 lines, lines are left untouched."
 (set-face-attribute 'line-number-current-line nil :background "#222" :foreground "goldenrod" :weight 'bold)
 (set-face-attribute 'line-number nil :background "#222")
 
+(global-hl-line-mode t)
+(set-face-attribute 'hl-line nil :background "#222")
+
 (prefer-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
