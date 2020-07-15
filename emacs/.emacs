@@ -348,6 +348,10 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package mo-git-blame)
 
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode t))
+
 (use-package markdown-mode
   :mode "\\.md$")
 (use-package js2-mode
