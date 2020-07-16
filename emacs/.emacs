@@ -376,6 +376,8 @@ If region contains less than 2 lines, lines are left untouched."
   :config
   (add-hook 'python-mode-hook #'abbrev-mode)
   (add-hook 'python-mode-hook #'lsp)
+  (add-hook 'python-mode-hook (lambda ()
+    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
 (use-package php-mode
   :mode "\\.php[0-9]?$")
@@ -401,6 +403,8 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package dash)
   (add-hook 'rust-mode-hook #'abbrev-mode)
   (add-hook 'rust-mode-hook #'lsp)
+  (add-hook 'rust-mode-hook (lambda ()
+    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t)
   :mode "\\.rs$")
