@@ -1,12 +1,15 @@
 ;;; xsel-mode.el --- Copy to and paste from the OS clipboard
 
-;; Copyright (C) 2018 Jérémie Roquet
+;; Copyright (C) 2018-2020 Jérémie Roquet
 
 ;; Author: Jérémie Roquet <jroquet@arkanosis.net>
 ;; Keywords: xsel clipboard copy paste
 
 ; Usage: add this to your .emacs:
 ; (require 'xsel-mode)
+; If an X server has started after Emacs, you can "connect" Emacs to it using:
+; M-x xsel-connect :0
+; where ":0" is the value of $DISPLAY
 
 ;;; Code:
 
@@ -22,8 +25,13 @@
   (interactive)
   (when (getenv "DISPLAY")
     (setq interprogram-cut-function 'text-to-clipboard)
-    (setq interprogram-paste-function 'text-from-clipboard))
-)
+    (setq interprogram-paste-function 'text-from-clipboard)))
+
+(defun xsel-connect ()
+  (interactive)
+  (setenv "DISPLAY"
+    (read-string "X server name? " ":0" nil ":0" nil))
+  (xsel-mode))
 
 (provide 'xsel-mode)
 ;;; xsel-mode.el ends here
