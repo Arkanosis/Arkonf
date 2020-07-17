@@ -325,6 +325,7 @@ If region contains less than 2 lines, lines are left untouched."
   (set-face-foreground 'highlight-indent-guides-character-face "#101010")
   (set-face-foreground 'highlight-indent-guides-stack-character-face "#303030")
   (set-face-foreground 'highlight-indent-guides-top-character-face "dim gray")
+  (setq highlight-indent-guides-auto-enabled nil)
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-responsive 'stack)
   (setq highlight-indent-guides-highlighter-function 'highlight-indent-guides-custom-highlight))
