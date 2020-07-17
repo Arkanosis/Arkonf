@@ -379,6 +379,8 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'python-mode-hook (lambda ()
     (local-set-key (kbd "M-RET") 'lsp-find-definition)))
+  (require 'dap-python)
+  (setq dap-auto-configure-features '(sessions locals tooltip))
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
 (use-package php-mode
   :mode "\\.php[0-9]?$")
@@ -393,6 +395,7 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'java-mode-hook (lambda ()
     (local-set-key (kbd "M-RET") 'lsp-find-definition)))
   (require 'dap-java)
+  (setq dap-auto-configure-features '(sessions locals tooltip))
   (require 'compile)
   (add-to-list 'compilation-error-regexp-alist 'maven)
   (add-to-list
@@ -762,7 +765,7 @@ If region contains less than 2 lines, lines are left untouched."
  '(lsp-rust-server (quote rust-analyzer))
  '(package-selected-packages
    (quote
-    (dash-functional lsp-java dap-mode company flycheck lsp-mode))))
+    (dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
