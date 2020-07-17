@@ -389,6 +389,10 @@ If region contains less than 2 lines, lines are left untouched."
   (use-package company)
   (add-hook 'java-mode-hook (lambda ()
     (company-mode t)))
+  (add-hook 'java-mode-hook #'lsp)
+  (add-hook 'java-mode-hook (lambda ()
+    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
+  (require 'dap-java)
   (require 'compile)
   (add-to-list 'compilation-error-regexp-alist 'maven)
   (add-to-list
@@ -756,7 +760,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (custom-set-variables
  '(lsp-rust-server (quote rust-analyzer))
- '(package-selected-packages (quote (company flycheck lsp-mode))))
+ '(package-selected-packages
+   (quote
+    (dash-functional lsp-java dap-mode company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
