@@ -2,6 +2,7 @@ pacman_pkgs:
   pkg.installed:
     - pkgs:
       - base-devel
+      - pacman-contrib
 
 # AUR yay
 
