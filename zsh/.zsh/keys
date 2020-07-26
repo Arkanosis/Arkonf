@@ -113,18 +113,6 @@ bindkey '^[B' finer-backward-word
 # Alt + i pour inserer le dernier argument de la commande precedente
 bindkey '^[i' insert-last-word
 
-# Alt + fleche vers le haut pour repeter la dernière commande
-bindkey -s ';3A' '^[p!!\n'
-
-# Alt + fleche vers le bas pour repeter l'avant dernière commande
-bindkey -s ';3B' '^[p!-2\n'
-
-# Alt + fleche vers la gauche
-bindkey -s ';3D' '^[pprevious\n'
-
-# Alt + fleche vers la droite
-bindkey -s ';3C' '^[pnext\n'
-
 # Alt + ? pour voir l'aide
 bindkey -s '^[?' "^[pec -s org ~/Documents/Org/Notes/Linux.org\n"
 
