@@ -99,7 +99,6 @@ bindkey '^[D' finer-delete-word
 
 # Alt + shift + h pour supprimer ce qui précède, mais moins que sans shift
 bindkey '^[H' finer-backward-delete-word
-bindkey '2~' finer-backward-delete-word
 
 # Alt + h pour supprimer ce qui précède
 bindkey '^[h' backward-delete-word
