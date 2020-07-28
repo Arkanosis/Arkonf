@@ -12,7 +12,10 @@ emacs/.emacs.d/.cache
 emacs/.emacs.d/.dap-breakpoints
 emacs/.emacs.d/.lsp-session-v1
 emacs/.emacs.d/ac-comphist.dat
+emacs/.emacs.d/elpa
 emacs/.emacs.d/eshell
+emacs/.emacs.d/recentf
+emacs/.emacs.d/workspace
 pywikibot/.pywikibot/apicache
 pywikibot/.pywikibot/pywikibot.lwp
 pywikibot/.pywikibot/throttle.ctrl
