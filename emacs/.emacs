@@ -554,6 +554,10 @@ If region contains less than 2 lines, lines are left untouched."
 (enable-mouse-mode)
 (add-hook 'after-make-frame-functions 'enable-mouse-mode)
 
+(defun switch-to-last-buffer ()
+  (interactive)
+  (switch-to-buffer nil))
+
 (define-key function-key-map "\eOA" [up])
 (define-key function-key-map "\e[A" [up])
 (define-key function-key-map "\eOB" [down])
@@ -601,6 +605,7 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key (kbd "C-x c") 'revert-buffer)
 
 (global-set-key (kbd "C-x f") 'recentf-open-files)
+(global-set-key [(meta \\)] 'switch-to-last-buffer)
 
 (global-set-key [(meta g)] 'goto-line)
 
