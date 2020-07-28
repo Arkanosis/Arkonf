@@ -600,6 +600,8 @@ If region contains less than 2 lines, lines are left untouched."
 
 (global-set-key (kbd "C-x c") 'revert-buffer)
 
+(global-set-key (kbd "C-x f") 'recentf-open-files)
+
 (global-set-key [(meta g)] 'goto-line)
 
 (global-set-key [(control space)] 'dabbrev-expand)
@@ -696,6 +698,8 @@ If region contains less than 2 lines, lines are left untouched."
 (delete-selection-mode t) ;; Efface la selection a la saisie
 (global-font-lock-mode t)
 (icomplete-mode t) ;; Auto completion des commandes
+
+(recentf-mode)
 
 (defun host-name ()
   "Returns the name of the current host minus the domain."
