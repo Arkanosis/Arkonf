@@ -8,6 +8,9 @@
 *.pem
 *.pyc
 .directory
+emacs/.emacs.d/.cache
+emacs/.emacs.d/.dap-breakpoints
+emacs/.emacs.d/.lsp-session-v1
 emacs/.emacs.d/ac-comphist.dat
 emacs/.emacs.d/eshell
 pywikibot/.pywikibot/apicache
