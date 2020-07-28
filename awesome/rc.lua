@@ -370,6 +370,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, ";", function () awful.spawn("org-console") end,
               {description = "open a task list", group = "launcher"}),
 
+    awful.key({ modkey,           }, "#87", function () awful.spawn("zsh -i -c 'edifier'") end,
+              {description = "Use Edifier bluetooth speakers", group = "launcher"}),
+    awful.key({ modkey,           }, "#88", function () awful.spawn("zsh -i -c 'jabra_audio'") end,
+              {description = "Use Jabra bluetooth headphones", group = "launcher"}),
+    awful.key({ modkey,           }, "#89", function () awful.spawn("zsh -i -c 'jabra_talk'") end,
+              {description = "Use Jabra bluetooth headset", group = "launcher"}),
+
     awful.key({ modkey, "Mod1"    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey, "Mod1"    }, "h",     function () awful.tag.incmwfact(-0.05)          end,

@@ -2,6 +2,7 @@ root ALL=(ALL) ALL
 %wheel	ALL=(ALL) ALL
 
 arkanosis ALL=NOPASSWD: /usr/bin/systemctl suspend
+arkanosis ALL=NOPASSWD: /usr/bin/systemctl start bluetooth.service
 nonfreegaming ALL=NOPASSWD: /usr/bin/systemctl start bluetooth.service
 
 #includedir /etc/sudoers.d
