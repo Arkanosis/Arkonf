@@ -4,8 +4,8 @@ roles:
 local_users:
   - arkanosis
   - asdp
-  - sftp-denomme-fr
   - rssht-user
+  - sftp-denomme-fr
 
 known_ips:
   - 91.103.43.10 # Exalead
