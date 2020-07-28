@@ -7,3 +7,8 @@
 	path = tmux/.tmux/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank.git
 	branch = master
+
+[submodule "tmux/.tmux/tmux-thumbs"]
+	path = tmux/.tmux/tmux-thumbs
+	url = https://github.com/fcsonline/tmux-thumbs.git
+	branch = master
