@@ -614,6 +614,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (global-set-key [(meta r)] 'replace-string)
 
+(global-set-key [(meta |)] 'split-window-horizontally)
+(global-set-key [(meta -)] 'split-window-vertically)
+
 (global-set-key [(control tab)] 'other-window)
 (global-set-key (kbd "M-<left>") 'temove-left)
 (global-set-key (kbd "M-<right>") 'temove-right)
