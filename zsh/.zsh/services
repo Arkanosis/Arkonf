@@ -13,24 +13,28 @@ systp() {
     systemctl --user stop sxhkd.service
 }
 
+reboot() {
+    systp && sudo systemctl reboot
+}
+
 btconnect() {
     local mac id
 
-    if ! systemctl status bluetooth | grep -q 'Active: active'; then
-	sudo systemctl start bluetooth || return 1
+    if ! systemctl status bluetooth.service | grep -q 'Active: active'; then
+        sudo systemctl start bluetooth.service || return 1
     fi
 
     bluetoothctl agent on && \
-	bluetoothctl power on || return 1
+        bluetoothctl power on || return 1
 
     mac=$(bluetoothctl devices | awk '/'"$1"'/ { print $2 }')
     id=$(echo $mac | sed 's/:/_/g')
 
     if ! pactl list cards short | grep -q bluez_card.$id; then
-	if pactl list cards short | grep -q bluez_card; then
-	    bluetoothctl disconnect $(pactl list cards short | awk '/bluez_card/ { print $2 }' | cut -d '.' -f 2 | sed 's/_/:/g')
-	fi
-	bluetoothctl connect $mac || return 1
+        if pactl list cards short | grep -q bluez_card; then
+            bluetoothctl disconnect $(pactl list cards short | awk '/bluez_card/ { print $2 }' | cut -d '.' -f 2 | sed 's/_/:/g')
+        fi
+        bluetoothctl connect $mac || return 1
     fi
 
     if ! pactl list sinks short | grep -q bluez_sink.$id.$2; then
