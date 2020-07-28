@@ -765,7 +765,7 @@ If region contains less than 2 lines, lines are left untouched."
  '(lsp-rust-server (quote rust-analyzer))
  '(package-selected-packages
    (quote
-    (dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
+    (use-package dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
