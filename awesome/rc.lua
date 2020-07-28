@@ -254,6 +254,8 @@ end
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "l", function () awful.util.spawn(lock) end,
 	      {description = "lock screen", group = "awesome"}),
+    awful.key({ modkey, "Shift"   }, "l", function () awful.util.spawn("sudo systemctl suspend") end,
+	      {description = "lock screen and suspend", group = "awesome"}),
     awful.key({ modkey,           }, "p", function ()
 		 local matcher = function (c)
 		    return awful.rules.match(c, {class = pass_class})
