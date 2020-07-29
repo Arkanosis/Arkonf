@@ -640,6 +640,13 @@ If region contains less than 2 lines, lines are left untouched."
 (global-set-key [(control f11)] 'highlight-symbol-prev)
 (global-set-key [(control f12)] 'highlight-symbol-next)
 
+(global-set-key (kbd "C-x g a") 'git-gutter:stage-hunk)
+(global-set-key (kbd "C-x g m") 'git-gutter:mark-hunk)
+(global-set-key (kbd "C-x g n") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-x g p") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x g r") 'git-gutter:revert-hunk)
+(global-set-key (kbd "C-x g s") 'magit-status)
+
 ;; Deal with org-mode conflicts
 (setq org-replace-disputed-keys t)
 
@@ -773,11 +780,13 @@ If region contains less than 2 lines, lines are left untouched."
 (setq-default gdb-many-windows t)
 (setq-default vc-follow-symlinks t)
 
+(setq global-magit-file-mode nil)
+
 (custom-set-variables
  '(lsp-rust-server (quote rust-analyzer))
  '(package-selected-packages
    (quote
-    (use-package dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
+    (magit use-package dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
