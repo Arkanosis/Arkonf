@@ -771,14 +771,15 @@ If region contains less than 2 lines, lines are left untouched."
 (setq font-lock-maximum-decoration t)
 (setq frame-title-format "%b") ;; Nom du buffer
 (setq inhibit-startup-message t)
+(setq initial-scratch-message "")
 (setq line-number-mode t)
 (setq locale-coding-system 'utf-8)
 (setq make-backup-files nil)
 (setq next-line-add-newlines nil)
 (setq scroll-step 1) ;; Ne descend que d'une ligne lorsau'on arrive en bas de l'ecran
 (setq visible-bell t)
-(setq-default gdb-many-windows t)
-(setq-default vc-follow-symlinks t)
+(setq gdb-many-windows t)
+(setq vc-follow-symlinks t)
 
 (setq global-magit-file-mode nil)
 
