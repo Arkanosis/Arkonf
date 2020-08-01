@@ -39,7 +39,7 @@ Rxvt.color12: #729fcf
 Rxvt.color13: #ad7fa8
 Rxvt.color14: #34e2e2
 Rxvt.color15: #eeeeec
-Rxvt.termName:rxvt-256color
+Rxvt.termName:screen-256color
 Rxvt.scrollBar: False
 Rxvt.saveLines: 65535
 Rxvt.scrollTtyOutput: false
