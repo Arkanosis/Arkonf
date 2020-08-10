@@ -1,9 +1,11 @@
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop;org.kde.okular.desktop;
+application/postscript=org.pwmt.zathura-ps.desktop;org.kde.okular.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
 image/gif=sxiv.desktop;org.kde.gwenview.desktop;
 image/jpeg=sxiv.desktop;org.kde.gwenview.desktop;
 image/png=sxiv.desktop;org.kde.gwenview.desktop;
-image/svg+xml=inkscape.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
 image/tiff=sxiv.desktop;org.kde.gwenview.desktop;
 image/webp=vlc.desktop;
 text/csv=libreoffice-calc.desktop;
