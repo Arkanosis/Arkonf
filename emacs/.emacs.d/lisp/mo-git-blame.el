@@ -35,7 +35,7 @@
 ;;; (autoload 'mo-git-blame-file "mo-git-blame" nil t)
 ;;; (autoload 'mo-git-blame-current "mo-git-blame" nil t)
 
-(require 'cl)
+(require 'cl-lib)
 (require 'easymenu)
 
 (defvar mo-git-blame-vars nil

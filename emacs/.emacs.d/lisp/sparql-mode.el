@@ -50,7 +50,7 @@
 (require 'url-handlers)
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (defgroup sparql nil
   "Major mode for editing and evaluating SPARQL queries."

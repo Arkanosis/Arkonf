@@ -82,7 +82,7 @@
 
 (require 'thingatpt)
 (require 'hi-lock)
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 (push "^No symbol at point$" debug-ignored-errors)
 

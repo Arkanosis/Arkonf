@@ -33,7 +33,7 @@
 ;;   M-x customize-group RET js2-imenu RET
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'js2-mode)
 

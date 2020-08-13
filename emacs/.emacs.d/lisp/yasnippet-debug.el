@@ -25,7 +25,7 @@
 ;;; Code:
 
 (require 'yasnippet)
-(require 'cl)
+(require 'cl-lib)
 
 (defun yas-debug-snippet-vars ()
   "Debug snippets, fields, mirrors and the `buffer-undo-list'."

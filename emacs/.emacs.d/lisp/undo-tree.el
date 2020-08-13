@@ -538,7 +538,7 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 ;; `characterp' isn't defined in Emacs versions <= 22
 (eval-and-compile

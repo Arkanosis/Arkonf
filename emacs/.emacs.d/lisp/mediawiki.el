@@ -133,7 +133,7 @@
 (when (locate-library "auth-source")
   (require 'auth-source))
 (eval-when-compile (progn
-                     (require 'cl)
+                     (require 'cl-lib)
                      ;; Below copied from url-http to avoid compilation warnings
                      (defvar url-http-extra-headers)
                      (defvar url-http-target-url)
