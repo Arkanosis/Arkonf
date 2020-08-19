@@ -5,8 +5,10 @@ backup_pkgs:
   pkg.installed:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
+      - borg
       - ddrescue
 {% else %}
+      - borgbackup
       - gddrescue
 {% endif %}
       - rsnapshot
@@ -96,3 +98,12 @@ backup_pkgs:
     - source: salt://backup/rsnapshot.exclude
     - template: jinja
     - mode: 644
+
+{% if grains['host'] == 'gossamer' %}
+/home/borgbackup/backups/bismuth:
+  file.directory:
+    - user: borgbackup
+    - group: borgbackup
+    - mode: 700
+    - makedirs: True
+{% endif %}
