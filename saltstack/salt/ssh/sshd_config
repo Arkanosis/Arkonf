@@ -40,6 +40,9 @@ AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
 
+Match User borgbackup
+      AuthenticationMethods publickey
+
 Match User rssht-user
       AuthenticationMethods publickey
 
