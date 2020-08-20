@@ -107,3 +107,10 @@ backup_pkgs:
     - mode: 700
     - makedirs: True
 {% endif %}
+
+{% if grains['host'] == 'bismuth' %}
+/usr/bin/bismuth_backup:
+  file.managed:
+    - source: salt://backup/usr_bin_bismuth_backup
+    - mode: 700
+{% endif %}
