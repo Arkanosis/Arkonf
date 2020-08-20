@@ -20,6 +20,7 @@ python_pkgs:
       - python2-pillow
       - python-jinja
       - python-language-server
+      - python-llfuse
       - python2-lxml
       - python-openpyxl
       - python-poetry
@@ -41,6 +42,7 @@ python_pkgs:
       # Modules
       - python3-click
       - python3-jinja2
+      - python3-llfuse
       - python-lxml
       - python-pil
       - python3-openpyxl
