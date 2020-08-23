@@ -3,7 +3,6 @@ roles:
 
 local_users:
   - arkanosis
-  - asdp
   - rssht-user
   - sftp-arkanosis-net
   - sftp-denomme-fr
