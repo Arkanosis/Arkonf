@@ -44,6 +44,7 @@ server_pkgs:
     - defaults:
         domain: {{ site.domain }}
         root: {{ site.root }}
+        www:  {{ site.www | default(False) }}
         main_domain: "bismuth.arkanosis.net"
     - mode: 644
 
