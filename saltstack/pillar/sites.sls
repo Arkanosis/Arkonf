@@ -28,3 +28,14 @@ sites:
     root: /var/sftp/sftp-arkanosis-net/dnalyze.me
     owner: sftp-arkanosis-net
     www: True
+
+  # genetique.info
+  - domain: genetique.info
+    root: /var/sftp/sftp-arkanosis-net/genetique.info
+    owner: sftp-arkanosis-net
+    www: True
+
+  # microstatus.org (redirect to GitHub pages)
+  - domain: www.microstatus.org
+    root: /var/sftp/sftp-arkanosis-net/microstatus.org
+    owner: sftp-arkanosis-net

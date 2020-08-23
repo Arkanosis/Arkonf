@@ -22,3 +22,7 @@ domains:
   - qr.denomme.fr
 
   - dnalyze.me
+
+  - genetique.info
+
+  - www.microstatus.org
