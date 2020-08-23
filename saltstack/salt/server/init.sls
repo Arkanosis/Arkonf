@@ -45,7 +45,7 @@ server_pkgs:
         domain: {{ site.domain }}
         root: {{ site.root }}
         www:  {{ site.www | default(False) }}
-        main_domain: "bismuth.arkanosis.net"
+        main_domain: "bismuth.arkanosis.net-0004"
     - mode: 644
 
 /etc/nginx/sites-enabled/{{ site.domain }}:
