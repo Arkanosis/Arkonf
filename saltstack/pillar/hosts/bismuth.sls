@@ -11,6 +11,8 @@ known_ips:
   - 91.103.43.10 # Exalead
 
 domains:
+  - arkanosis.com
+
   - bismuth.arkanosis.net
 
   - dl.denomme.fr
