@@ -63,7 +63,7 @@ server_pkgs:
     - makedirs: True
     - target: ../sites-available/bismuth.arkanosis.net
 
-certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --expand {% for domain in pillar['domains'] %} --domain {{ domain }} {% endfor %}:
+certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --expand {% for domain in pillar['domains'] %} --domain {{ domain }} {% endfor %} {% for site in pillar['sites'] %}{% if site.domain in pillar['domains'] and site.get('www', False) %} --domain www.{{ site.domain }} {% endif %}{% endfor %}:
   cmd.run:
     - unless: test -f /etc/letsencrypt/live/bismuth.arkanosis.net/fullchain.pem
 
