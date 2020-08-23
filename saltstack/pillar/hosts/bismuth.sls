@@ -13,6 +13,9 @@ known_ips:
 domains:
   - arkanosis.com
 
+  - asdp.arkanosis.fr
+  - sigf.arkanosis.fr
+
   - bismuth.arkanosis.net
 
   - dl.denomme.fr

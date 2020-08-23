@@ -5,6 +5,15 @@ sites:
     owner: sftp-arkanosis-net
     www: True
 
+  # arkanosis.fr
+  - domain: asdp.arkanosis.fr
+    root: /var/sftp/sftp-arkanosis-net/asdp.arkanosis.fr
+    owner: sftp-arkanosis-net
+
+  - domain: sigf.arkanosis.fr
+    root: /var/sftp/sftp-arkanosis-net/sigf.arkanosis.fr
+    owner: sftp-arkanosis-net
+
   # denomme.fr
   - domain: dl.denomme.fr
     root: /var/sftp/sftp-denomme-fr/dl
