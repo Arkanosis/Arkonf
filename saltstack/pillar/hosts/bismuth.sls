@@ -17,3 +17,5 @@ domains:
 
   - dl.denomme.fr
   - qr.denomme.fr
+
+  - dnalyze.me

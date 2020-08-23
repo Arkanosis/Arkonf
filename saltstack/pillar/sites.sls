@@ -13,3 +13,9 @@ sites:
   - domain: qr.denomme.fr
     root: /var/sftp/sftp-denomme-fr/qr
     owner: sftp-denomme-fr
+
+  # dnalyze.me
+  - domain: dnalyze.me
+    root: /var/sftp/sftp-arkanosis-net/dnalyze.me
+    owner: sftp-arkanosis-net
+    www: True
