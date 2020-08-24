@@ -64,3 +64,9 @@ sites:
   - domain: www.microstatus.org
     root: /var/sftp/sftp-arkanosis-net/microstatus.org
     owner: sftp-arkanosis-net
+
+  # rtfblog.com
+  - domain: rtfblog.com
+    root: /var/sftp/sftp-arkanosis-net/rtfblog.com
+    owner: sftp-arkanosis-net
+    www: True
