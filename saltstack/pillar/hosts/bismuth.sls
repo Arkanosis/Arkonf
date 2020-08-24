@@ -16,6 +16,10 @@ domains:
   - asdp.arkanosis.fr
   - sigf.arkanosis.fr
 
+  - apk.arkanosis.net
+  - apt.arkanosis.net
+  - pkg.arkanosis.net
+
   - bismuth.arkanosis.net
 
   - dl.denomme.fr

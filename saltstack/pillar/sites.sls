@@ -14,6 +14,19 @@ sites:
     root: /var/sftp/sftp-arkanosis-net/sigf.arkanosis.fr
     owner: sftp-arkanosis-net
 
+  # arkanosis.net
+  - domain: apk.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/apk.arkanosis.net
+    owner: sftp-arkanosis-net
+
+  - domain: apt.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/apt.arkanosis.net
+    owner: sftp-arkanosis-net
+
+  - domain: pkg.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/pkg.arkanosis.net
+    owner: sftp-arkanosis-net
+
   # denomme.fr
   - domain: dl.denomme.fr
     root: /var/sftp/sftp-denomme-fr/dl
