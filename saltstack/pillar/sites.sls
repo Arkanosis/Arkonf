@@ -15,12 +15,24 @@ sites:
     owner: sftp-arkanosis-net
 
   # arkanosis.net
+  - domain: alpha.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/alpha.arkanosis.net
+    owner: sftp-arkanosis-net
+
   - domain: apk.arkanosis.net
     root: /var/sftp/sftp-arkanosis-net/apk.arkanosis.net
     owner: sftp-arkanosis-net
 
   - domain: apt.arkanosis.net
     root: /var/sftp/sftp-arkanosis-net/apt.arkanosis.net
+    owner: sftp-arkanosis-net
+
+  - domain: bc.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/bc.arkanosis.net
+    owner: sftp-arkanosis-net
+
+  - domain: biotech.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/biotech.arkanosis.net
     owner: sftp-arkanosis-net
 
   - domain: pkg.arkanosis.net

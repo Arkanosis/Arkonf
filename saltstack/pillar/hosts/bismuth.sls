@@ -16,8 +16,11 @@ domains:
   - asdp.arkanosis.fr
   - sigf.arkanosis.fr
 
+  - alpha.arkanosis.net
   - apk.arkanosis.net
   - apt.arkanosis.net
+  - bc.arkanosis.net
+  - biotech.arkanosis.net
   - pkg.arkanosis.net
 
   - bismuth.arkanosis.net
