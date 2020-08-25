@@ -6,6 +6,11 @@ sites:
     www: True
 
   # arkanosis.fr
+  - domain: arkanosis.fr
+    root: /var/sftp/sftp-arkanosis-net/arkanosis.fr
+    owner: sftp-arkanosis-net
+    www: True
+
   - domain: asdp.arkanosis.fr
     root: /var/sftp/sftp-arkanosis-net/asdp.arkanosis.fr
     owner: sftp-arkanosis-net
@@ -15,6 +20,11 @@ sites:
     owner: sftp-arkanosis-net
 
   # arkanosis.net
+  - domain: arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/arkanosis.net
+    owner: sftp-arkanosis-net
+    www: True
+
   - domain: alpha.arkanosis.net
     root: /var/sftp/sftp-arkanosis-net/alpha.arkanosis.net
     owner: sftp-arkanosis-net
