@@ -33,6 +33,12 @@ server_pkgs:
     - group: {{ site.owner }}
     - mode: 711
 
+{{ site.root }}/.config:
+  file.directory:
+    - user: {{ site.owner }}
+    - group: {{ site.owner }}
+    - mode: 700
+
 # TODO clone site configurations in sites-available based on site.config (if any)
 # TODO otherwise, use the default configuration as follow
 
