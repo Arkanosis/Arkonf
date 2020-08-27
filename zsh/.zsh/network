@@ -26,6 +26,14 @@ eip() {
     curl ipinfo.io/$1
 }
 
+wqr() {
+    local dev=$(ip -br a | sed -n 's/^\(w[^ ]\+\) .*/\1/p')
+    local ssid=$(iw dev $dev info | sed -n 's/.*ssid\s*//p')
+    local psk=$(sudo grep -A 2 'ssid="'"$ssid"'"' /etc/wpa_supplicant/wpa_supplicant-$dev.conf | sed -n 's/.*psk="\([^"]\+\)".*/\1/p')
+    echo $dev _ $ssid _ $psk
+    qrencode -o - -t utf8 "WIFI:S:$ssid;T:WPA;P:$psk;;"
+}
+
 wttr() {
     case $(iw wlp1s0 link | sed -n 's/\s*SSID: //p') in
 	TNCAP335EA7)
