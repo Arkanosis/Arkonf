@@ -35,21 +35,23 @@ wqr() {
 }
 
 wttr() {
-    case $(iw wlp1s0 link | sed -n 's/\s*SSID: //p') in
-	TNCAP335EA7)
-	    curl 'https://wttr.in/Paris?lang=fr'
+    local dev=$(ip -br a | sed -n 's/^\(w[^ ]\+\) .*/\1/p')
+    local ssid=$(iw dev $dev info | sed -n 's/.*ssid\s*//p')
+    case $ssid in
+        "Scarab U/V")
+            curl 'https://wttr.in/Paris?lang=fr'
         ;;
-	"Capricorn U/V")
-	    curl 'https://wttr.in/Hardricourt?lang=fr'
+        "Capricorn U/V")
+            curl 'https://wttr.in/Hardricourt?lang=fr'
         ;;
-	Bbox-C77A0BDC*)
-	    curl 'https://wttr.in/Malzéville?lang=fr'
+        Bbox-C77A0BDC*)
+            curl 'https://wttr.in/Malzéville?lang=fr'
         ;;
-	SFR-c618)
-	    curl 'https://wttr.in/Dijon?lang=fr'
+        c618|c618_5GHz)
+            curl 'https://wttr.in/Dijon?lang=fr'
         ;;
-	*)
-	    curl 'https://wttr.in/?lang=fr'
+        *)
+            curl 'https://wttr.in/?lang=fr'
         ;;
     esac
 }
