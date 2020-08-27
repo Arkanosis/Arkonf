@@ -71,3 +71,20 @@ finer-backward-delete-word() {
     zle backward-delete-word
 }
 zle -N finer-backward-delete-word
+
+x-kill-line() {
+    echo -n $RBUFFER | xsel -i -b
+    zle kill-line
+}
+zle -N x-kill-line
+
+x-kill-whole-line() {
+    echo -n $BUFFER | xsel -i -b
+    zle kill-whole-line
+}
+zle -N x-kill-whole-line
+
+x-yank() {
+    LBUFFER=$LBUFFER$(xsel -o -b)
+}
+zle -N x-yank

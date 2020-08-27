@@ -161,3 +161,9 @@ magic-keys() {
 }
 
 magic-keys
+
+if [[ -n $DISPLAY ]]; then
+    bindkey '^k' x-kill-line
+    bindkey '^u' x-kill-whole-line
+    bindkey '^y' x-yank
+fi
