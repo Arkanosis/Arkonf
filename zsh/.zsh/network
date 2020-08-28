@@ -38,22 +38,22 @@ wttr() {
     local dev=$(ip -br a | sed -n 's/^\(w[^ ]\+\) .*/\1/p')
     local ssid=$(iw dev $dev info | sed -n 's/.*ssid\s*//p')
     case $ssid in
-        "Scarab U/V")
-            curl 'https://wttr.in/Paris?lang=fr'
+        "Scarab U/V"|"Scarab U/V_5GHz")
+            curl -s 'https://wttr.in/Paris?lang=fr'
         ;;
-        "Capricorn U/V")
-            curl 'https://wttr.in/Hardricourt?lang=fr'
+        "Capricorn U/V"|"Capricorn U/V_5GHz")
+            curl -s 'https://wttr.in/Hardricourt?lang=fr'
         ;;
         Bbox-C77A0BDC*)
-            curl 'https://wttr.in/Malzéville?lang=fr'
+            curl -s 'https://wttr.in/Malzéville?lang=fr'
         ;;
         c618|c618_5GHz)
-            curl 'https://wttr.in/Dijon?lang=fr'
+            curl -s 'https://wttr.in/Dijon?lang=fr'
         ;;
         *)
-            curl 'https://wttr.in/?lang=fr'
+            curl -s 'https://wttr.in/?lang=fr'
         ;;
-    esac
+    esac | head -n -2
 }
 
 exp() {
