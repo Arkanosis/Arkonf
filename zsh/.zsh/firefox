@@ -12,7 +12,7 @@ fx() {
 }
 
 kf() {
-    killall firefox-bin firefox
+    killall firefox-bin firefox /usr/lib/firefox/firefox
 }
 
 rfx() {
