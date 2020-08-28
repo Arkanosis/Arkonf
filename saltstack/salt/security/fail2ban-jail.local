@@ -3,5 +3,7 @@ ignoreip = 127.0.0.1/8 {{ pillar['known_ips'] | default([]) | join(' ') }}
 bantime  = 2592000
 findtime = 3600
 maxretry = 3
+action = %(action_mwl)s
+mta = mail
 destemail = {{ pillar['recipient_email'] }}
 sender = {{ pillar['sender_email'] }}
