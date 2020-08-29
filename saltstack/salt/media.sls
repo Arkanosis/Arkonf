@@ -23,6 +23,7 @@ media_pkgs:
 {% endif %}
       - v4l-utils
       - vlc
+      - youtube-dl
 
 dragonplayer:
   pkg:
