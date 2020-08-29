@@ -3,6 +3,7 @@ CONFIGS= \
 	autoconf \
 	awesome \
 	bash \
+	bat \
 	dhex \
 	dotfiles \
 	emacs \
@@ -62,6 +63,11 @@ bash: ~/.bashrc ~/.bash_profile
 	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
 ~/.bash_profile:
 	ln -s "$(ROOT)bash/$(notdir $@)" "$@"
+
+bat: ~/.config/bat/config
+~/.config/bat/config:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)bat/$(notdir $@)" "$@"
 
 dhex: ~/.dhexrc
 ~/.dhexrc:
