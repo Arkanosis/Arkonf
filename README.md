@@ -30,6 +30,14 @@ hostnamectl set-hostname $HOSTNAME
 Also, make sure that the name (and the FQDN) is correct in `/etc/hosts` as it
 will be used by some packages (such as the MTA).
 
+### On any supported distro (with a bootstrap script)
+
+```sh
+wget https://arkanosis.net/bootstrap
+chmod a+x bootstrap
+./bootstrap
+```
+
 ### On Arch Linux
 
 ```sh
