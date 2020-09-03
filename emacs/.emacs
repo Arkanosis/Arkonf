@@ -47,9 +47,9 @@
 ; - Suppression du mot qui suit / précède *sans copier*
 ; - Support du open-file-at-point
 
-;; Désactiver le gc le temps du chargement de la configuration
-
 (package-initialize)
+
+;; Désactiver le gc le temps du chargement de la configuration
 
 (setq gc-cons-threshold 100000000)
 
@@ -310,6 +310,12 @@ If region contains less than 2 lines, lines are left untouched."
       '(("gnu" . "https://elpa.gnu.org/packages/")
 	("melpa" . "https://melpa.org/packages/")))
 
+(custom-set-variables
+ '(lsp-rust-server 'rust-analyzer)
+ '(package-selected-packages
+   '(auto-complete company dap-mode dash dash-functional diminish flycheck lsp-java lsp-mode magit undo-tree use-package)))
+(package-install-selected-packages)
+
 (require 'use-package)
 
 (use-package diminish)
@@ -394,7 +400,7 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'java-mode-hook #'lsp)
   (add-hook 'java-mode-hook (lambda ()
     (local-set-key (kbd "M-RET") 'lsp-find-definition)))
-  (require 'dap-java)
+  ;(require 'dap-java)
   (setq dap-auto-configure-features '(sessions locals tooltip))
   (require 'compile)
   (add-to-list 'compilation-error-regexp-alist 'maven)
@@ -782,12 +788,6 @@ If region contains less than 2 lines, lines are left untouched."
 (setq vc-follow-symlinks t)
 
 (setq global-magit-file-mode nil)
-
-(custom-set-variables
- '(lsp-rust-server (quote rust-analyzer))
- '(package-selected-packages
-   (quote
-    (magit use-package dash dash-functional lsp-java dap-mode company flycheck lsp-mode))))
 
 (c-set-offset 'case-label '+)
 ;(c-set-offset 'inclass '++)
