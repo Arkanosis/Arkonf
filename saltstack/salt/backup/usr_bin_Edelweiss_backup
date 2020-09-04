@@ -5,9 +5,10 @@ cd / && \
 	 --stats \
 	 --progress \
 	 --compress lz4 \
-	 ssh://borgbackup@localhost:2222/home/borgbackup/backups/bismuth/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+	 /media/arkanosis/Gymir/borgbackup/Edelweiss/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
 	 ./ \
 	 --exclude=boot \
+	 --exclude=cdrom \
 	 --exclude=dev \
 	 --exclude=lost+found \
 	 --exclude=media \
