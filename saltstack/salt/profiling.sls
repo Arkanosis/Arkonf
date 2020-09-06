@@ -11,3 +11,5 @@ profile_pkgs:
       - linux-tools-generic
 {% endif %}
       - valgrind
+
+# AUR hotspot
