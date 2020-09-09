@@ -79,8 +79,8 @@ keycode  38 = a A ae AE
 !! s S √ ∛
 keycode  39 = s S U221A U221B
 
-!! d D ÷ …
-keycode  40 = d D U00F7 U2026
+!! d D … ÷
+keycode  40 = d D U2026 U00F7
 
 !! f F ↔ ⇔
 keycode  41 = f F U2194 U21D4
