@@ -132,6 +132,11 @@ kbd() {
     setxkbmap us
     xmodmap ~/.Xmodmap
     xset r 66
+
+    if xinput list | grep -q OBINLB; then
+	xmodmap -e 'keycode  9 = grave asciitilde dead_grave dead_acute'
+	xmodmap -e 'keycode  49 = Escape'
+    fi
 }
 
 closingchars=(\) \] \} \' \" \`)
