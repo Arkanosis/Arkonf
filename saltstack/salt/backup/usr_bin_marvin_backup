@@ -15,4 +15,5 @@ cd / && \
 	 --exclude=proc \
 	 --exclude=run \
 	 --exclude=sys \
-	 --exclude=tmp
+	 --exclude=tmp \
+	 --exclude=var/cache/pacman/pkg
