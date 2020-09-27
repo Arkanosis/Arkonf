@@ -4,7 +4,9 @@ echo 'Backing up /mnt, please make sure that nothing apart form /mnt/hdd is bein
 
 sleep 10
 
-cd / && \
+cd && \
+    mount.ecryptfs_private Sauvegardes && \
+    cd / && \
     sudo borg create \
 	 --stats \
 	 --progress \
@@ -16,6 +18,7 @@ cd / && \
 	 --exclude=home/.ecryptfs \
 	 --exclude=lost+found \
 	 --exclude=media \
+	 --exclude=mnt/hdd/.Sauvegardes \
 	 --exclude=proc \
 	 --exclude=run \
 	 --exclude=sys \
