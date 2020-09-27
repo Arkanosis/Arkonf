@@ -1,0 +1,21 @@
+#! /bin/sh
+
+echo 'Backing up /mnt, please make sure that nothing apart form /mnt/hdd is being mounted there'
+
+sleep 10
+
+cd / && \
+    sudo borg create \
+	 --stats \
+	 --progress \
+	 --compress lz4 \
+	 /run/media/arkanosis/Gymir/borgbackup/gossamer/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+	 ./ \
+	 --exclude=boot \
+	 --exclude=dev \
+	 --exclude=lost+found \
+	 --exclude=media \
+	 --exclude=proc \
+	 --exclude=run \
+	 --exclude=sys \
+	 --exclude=tmp
