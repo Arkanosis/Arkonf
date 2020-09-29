@@ -104,7 +104,8 @@ keycode  47 = semicolon colon U2198
 keycode  48 = apostrophe quotedbl U2019 U2030
 
 !! ` ~ ` ´
-keycode  49 = grave asciitilde dead_grave dead_acute
+keycode  9 = Escape asciitilde dead_grave dead_acute
+keycode  49 = Escape asciitilde dead_grave dead_acute
 
 !! \ | ↖ ↑
 keycode  51 = backslash bar U2196 uparrow
