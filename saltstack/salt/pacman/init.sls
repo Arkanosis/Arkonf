@@ -1,8 +1,12 @@
 pacman_pkgs:
   pkg.installed:
     - pkgs:
-      - base-devel
       - pacman-contrib
+
+pacman_pkgs_group:
+  pkg.group_installed:
+    - name:
+      - base-devel
 
 # AUR yay
 
