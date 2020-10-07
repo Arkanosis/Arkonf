@@ -13,6 +13,11 @@ network_pkgs:
       #- knemo
       - mtr
       - nethogs
+{% if grains['os_family'] == 'Arch' %}
+      - openbsd-netcat
+{% else %}
+      - netcat-openbsd
+{% endif %}
       #- qrcp
       - remmina
       - rsync
@@ -20,12 +25,16 @@ network_pkgs:
       - smstools # TODO FIXME need smstools3 for ArchLinux as well
 {% endif %}
       - traceroute
-{% if grains['os_family'] != 'Arch' %}
-      - usb-modeswitch
-{% else %}
+{% if grains['os_family'] == 'Arch' %}
       - usb_modeswitch
+{% else %}
+      - usb-modeswitch
 {% endif %}
+{% if grains['os_family'] == 'Arch' %}
+      - gammu
+{% else %}
       - wammu
+{% endif %}
       - wget
       - whois
 {% if grains['os_family'] == 'Arch' %}
