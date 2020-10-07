@@ -1,15 +1,20 @@
 profile_pkgs:
   pkg.installed:
-    - pkgs:
+      - pkgs:
 {% if grains['os_family'] == 'Arch' %}
-      - hyperfine
+        - hyperfine
 {% endif %}
-      - kcachegrind
+        - kcachegrind
+{% if grains['os_family'] != 'Arch' %}
+        - linux-tools-generic
+{% endif %}
+        - valgrind
+
 {% if grains['os_family'] == 'Arch' %}
+profile_pkgs_group:
+  pkg.group_installed:
+    - name:
       - linux-tools
-{% else %}
-      - linux-tools-generic
 {% endif %}
-      - valgrind
 
 # AUR hotspot
