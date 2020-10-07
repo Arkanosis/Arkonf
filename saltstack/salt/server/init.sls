@@ -8,8 +8,6 @@ server_pkgs:
       - curl
       - rsync
 
-      - ntp
-
       - goaccess
 
       - nginx

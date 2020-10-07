@@ -7,6 +7,7 @@ ssh_pkgs:
       - openssh
       - putty
 {% else %}
+      - ntp
       - openssh-server
       - putty-tools
 {% endif %}
@@ -45,3 +46,9 @@ ssh:
       - file: /etc/pam.d/sshd
     - require:
       - pkg: ssh_pkgs
+
+{% if grains['os_family'] == 'Arch' %}
+systemd-timesyncd:
+  service.running:
+    - enable: True
+{% endif %}
