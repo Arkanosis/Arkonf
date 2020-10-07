@@ -10,6 +10,7 @@ document_pkgs:
       - noto-fonts
       - noto-fonts-cjk
       - noto-fonts-emoji
+      - ttf-dejavu
       - zathura
       - zathura-djvu
       - zathura-pdf-mupdf
