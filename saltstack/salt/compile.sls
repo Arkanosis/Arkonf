@@ -3,11 +3,12 @@ compile_pkgs:
     - pkgs:
       - autoconf
       - bison
-{% if grains['os_family'] == 'Arch' %}
-      - cargo-tree
-{% endif %}
       - cmake
+{% if grains['os_family'] == 'Arch' %}
+      - eigen
+{% else %}
       - eigen3
+{% endif %}
       - flex
 {% if grains['os_family'] == 'Arch' %}
       - gcc
@@ -28,11 +29,12 @@ compile_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - namcap
 {% endif %}
-      - pkg-config
 {% if grains['os_family'] == 'Arch' %}
+      - pkgconf
       - rust-analyzer
       - rustup
       - typescript
 {% else %}
+      - pkg-config
       - node-typescript
 {% endif %}

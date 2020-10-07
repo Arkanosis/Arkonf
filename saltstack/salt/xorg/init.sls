@@ -24,6 +24,7 @@ xorg_pkgs:
       - xorg-xinput
       - xorg-xprop
       - xorg-xrandr
+      - xorg-xset
 {% else %}
       - x11-utils
       - xbacklight
