@@ -9,6 +9,10 @@ local_users:
   - nonfreegaming
   - rssht-user
 
+encrypted_homes:
+  - arkanosis
+  - asdp
+
 smart_drives:
   - sda
 

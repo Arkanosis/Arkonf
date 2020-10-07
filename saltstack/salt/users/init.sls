@@ -53,7 +53,7 @@ users_pkgs:
     - require:
       - user: {{ user.login }}
 
-{% if grains['os_family'] == 'Arch' %}
+{% if pillar.encrypted_homes is defined and user.login in pillar['encrypted_homes'] %}
 /home/.ecryptfs/{{ user.login }}:
   cmd.run:
     - name: '! echo "Please run as root and then login: passwd {{ user.login }}; ps -u {{ user.login }} && ecryptfs-migrate-home -u {{ user.login }}"'
@@ -138,7 +138,7 @@ make -C /home/{{ user.login }}/Arkonf install:
       - pkg: users_pkgs
 {% endif %}
 
-{% if grains['os_family'] == 'Arch' %}
+{% if pillar.encrypted_homes is defined %}
 /etc/crypttab:
   cmd.run:
     - name: '! echo "Please run as root: ecryptfs-setup-swap"'
