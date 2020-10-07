@@ -11,24 +11,16 @@ python_pkgs:
       - cython
       # Installer
       - python-pip
-      - python2-pip
       # Debugger
       - python-pudb
-      - python2-pudb
       # Modules
       - python-click
-      - python2-pillow
       - python-jinja
       - python-language-server
       - python-llfuse
-      - python2-lxml
       - python-openpyxl
       - python-poetry
       - python-progressbar
-      - python2-progressbar
-      - python2-requests
-      - python2-virtualenv
-      - python2-xlrd
       - python-yaml
 {% else %}
       - cython3
