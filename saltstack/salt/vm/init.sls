@@ -38,6 +38,8 @@ vm_pkgs32:
       - lib32-gnutls
 {% if salt['grains.get']('gpus:vendor') == 'intel' %}
       - lib32-mesa
+{% elif salt['grains.get']('gpus:vendor') == 'nvidia' %}
+      - lib32-nvidia-utils
 {% endif %}
       - lib32-mpg123
       - lib32-vkd3d
