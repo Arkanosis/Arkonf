@@ -34,7 +34,7 @@ ssh_pkgs:
     - mode: 644
 
 {% if grains['os_family'] == 'Arch' %}
-sshd.socket:
+sshd:
 {% else %}
 ssh:
 {% endif %}
