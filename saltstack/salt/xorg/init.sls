@@ -16,6 +16,7 @@ xorg_pkgs:
       - xsel
 {% if grains['os_family'] == 'Arch' %}
       - xautolock
+      - xf86-input-wacom
       - xorg-server
       - xorg-server-xephyr
       - xorg-xbacklight
