@@ -9,6 +9,7 @@ audio_pkgs:
       - pavucontrol
       - pulseaudio
 {% if grains['os_family'] == 'Arch' %}
+      - pulseaudio-alsa
       - pulseaudio-bluetooth
       - bluez-utils
 {% endif %}
