@@ -370,7 +370,7 @@ dfcmd() {
         ;;
     esac
 }
-df() {
+dfcl() {
     dfcmd colordiff $@
 }
 ds() {
@@ -389,10 +389,10 @@ kds() {
     dfcmd kdiff3 --staged $@
 }
 rdf() {
-    vcsroot df $@
+    vcsroot dfcl $@
 }
 rds() {
-    vcsroot df --staged $@
+    vcsroot dfcl --staged $@
 }
 rkdf() {
     vcsroot kdf $@
@@ -401,10 +401,10 @@ rkds() {
     vcsroot kdf --staged $@
 }
 dfl() {
-    df $@ | less
+    dfcl $@ | less
 }
 dsl() {
-    df --staged $@ | less
+    dfcl --staged $@ | less
 }
 # Exactement pareil que dfl, mais avec une autre completion
 sdfl() {
@@ -417,7 +417,7 @@ rdsl() {
     vcsroot dfl --staged $@
 }
 dc() {
-    df -r committed $@
+    dfcl -r committed $@
 }
 rdc() {
     vcsroot dc $@
@@ -429,7 +429,7 @@ rdcl() {
     vcsroot dcl $@
 }
 dp() {
-    df -r prev $@
+    dfcl -r prev $@
 }
 rdp() {
     vcsroot dp $@

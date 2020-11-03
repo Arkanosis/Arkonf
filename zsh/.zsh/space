@@ -54,9 +54,19 @@ sz() {
     fi
 }
 
-dfc() {
-    command dfc -dsTwW $@
-}
+if which duf >& /dev/null; then
+    df() {
+        duf -hide-fs ecryptfs,devtmpfs $@
+    }
+elif which dfc >& /dev/null; then
+    df() {
+        dfc -dsTwW -t -ecryptfs,devtmpfs -q name $@
+    }
+else
+    df() {
+        command df -hT -x ecryptfs -x devtmpfs $@ >>(head -n 1) >>(tail -n +2 | sort -k 1)
+    }
+fi
 
 ncdu() {
     if is-at-least 1.13 $(command ncdu -v | awk '{ print $2}'); then

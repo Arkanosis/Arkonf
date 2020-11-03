@@ -4,3 +4,5 @@ space_pkgs:
       - dfc
       - ncdu
       - rmlint
+
+# AUR duf
