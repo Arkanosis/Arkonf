@@ -59,3 +59,21 @@ wttr() {
 exp() {
     whois $1 | grep -i 'expir[^ ]*'
 }
+
+ydl() {
+    if ((# > 0)); then
+        youtube-dl $@
+    else
+        youtube-dl -f best $(xsel -o -b)
+    fi
+}
+
+ydla() {
+    if ((# > 0)); then
+        youtube-dl -f bestaudio $@ ||
+            youtube-dl -x --audio-format best $@
+    else
+        youtube-dl -f bestaudio $(xsel -o -b) ||
+            youtube-dl -x --audio-format best $(xsel -o -b)
+    fi
+}
