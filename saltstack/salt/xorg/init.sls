@@ -1,6 +1,7 @@
 xorg_pkgs:
   pkg.installed:
     - pkgs:
+      - brightnessctl
       - sxhkd
       - synergy
 {% if grains['os_family'] == 'Arch' %}
@@ -19,7 +20,6 @@ xorg_pkgs:
       - xf86-input-wacom
       - xorg-server
       - xorg-server-xephyr
-      - xorg-xbacklight
       - xorg-xev
       - xorg-xinit
       - xorg-xinput
@@ -28,7 +28,6 @@ xorg_pkgs:
       - xorg-xset
 {% else %}
       - x11-utils
-      - xbacklight
       - xserver-xephyr
 {% endif %}
 

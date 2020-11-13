@@ -1,7 +1,7 @@
 # TODO enable / disable networking
 
 XF86MonBrightness{Down,Up}
-	xbacklight -{dec,inc} 10
+	brightnessctl set 5000{-,+}
 
 # TODO change external screen configuration
 
