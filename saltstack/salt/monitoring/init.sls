@@ -14,6 +14,9 @@ monitoring_pkgs:
 {% endif %}
       - lshw
       - lsof
+{% if salt['grains.get']('gpus:vendor') == 'nvidia' %}
+      - nvtop
+{% endif %}
       - powertop
       - pv
 {% if grains['virtual'] == 'physical' %}
