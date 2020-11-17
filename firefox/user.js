@@ -31,6 +31,8 @@ user_pref("network.IDN_show_punycode", true);
 
 user_pref("permissions.default.desktop-notification", 2);
 
+user_pref("privacy.donottrackheader.enabled", true);
+
 user_pref("signon.rememberSignons", false);
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
