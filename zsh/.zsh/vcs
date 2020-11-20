@@ -401,10 +401,10 @@ rkds() {
     vcsroot kdf --staged $@
 }
 dfl() {
-    dfcl $@ | less
+    dfcl $@
 }
 dsl() {
-    dfcl --staged $@ | less
+    dfcl --staged $@
 }
 # Exactement pareil que dfl, mais avec une autre completion
 sdfl() {
