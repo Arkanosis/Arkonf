@@ -31,11 +31,21 @@ untracked = magenta
 [commit]
 gpgsign = true
 
+[core]
+pager = delta
+
+[delta]
+line-numbers = true
+side-by-side = true
+
 [diff]
 tool = vimdiff
 
 [gitreview]
 remote = origin
+
+[interactive]
+diffFilter = delta --color-only
 
 [log]
 decorate = full
