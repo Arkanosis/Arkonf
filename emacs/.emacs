@@ -313,7 +313,7 @@ If region contains less than 2 lines, lines are left untouched."
 (custom-set-variables
  '(lsp-rust-server 'rust-analyzer)
  '(package-selected-packages
-   '(auto-complete company dap-mode dash dash-functional diminish flycheck lsp-java lsp-mode magit undo-tree use-package)))
+   '(auto-complete company dap-mode dash dash-functional diminish elixir-mode flycheck lsp-java lsp-mode magit undo-tree use-package)))
 (package-install-selected-packages)
 
 (require 'use-package)
@@ -435,6 +435,8 @@ If region contains less than 2 lines, lines are left untouched."
    '(kotlin
      ".*: \\(.+?\\.kt\\): (\\([0-9]+\\), \\([0-9]+\\)): .*" 1 2 3))
   :mode "\\.kt$")
+(use-package elixir-mode
+  :mode "\\.exs?$")
 (use-package csharp-mode
   :mode "\\.cs$")
 (use-package csv-mode
@@ -782,7 +784,7 @@ If region contains less than 2 lines, lines are left untouched."
 (setq locale-coding-system 'utf-8)
 (setq make-backup-files nil)
 (setq next-line-add-newlines nil)
-(setq scroll-step 1) ;; Ne descend que d'une ligne lorsau'on arrive en bas de l'ecran
+(setq scroll-step 1) ;; Ne descend que d'une ligne lorsqu'on arrive en bas de l'ecran
 (setq visible-bell t)
 (setq gdb-many-windows t)
 (setq vc-follow-symlinks t)
