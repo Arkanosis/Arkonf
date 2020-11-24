@@ -8,7 +8,7 @@ cx() {
 
 if grep --color . <(echo .) >& /dev/null; then
     grep() {
-	command grep --color=auto $@
+        command grep --color=auto $@
     }
 fi
 
@@ -18,17 +18,23 @@ vd() {
 
 ed() {
     if ! cmp -s $1 $2 > /dev/null; then
-	e --eval '(ediff-files "'$(readlink -f $1)'" "'$(readlink -f $2)'")'
+        e --eval '(ediff-files "'$(readlink -f $1)'" "'$(readlink -f $2)'")'
     fi
 }
 
 if which hexyl >& /dev/null; then
     hx() {
-	hexyl $@
+        hexyl $@
     }
 else
     hx() {
-	hexdump -C $@
+        hexdump -C $@
+    }
+fi
+
+if !which bat >& /dev/null; then
+    bat() {
+        less $@
     }
 fi
 
@@ -96,12 +102,12 @@ pw() {
 
 fu() {
     if which apt >& /dev/null; then
-	sudo apt update && sudo apt upgrade
+        sudo apt update && sudo apt upgrade
     elif which pacman >& /dev/null; then
-	sudo pacman -Syu
+        sudo pacman -Syu
     else
-	echo 'Package manager is unknown' >&2
-	return 1
+        echo 'Package manager is unknown' >&2
+        return 1
     fi
 }
 
@@ -119,22 +125,22 @@ umnt() {
 
 if [[ $OS =~ 'Windows' ]]; then
     scp() {
-	rsync -aAzz --info=progress2 --partial-dir=.rsync-partial $@
+        rsync -aAzz --info=progress2 --partial-dir=.rsync-partial $@
     }
 else
     scp() {
-	rsync -aAXzz --info=progress2 --partial-dir=.rsync-partial $@
+        rsync -aAXzz --info=progress2 --partial-dir=.rsync-partial $@
     }
 fi
 
 if [[ $USER != nonfreegaming ]]; then
     wine() {
-	echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
-	return 1
+        echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
+        return 1
     }
 
     steam() {
-	echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
-	return 1
+        echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
+        return 1
     }
 fi

@@ -238,24 +238,24 @@ alias /x="noglob /x"
 rd() {
     if ((#)); then
         if [[ -f $1/README ]]; then
-            less $1/README
+            bat $1/README
             return 0
         elif [[ -f $1/README.md ]]; then
-            less $1/README.md
+            bat $1/README.md
             return 0
         elif [[ -f $1/README.rst ]]; then
-            less $1/README.rst
+            bat $1/README.rst
             return 0
         fi
     else
         if [[ -f ./README ]]; then
-            less ./README
+            bat ./README
             return 0
         elif [[ -f ./README.md ]]; then
-            less ./README.md
+            bat ./README.md
             return 0
         elif [[ -f ./README.rst ]]; then
-            less ./README.rst
+            bat ./README.rst
             return 0
         fi
     fi
