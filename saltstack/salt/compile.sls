@@ -9,6 +9,7 @@ compile_pkgs:
 {% else %}
       - eigen3
 {% endif %}
+      - elixir
       - flex
 {% if grains['os_family'] == 'Arch' %}
       - gcc
