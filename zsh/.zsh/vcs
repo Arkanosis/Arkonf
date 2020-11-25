@@ -219,8 +219,15 @@ push() {
 
     vcs=$(whichvcs)
     case $vcs in
-        hg|git)
-            $vcs push $@
+        hg)
+            hg push $@
+        ;;
+        git)
+            if grep -q sendemail .git/config; then
+                git send-email $@
+            else
+                git push $@
+            fi
         ;;
     esac
 }
