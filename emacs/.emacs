@@ -320,6 +320,13 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package diminish)
 
+(use-package tramp
+  :config
+  (tramp-set-completion-function "ssh"
+    '((tramp-parse-sconfig "/etc/ssh_config")
+      (tramp-parse-sconfig "~/.ssh/config")
+      (tramp-parse-sconfig "~/.ssh/config.local"))))
+
 (defun highlight-indent-guides-custom-highlight (level responsive display)
   (if (> 1 level)
       nil
