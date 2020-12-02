@@ -391,6 +391,7 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'python-mode-hook #'abbrev-mode)
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'python-mode-hook (lambda ()
+    (local-set-key (kbd "C-c C-b") 'python-shell-send-buffer)
     (local-set-key (kbd "M-RET") 'lsp-find-definition)))
   (require 'dap-python)
   (setq dap-auto-configure-features '(sessions locals tooltip))
