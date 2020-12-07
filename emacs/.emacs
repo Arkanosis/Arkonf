@@ -352,7 +352,9 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
-  (global-undo-tree-mode t))
+  (global-undo-tree-mode)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-visualizer-diff t))
 
 (use-package urlencode)
 
