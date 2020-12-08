@@ -313,7 +313,7 @@ If region contains less than 2 lines, lines are left untouched."
 (custom-set-variables
  '(lsp-rust-server 'rust-analyzer)
  '(package-selected-packages
-   '(auto-complete company dap-mode dash dash-functional diminish elixir-mode flycheck lsp-java lsp-mode magit undo-tree use-package)))
+   '(auto-complete company dap-mode dash dash-functional diminish elixir-mode flycheck lsp-java lsp-mode magit undo-tree use-package yasnippet-snippets)))
 (package-install-selected-packages)
 
 (require 'use-package)
