@@ -16,6 +16,9 @@ base:
   'P@host:Edelweiss':
     - hosts.edelweiss
 
+  'P@host:Mimosa':
+    - hosts.mimosa
+
   'P@host:bismuth':
     - hosts.bismuth
 
