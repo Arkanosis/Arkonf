@@ -24,6 +24,7 @@ media_pkgs:
       - v4l-utils
       - vlc
       - youtube-dl
+      - zvbi
 
 dragonplayer:
   pkg:
