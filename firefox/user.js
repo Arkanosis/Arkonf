@@ -26,6 +26,8 @@ user_pref("experiments.supported", false);
 user_pref("experiments.enabled", false);
 user_pref("experiments.manifest.uri", "");
 
+user_pref("extensions.pocket.enabled", false);
+
 user_pref("mousewheel.with_control.action", 0);
 
 user_pref("network.allow-experiments", false);
