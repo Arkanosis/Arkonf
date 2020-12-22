@@ -3,11 +3,9 @@ media_pkgs:
     - pkgs:
       - asciinema
       - flac
-{% if grains['os_family'] == 'Arch' %}
       - ffmpeg
+{% if grains['os_family'] == 'Arch' %}
       - libvdpau-va-gl
-{% else %}
-      - libav-tools
 {% endif %}
       - kdenlive
       - obs-studio
@@ -29,12 +27,6 @@ media_pkgs:
 dragonplayer:
   pkg:
     - removed
-
-{% if grains['os_family'] == 'Debian' %}
-/usr/bin/ffmpeg:
-  file.symlink:
-    - target: /usr/bin/avconv
-{% endif %}
 
 git clone https://github.com/Arkanosis/tifoto.git /tmp/tifoto_installer && cd /tmp/tifoto_installer && ./install.sh:
   cmd.run:
