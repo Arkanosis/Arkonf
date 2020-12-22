@@ -7,7 +7,7 @@ communication_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - thunderbird-i18n-fr
 {% else %}
-      - thunderbird-locale-fr
+      - thunderbird-l10n-fr
 {% endif %}
       - weechat
 
