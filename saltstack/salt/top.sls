@@ -23,6 +23,9 @@ base:
   'G@virtual:physical and G@touchpad:true':
     - touchpad
 
+  'G@virtual:physical and G@productname:NUC*':
+    - intel_wifi
+
   'G@virtual:physical and G@gpus:vendor:intel':
     - intel_gpu
 
