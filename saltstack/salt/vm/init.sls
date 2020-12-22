@@ -11,10 +11,11 @@ vm_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - podman
       - qemu-headless
+      - vkd3d
 {% else %}
       - qemu-kvm
+      - libvkd3d1
 {% endif %}
-      - vkd3d
       - wine
       - winetricks
 
