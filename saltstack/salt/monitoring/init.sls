@@ -26,6 +26,12 @@ monitoring_pkgs:
       - strace
       - time
 
+glances:
+  service.dead:
+    - enable: False
+    - require:
+      - pkg: monitoring_pkgs
+
 {% if grains['virtual'] == 'physical' %}
 {% if grains['os_family'] == 'Arch' %}
 smartd:
