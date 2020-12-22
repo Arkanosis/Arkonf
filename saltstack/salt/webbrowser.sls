@@ -3,17 +3,21 @@ webbrowser_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - chromium
-{% else %}
-      - chromium-browser
 {% endif %}
+{% if grains['os_family'] == 'Debian' %}
+      - firefox-esr
+{% else %}
       - firefox
+{% endif %}
 {% if grains['os_family'] == 'Arch' %}
       - firefox-developer-edition
       - firefox-i18n-fr
+      - geckodriver
+{% elif grains['os_family'] == 'Debian' %}
+      - firefox-esr-l10n-fr
 {% else %}
       - firefox-locale-fr
 {% endif %}
-      - geckodriver
 
 /home/arkanosis/.cache/mozilla:
   file.symlink:
