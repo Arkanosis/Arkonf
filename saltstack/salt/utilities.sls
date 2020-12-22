@@ -11,8 +11,6 @@ utilities_pkgs:
       - lsb-release
 {% if grains['os_family'] == 'Arch' %}
       - man-db
-{% else %}
-      - man
 {% endif %}
       - mlocate
       - moreutils
