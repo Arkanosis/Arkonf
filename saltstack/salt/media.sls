@@ -9,15 +9,19 @@ media_pkgs:
 {% endif %}
       - kdenlive
       - obs-studio
+{% if grains['os_family'] == 'Arch' %}
       - opusfile
+{% else %}
+      - libopusfile0
+{% endif %}
       - opus-tools
       - mpv
 {% if grains['os_family'] == 'Arch' %}
       - sdl2
       - sdl2_image
 {% else %}
-      - libsdl2
-      - libsdl2-image
+      - libsdl2-2.0-0
+      - libsdl2-image-2.0-0
 {% endif %}
       - v4l-utils
       - vlc
