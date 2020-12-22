@@ -20,6 +20,8 @@ mail_pkgs:
     - name: postmap /etc/postfix/passwd
     - onchanges:
       - file: /etc/postfix/passwd
+    - require:
+      - pkg: mail_pkgs
 
 /etc/postfix/generic:
   file.managed:
@@ -30,6 +32,8 @@ mail_pkgs:
     - name: postmap /etc/postfix/generic
     - onchanges:
       - file: /etc/postfix/generic
+    - require:
+      - pkg: mail_pkgs
 
 /etc/postfix/header_checks:
   file.managed:
@@ -40,6 +44,8 @@ mail_pkgs:
     - name: postmap /etc/postfix/header_checks
     - onchanges:
       - file: /etc/postfix/header_checks
+    - require:
+      - pkg: mail_pkgs
 
 postfix:
   service.running:
