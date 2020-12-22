@@ -1,9 +1,9 @@
 xorg_pkgs:
   pkg.installed:
     - pkgs:
+      - barrier
       - brightnessctl
       - sxhkd
-      - synergy
 {% if grains['os_family'] == 'Arch' %}
       - tigervnc
 {% else %}
