@@ -34,7 +34,8 @@ CONFIGS= \
 
 SERVICES= \
 	emacs \
-	org
+	org \
+	sxhkd
 
 .PHONY: all \
 	firefox \
