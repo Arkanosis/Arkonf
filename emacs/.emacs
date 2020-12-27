@@ -313,7 +313,7 @@ If region contains less than 2 lines, lines are left untouched."
 (custom-set-variables
  '(lsp-rust-server 'rust-analyzer)
  '(package-selected-packages
-   '(auto-complete company dap-mode dash dash-functional diminish elixir-mode flycheck lsp-java lsp-mode magit undo-tree use-package yasnippet-snippets)))
+   '(auto-complete company dap-mode dash dash-functional diminish elixir-mode flycheck lsp-java lsp-mode magit rustic undo-tree use-package yasnippet-snippets)))
 (package-install-selected-packages)
 
 (require 'use-package)
@@ -393,8 +393,7 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'python-mode-hook #'abbrev-mode)
   (add-hook 'python-mode-hook #'lsp)
   (add-hook 'python-mode-hook (lambda ()
-    (local-set-key (kbd "C-c C-b") 'python-shell-send-buffer)
-    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
+    (local-set-key (kbd "C-c C-b") 'python-shell-send-buffer)))
   (require 'dap-python)
   (setq dap-auto-configure-features '(sessions locals tooltip))
   :mode ("\\(\\(SConscript\\|SConstruct\\)\\'\\|\\.\\(py\\|def\\|esdl\\|flea\\|gexo\\|json\\)$\\)" . python-mode))
@@ -408,8 +407,6 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'java-mode-hook (lambda ()
     (company-mode t)))
   (add-hook 'java-mode-hook #'lsp)
-  (add-hook 'java-mode-hook (lambda ()
-    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
   ;(require 'dap-java)
   (setq dap-auto-configure-features '(sessions locals tooltip))
   (require 'compile)
@@ -419,18 +416,7 @@ If region contains less than 2 lines, lines are left untouched."
    '(maven
      "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].\*" 1 2 3))
   :mode "\\.\\(java\\|jj\\)$")
-(use-package rust-mode
-  :config
-  (use-package company)
-  (use-package s)
-  (use-package f)
-  (use-package dash)
-  (add-hook 'rust-mode-hook #'abbrev-mode)
-  (add-hook 'rust-mode-hook #'lsp)
-  (add-hook 'rust-mode-hook (lambda ()
-    (local-set-key (kbd "M-RET") 'lsp-find-definition)))
-  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (setq company-tooltip-align-annotations t)
+(use-package rustic-mode
   :mode "\\.rs$")
 (use-package go-mode
   :config
