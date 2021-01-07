@@ -11,4 +11,5 @@ processing_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - python3-csvkit
 {% endif %}
+      - units
       - xmlstarlet
