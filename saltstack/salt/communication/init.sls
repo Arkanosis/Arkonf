@@ -3,6 +3,9 @@ communication_pkgs:
     - pkgs:
       - mutt
       - pidgin
+{% if grains['os_family'] == 'Arch' %}
+      - teamspeak3
+{% endif %}
       - thunderbird
 {% if grains['os_family'] == 'Arch' %}
       - thunderbird-i18n-fr

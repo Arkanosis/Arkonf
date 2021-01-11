@@ -143,4 +143,9 @@ if [[ $USER != nonfreegaming ]]; then
         echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
         return 1
     }
+
+    teamspeak3() {
+        echo "Currently logged in as '$USER', consider using the 'nonfreegaming' account instead" >&2
+        return 1
+    }
 fi

@@ -177,7 +177,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mypromptbox = awful.widget.prompt {
        hooks = {
 	  {{}, "Return", function(command)
-	      if os.getenv("USER") ~= "nonfreegaming" and command == "steam" then
+	      if os.getenv("USER") ~= "nonfreegaming" and (command == "steam" or command == "teamspeak3") then
 		 naughty.notify{ text = "Currently logged in as '".. os.getenv("USER") .."', consider using the 'nonfreegaming' account instead" }
 	      else
 		 return command
