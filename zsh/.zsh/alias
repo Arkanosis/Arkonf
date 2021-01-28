@@ -104,7 +104,7 @@ fu() {
     if which apt >& /dev/null; then
         sudo apt update && sudo apt upgrade
     elif which pacman >& /dev/null; then
-        sudo pacman -Syu
+        sudo pacman -Syu && sudo pacdiff
     else
         echo 'Package manager is unknown' >&2
         return 1
