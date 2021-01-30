@@ -1,6 +1,11 @@
 security_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - arch-audit
+{% else %}
+      - debsecan
+{% endif %}
       - cron-apt
       - fail2ban
       - logwatch
