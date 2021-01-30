@@ -191,8 +191,7 @@ systemd: $(patsubst %,~/.config/systemd/user/%.service,$(SERVICES))
 /var/lib/systemd/linger/${USER}:
 	@echo 'Ask your administrator to run "sudo loginctl enable-linger '${USER}'" to enable session-independant systemd user services'
 %.service: /var/lib/systemd/linger/${USER}
-	mkdir -p "$(dir $@)"
-	ln -s "$(ROOT)systemd/$(notdir $@)" "$@"
+	systemctl --user link "$(ROOT)systemd/$(notdir $@)"
 	systemctl --user enable --now "$(notdir $@)"
 
 totp: ~/.google_authenticator
