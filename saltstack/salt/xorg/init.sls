@@ -35,6 +35,11 @@ xorg_pkgs:
 # AUR sxlock
 
 {% if grains['os_family'] == 'Arch' %}
+/etc/X11/Xwrapper.config:
+  file.managed:
+    - contents:
+        - needs_root_rights = no
+
 /etc/systemd/system/sxlock.service:
   file.managed:
     - source: salt://xorg/sxlock.service
