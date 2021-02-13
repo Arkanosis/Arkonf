@@ -8,6 +8,7 @@ image_pkgs:
 {% else %}
       - fbida # provides exiftran
 {% endif %}
+      - flameshot
       - jhead
       - gimp
       - gimp-help-fr
