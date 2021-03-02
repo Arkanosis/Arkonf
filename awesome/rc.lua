@@ -377,6 +377,17 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "#89", function () awful.spawn("zsh -i -c 'jabra_talk'") end,
               {description = "Use Jabra bluetooth headset", group = "launcher"}),
 
+    awful.key({ modkey,           }, "#83", function () awful.spawn("playerctl previous") end,
+              {description = "Previous track", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "#83", function () awful.spawn("playerctl position 15-") end,
+              {description = "Backward 15 seconds", group = "launcher"}),
+    awful.key({ modkey,           }, "#84", function () awful.spawn("playerctl play-pause") end,
+              {description = "Play / pause", group = "launcher"}),
+    awful.key({ modkey,           }, "#85", function () awful.spawn("playerctl next") end,
+              {description = "Next track", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "#85", function () awful.spawn("playerctl position 15+") end,
+              {description = "Forward 15 seconds", group = "launcher"}),
+
     awful.key({ modkey, "Mod1"    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey, "Mod1"    }, "h",     function () awful.tag.incmwfact(-0.05)          end,

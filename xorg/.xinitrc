@@ -23,6 +23,9 @@ xset r 66
 # Touchpad
 syndaemon -t -K -R -i .5 -d
 
+# Multimedia
+playerctld daemon
+
 if [ "x$USER" = "xnonfreegaming" ]; then
     # Steam
     steam -silent &

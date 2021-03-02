@@ -16,6 +16,7 @@ media_pkgs:
 {% endif %}
       - opus-tools
       - mpv
+      - playerctl
 {% if grains['os_family'] == 'Arch' %}
       - sdl2
       - sdl2_image
