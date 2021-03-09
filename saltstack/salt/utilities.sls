@@ -16,7 +16,9 @@ utilities_pkgs:
       - moreutils
       - neofetch
       - parallel
-{% if grains['os_family'] != 'Arch' %}
+{% if grains['os_family'] == 'Arch' %}
+      - pueue
+{% else %}
       - sysvbanner
 {% endif %}
       - tree
