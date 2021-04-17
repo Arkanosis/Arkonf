@@ -8,6 +8,7 @@ media_pkgs:
       - libvdpau-va-gl
 {% endif %}
       - kdenlive
+      - linux-headers
       - obs-studio
 {% if grains['os_family'] == 'Arch' %}
       - opusfile
@@ -25,6 +26,7 @@ media_pkgs:
       - libsdl2-image-2.0-0
 {% endif %}
       - v4l-utils
+      - v4l2loopback-dkms
       - vlc
       - youtube-dl
       - zvbi
