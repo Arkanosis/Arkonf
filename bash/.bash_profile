@@ -74,7 +74,13 @@ if [[ -t 0 ]]; then
                 if [[ -f /lib/terminfo/s/screen-256color ]]; then
                     export TERM=screen-256color
                 fi
-                exec tmux
+                if ! tmux has-session -t '-' 2> /dev/null; then
+                    exec tmux new-session -s '-'
+                elif tmux list-sessions -F '#S #{session_attached}' | grep -qxF -- '- 0'; then
+                    exec tmux attach-session -t '-'
+                else
+                    exec tmux
+                fi
             elif [[ -x $(which screen 2> /dev/null) ]]; then
                 if [[ -f /lib/terminfo/s/screen-256color ]]; then
                     export TERM=screen-256color
