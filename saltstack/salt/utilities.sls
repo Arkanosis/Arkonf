@@ -8,6 +8,7 @@ utilities_pkgs:
 {% if grains['oscodename'] not in ['xenial', 'bionic'] %}
       - hexyl
 {% endif %}
+      - kdialog
       - lsb-release
 {% if grains['os_family'] == 'Arch' %}
       - man-db
