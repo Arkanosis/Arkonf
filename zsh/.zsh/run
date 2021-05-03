@@ -110,7 +110,12 @@ lxc-boot() {
         if ! lxc-ls --line --stopped | grep -q "^$1\$"; then
             lxc-create -n $1 $=dir -t download -- -d $distribution -r $release -a amd64
         fi
-        lxc-start -n $1
+        systemd-run --user --scope --property 'Delegate=yes' --unit "lxc_start_$1" -- lxc-start -n $1
     fi
-    SHELL=/bin/sh PATH=/bin:/sbin:/usr/bin:/usr/sbin lxc-attach -n $1
+    systemd-run --user --scope --property 'Delegate=yes' --unit "lxc_attach_$1" -- lxc-attach  -n $1 \
+        -v PATH=/bin:/sbin:/usr/bin:/usr/sbin \
+        -v SHELL=/bin/sh \
+        -v HOME=/root \
+        -v LANG=C \
+        -v LC_ALL=C
 }
