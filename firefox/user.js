@@ -7,6 +7,8 @@ user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
 user_pref("browser.ctrlTab.recentlyUsedOrder", false);
 user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 user_pref("browser.rights.3.shown", true);
