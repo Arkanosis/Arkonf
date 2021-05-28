@@ -9,10 +9,15 @@ cd / && \
 	 ./ \
 	 --exclude=boot \
 	 --exclude=dev \
+	 --exclude=home/arkanosis/.cache \
+	 --exclude=home/arkanosis/Téléchargements/Distributions \
+	 --exclude=home/nonfreegaming/.cache \
 	 --exclude=lost+found \
 	 --exclude=media \
 	 --exclude=mnt/ssd/boot \
 	 --exclude=mnt/ssd/dev \
+	 --exclude=mnt/ssd/home/arkanosis/.cache \
+	 --exclude=mnt/ssd/home/arkanosis/Téléchargements/Distributions \
 	 --exclude=mnt/ssd/lost+found \
 	 --exclude=mnt/ssd/media \
 	 --exclude=mnt/ssd/mnt \
