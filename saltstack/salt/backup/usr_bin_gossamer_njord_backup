@@ -16,6 +16,8 @@ cd && \
 	 --exclude=boot \
 	 --exclude=dev \
 	 --exclude=home/.ecryptfs \
+	 --exclude=home/arkanosis/.cache \
+	 --exclude=home/nonfreegaming/.cache \
 	 --exclude=lost+found \
 	 --exclude=media \
 	 --exclude=mnt/hdd/.Sauvegardes \
