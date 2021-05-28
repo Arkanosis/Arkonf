@@ -19,6 +19,7 @@ cd && \
 	 --exclude=lost+found \
 	 --exclude=media \
 	 --exclude=mnt/hdd/.Sauvegardes \
+	 --exclude=mnt/hdd/Téléchargements/Distributions \
 	 --exclude=proc \
 	 --exclude=run \
 	 --exclude=sys \
