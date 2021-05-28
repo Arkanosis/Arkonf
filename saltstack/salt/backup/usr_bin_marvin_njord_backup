@@ -1,27 +1,21 @@
 #! /bin/sh
 
-echo 'Backing up /mnt, please make sure that nothing apart form /mnt/hdd is being mounted there'
-
-sleep 10
-
-cd && \
-    mount.ecryptfs_private Sauvegardes && \
-    cd / && \
+cd / && \
     sudo borg create \
 	 --stats \
 	 --progress \
 	 --compress lz4 \
-	 /run/media/arkanosis/Gymir/borgbackup/gossamer/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+	 /run/media/arkanosis/Njord/borgbackup/marvin/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
 	 ./ \
 	 --exclude=boot \
 	 --exclude=dev \
 	 --exclude=home/.ecryptfs \
 	 --exclude=home/arkanosis/.cache \
+	 --exclude=home/arkanosis/Téléchargements/Distributions \
 	 --exclude=home/nonfreegaming/.cache \
 	 --exclude=lost+found \
 	 --exclude=media \
-	 --exclude=mnt/hdd/.Sauvegardes \
-	 --exclude=mnt/hdd/Téléchargements/Distributions \
+	 --exclude=mnt \
 	 --exclude=proc \
 	 --exclude=run \
 	 --exclude=sys \
