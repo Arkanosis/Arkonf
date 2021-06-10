@@ -10,6 +10,7 @@ cd / && \
 	 --exclude=boot \
 	 --exclude=cdrom \
 	 --exclude=dev \
+	 --exclude=home/.ecryptfs \
 	 --exclude=lost+found \
 	 --exclude=media \
 	 --exclude=mnt \
