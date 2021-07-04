@@ -10,7 +10,9 @@ security_pkgs:
       - fail2ban
       - firewalld
       - logwatch
+{% if grains['os_family'] != 'Arch' %}
       - portsentry
+{% endif %}
 
 fail2ban:
   service.running:
@@ -20,9 +22,11 @@ firewalld:
   service.running:
     - enable: True
 
+{% if grains['os_family'] != 'Arch' %}
 portsentry:
   service.running:
     - enable: True
+{% endif %}
 
 public:
   firewalld.present:
@@ -63,8 +67,10 @@ public:
     - template: jinja
     - mode: 644
 
+{% if grains['os_family'] != 'Arch' %}
 /etc/portsentry/portsentry.ignore.static:
   file.managed:
     - source: salt://security/portsentry.ignore.static
     - template: jinja
     - mode: 644
+{% endif %}
