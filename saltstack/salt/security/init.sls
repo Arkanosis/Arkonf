@@ -8,6 +8,7 @@ security_pkgs:
 {% endif %}
       - cron-apt
       - fail2ban
+      - firewalld
       - logwatch
       - portsentry
 
@@ -15,9 +16,27 @@ fail2ban:
   service.running:
     - enable: True
 
+firewalld:
+  service.running:
+    - enable: True
+
 portsentry:
   service.running:
     - enable: True
+
+public:
+  firewalld.present:
+    - name: public
+    - default: True
+    - services:
+        - dhcpv6-client
+        - ssh
+        - syncthing
+        # TODO handle qrcp:
+        #  - configure qrcp to bind on localhost (qrcp --interface lo) and fixed port (--port=9876)
+        #  - configure nginx to reverse-proxify with https (for now on the same fixed port, see qrcp#169)
+        #  - add a firewalld service file for qrcp
+        #  - open the firewalld qrcp service
 
 /etc/cron-apt/config:
   file.managed:
