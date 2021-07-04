@@ -49,13 +49,13 @@ public:
   file.managed:
     - source: salt://security/cron-apt-action-3-download
     - mode: 644
-{% endif %}
 
 /etc/cron.daily/logwatch:
   file.managed:
     - source: salt://security/logwatch-cron
     - template: jinja
     - mode: 755
+{% endif %}
 
 /etc/fail2ban/jail.local:
   file.managed:
