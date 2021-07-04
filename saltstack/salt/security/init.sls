@@ -4,9 +4,9 @@ security_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - arch-audit
 {% else %}
+      - cron-apt
       - debsecan
 {% endif %}
-      - cron-apt
       - fail2ban
       - firewalld
       - logwatch
@@ -38,6 +38,7 @@ public:
         #  - add a firewalld service file for qrcp
         #  - open the firewalld qrcp service
 
+{% if grains['os_family'] != 'Arch' %}
 /etc/cron-apt/config:
   file.managed:
     - source: salt://security/cron-apt-config
@@ -48,6 +49,7 @@ public:
   file.managed:
     - source: salt://security/cron-apt-action-3-download
     - mode: 644
+{% endif %}
 
 /etc/cron.daily/logwatch:
   file.managed:
