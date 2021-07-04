@@ -13,6 +13,7 @@ base:
     - processing
     - python
     - search
+    - security
     - shell
     - space
     - ssh
@@ -65,5 +66,4 @@ base:
     - gaming
 
   'I@roles:server':
-    - security
     - server # TODO should be mutualized with other states
