@@ -52,3 +52,6 @@ systemd-timesyncd:
   service.running:
     - enable: True
 {% endif %}
+
+Europe/Paris:
+    timezone.system
