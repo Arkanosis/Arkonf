@@ -34,13 +34,34 @@ public:
     - default: True
     - services:
         - dhcpv6-client
-        - ssh
-        - syncthing
-        # TODO handle qrcp:
+{% if grains['host'] == 'bismuth' %}
+        - http
+        - https
+        - ssh # mostly for rssht / sftp from hosts that are not using Wireguard
+{% else %}
+        - ssh # TODO remove once all hosts are reachable through Wireguard (use the home zone for sftp)
+        - syncthing # TODO remove once all hosts are reachable through Wireguard
+{% endif %}
+
+{% if grains['host'] != 'bismuth' %}
+home:
+  firewalld.present:
+    - name: home
+    - default: False
+    - services:
+        - dhcpv6-client
+        - llmnr # for local link hostname resolution by systemd-resolved
+        # TODO qrcp
         #  - configure qrcp to bind on localhost (qrcp --interface lo) and fixed port (--port=9876)
         #  - configure nginx to reverse-proxify with https (for now on the same fixed port, see qrcp#169)
-        #  - add a firewalld service file for qrcp
-        #  - open the firewalld qrcp service
+        #  - => no need for a specific qrcp service, everything passes through the https service (restricted to the home zone)
+        - https # mostly for qrcp
+        - mdns # for local link hostname resolution
+        - rpcbind # for NFS
+        - samba-client
+        - ssh # mostly for sftp from hosts that are not using Wireguard
+        - syncthing # TODO remove once all hosts are reachable through Wireguard
+{% endif %}
 
 {% if grains['os_family'] != 'Arch' %}
 /etc/cron-apt/config:
