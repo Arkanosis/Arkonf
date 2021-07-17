@@ -3,6 +3,9 @@ document_pkgs:
     - pkgs:
       - calibre
       - docx2txt
+{% if grains['os_family'] == 'Arch' %}
+      - git-delta
+{% endif %}
       - kdiff3
 {% if grains['os_family'] == 'Arch' %}
       - libreoffice-fresh
