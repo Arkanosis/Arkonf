@@ -52,6 +52,10 @@ jabra_talk() {
     btconnect Jabra headset_head_unit
 }
 
+jbl_audio() {
+    btconnect JBL a2dp_sink
+}
+
 edifier() {
     btconnect EDIFIER a2dp_sink
 }
