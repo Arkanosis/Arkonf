@@ -30,6 +30,9 @@ base:
   'G@virtual:physical and G@productname:NUC*':
     - intel_wifi
 
+  'G@virtual:physical and G@gpus:vendor:amd':
+    - amd_gpu
+
   'G@virtual:physical and G@gpus:vendor:intel':
     - intel_gpu
 
