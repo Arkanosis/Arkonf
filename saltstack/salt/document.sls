@@ -14,14 +14,17 @@ document_pkgs:
       - noto-fonts-cjk
       - noto-fonts-emoji
       - ttf-dejavu
-      - zathura
-      - zathura-djvu
       - zathura-pdf-mupdf
-      - zathura-ps
 {% else %}
+      - fonts-dejavu
+      - fonts-noto
+      - fonts-noto-cjk
+      - fonts-noto-color-emoji
       - libreoffice
-      - odt2txt
-      - okular
 {% endif %}
+      - odt2txt
       - pdftk
       - ruby-ronn
+      - zathura
+      - zathura-djuv
+      - zathura-ps
