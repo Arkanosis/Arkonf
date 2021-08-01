@@ -1,4 +1,4 @@
-{% if grains['os_family'] == 'Arch' %}
+{% if grains['virtual'] == 'physical' %}
 users_mods:
   kmod.present:
     - mods:
@@ -9,7 +9,7 @@ users_mods:
 users_pkgs:
   pkg.installed:
     - pkgs:
-{% if grains['os_family'] == 'Arch' %}
+{% if grains['virtual'] == 'physical' %}
       - ecryptfs-utils
 {% endif %}
       - libpam-google-authenticator
