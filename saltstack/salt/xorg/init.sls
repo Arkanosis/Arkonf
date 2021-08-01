@@ -34,6 +34,7 @@ xorg_pkgs:
       - xinput
       - xserver-xephyr
       - xserver-xorg-core
+      - xserver-xorg-input-evdev
       - xserver-xorg-input-wacom
 {% endif %}
 
