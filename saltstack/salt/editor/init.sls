@@ -1,9 +1,7 @@
 editor_pkgs:
   pkg.installed:
     - pkgs:
-{% if grains['os_family'] == 'Arch' %}
       - bat
-{% endif %}
       - dhex
       - emacs
       - vim
