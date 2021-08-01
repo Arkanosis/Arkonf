@@ -3,22 +3,20 @@ utilities_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
-      - exa
+{% else %}
+      - sysvbanner
 {% endif %}
+      - exa
       - hexyl
       - kdialog
       - lsb-release
-{% if grains['os_family'] == 'Arch' %}
       - man-db
-{% endif %}
       - mlocate
       - moreutils
       - neofetch
       - parallel
 {% if grains['os_family'] == 'Arch' %}
       - pueue
-{% else %}
-      - sysvbanner
 {% endif %}
       - tree
       - typespeed
