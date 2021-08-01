@@ -47,11 +47,9 @@ ssh:
     - require:
       - pkg: ssh_pkgs
 
-{% if grains['os_family'] == 'Arch' %}
 systemd-timesyncd:
   service.running:
     - enable: True
-{% endif %}
 
 Europe/Paris:
     timezone.system
