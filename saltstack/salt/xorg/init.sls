@@ -15,8 +15,8 @@ xorg_pkgs:
       - xdotool
       - xpra
       - xsel
-{% if grains['os_family'] == 'Arch' %}
       - xautolock
+{% if grains['os_family'] == 'Arch' %}
       - xf86-input-wacom
       - xorg-fonts-misc
       - xorg-server
@@ -29,12 +29,16 @@ xorg_pkgs:
       - xorg-xset
 {% else %}
       - x11-utils
+      - x11-xserver-utils
+      - xinit
+      - xinput
       - xserver-xephyr
+      - xserver-xorg-core
+      - xserver-xorg-input-wacom
 {% endif %}
 
 # AUR sxlock
 
-{% if grains['os_family'] == 'Arch' %}
 /etc/X11/Xwrapper.config:
   file.managed:
     - contents:
@@ -44,4 +48,3 @@ xorg_pkgs:
   file.managed:
     - source: salt://xorg/sxlock.service
     - mode: 644
-{% endif %}
