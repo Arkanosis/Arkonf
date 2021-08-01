@@ -49,7 +49,7 @@ salt-call --local state.highstate
 pacman -Syu
 ```
 
-### On Debian and Kubuntu
+### On Debian
 
 ```sh
 apt install salt-minion git

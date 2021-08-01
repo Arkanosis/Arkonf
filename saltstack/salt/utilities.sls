@@ -5,9 +5,7 @@ utilities_pkgs:
       - banner
       - exa
 {% endif %}
-{% if grains['oscodename'] not in ['xenial', 'bionic'] %}
       - hexyl
-{% endif %}
       - kdialog
       - lsb-release
 {% if grains['os_family'] == 'Arch' %}
