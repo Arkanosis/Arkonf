@@ -7,7 +7,6 @@ ssh_pkgs:
       - openssh
       - putty
 {% else %}
-      - ntp
       - openssh-server
       - putty-tools
 {% endif %}
