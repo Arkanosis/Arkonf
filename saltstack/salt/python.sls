@@ -5,9 +5,9 @@
 python_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
       # VM
       - python
-{% if grains['os_family'] == 'Arch' %}
       - cython
       # Installer
       - python-pip
@@ -23,28 +23,26 @@ python_pkgs:
       - python-progressbar
       - python-yaml
 {% else %}
+      # VM
+      - python3
       - cython3
-      - python-dev
+      - python3-dev
       # Installer
-      - python-pip
       - python3-pip
       # Debugger
-      - python-pudb
       - python3-pudb
       # Modules
       - python3-click
       - python3-jinja2
       - python3-llfuse
-      - python-lxml
-      - python-pil
+      - python3-lxml
+      - python3-pil
       - python3-openpyxl
-      - python-progressbar
       - python3-progressbar
-      - python-q # TODO FIXME need it for ArchLinux as well
       - python3-q
-      - python-requests
+      - python3-requests
       - python3-venv
-      - python-xlrd
+      - python3-xlrd
       - python3-yaml
 {% endif %}
       # Bindings
