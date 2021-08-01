@@ -5,8 +5,8 @@ image_pkgs:
       - darktable
 {% if grains['os_family'] != 'Arch' %}
       - exiftran
-      - freecad # TODO FIXME need it for ArchLinux as well
 {% else %}
+      - freecad
       - fbida # provides exiftran
 {% endif %}
       - flameshot
