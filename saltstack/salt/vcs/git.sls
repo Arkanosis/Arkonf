@@ -4,8 +4,6 @@ git_pkgs:
       - git
       - git-lfs
       - git-review
-{% if grains['os_family'] != 'Arch' %}
       - git-svn
-{% endif %}
       - repo
       - tig
