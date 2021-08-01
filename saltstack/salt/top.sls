@@ -34,11 +34,11 @@ base:
     - intel_cpu
 
   'G@os_family:Arch':
-    - awesome
     - pacman
 
   'I@roles:graphical':
     - audio
+    - awesome
     - backup
     - communication
     - document
