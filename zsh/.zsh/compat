@@ -2,42 +2,48 @@
 
 if ! which 7z >& /dev/null; then
     if ! which 7za >& /dev/null; then
-	7z() {
-	    7zr $@
-	}
+        7z() {
+            7zr $@
+        }
     else
-	7z() {
-	    7za $@
-	}
+        7z() {
+            7za $@
+        }
     fi
+fi
+
+if which batcat >& /dev/null; then
+    bat() {
+        batcat $@
+    }
 fi
 
 if which gsed >& /dev/null; then
     sed() {
-	gsed $@
+        gsed $@
     }
 fi
 
 if which gawk >& /dev/null; then
     awk() {
-	gawk $@
+        gawk $@
     }
 fi
 
 if which gmake >& /dev/null; then
     make() {
-	gmake $@
+        gmake $@
     }
 fi
 
 if which colordiff >& /dev/null; then
     diff() {
-	colordiff $@
+        colordiff $@
     }
 fi
 
 if which remmina >& /dev/null; then
     tsclient() {
-	remmina $@
+        remmina $@
     }
 fi
