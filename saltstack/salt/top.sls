@@ -24,6 +24,9 @@ base:
   'G@virtual:physical and G@touchpad:true':
     - touchpad
 
+  'G@virtual:physical and G@productname:1225B':
+    - broadcom_wifi
+
   'G@virtual:physical and G@productname:NUC*':
     - intel_wifi
 
