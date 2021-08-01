@@ -1,4 +1,4 @@
 database_pkgs:
   pkg.installed:
     - pkgs:
-      - sqlite
+      - sqlite3
