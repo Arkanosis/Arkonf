@@ -32,8 +32,8 @@ session    optional     pam_keyinit.so force revoke
 # Print the message of the day upon successful login.
 # This includes a dynamically generated part from /run/motd.dynamic
 # and a static (admin-editable) part from /etc/motd.
-session    optional     pam_motd.so  motd=/run/motd.dynamic noupdate
-session    optional     pam_motd.so # [1]
+session    optional     pam_motd.so  motd=/run/motd.dynamic
+session    optional     pam_motd.so noupdate
 
 # Print the status of the user's mailbox upon successful login.
 session    optional     pam_mail.so standard noenv # [1]
