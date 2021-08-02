@@ -253,6 +253,8 @@ If region contains less than 2 lines, lines are left untouched."
     ("DONE" . org-done)
     ("ABRT" . "grey")))
 
+(setq org-log-into-drawer t)
+
 (defun org-thunderlink-open (path)
   "Opens a specified email in Thunderbird with the help of the add-on ThunderLink."
   (start-process "myname" nil "thunderbird" "-thunderlink" (concat "thunderlink:" path)))
