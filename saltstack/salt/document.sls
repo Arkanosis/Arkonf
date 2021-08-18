@@ -26,5 +26,5 @@ document_pkgs:
       - pdftk
       - ruby-ronn
       - zathura
-      - zathura-djuv
+      - zathura-djvu
       - zathura-ps
