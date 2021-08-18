@@ -8,7 +8,11 @@ media_pkgs:
       - libvdpau-va-gl
 {% endif %}
       - kdenlive
+{% if grains['os_family'] == 'Arch' %}
       - linux-headers
+{% else %}
+      - linux-headers-amd64
+{% endif %}
       - obs-studio
 {% if grains['os_family'] == 'Arch' %}
       - opusfile
