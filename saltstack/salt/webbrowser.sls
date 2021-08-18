@@ -19,7 +19,9 @@ webbrowser_pkgs:
       - firefox-locale-fr
 {% endif %}
 
+{% if grains['mem_total'] > 7000 %}
 /home/arkanosis/.cache/mozilla:
   file.symlink:
     - target: /tmp/.mozilla-cache_arkanosis
     - user: arkanosis
+{% endif %}
