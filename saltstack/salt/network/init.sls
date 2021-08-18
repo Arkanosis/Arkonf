@@ -32,8 +32,6 @@ network_pkgs:
 {% endif %}
 {% if grains['os_family'] == 'Arch' %}
       - gammu
-{% else %}
-      - wammu
 {% endif %}
       - wget
       - whois
