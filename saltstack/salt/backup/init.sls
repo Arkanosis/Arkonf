@@ -11,7 +11,9 @@ backup_pkgs:
       - borgbackup
       - gddrescue
 {% endif %}
+{% if grains['os_family'] != 'Debian' %}
       - rsnapshot
+{% endif %}
       - syncthing
 
 {% if grains['host'] == 'Cyclamen' %}
