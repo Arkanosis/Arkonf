@@ -37,7 +37,7 @@ ClientAliveCountMax 3
 
 AcceptEnv LANG LC_*
 
-Subsystem sftp /usr/lib/openssh/sftp-server
+Subsystem sftp /usr/lib/ssh/sftp-server
 
 Match User borgbackup
       AuthenticationMethods publickey
