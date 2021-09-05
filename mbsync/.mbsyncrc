@@ -1,10 +1,17 @@
-# ----------[ arkanosis@live.com ]----------
+# ---[ Global Settings ]---
+
+Create Near
+Sync Pull
+CopyArrivalDate yes
+
+# ---[ arkanosis@live.com ]---
 
 IMAPAccount arkanosis@live.com
-Host imap-mail.outlook.com
+Host outlook.office365.com
 User arkanosis@live.com
 PassCmd "read -s -p 'Password for arkanosis@live.com: ' pass && echo $pass"
 SSLType IMAPS
+SSLVersions TLSv1.2 TLSv1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore arkanosis@live.com-remote
@@ -12,36 +19,165 @@ Account arkanosis@live.com
 
 MaildirStore arkanosis@live.com-local
 Subfolders Verbatim
-Path ~/.mail/arkanosis@live.com/
-Inbox ~/.mail/arkanosis@live.com/INBOX
+Path ~/Mails/arkanosis@live.com/
+Inbox ~/Mails/arkanosis@live.com/INBOX
 
 Channel arkanosis@live.com
-Master :arkanosis@live.com-remote:
-Slave :arkanosis@live.com-local:
+Far :arkanosis@live.com-remote:
+Near :arkanosis@live.com-local:
 Patterns *
-Create Both
 SyncState *
 
 # ---[ high_b_thunderdrone@hotmail.com ]---
 
 IMAPAccount high_b_thunderdrone@hotmail.com
-Host imap-mail.outlook.com
+Host outlook.office365.com
 User high_b_thunderdrone@hotmail.com
 PassCmd "read -s -p 'Password for high_b_thunderdrone@hotmail.com: ' pass && echo $pass"
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+SSLVersions TLSv1.2 TLSv1.3
 
 IMAPStore high_b_thunderdrone@hotmail.com-remote
 Account high_b_thunderdrone@hotmail.com
 
 MaildirStore high_b_thunderdrone@hotmail.com-local
 Subfolders Verbatim
-Path ~/.mail/high_b_thunderdrone@hotmail.com/
-Inbox ~/.mail/high_b_thunderdrone@hotmail.com/INBOX
+Path ~/Mails/high_b_thunderdrone@hotmail.com/
+Inbox ~/Mails/high_b_thunderdrone@hotmail.com/INBOX
 
 Channel high_b_thunderdrone@hotmail.com
-Master :high_b_thunderdrone@hotmail.com-remote:
-Slave :high_b_thunderdrone@hotmail.com-local:
+Far :high_b_thunderdrone@hotmail.com-remote:
+Near :high_b_thunderdrone@hotmail.com-local:
 Patterns *
-Create Both
 SyncState *
+
+# ---[ jeremie.roquet@gmail.com ]---
+
+IMAPAccount jeremie.roquet@gmail.com
+Host imap.gmail.com
+User jeremie.roquet@gmail.com
+PassCmd "read -s -p 'Password for jeremie.roquet@gmail.com: ' pass && echo $pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore jeremie.roquet@gmail.com-remote
+Account jeremie.roquet@gmail.com
+
+MaildirStore jeremie.roquet@gmail.com-local
+Subfolders Verbatim
+Path ~/Mails/jeremie.roquet@gmail.com/
+Inbox ~/Mails/jeremie.roquet@gmail.com/INBOX
+
+Channel jeremie.roquet@gmail.com
+Far :jeremie.roquet@gmail.com-remote:
+Near :jeremie.roquet@gmail.com-local:
+Patterns * !"[Gmail]/Spam" !"[Gmail]/Important" !"[Gmail]/Messages envoy&AOk-s"
+SyncState *
+
+# ---[ simonne.roquet@gmail.com ]---
+
+IMAPAccount simonne.roquet@gmail.com
+Host imap.gmail.com
+User simonne.roquet@gmail.com
+PassCmd "read -s -p 'Password for simonne.roquet@gmail.com: ' pass && echo $pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore simonne.roquet@gmail.com-remote
+Account simonne.roquet@gmail.com
+
+MaildirStore simonne.roquet@gmail.com-local
+Subfolders Verbatim
+Path ~/Mails/simonne.roquet@gmail.com/
+Inbox ~/Mails/simonne.roquet@gmail.com/INBOX
+
+Channel simonne.roquet@gmail.com
+Far :simonne.roquet@gmail.com-remote:
+Near :simonne.roquet@gmail.com-local:
+Patterns * !"[Gmail]/Spam" !"[Gmail]/Important" !"[Gmail]/Messages envoy&AOk-s"
+SyncState *
+
+# ---[ annette.menguy@gmail.com ]---
+
+IMAPAccount annette.menguy@gmail.com
+Host imap.gmail.com
+User annette.menguy@gmail.com
+PassCmd "read -s -p 'Password for annette.menguy@gmail.com: ' pass && echo $pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore annette.menguy@gmail.com-remote
+Account annette.menguy@gmail.com
+
+MaildirStore annette.menguy@gmail.com-local
+Subfolders Verbatim
+Path ~/Mails/annette.menguy@gmail.com/
+Inbox ~/Mails/annette.menguy@gmail.com/INBOX
+
+Channel annette.menguy@gmail.com
+Far :annette.menguy@gmail.com-remote:
+Near :annette.menguy@gmail.com-local:
+Patterns * !"[Gmail]/Spam" !"[Gmail]/Important" !"[Gmail]/Messages envoy&AOk-s"
+SyncState *
+
+# ---[ dani.roquet@gmail.com ]---
+
+IMAPAccount dani.roquet@gmail.com
+Host imap.gmail.com
+User dani.roquet@gmail.com
+PassCmd "read -s -p 'Password for dani.roquet@gmail.com: ' pass && echo $pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore dani.roquet@gmail.com-remote
+Account dani.roquet@gmail.com
+
+MaildirStore dani.roquet@gmail.com-local
+Subfolders Verbatim
+Path ~/Mails/dani.roquet@gmail.com/
+Inbox ~/Mails/dani.roquet@gmail.com/INBOX
+
+Channel dani.roquet@gmail.com
+Far :dani.roquet@gmail.com-remote:
+Near :dani.roquet@gmail.com-local:
+Patterns * !"[Gmail]/Spam" !"[Gmail]/Important" !"[Gmail]/Messages envoy&AOk-s"
+SyncState *
+
+# ---[ arkanosis@gmail.com ]---
+
+IMAPAccount arkanosis@gmail.com
+Host imap.gmail.com
+User arkanosis@gmail.com
+PassCmd "read -s -p 'Password for arkanosis@gmail.com: ' pass && echo $pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore arkanosis@gmail.com-remote
+Account arkanosis@gmail.com
+
+MaildirStore arkanosis@gmail.com-local
+Subfolders Verbatim
+Path ~/Mails/arkanosis@gmail.com/
+Inbox ~/Mails/arkanosis@gmail.com/INBOX
+
+Channel arkanosis@gmail.com
+Far :arkanosis@gmail.com-remote:
+Near :arkanosis@gmail.com-local:
+Patterns * !"[Gmail]/Spam" !"[Gmail]/Important" !"[Gmail]/Messages envoy&AOk-s"
+SyncState *
+
+# ---[ Groups ]---
+
+Group all
+Channel arkanosis@live.com
+Channel high_b_thunderdrone@hotmail.com
+Channel jeremie.roquet@gmail.com
+Channel simonne.roquet@gmail.com
+Channel annette.menguy@gmail.com
+Channel dani.roquet@gmail.com
+Channel arkanosis@gmail.com
