@@ -5,7 +5,7 @@ cd / && \
 	 --stats \
 	 --progress \
 	 --compress lz4 \
-	 ssh://localhost:2228/run/media/arkanosis/Njord/borgbackup/Mimosa/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+	 ssh://borgbackup@localhost:2228/run/media/arkanosis/Njord/borgbackup/Mimosa/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
 	 ./ \
 	 --exclude=boot \
 	 --exclude=cdrom \
