@@ -13,7 +13,7 @@ vm_pkgs:
       - qemu-headless
       - vkd3d
 {% else %}
-      - qemu-kvm
+      - qemu-system-x86
       - libvkd3d1
 {% endif %}
       - wine
