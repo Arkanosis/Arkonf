@@ -10,6 +10,7 @@ users_pkgs:
   pkg.installed:
     - pkgs:
 {% if grains['virtual'] == 'physical' %}
+      - cryptsetup
       - ecryptfs-utils
 {% endif %}
       - libpam-google-authenticator
