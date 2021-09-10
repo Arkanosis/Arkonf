@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "x$HOSTNAME" = "xgossamer" ]; then
+if [ "x$(hostname)" = "xgossamer" ]; then
     xrandr --setprovideroutputsource modesetting NVIDIA-0
     xrandr --auto
     xrandr --dpi 96
@@ -24,7 +24,7 @@ xset r 66
 syndaemon -t -K -R -i .5 -d
 
 # Multimedia
-if [ "x$HOSTNAME" != "xtaz" ]; then
+if [ "x$(hostname)" != "xtaz" ]; then
     playerctld daemon
 fi
 
@@ -35,7 +35,7 @@ if [ "x$USER" = "xnonfreegaming" ]; then
     xlunch --config "$HOME/.config/xlunch/xlunch.conf" &
 else
     # File synchronization
-    if [ "x$HOSTNAME" != "xtaz" ]; then
+    if [ "x$(hostname)" != "xtaz" ]; then
         syncthing -no-browser -no-restart & > /dev/null 2>&1
     fi
 
