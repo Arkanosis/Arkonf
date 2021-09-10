@@ -24,7 +24,9 @@ xset r 66
 syndaemon -t -K -R -i .5 -d
 
 # Multimedia
-playerctld daemon
+if [ "x$HOSTNAME" != "xtaz" ]; then
+    playerctld daemon
+fi
 
 if [ "x$USER" = "xnonfreegaming" ]; then
     # Steam
@@ -33,7 +35,9 @@ if [ "x$USER" = "xnonfreegaming" ]; then
     xlunch --config "$HOME/.config/xlunch/xlunch.conf" &
 else
     # File synchronization
-    syncthing -no-browser -no-restart & > /dev/null 2>&1
+    if [ "x$HOSTNAME" != "xtaz" ]; then
+        syncthing -no-browser -no-restart & > /dev/null 2>&1
+    fi
 
     # Lock
     xautolock -time 1 -locker 'sxlock -l' -notify 10 -notifier '/usr/bin/notify-send "Inactivity detected" -t 2000 -i /usr/share/icons/oxygen/base/128x128/actions/system-lock-screen.png' &
@@ -48,10 +52,10 @@ if ! test -e "$HOME/.cache/mozilla" && ! test -h "$HOME/.cache/mozilla"; then
 fi
 if test -h "$HOME/.cache/mozilla"; then
     if ! test -e "/tmp/.mozilla-cache_$USER"; then
-	mkdir -p -m 700  "/tmp/.mozilla-cache_$USER"
+        mkdir -p -m 700  "/tmp/.mozilla-cache_$USER"
     elif ! test -O "/tmp/.mozilla-cache_$USER"; then
-	echo "Security error: /tmp/.mozilla-cache_$USER does not belong to current user" >& 2
-	exit 1
+        echo "Security error: /tmp/.mozilla-cache_$USER does not belong to current user" >& 2
+        exit 1
     fi
 fi
 
