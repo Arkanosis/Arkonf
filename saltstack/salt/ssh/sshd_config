@@ -10,6 +10,8 @@ HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
+AuthorizedKeysFile .ssh/authorized_keys
+
 UsePAM yes
 HostbasedAuthentication no
 PasswordAuthentication no
