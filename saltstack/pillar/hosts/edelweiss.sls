@@ -12,6 +12,8 @@ local_users:
 smart_drives:
   - sda
   - sdb
+  - sdc
+  - sdd
 
 network_interfaces:
   wired:
