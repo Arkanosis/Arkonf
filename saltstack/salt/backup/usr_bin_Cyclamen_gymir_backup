@@ -10,6 +10,10 @@ cd / && \
 	 --exclude=boot \
 	 --exclude=cdrom \
 	 --exclude=dev \
+	 --exclude=home/arkanosis/.cache \
+	 --exclude=home/Annette/.cache \
+	 --exclude=home/Daniel/.cache \
+	 --exclude=home/Sandrine/.cache \
 	 --exclude=lost+found \
 	 --exclude=media \
 	 --exclude=mnt/hdd \
