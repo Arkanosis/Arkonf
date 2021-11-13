@@ -3,3 +3,4 @@ gaming_pkgs:
     - pkgs:
       - lutris
       - steam
+      - teeworlds
