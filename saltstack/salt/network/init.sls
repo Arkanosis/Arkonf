@@ -3,6 +3,9 @@ network_pkgs:
     - pkgs:
       - curl
       - filezilla
+{% if grains['os_family'] == 'Arch' %}
+      - gammu
+{% endif %}
       - goaccess
       - httpie
       - iftop
@@ -24,14 +27,12 @@ network_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - smstools # TODO FIXME need smstools3 for ArchLinux as well
 {% endif %}
+      - speedtest-cli
       - traceroute
 {% if grains['os_family'] == 'Arch' %}
       - usb_modeswitch
 {% else %}
       - usb-modeswitch
-{% endif %}
-{% if grains['os_family'] == 'Arch' %}
-      - gammu
 {% endif %}
       - wget
       - whois
