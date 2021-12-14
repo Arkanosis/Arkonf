@@ -1,0 +1,3 @@
+google.*##.g:has(a[href*="qastack.fr"])
+google.*##.g:has(a[href*="githubmemory.com"])
+
