@@ -2,6 +2,7 @@ pacman_pkgs:
   pkg.installed:
     - pkgs:
       - pacman-contrib
+      - reflector
 
 pacman_pkgs_group:
   pkg.group_installed:
