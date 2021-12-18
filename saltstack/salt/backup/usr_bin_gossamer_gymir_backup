@@ -5,6 +5,7 @@ echo 'Backing up /mnt, please make sure that nothing apart form /mnt/hdd is bein
 sleep 10
 
 START="$(date)"
+DRIVE="Gymir"
 
 cd && \
     mount.ecryptfs_private Sauvegardes && \
@@ -13,7 +14,7 @@ cd && \
 	 --stats \
 	 --progress \
 	 --compress lz4 \
-	 "/run/media/arkanosis/Gymir/borgbackup/$(hostname)/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S)" \
+	 "/run/media/arkanosis/$DRIVE/borgbackup/$(hostname)/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S)" \
 	 ./ \
 	 --exclude=boot \
 	 --exclude=dev \
@@ -33,5 +34,5 @@ cd && \
         echo "Start: $START"
         echo "End: $(date)"
         echo "Host: $(hostname)"
-        echo "Drive: Gymir"
-    } | mail -Sttycharset=utf8 -s "Sauvegarde de $(hostname) sur Gymir effectuée avec succès" arkanosis@gmail.com
+        echo "Drive: $DRIVE"
+    } | mail -Sttycharset=utf8 -s "Sauvegarde de $(hostname) sur $DRIVE effectuée avec succès" arkanosis@gmail.com
