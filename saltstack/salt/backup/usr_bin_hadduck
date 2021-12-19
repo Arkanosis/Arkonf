@@ -28,6 +28,7 @@ HOST="$(hostname)"
 OS="$(sed -n 's/^ID=//p' /etc/os-release)"
 DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
+BACKUP="$HOST_$(date +%Y-%m-%d-%H-%M-%S)"
 
 if [ -z "$REMOTE" ]; then
     if [ "x$OS" = 'xarch' ]; then
@@ -56,6 +57,8 @@ else
     TARGET="ssh://borgbackup@localhost:$PORT/run/media/arkanosis/$DRIVE"
 fi
 
+TARGET="$TARGET/borgbackup/$HOST/"
+
 if [ "x$HOST" = 'xgossamer' ]; then
     for username in 'arkanosis' 'nonfreegaming'; do
         if ! [ -d "/home/$username/.local" ]; then
@@ -81,7 +84,7 @@ if [ "x$HOST" = 'xgossamer' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             "$TARGET::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=dev \
@@ -105,7 +108,7 @@ elif [ "x$HOST" = 'xmarvin' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             "$TARGET::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=dev \
@@ -127,7 +130,7 @@ elif [ "x$HOST" = 'xEdelweiss' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             "$TARGET::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=dev \
@@ -158,7 +161,7 @@ elif [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xMimosa' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             "$TARGET::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=cdrom \
@@ -177,7 +180,7 @@ elif [ "x$HOST" = 'xCyclamen' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             /media/arkanosis/Varuna/borgbackup/Cyclamen/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+             "$TARGET::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=cdrom \
@@ -201,7 +204,7 @@ elif [ "x$HOST" = 'xbismuth' ]; then
              --stats \
              --progress \
              --compress lz4 \
-             ssh://borgbackup@localhost:2222/home/borgbackup/backups/bismuth/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+             "ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/::$BACKUP" \
              ./ \
              --exclude=boot \
              --exclude=dev \
