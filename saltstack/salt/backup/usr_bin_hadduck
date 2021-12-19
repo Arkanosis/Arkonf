@@ -28,8 +28,12 @@ HOST="$(hostname)"
 OS="$(sed -n 's/^ID=//p' /etc/os-release)"
 DRIVE="$1"
 
+# TODO handle ssh drive (when DRIVE *= Njord@gossamer, for example)
+
 if [ "x$OS" = 'xarch' ]; then
     TARGET="/run/media/arkanosis/$DRIVE"
+elif [ "x$OS" = 'xdebian' ] || [ "x$OS" = 'xubuntu' ]; then
+    TARGET="/media/arkanosis/$DRIVE"
 else
     echo "Unknown OS '$OS', exiting" >&2
     exit 1
@@ -136,6 +140,49 @@ elif [ "x$HOST" = 'xEdelweiss' ]; then
              --exclude=sys \
              --exclude=tmp \
              --exclude=var/cache/pacman/pkg
+elif [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xMimosa' ]; then
+    cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             ./ \
+             --exclude=boot \
+             --exclude=cdrom \
+             --exclude=dev \
+             --exclude=home/.ecryptfs \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp
+elif [ "x$HOST" = 'xCyclamen' ]; then
+    cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             /media/arkanosis/Varuna/borgbackup/Cyclamen/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+             ./ \
+             --exclude=boot \
+             --exclude=cdrom \
+             --exclude=dev \
+             --exclude=home/arkanosis/.cache \
+             --exclude=home/Annette/.cache \
+             --exclude=home/Daniel/.cache \
+             --exclude=home/Sandrine/.cache \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt/hdd \
+             --exclude=mnt/hdd2/lost+found \
+             --exclude=mnt/Heimdal \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp
 else
     echo "Unknown host '$HOST' to backup" >&2
     exit 1
