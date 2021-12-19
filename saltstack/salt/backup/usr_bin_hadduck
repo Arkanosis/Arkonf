@@ -26,22 +26,34 @@ fi
 START="$(date)"
 HOST="$(hostname)"
 OS="$(sed -n 's/^ID=//p' /etc/os-release)"
-DRIVE="$1"
+DRIVE="$(echo "$1" | sed 's/@.*//')"
+REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
 
-# TODO handle ssh drive (when DRIVE *= Njord@gossamer, for example)
+if [ -z "$REMOTE" ]; then
+    if [ "x$OS" = 'xarch' ]; then
+        TARGET="/run/media/arkanosis/$DRIVE"
+    elif [ "x$OS" = 'xdebian' ] || [ "x$OS" = 'xubuntu' ]; then
+        TARGET="/media/arkanosis/$DRIVE"
+    else
+        echo "Unknown OS '$OS', exiting" >&2
+        exit 1
+    fi
 
-if [ "x$OS" = 'xarch' ]; then
-    TARGET="/run/media/arkanosis/$DRIVE"
-elif [ "x$OS" = 'xdebian' ] || [ "x$OS" = 'xubuntu' ]; then
-    TARGET="/media/arkanosis/$DRIVE"
+    if ! [ -d "$TARGET" ]; then
+        echo "'$TARGET' is not mounted, exiting" >&2
+        exit 1
+    fi
 else
-    echo "Unknown OS '$OS', exiting" >&2
-    exit 1
-fi
-
-if ! [ -d "$TARGET" ]; then
-    echo "'$TARGET' is not mounted, exiting" >&2
-    exit 1
+    if [ "x$HOST" = 'xCyclamen' ]; then
+        PORT=2214
+    elif [ "x$HOST" = 'xMimosa' ]; then
+        PORT=2228
+    elif [ "x$HOST" = 'xbismuth' ]; then
+        PORT=2222
+    else
+        echo "Host '$HOST' not supported for remote backup"
+    fi
+    TARGET="ssh://borgbackup@localhost:$PORT/run/media/arkanosis/$DRIVE"
 fi
 
 if [ "x$HOST" = 'xgossamer' ]; then
@@ -179,6 +191,23 @@ elif [ "x$HOST" = 'xCyclamen' ]; then
              --exclude=mnt/hdd \
              --exclude=mnt/hdd2/lost+found \
              --exclude=mnt/Heimdal \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp
+elif [ "x$HOST" = 'xbismuth' ]; then
+    cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             ssh://borgbackup@localhost:2222/home/borgbackup/backups/bismuth/::$(hostname)_$(date +%Y-%m-%d-%H-%M-%S) \
+             ./ \
+             --exclude=boot \
+             --exclude=dev \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt \
              --exclude=proc \
              --exclude=run \
              --exclude=sys \
