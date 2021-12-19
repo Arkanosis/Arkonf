@@ -1,0 +1,149 @@
+#! /bin/sh
+
+# hadduck backup
+# (C) 2021 Jérémie Roquet <jroquet@arkanosis.net>
+# Released under the ISC license
+
+set -e
+
+VERSION='v0.1.0'
+
+usage() {
+    echo 'Usage: hadduck <drive>'
+}
+
+if [ $# -eq 0 ] || [ "x$1" = 'x-h' ] || [ "x$1" = 'x--help' ]; then
+    usage
+    exit 0
+elif [ "x$1" = 'x--version' ]; then
+    echo "hadduck $VERSION"
+    exit 0
+elif [ $# -ne 1 ]; then
+    usage >&2
+    exit 1
+fi
+
+START="$(date)"
+HOST="$(hostname)"
+OS="$(sed -n 's/^ID=//p' /etc/os-release)"
+DRIVE="$1"
+
+if [ "x$OS" = 'xarch' ]; then
+    TARGET="/run/media/arkanosis/$DRIVE"
+else
+    echo "Unknown OS '$OS', exiting" >&2
+    exit 1
+fi
+
+if ! [ -d "$TARGET" ]; then
+    echo "'$TARGET' is not mounted, exiting" >&2
+    exit 1
+fi
+
+if [ "x$HOST" = 'xgossamer' ]; then
+    for username in 'arkanosis' 'nonfreegaming'; do
+        if ! [ -d "/home/$username/.local" ]; then
+            echo "'/home/$username' is not decrypted, exiting" >&2
+            exit 1
+        fi
+    done
+    if ! [ -d '/mnt/hdd' ]; then
+        echo "'/mnt/hdd' is not mounted, exiting" >&2
+        exit 1
+    fi
+    for directory in /mnt/*; do
+        if [ "x$directory" != 'x/mnt/hdd' ]; then
+            echo "Unexpected directory '$directory', exiting" >&2
+            exit 1
+        fi
+    done
+
+    cd && \
+        mount.ecryptfs_private Sauvegardes && \
+        cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             ./ \
+             --exclude=boot \
+             --exclude=dev \
+             --exclude=home/.ecryptfs \
+             --exclude=home/arkanosis/.cache \
+             --exclude=home/nonfreegaming/.cache \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt/hdd/.Sauvegardes \
+             --exclude=mnt/hdd/Téléchargements/Distributions \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp \
+             --exclude=var/cache/pacman/pkg
+
+    # TODO exclude ~/Programation/*/target
+elif [ "x$HOST" = 'xmarvin' ]; then
+    cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             ./ \
+             --exclude=boot \
+             --exclude=dev \
+             --exclude=home/.ecryptfs \
+             --exclude=home/arkanosis/.cache \
+             --exclude=home/arkanosis/Téléchargements/Distributions \
+             --exclude=home/nonfreegaming/.cache \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp \
+             --exclude=var/cache/pacman/pkg
+elif [ "x$HOST" = 'xEdelweiss' ]; then
+    cd / && \
+        sudo borg create \
+             --stats \
+             --progress \
+             --compress lz4 \
+             "$TARGET/borgbackup/$HOST/::$HOST_$(date +%Y-%m-%d-%H-%M-%S)" \
+             ./ \
+             --exclude=boot \
+             --exclude=dev \
+             --exclude=home/arkanosis/.cache \
+             --exclude=home/arkanosis/Téléchargements/Distributions \
+             --exclude=home/nonfreegaming/.cache \
+             --exclude=lost+found \
+             --exclude=media \
+             --exclude=mnt/ssd/boot \
+             --exclude=mnt/ssd/dev \
+             --exclude=mnt/ssd/home/arkanosis/.cache \
+             --exclude=mnt/ssd/home/arkanosis/Téléchargements/Distributions \
+             --exclude=mnt/ssd/lost+found \
+             --exclude=mnt/ssd/media \
+             --exclude=mnt/ssd/mnt \
+             --exclude=mnt/ssd/proc \
+             --exclude=mnt/ssd/run \
+             --exclude=mnt/ssd/sys \
+             --exclude=mnt/ssd/tmp \
+             --exclude=proc \
+             --exclude=run \
+             --exclude=sys \
+             --exclude=tmp \
+             --exclude=var/cache/pacman/pkg
+else
+    echo "Unknown host '$HOST' to backup" >&2
+    exit 1
+fi
+
+(
+    echo "Start: $START"
+    echo "End: $(date)"
+    echo "Host: $HOST"
+    echo "Drive: $DRIVE"
+) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE effectuée avec succès" arkanosis@gmail.com
