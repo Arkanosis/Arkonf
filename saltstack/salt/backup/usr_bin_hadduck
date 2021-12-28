@@ -28,7 +28,7 @@ HOST="$(hostname)"
 OS="$(sed -n 's/^ID=//p' /etc/os-release)"
 DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
-BACKUP="$HOST_$(date +%Y-%m-%d-%H-%M-%S)"
+BACKUP="${HOST}_$(date +%Y-%m-%d-%H-%M-%S)"
 
 if [ -z "$REMOTE" ]; then
     if [ "x$OS" = 'xarch' ]; then
