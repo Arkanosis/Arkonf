@@ -63,6 +63,13 @@ home:
         - syncthing # TODO remove once all hosts are reachable through Wireguard
 {% endif %}
 
+trusted:
+  firewalld.present:
+    - name: trusted
+    - default: False
+    - interfaces:
+        - lxcbr0
+
 {% if grains['os_family'] != 'Arch' %}
 /etc/cron-apt/config:
   file.managed:
