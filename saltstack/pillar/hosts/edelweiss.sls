@@ -6,6 +6,7 @@ roles:
 local_users:
   - arkanosis
   - asdp
+  - borgbackup
   - nonfreegaming
   - rssht-user
 
