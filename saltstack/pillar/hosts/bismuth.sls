@@ -34,5 +34,3 @@ domains:
   - genetique.info
 
   - www.microstatus.org
-
-  - rtfblog.com
