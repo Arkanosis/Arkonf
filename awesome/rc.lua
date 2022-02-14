@@ -233,20 +233,28 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
-local lock = 'sxlock -l'
-if not file_exists('/usr/bin/sxlock') then
-    lock = 'gnome-screensaver-command --lock'
+lock = 'no_screen_locker_found'
+for k, v in pairs({
+    'sxlock -l',
+    'i3lock',
+    'gnome-screensaver-command --lock',
+}) do
+    if file_exists('/usr/bin/' .. v:gsub(' .*', '')) then
+        lock = v:gsub(' .*', '')
+         break
+    end
 end
 
-local pass = 'keepassx2'
-local pass_class = 'Keepassx2'
-if not file_exists('/usr/bin/keepassx2') then
-    if file_exists('/usr/bin/keepassx') then
-        pass = 'keepassx'
-	pass_class = 'Keepassx'
-    else
-        pass = 'keepassxc'
-	pass_class = 'KeePassXC'
+pass = 'no_pass_manager_found'
+for k, v in pairs({
+    { 'keepassxc', 'KeePassXC' },
+    { 'keepassx2', 'Keepassx2' },
+    { 'keepassx',  'keepassx'  },
+}) do
+    if file_exists('/usr/bin/' .. v[1]) then
+        pass = v[1]
+        pass_class = v[2]
+        break
     end
 end
 
