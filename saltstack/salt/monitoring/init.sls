@@ -13,6 +13,7 @@ monitoring_pkgs:
 {% endif %}
       - lshw
       - lsof
+      - nvme-cli
 {% if salt['grains.get']('gpus:vendor') == 'nvidia' %}
       - nvtop
 {% endif %}
