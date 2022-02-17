@@ -9,6 +9,7 @@ network_pkgs:
       - goaccess
       - httpie
       - iftop
+      - iperf3
 {% if grains['os_family'] != 'Arch' %}
       - iptables-persistent
 {% endif %}
