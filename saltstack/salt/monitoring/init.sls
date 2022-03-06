@@ -5,6 +5,7 @@ monitoring_pkgs:
     - pkgs:
       - dstat
       - htop
+      - iotop
 {% if grains['os_family'] != 'Arch' %}
       - libncursesw5-dev
       - lm-sensors
