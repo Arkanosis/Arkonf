@@ -1,6 +1,7 @@
 relayhost = [{{ pillar['smtp_host'] }}]:{{ pillar['smtp_port'] }}
 mydomain = {{ pillar['smtp_domain'] }}
 myorigin = $mydomain
+masquerade_domains = $mydomain
 smtp_use_tls = yes
 smtp_tls_wrappermode = yes
 smtp_tls_security_level = encrypt
