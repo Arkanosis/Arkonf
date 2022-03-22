@@ -1,6 +1,7 @@
 profile_pkgs:
   pkg.installed:
       - pkgs:
+        - heaptrack
 {% if grains['os_family'] == 'Arch' %}
         - hyperfine
 {% endif %}
