@@ -4,6 +4,9 @@ editor_pkgs:
       - bat
       - dhex
       - emacs
+{% if grains['os_family'] == 'Arch' %}
+      - jless
+{% endif %}
       - vim
 
 editor_pkgs_removed: # https://github.com/saltstack/salt/issues/35592
