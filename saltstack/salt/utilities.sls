@@ -17,6 +17,7 @@ utilities_pkgs:
       - parallel
 {% if grains['os_family'] == 'Arch' %}
       - pueue
+      - systeroid
 {% endif %}
       - tree
       - typespeed
