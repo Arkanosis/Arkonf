@@ -45,19 +45,19 @@ btconnect() {
 }
 
 jabra_audio() {
-    btconnect Jabra a2dp_sink
+    btconnect 'Jabra Evolve 75 JR' a2dp_sink
 }
 
 jabra_talk() {
-    btconnect Jabra headset_head_unit
+    btconnect 'Jabra Evolve 75 JR' handsfree_head_unit
 }
 
 jbl_audio() {
-    btconnect JBL a2dp_sink
+    btconnect 'JBL' a2dp_sink
 }
 
 edifier() {
-    btconnect EDIFIER a2dp_sink
+    btconnect 'EDIFIER' a2dp_sink
 }
 
 btstop() {
