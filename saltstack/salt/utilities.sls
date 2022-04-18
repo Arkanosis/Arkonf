@@ -8,6 +8,7 @@ utilities_pkgs:
       - sysvbanner
 {% endif %}
       - exa
+      - fzf
       - hexyl
       - kdialog
       - lsb-release
@@ -22,5 +23,8 @@ utilities_pkgs:
 {% endif %}
       - tree
       - typespeed
+{% if grains['os_family'] == 'Arch' %}
+      - zoxide
+{% endif %}
 
 # TODO install / compile csvfix

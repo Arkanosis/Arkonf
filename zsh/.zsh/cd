@@ -16,6 +16,11 @@ rl() {
     cd -P . $@
 }
 
+if which zoxide >& /dev/null; then
+    export _ZO_DATA_DIR=$ZARKONF_CACHE
+    eval "$(zoxide init zsh)"
+fi
+
 setopt auto_cd
 setopt auto_pushd
 
