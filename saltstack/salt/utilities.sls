@@ -3,6 +3,7 @@ utilities_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
+      - broot
 {% else %}
       - sysvbanner
 {% endif %}
