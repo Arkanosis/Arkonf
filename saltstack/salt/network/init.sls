@@ -2,6 +2,9 @@ network_pkgs:
   pkg.installed:
     - pkgs:
       - curl
+{% if grains['os_family'] == 'Arch' %}
+      - dog
+{% endif %}
       - filezilla
 {% if grains['os_family'] == 'Arch' %}
       - gammu
