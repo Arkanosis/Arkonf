@@ -3,6 +3,8 @@ search_pkgs:
     - pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - fd
+{% else %}
+      - fd-find
 {% endif %}
       - pdfgrep
       - ripgrep
