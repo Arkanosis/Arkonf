@@ -3,6 +3,9 @@
 crypto_pkgs:
   pkg.installed:
     - pkgs:
+{% if grains['os_family'] == 'Arch' %}
+      - gpg-tui
+{% endif %}
       - gnupg
       - openssl
 {% if grains['os_family'] == 'Arch' %}
