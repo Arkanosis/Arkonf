@@ -50,6 +50,9 @@ diffFilter = delta --color-only
 [log]
 decorate = full
 
+[merge]
+conflictstyle = diff3
+
 [pull]
 rebase = true
 
