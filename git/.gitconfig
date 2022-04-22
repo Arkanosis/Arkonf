@@ -37,6 +37,7 @@ pager = delta
 [delta]
 line-numbers = true
 side-by-side = true
+wrap-max-lines = unlimited
 
 [diff]
 tool = vimdiff
