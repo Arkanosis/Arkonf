@@ -40,6 +40,7 @@ export CONFIG_SITE=$HOME/config.site
 typeset -A namedpathes
 
 namedpathes+=(
+    as ~/Documents/Tiers/Anne-Sophie
     bin ~/.local/bin
     abin ~/.local_$arch/bin
     lib ~/.local/lib
