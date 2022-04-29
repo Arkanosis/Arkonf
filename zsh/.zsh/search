@@ -147,6 +147,12 @@ alias /li='noglob /il'
 /a() {
     runin $ARKONF_DIR search $@
 }
+/o() {
+    (
+        cd ~/Documents/Org
+        grep $1 -i **/*.org
+    )
+}
 /r() {
     local case dir files exp res
 
