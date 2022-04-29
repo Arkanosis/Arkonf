@@ -42,6 +42,12 @@ btconnect() {
     fi
 
     pactl set-default-sink bluez_output.$id.$2
+
+    pactl send-message /card/bluez_card.$id/bluez list-codecs |
+        jq -r '.[] | select(.description=="SBC-XQ").name' |
+        while read codec; do
+            pactl send-message /card/bluez_card.$id/bluez switch-codec '"'$codec'"'
+        done
 }
 
 jabra_audio() {
