@@ -55,7 +55,7 @@ jabra_audio() {
 }
 
 jabra_talk() {
-    btconnect 'Jabra Evolve 75 JR' handsfree_head_unit
+    btconnect 'Jabra Evolve 75 JR' headset-head-unit
 }
 
 jbl_audio() {
