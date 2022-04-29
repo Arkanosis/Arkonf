@@ -17,6 +17,13 @@ users_pkgs:
       - qrencode
       - sudo
 
+/etc/xdg/user-dirs.defaults:
+  file.managed:
+    - source: salt://users/user-dirs.defaults
+    - user: root
+    - group: root
+    - mode: 644
+
 {% for user in pillar['users'] %}
 
 {% if user.login in pillar['local_users'] %}
