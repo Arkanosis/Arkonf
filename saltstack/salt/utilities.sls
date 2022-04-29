@@ -23,6 +23,7 @@ utilities_pkgs:
 {% endif %}
       - tree
       - typespeed
+      - xdg-user-dirs
 {% if grains['os_family'] == 'Arch' %}
       - zoxide
 {% endif %}
