@@ -43,6 +43,7 @@ vm_pkgs32:
       - lib32-nvidia-utils
 {% endif %}
       - lib32-mpg123
+      - lib32-pipewire
       - lib32-vkd3d
       - lib32-vulkan-icd-loader
 {% endif %}

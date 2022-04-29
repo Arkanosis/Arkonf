@@ -37,15 +37,15 @@ btconnect() {
         bluetoothctl connect $mac || return 1
     fi
 
-    if ! pactl list sinks short | grep -q bluez_sink.$id.$2; then
+    if ! pactl list sinks short | grep -q bluez_output.$id.$2; then
        pactl set-card-profile bluez_card.$id $2 || return 1
     fi
 
-    pactl set-default-sink bluez_sink.$id.$2
+    pactl set-default-sink bluez_output.$id.$2
 }
 
 jabra_audio() {
-    btconnect 'Jabra Evolve 75 JR' a2dp_sink
+    btconnect 'Jabra Evolve 75 JR' a2dp-sink
 }
 
 jabra_talk() {
@@ -53,11 +53,11 @@ jabra_talk() {
 }
 
 jbl_audio() {
-    btconnect 'JBL' a2dp_sink
+    btconnect 'JBL' a2dp-sink
 }
 
 edifier() {
-    btconnect 'EDIFIER' a2dp_sink
+    btconnect 'EDIFIER' a2dp-sink
 }
 
 btstop() {

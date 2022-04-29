@@ -3,13 +3,20 @@ audio_pkgs:
     - pkgs:
       #- ardour
       - audacity
+{% if grains['os_family'] == 'Arch' %}
+      - bluez-utils
+      - easyeffects
+{% endif %}
       - hydrogen
-      #- jackd
       - paprefs
       - pavucontrol
-      - pulseaudio
 {% if grains['os_family'] == 'Arch' %}
-      - pulseaudio-alsa
-      - pulseaudio-bluetooth
-      - bluez-utils
+      - pipewire
+      - pipewire-alsa
+      - pipewire-jack
+      - pipewire-pulse
+      - qpwgraph
+      - wireplumber
+{% else %}
+      - pulseaudio
 {% endif %}
