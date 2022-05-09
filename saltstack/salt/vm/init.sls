@@ -10,7 +10,7 @@ vm_pkgs:
       - lxc
 {% if grains['os_family'] == 'Arch' %}
       - podman
-      - qemu-headless
+      - qemu-base
       - vkd3d
 {% else %}
       - qemu-system-x86
