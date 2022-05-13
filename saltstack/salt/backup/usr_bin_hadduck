@@ -232,11 +232,21 @@ fi
     echo "Drive: $DRIVE"
 ) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE effectuée avec succès" arkanosis@gmail.com
 
-echo 'Backup finished, checking SMART…'
-sudo sed -i 's/@[^ ]\+$/& -M test/' '/etc/smartd.conf'
-sudo systemctl restart smartd.service
-sudo sed -i 's/ -M test$//' '/etc/smartd.conf'
-echo 'Emails should have been sent for:'
-cut -d ' ' -f 1 '/etc/smartd.conf'
+echo 'Backup finished'
 
-# TODO run a SMART test now?
+if [ -f '/etc/smartd.conf' ]; then
+    echo 'Checking SMART…'
+    sudo sed -i 's/@[^ ]\+$/& -M test/' '/etc/smartd.conf'
+    sudo systemctl restart smartd.service
+    sudo sed -i 's/ -M test$//' '/etc/smartd.conf'
+    echo 'Emails should have been sent for:'
+    cut -d ' ' -f 1 '/etc/smartd.conf'
+
+    # TODO run a SMART test now?
+else
+    echo 'SMART not checked'
+fi
+
+# TODO run a fstrim now (but only *after* unmounting the backup filesystem!)
+#echo 'Running fstrim…'
+#sudo systemctl start fstrim
