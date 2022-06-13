@@ -11,6 +11,7 @@ backup_pkgs:
       - borgbackup
       - gddrescue
 {% endif %}
+      # - TODO duplicati
 {% if grains['os_family'] != 'Debian' %}
       - rsnapshot
 {% endif %}
@@ -116,3 +117,5 @@ backup_pkgs:
     - source: salt://backup/usr_bin_bismuth_backup
     - mode: 700
 {% endif %}
+
+# TODO duplicati user service for Sandrine
