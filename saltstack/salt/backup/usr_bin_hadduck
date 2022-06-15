@@ -8,6 +8,8 @@ set -e
 
 VERSION='v0.1.0'
 
+APPDIR='$(dirname "$(readlink -f "$0")")'
+
 usage() {
     echo 'Usage: hadduck <drive>'
 }
@@ -71,7 +73,7 @@ fi
 if [ "x$BACKEND" = 'xborg' ]; then
     TARGET="$TARGET/borgbackup/$HOST/"
 elif [ "x$BACKEND" = 'xrestic' ]; then
-    TARGET="$TARGET/resticbackup/$HOST/"
+    TARGET="$TARGET/resticbackup"
     echo "Unsupported backend '$BACKEND', exiting" >&2
     exit 1
 else
@@ -97,150 +99,75 @@ if [ "x$HOST" = 'xgossamer' ]; then
         fi
     done
 
-    cd && \
-        mount.ecryptfs_private Sauvegardes && \
-        cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "$TARGET::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=dev \
-             --exclude=home/.ecryptfs \
-             --exclude=home/arkanosis/.cache \
-             --exclude=home/arkanosis/.cargo/registry \
-             --exclude=home/nonfreegaming/.cache \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt/hdd/.games \
-             --exclude=mnt/hdd/.Sauvegardes \
-             --exclude=mnt/hdd/Téléchargements/Distributions \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp \
-             --exclude=var/cache/pacman/pkg
+    if [ "x$BACKEND" = 'xborg' ]; then
+        cd && \
+            mount.ecryptfs_private Sauvegardes && \
+            cd / && \
+            sudo borg create \
+                 --stats \
+                 --progress \
+                 --compress lz4 \
+                 "$TARGET::$BACKUP" \
+                 ./ \
+                 --exclude-from "$APPDIR/hadduck.exclude" \
+                 --exclude-caches
+    elif [ "x$BACKEND" = 'xrestic' ]; then
+        cd && \
+            mount.ecryptfs_private Sauvegardes && \
+            cd / && \
+            sudo restic \
+                 -r "$TARGET" \
+                 --verbose \
+                 backup ./ \
+                 --exclude-file "$APPDIR/hadduck.exclude" \
+                 --exclude-caches
+    else
+        echo "Unsupported backend '$BACKEND', exiting" >&2
+        exit 1
+    fi
+elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelweiss' ] || [ "x$HOST" = 'xCyclamen' ] || [ "x$HOST" = 'xMimosa' ]; then
+    if [ "x$HOST" = 'xCyclamen' ]; then
+        echo "Add /mnt/hdd to exclusions (change the mountpoint?)" >&2
+        exit 1
+    fi
 
-    # TODO exclude ~/Programation/*/target
-elif [ "x$HOST" = 'xmarvin' ]; then
-    cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "$TARGET::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=dev \
-             --exclude=home/.ecryptfs \
-             --exclude=home/arkanosis/.cache \
-             --exclude=home/arkanosis/.cargo/registry \
-             --exclude=home/arkanosis/Téléchargements/Distributions \
-             --exclude=home/nonfreegaming/.cache \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp \
-             --exclude=var/cache/pacman/pkg
-elif [ "x$HOST" = 'xEdelweiss' ]; then
-    cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "$TARGET::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=dev \
-             --exclude=home/arkanosis/.cache \
-             --exclude=home/arkanosis/.cargo/registry \
-             --exclude=home/arkanosis/Téléchargements/Distributions \
-             --exclude=home/nonfreegaming/.cache \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt/ssd/boot \
-             --exclude=mnt/ssd/dev \
-             --exclude=mnt/ssd/home/arkanosis/.cache \
-             --exclude=mnt/ssd/home/arkanosis/.cargo/registry \
-             --exclude=mnt/ssd/home/arkanosis/Téléchargements/Distributions \
-             --exclude=mnt/ssd/lost+found \
-             --exclude=mnt/ssd/media \
-             --exclude=mnt/ssd/mnt \
-             --exclude=mnt/ssd/proc \
-             --exclude=mnt/ssd/run \
-             --exclude=mnt/ssd/sys \
-             --exclude=mnt/ssd/tmp \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp \
-             --exclude=var/cache/pacman/pkg
-elif [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xMimosa' ]; then
-    cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "$TARGET::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=cdrom \
-             --exclude=dev \
-             --exclude=home/.ecryptfs \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp
-elif [ "x$HOST" = 'xCyclamen' ]; then
-    cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "$TARGET::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=cdrom \
-             --exclude=dev \
-             --exclude=home/arkanosis/.cache \
-             --exclude=home/arkanosis/.cargo/registry \
-             --exclude=home/Annette/.cache \
-             --exclude=home/Daniel/.cache \
-             --exclude=home/Sandrine/.cache \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt/hdd \
-             --exclude=mnt/hdd2/lost+found \
-             --exclude=mnt/Heimdal \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp
+    if [ "x$BACKEND" = 'xborg' ]; then
+        cd / && \
+            sudo borg create \
+                 --stats \
+                 --progress \
+                 --compress lz4 \
+                 "$TARGET::$BACKUP" \
+                 ./ \
+                 --exclude-from "$APPDIR/hadduck.exclude" \
+                 --exclude-caches
+    elif [ "x$BACKEND" = 'xrestic' ]; then
+        cd / && \
+        sudo restic \
+             -r "$TARGET" \
+             --verbose \
+             backup ./ \
+             --exclude-file "$APPDIR/hadduck.exclude" \
+             --exclude-caches
+    else
+        echo "Unsupported backend '$BACKEND', exiting" >&2
+        exit 1
+    fi
 elif [ "x$HOST" = 'xbismuth' ]; then
-    cd / && \
-        sudo borg create \
-             --stats \
-             --progress \
-             --compress lz4 \
-             "ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/::$BACKUP" \
-             ./ \
-             --exclude=boot \
-             --exclude=dev \
-             --exclude=lost+found \
-             --exclude=media \
-             --exclude=mnt \
-             --exclude=proc \
-             --exclude=run \
-             --exclude=sys \
-             --exclude=tmp
+    if [ "x$BACKEND" = 'xborg' ]; then
+        cd / && \
+            sudo borg create \
+                 --stats \
+                 --progress \
+                 --compress lz4 \
+                 "ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/::$BACKUP" \
+                 ./ \
+                 --exclude-from "$APPDIR/hadduck.exclude" \
+                 --exclude-caches
+    else
+        echo "Unsupported backend '$BACKEND', exiting" >&2
+        exit 1
+    fi
 else
     echo "Unknown host '$HOST' to backup" >&2
     exit 1
