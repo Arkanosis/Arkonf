@@ -30,6 +30,17 @@ DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
 BACKUP="${HOST}_$(date +%Y-%m-%d-%H-%M-%S)"
 
+if [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ]; then
+    BACKEND='borg'
+elif [ "x$DRIVE" = 'xSusanoo' ]; then
+    BACKEND='restic'
+elif [ "x$DRIVE" = 'xNeptune' ] || [ "x$DRIVE" = 'xPoseidon' ] || [ "x$DRIVE" = 'xTyphon' ] || [ "x$DRIVE" = 'xAegir' ]; then
+    BACKEND='rsnapshot'
+else
+    echo "Unknown drive '$DRIVE', exiting" >&2
+    exit 1
+fi
+
 if [ -z "$REMOTE" ]; then
     if [ "x$OS" = 'xarch' ]; then
         TARGET="/run/media/arkanosis/$DRIVE"
@@ -57,7 +68,16 @@ else
     TARGET="ssh://borgbackup@localhost:$PORT/run/media/arkanosis/$DRIVE"
 fi
 
-TARGET="$TARGET/borgbackup/$HOST/"
+if [ "x$BACKEND" = 'xborg' ]; then
+    TARGET="$TARGET/borgbackup/$HOST/"
+elif [ "x$BACKEND" = 'xrestic' ]; then
+    TARGET="$TARGET/resticbackup/$HOST/"
+    echo "Unsupported backend '$BACKEND', exiting" >&2
+    exit 1
+else
+    echo "Unsupported backend '$BACKEND', exiting" >&2
+    exit 1
+fi
 
 if [ "x$HOST" = 'xgossamer' ]; then
     for username in 'arkanosis' 'nonfreegaming'; do
@@ -231,6 +251,7 @@ fi
     echo "End: $(date)"
     echo "Host: $HOST"
     echo "Drive: $DRIVE"
+    echo "Backend: $BACKEND"
 ) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE effectuée avec succès" arkanosis@gmail.com
 
 echo 'Backup finished'

@@ -12,6 +12,7 @@ backup_pkgs:
       - gddrescue
 {% endif %}
       # - TODO duplicati
+      - restic
 {% if grains['os_family'] != 'Debian' %}
       - rsnapshot
 {% endif %}
