@@ -8,7 +8,7 @@ set -e
 
 VERSION='v0.1.0'
 
-APPDIR='$(dirname "$(readlink -f "$0")")'
+APPDIR="$(dirname "$(readlink -f "$0")")"
 
 usage() {
     echo 'Usage: hadduck <drive>'
