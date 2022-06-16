@@ -19,6 +19,9 @@ base:
   'P@host:Mimosa':
     - hosts.mimosa
 
+  'P@host:Serval':
+    - hosts.serval
+
   'P@host:bismuth':
     - hosts.bismuth
 
