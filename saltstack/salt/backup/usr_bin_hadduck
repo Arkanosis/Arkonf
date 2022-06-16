@@ -32,7 +32,7 @@ DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
 BACKUP="${HOST}_$(date +%Y-%m-%d-%H-%M-%S)"
 
-if [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ]; then
+if [ -z "$DRIVE" ] || [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ]; then
     BACKEND='borg'
 elif [ "x$DRIVE" = 'xSusanoo' ]; then
     BACKEND='restic'
@@ -154,13 +154,14 @@ elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelwei
         exit 1
     fi
 elif [ "x$HOST" = 'xbismuth' ]; then
+    TARGET="ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/"
     if [ "x$BACKEND" = 'xborg' ]; then
         cd / && \
             sudo borg create \
                  --stats \
                  --progress \
                  --compress lz4 \
-                 "ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/::$BACKUP" \
+                 "$TARGET::$BACKUP" \
                  ./ \
                  --exclude-from "$APPDIR/hadduck.exclude" \
                  --exclude-caches

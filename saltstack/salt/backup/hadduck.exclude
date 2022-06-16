@@ -33,5 +33,3 @@ run
 sys
 tmp
 var/cache/pacman/pkg
-
-#_TODO_exclude_~/Programation/*/target
