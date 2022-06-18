@@ -19,6 +19,9 @@ network_pkgs:
       #- kdeconnect
       #- knemo
       - mtr
+{% if grains['os_family'] == 'Arch' %}
+      - nebula # TODO FIXME need smstools3 for Debian as well
+{% endif %}
       - nethogs
 {% if grains['os_family'] == 'Arch' %}
       - openbsd-netcat
