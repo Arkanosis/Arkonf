@@ -11,6 +11,7 @@ b = branch
 ci = commit -a
 co = checkout
 lg = log --graph
+root = rev-parse --show-toplevel
 unadd = reset
 uncommit = reset --soft HEAD^
 unamend = reset --soft HEAD@{1}

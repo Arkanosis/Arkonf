@@ -223,7 +223,7 @@ push() {
             hg push $@
         ;;
         git)
-            if grep -q sendemail .git/config; then
+            if grep -q sendemail $(git root)/.git/config; then
                 git send-email $@
             else
                 git push $@
