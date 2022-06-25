@@ -74,8 +74,6 @@ if [ "x$BACKEND" = 'xborg' ]; then
     TARGET="$TARGET/borgbackup/$HOST/"
 elif [ "x$BACKEND" = 'xrestic' ]; then
     TARGET="$TARGET/resticbackup"
-    echo "Unsupported backend '$BACKEND', exiting" >&2
-    exit 1
 else
     echo "Unsupported backend '$BACKEND', exiting" >&2
     exit 1
@@ -126,11 +124,6 @@ if [ "x$HOST" = 'xgossamer' ]; then
         exit 1
     fi
 elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelweiss' ] || [ "x$HOST" = 'xCyclamen' ] || [ "x$HOST" = 'xMimosa' ]; then
-    if [ "x$HOST" = 'xCyclamen' ]; then
-        echo "Add /mnt/hdd to exclusions (change the mountpoint?)" >&2
-        exit 1
-    fi
-
     if [ "x$BACKEND" = 'xborg' ]; then
         cd / && \
             sudo borg create \
