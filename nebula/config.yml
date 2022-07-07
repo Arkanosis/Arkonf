@@ -67,28 +67,6 @@ firewall:
 
     - port: 22
       proto: tcp
-      host: taz
-
-    - port: 22
-      proto: tcp
-      host: Edelweiss
-
-    - port: 22
-      proto: tcp
-      host: Cyclamen
-
-    - port: 22
-      proto: tcp
-      host: marvin
-
-    - port: 22
-      proto: tcp
-      host: gossamer
-
-    - port: 22
-      proto: tcp
-      host: Amaryllis
-
-    - port: 22
-      proto: tcp
-      host: Mimosa
+      groups:
+        - desktop
+        - laptop
