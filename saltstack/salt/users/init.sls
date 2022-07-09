@@ -24,6 +24,13 @@ users_pkgs:
     - group: root
     - mode: 644
 
+/home/.ssh:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+
 {% for user in pillar['users'] %}
 
 {% if user.login in pillar['local_users'] %}
@@ -51,9 +58,19 @@ users_pkgs:
   group.present:
     - gid: {{ user.id }}
 
-/home/{{ user.login }}/.ssh/authorized_keys:
+/home/.ssh/{{ user.login }}:
   file.managed:
     - contents: {{ user.authorized_keys | default('') | yaml_encode }}
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 644
+    - makedirs: True
+    - require:
+      - user: {{ user.login }}
+
+/home/{{ user.login }}/.ssh/authorized_keys:
+  file.symlink:
+    - target: /home/.ssh/{{ user.login }}
     - user: {{ user.login }}
     - group: {{ user.login }}
     - mode: 644
