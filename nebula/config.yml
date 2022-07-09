@@ -21,7 +21,6 @@ lighthouse:
   am_lighthouse: false
   interval: 60
   hosts: # lighthouse hosts this node should report to and query from (SHOULD BE EMPTY ON LIGHTHOUSE NODES)
-    - "10.27.0.1"
     - "10.27.0.2"
 
 listen:
@@ -67,6 +66,8 @@ firewall:
 
     - port: 22
       proto: tcp
-      groups:
-        - desktop
-        - laptop
+      group: desktop
+
+    - port: 22
+      proto: tcp
+      group: laptop
