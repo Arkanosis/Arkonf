@@ -20,7 +20,7 @@ network_pkgs:
       #- knemo
       - mtr
 {% if grains['os_family'] == 'Arch' %}
-      - nebula # TODO FIXME need smstools3 for Debian as well
+      - nebula # TODO FIXME need nebula for Debian as well
 {% endif %}
       - nethogs
 {% if grains['os_family'] == 'Arch' %}
@@ -128,3 +128,10 @@ systemd-networkd:
 systemd-resolved:
   service.running:
     - enable: True
+
+# TODO FIXME need nebula for Debian as well
+{% if grains['os_family'] == 'Arch' %}
+nebula:
+  service.running:
+    - enable: True
+{% endif %}
