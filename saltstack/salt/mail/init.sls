@@ -2,6 +2,10 @@ mail_pkgs:
   pkg.installed:
     - pkgs:
       - isync
+      - opendkim
+{% if grains['os_family'] == 'Debian' %}
+      - opendkim-tools
+{% endif %}
       - postfix
       - s-nail
 
@@ -23,15 +27,15 @@ mail_pkgs:
     - require:
       - pkg: mail_pkgs
 
-/etc/postfix/generic:
+/etc/postfix/sender_canonical:
   file.managed:
-    - source: salt://mail/postfix_generic
+    - source: salt://mail/postfix_sender_canonical
     - template: jinja
     - mode: 600
   cmd.run:
-    - name: postmap /etc/postfix/generic
+    - name: postmap /etc/postfix/sender_canonical
     - onchanges:
-      - file: /etc/postfix/generic
+      - file: /etc/postfix/sender_canonical
     - require:
       - pkg: mail_pkgs
 
@@ -53,8 +57,31 @@ postfix:
     - watch:
       - file: /etc/postfix/main.cf
       - cmd: /etc/postfix/passwd
-      - cmd: /etc/postfix/generic
+      - cmd: /etc/postfix/sender_canonical
       - cmd: /etc/postfix/header_checks
+    - require:
+      - pkg: mail_pkgs
+
+/etc/opendkim/opendkim.conf:
+  file.managed:
+    - source: salt://mail/opendkim.conf
+    - template: jinja
+    - mode: 644
+
+/var/db/dkim:
+  file.directory:
+    - require:
+      - pkg: mail_pkgs
+
+opendkim-genkey -r -s {{ grains['host'] }} -d {{ pillar['smtp_domain'] }} -D /var/db/dkim:
+  cmd.run:
+    - unless: test -f /var/db/dkim/{{ grains['host'] }}.private
+
+opendkim:
+  service.running:
+    - enable: True
+    - watch:
+      - file: /etc/opendkim/opendkim.conf
     - require:
       - pkg: mail_pkgs
 
