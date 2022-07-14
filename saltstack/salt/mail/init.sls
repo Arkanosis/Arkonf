@@ -95,16 +95,14 @@ opendkim:
 
 {% if grains['os_family'] == 'Debian' %}
 /usr/bin/mail:
-  file.symlink:
-    - user: root
+  file.managed:
+    - source: salt://mail/mail
     - mode: 755
-    - target: s-nail
 
 /usr/bin/mailx:
   file.symlink:
-    - user: root
     - mode: 755
-    - target: s-nail
+    - target: mail
 {% endif %}
 
 /etc/environment:

@@ -1,0 +1,3 @@
+#! /bin/sh
+
+NAME="${NAME:-'{{ grains['host'] }} admin'}" s-nail "$@"
