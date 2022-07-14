@@ -62,7 +62,11 @@ postfix:
     - require:
       - pkg: mail_pkgs
 
+{% if grains['os_family'] == 'Debian' %}
+/etc/opendkim.conf:
+{% else %}
 /etc/opendkim/opendkim.conf:
+{% endif %}
   file.managed:
     - source: salt://mail/opendkim.conf
     - template: jinja
@@ -81,7 +85,11 @@ opendkim:
   service.running:
     - enable: True
     - watch:
+{% if grains['os_family'] == 'Debian' %}
+      - file: /etc/opendkim.conf
+{% else %}
       - file: /etc/opendkim/opendkim.conf
+{% endif %}
     - require:
       - pkg: mail_pkgs
 

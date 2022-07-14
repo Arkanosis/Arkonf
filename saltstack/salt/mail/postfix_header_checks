@@ -1,2 +1,3 @@
 /^From:\s+(root\s+<)?root@{{ pillar['smtp_domain'] }}>?/ REPLACE From: "{{ grains['host'] }} admin" <{{ pillar['sender_email'] }}>
+/^From:\s+(root\s+<)?admin@{{ pillar['smtp_domain'] }}>?/ REPLACE From: "{{ grains['host'] }} admin" <{{ pillar['sender_email'] }}>
 /^Message-Id:\s+<(.*?)@{{ grains['host'] }}.{{ pillar['smtp_domain'] }}>/ REPLACE Message-Id: <$1@{{ pillar['smtp_domain'] }}>
