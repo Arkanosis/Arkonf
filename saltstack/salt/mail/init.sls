@@ -106,3 +106,8 @@ opendkim:
     - mode: 755
     - target: s-nail
 {% endif %}
+
+/etc/environment:
+  file.managed:
+    - source: salt://mail/environment
+    - mode: 644

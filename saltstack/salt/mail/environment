@@ -1,0 +1,1 @@
+NAME='{{ grains['host'] }} admin'
