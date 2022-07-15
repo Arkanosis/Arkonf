@@ -1,18 +1,50 @@
 #! /bin/sh
 
+nameof() {
+  case "$2" in
+    12) echo 'taz' ;;
+    13) echo 'Edelweiss' ;;
+    14) echo 'Cyclamen' ;;
+    16) echo 'marvin' ;;
+    18) echo 'Bruyere' ;;
+    19) echo 'gossamer' ;;
+    20) echo 'Amaryllis' ;;
+    28) echo 'Mimosa' ;;
+    31) echo 'One' ;;
+    32) echo 'Two' ;;
+    40) echo 'Serval' ;;
+    *) echo 'Unknown host' ;;
+  esac
+}
+
 if [ "$PAM_TYPE" != "close_session" ]; then
-  DETAILS=$(curl -s "https://ipinfo.io/$PAM_RHOST" | jq -r '"\(.hostname), \(.org), \(.city), \(.region)"')
-  RHOSTNAME=$(journalctl -u ssh -g "Accepted publickey for" -S '10min ago' -o json |
-      sed -n 's/.*"MESSAGE"\s*:\s*"[^"]\+'"$PAM_RHOST"'[^"]\+SHA256:\([^"]\+\)".*/\1/p' |
-      tail -n 1 |
-      sed -e 's@5dCC4brt9JS6ZZI9espfPxdd2e4ha3zglVfbGRoW0NU@Exalead@' \
-          -e 's@tYgtqZRko+jJXnPxFf2LbomPy8gmGj7XcNwK3e/T7ig@Mimosa@' \
-          -e 's@yGyAtoUXddiapomupo+bmhmDgssCwuqUNCP7/ubeFsM@Cyclamen@' \
-          -e 's@yN5XmmyPgb7XHFo37FjSaUM7lARH4InFSmRVMiuKc3k@Bruyere@' \
-          -e 's@V/gdhhmBsy8X6YDU7AxjFrF08Un8z9Gwdk0CD/xvdAk@gossamer@' \
-  )
-  if [ -z "$RHOSTNAME" ]; then
-      RHOSTNAME='Unknown host'
+  A="$(echo "$PAM_RHOST" | cut -d '.' -f 1)"
+  B="$(echo "$PAM_RHOST" | cut -d '.' -f 2)"
+  C="$(echo "$PAM_RHOST" | cut -d '.' -f 3)"
+  D="$(echo "$PAM_RHOST" | cut -d '.' -f 4)"
+  if [ "x$PAM_RHOST" = 'x127.0.0.1' ]; then
+    DETAILS='local host'
+    RHOSTNAME="$(hostname)"
+  elif [ "x$A" = "x192" ] && [ "x$B" = "x168" ]; then
+    DETAILS='local area network'
+    RHOSTNAME="$(nameof "$C" "$D")"
+  elif [ "x$A" = "x10" ] && [ "x$B" = "x27" ]; then
+    DETAILS='virtual private network'
+    RHOSTNAME="$(nameof "$C" "$D")"
+  else
+    DETAILS=$(curl -s "https://ipinfo.io/$PAM_RHOST" | jq -r '"\(.hostname), \(.org), \(.city), \(.region)"')
+    RHOSTNAME=$(journalctl -u ssh -g "Accepted publickey for" -S '10min ago' -o json |
+        sed -n 's/.*"MESSAGE"\s*:\s*"[^"]\+'"$PAM_RHOST"'[^"]\+SHA256:\([^"]\+\)".*/\1/p' |
+        tail -n 1 |
+        sed -e 's@5dCC4brt9JS6ZZI9espfPxdd2e4ha3zglVfbGRoW0NU@Exalead@' \
+            -e 's@tYgtqZRko+jJXnPxFf2LbomPy8gmGj7XcNwK3e/T7ig@Mimosa@' \
+            -e 's@yGyAtoUXddiapomupo+bmhmDgssCwuqUNCP7/ubeFsM@Cyclamen@' \
+            -e 's@yN5XmmyPgb7XHFo37FjSaUM7lARH4InFSmRVMiuKc3k@Bruyere@' \
+            -e 's@V/gdhhmBsy8X6YDU7AxjFrF08Un8z9Gwdk0CD/xvdAk@gossamer@' \
+    )
+    if [ -z "$RHOSTNAME" ]; then
+        RHOSTNAME='Unknown host'
+    fi
   fi
   {
     echo "User: $PAM_USER"
