@@ -18,6 +18,7 @@ network_pkgs:
 {% endif %}
       #- kdeconnect
       #- knemo
+      - mitmproxy
       - mtr
 {% if grains['os_family'] == 'Arch' %}
       - nebula # TODO FIXME need nebula for Debian as well
