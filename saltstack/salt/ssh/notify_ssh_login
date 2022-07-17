@@ -22,7 +22,7 @@ if [ "$PAM_TYPE" != "close_session" ]; then
   B="$(echo "$PAM_RHOST" | cut -d '.' -f 2)"
   C="$(echo "$PAM_RHOST" | cut -d '.' -f 3)"
   D="$(echo "$PAM_RHOST" | cut -d '.' -f 4)"
-  if [ "x$PAM_RHOST" = 'x127.0.0.1' ]; then
+  if [ "x$PAM_RHOST" = 'x127.0.0.1' ] || [ "x$PAM_RHOST" = 'x::1' ]; then
     DETAILS='local host'
     RHOSTNAME="$(hostname)"
   elif [ "x$A" = "x192" ] && [ "x$B" = "x168" ]; then
