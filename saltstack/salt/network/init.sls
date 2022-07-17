@@ -130,9 +130,41 @@ systemd-resolved:
   service.running:
     - enable: True
 
+/usr/lib/systemd/system/nebula.service:
+  file.managed:
+    - source: salt://nebula.service
+    - mode: 644
+
+/etc/nebula:
+  file.directory:
+    - user: nebula
+    - group: nebula
+    - mode: 700
+    - makedirs: True
+    - require:
+      - user: nebula
+
+# TODO add nebula config from $ARKONF_DIR/nebula/config.yml
+
+nebula:
+  user.present:
+    - system: True
+    - shell: /bin/false
+    - uid: 899
+    - gid: 899
+    - groups:
+      - nebula
+    - require:
+      - group: nebula
+  group.present:
+    - system: True:
+    - gid: 899
+
 # TODO FIXME need nebula for Debian as well
 {% if grains['os_family'] == 'Arch' %}
 nebula:
   service.running:
     - enable: True
+    - require:
+      - user: nebula
 {% endif %}

@@ -1,0 +1,18 @@
+[Unit]
+Description=nebula
+Wants=basic.target network-online.target
+After=basic.target network.target network-online.target
+
+[Service]
+User=nebula
+Group=nebula
+SyslogIdentifier=nebula
+RuntimeDirectory=nebula
+ConfigurationDirectory=nebula
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/bin/nebula -config /etc/nebula/config.yml
+Restart=always
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
