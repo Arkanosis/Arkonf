@@ -37,7 +37,7 @@ vm_pkgs32:
       - lib32-libldap
       - lib32-libpng
       - lib32-gnutls
-{% if salt['grains.get']('gpus:vendor') == 'intel' %}
+{% if salt['grains.get']('gpus:vendor') in ['intel', 'amd'] %}
       - lib32-mesa
 {% elif salt['grains.get']('gpus:vendor') == 'nvidia' %}
       - lib32-nvidia-utils

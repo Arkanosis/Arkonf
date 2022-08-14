@@ -6,26 +6,26 @@ ct() {
 
 files() {
     if [[ $1 = '-s' ]]; then
-	shift
-	for directory; do
-	    echo $(find $directory | wc -l) "($directory)"
-	done | sort -nr
+        shift
+        for directory; do
+            echo $(find $directory | wc -l) "($directory)"
+        done | sort -nr
     else
-	for directory; do
-	    echo $directory $(find $directory | wc -l)
-	done
+        for directory; do
+            echo $directory $(find $directory | wc -l)
+        done
     fi
 }
 
 lines() {
     if ! ((#)); then
-	echo -n $(find . \( $=srcnames \) -exec cat {} \; | wc -l)
-	echo ' .'
+        echo -n $(find . \( $=srcnames \) -exec cat {} \; | wc -l)
+        echo ' .'
     else
-	for directory; do
-	    echo -n $(find $directory \( $=srcnames \) -exec cat {} \; | wc -l)
-	    echo " $directory"
-	done
+        for directory; do
+            echo -n $(find $directory \( $=srcnames \) -exec cat {} \; | wc -l)
+            echo " $directory"
+        done
     fi | sort -nr |
     awk '
     {
@@ -43,7 +43,7 @@ lines() {
 
 temp() {
     sensors
-    if which nvidia-smi >& /dev/null; then
-	nvidia-smi -q -d temperature
+    if lspci | grep -qi nvidia && which nvidia-smi >& /dev/null; then
+        nvidia-smi -q -d temperature
     fi
 }
