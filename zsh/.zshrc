@@ -22,13 +22,13 @@ source ./zshrc
 
 case $HOST in
     Edelweiss)
-	source ~/.cargo/env
+	test -f ~/.cargo/env && source ~/.cargo/env
     ;;
     marvin)
 	if [[ $TERM = linux ]]; then
 	    setfont /usr/share/kbd/consolefonts/sun12x22.psfu.gz
 	fi
-	source ~/.cargo/env
+	test -f ~/.cargo/env && source ~/.cargo/env
     ;;
     redsol*|tcsol*)
 	source ./exalead
@@ -42,7 +42,7 @@ case $HOST in
 	    export PATH=/udir/jroquet/.local_RedHat/bin:$PATH
 	    export LD_LIBRARY_PATH=~/.local_RedHat/lib:$LD_LIBRARY_PATH
 	fi
-	source ~/.cargo/env
+	test -f ~/.cargo/env && source ~/.cargo/env
     ;;
 esac
 
