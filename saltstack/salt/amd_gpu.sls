@@ -4,4 +4,9 @@ amd_gpu_pkgs:
     - pkgs:
       - firmware-amd-graphics
       - xserver-xorg-video-ati
+{% elif grains['os_family'] == 'Arch' %}
+amd_gpu_pkgs:
+  pkg.installed:
+    - pkgs:
+      - vulkan-radeon
 {% endif %}
