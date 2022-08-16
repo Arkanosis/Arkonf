@@ -1,3 +1,4 @@
 bdiff: diff huge files (several gigabytes, if needed), compile with -Wno-long-long
 encode-to-webm: encode a video to webm
+mn: explains what a command with its options does (this tool is actually called command_help, or ch for short)
 record-video: capture part of the screen as webm / git, requires github.com/lolilolicon/xrectsel
