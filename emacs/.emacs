@@ -575,6 +575,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (global-set-key "[1;2S"  'execute-extended-command)
 
+(global-set-key [undo] 'undo-tree-undo)
+(global-set-key [redo] 'undo-tree-redo)
+
 (global-set-key [f2]  'scroll-all-mode)
 (global-set-key [f3]  'find-file-at-point)
 (global-set-key [f4]  'hs-toggle-hiding)
