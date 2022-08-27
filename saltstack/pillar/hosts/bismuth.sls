@@ -25,6 +25,7 @@ domains:
   - biotech.arkanosis.net
   - bismuth.arkanosis.net
   - pkg.arkanosis.net
+  - qr.arkanosis.net
 
   - dl.denomme.fr
   - qr.denomme.fr

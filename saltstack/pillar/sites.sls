@@ -49,6 +49,10 @@ sites:
     root: /var/sftp/sftp-arkanosis-net/pkg.arkanosis.net
     owner: sftp-arkanosis-net
 
+  - domain: qr.arkanosis.net
+    root: /var/sftp/sftp-arkanosis-net/qr.arkanosis.net
+    owner: sftp-arkanosis-net
+
   # denomme.fr
   - domain: dl.denomme.fr
     root: /var/sftp/sftp-denomme-fr/dl
