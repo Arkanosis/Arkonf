@@ -5,10 +5,11 @@ media_pkgs:
       - flac
       - ffmpeg
 {% if grains['os_family'] == 'Arch' %}
-      - libvdpau-va-gl
+      - gpxsee
 {% endif %}
       - kdenlive
 {% if grains['os_family'] == 'Arch' %}
+      - libvdpau-va-gl
       - linux-headers
 {% else %}
       - linux-headers-amd64
