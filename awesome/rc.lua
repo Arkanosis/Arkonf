@@ -235,13 +235,13 @@ root.buttons(gears.table.join(
 
 lock = 'no_screen_locker_found'
 for k, v in pairs({
-    'sxlock -l',
+    'sxlock -l -f -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1',
     'i3lock',
     'gnome-screensaver-command --lock',
 }) do
     if file_exists('/usr/bin/' .. v:gsub(' .*', '')) then
-        lock = v:gsub(' .*', '')
-         break
+        lock = v
+        break
     end
 end
 
@@ -271,8 +271,15 @@ globalkeys = gears.table.join(
 		 awful.client.run_or_raise(pass, matcher)
 	       end,
 	      {description = "password manager", group = "launcher"}),
+    awful.key({ modkey,           }, "v", function ()
+		 local matcher = function (c)
+		    return awful.rules.match(c, {class = "Pavucontrol"})
+		 end
+		 awful.client.run_or_raise("pavucontrol", matcher)
+	       end,
+	      {description = "password manager", group = "launcher"}),
     awful.key({ "Control", "Shift"}, "Escape", function () awful.util.spawn("/usr/bin/urxvt -e /usr/bin/htop", { maximized = true }) end,
-	      {description = "lock screen", group = "awesome"}),
+	      {description = "manage tasks", group = "awesome"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey, "Control" }, "Left",   awful.tag.viewprev,
