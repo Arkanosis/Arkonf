@@ -15,15 +15,14 @@ monitoring_pkgs:
       - lshw
       - lsof
       - nvme-cli
+      - nvtop
+      - powertop
+      - pv
 {% if salt['grains.get']('gpus:vendor') == 'intel' %}
       - intel-gpu-tools
 {% elif salt['grains.get']('gpus:vendor') == 'amd' %}
       - radeontop
-{% elif salt['grains.get']('gpus:vendor') == 'nvidia' %}
-      - nvtop
 {% endif %}
-      - powertop
-      - pv
 {% if grains['virtual'] == 'physical' %}
       - smartmontools
 {% endif %}
