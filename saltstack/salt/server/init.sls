@@ -10,6 +10,8 @@ server_pkgs:
 
       - goaccess
 
+      # - matrix-conduit # TODO FIXME
+
       - nginx
       - nginx-extras
 
@@ -49,6 +51,7 @@ server_pkgs:
         domain: {{ site.domain }}
         root: {{ site.root }}
         www:  {{ site.www | default(False) }}
+        matrix:  {{ site.matrix | default(False) }}
         main_domain: "bismuth.arkanosis.net"
     - mode: 644
 
@@ -123,3 +126,51 @@ ntp:
 # TODO clone sites configuration
 # TODO clone sites content
 # TODO create symlinks in sites-available
+
+/usr/lib/systemd/system/conduit.service:
+  file.managed:
+    - source: salt://conduit.service
+    - mode: 644
+
+/etc/conduit:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+    - require:
+      - user: conduit
+
+/etc/conduit/arkanosis.net.toml:
+  file.managed:
+    - source: salt://conduit.toml
+    - mode: 644
+
+/var/lib/conduit/arkanosis.net:
+  file.directory:
+    - user: conduit
+    - group: conduit
+    - mode: 700
+    - makedirs: True
+    - require:
+      - user: conduit
+
+conduit:
+  user.present:
+    - system: True
+    - shell: /bin/false
+    - uid: 898
+    - gid: 898
+    - groups:
+      - conduit
+    - require:
+      - group: conduit
+  group.present:
+    - system: True:
+    - gid: 898
+
+conduit:
+  service.running:
+    - enable: True
+    - require:
+      - user: conduit

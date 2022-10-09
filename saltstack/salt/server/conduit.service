@@ -1,0 +1,17 @@
+[Unit]
+Description=Conduit Matrix Server
+Wants=basic.target network-online.target
+After=basic.target network.target network-online.target
+
+[Service]
+Environment="CONDUIT_CONFIG=/etc/conduit/arkanosis.net.toml"
+User=conduit
+Group=conduit
+SyslogIdentifier=conduit
+RuntimeDirectory=conduit
+ConfigurationDirectory=conduit
+Restart=always
+ExecStart=/usr/bin/conduit
+
+[Install]
+WantedBy=multi-user.target

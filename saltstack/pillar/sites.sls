@@ -24,6 +24,7 @@ sites:
     root: /var/sftp/sftp-arkanosis-net/arkanosis.net
     owner: sftp-arkanosis-net
     www: True
+    matrix: True
 
   - domain: alpha.arkanosis.net
     root: /var/sftp/sftp-arkanosis-net/alpha.arkanosis.net

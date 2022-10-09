@@ -43,7 +43,10 @@ public:
       - syncthing # TODO remove once all hosts are reachable through Wireguard
 {% endif %}
     - ports:
-      - 4242/udp
+      - 4242/udp # wireguard
+{% if grains['host'] == 'bismuth' %}
+      - 8448/tcp # matrix
+{% endif %}
 
 {% if grains['host'] != 'bismuth' %}
 home:

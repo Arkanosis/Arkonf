@@ -1,0 +1,16 @@
+[global]
+server_name = "arkanosis.net"
+
+database_path = "/var/lib/conduit/arkanosis.net/"
+database_backend = "rocksdb"
+
+port = 6167
+
+max_request_size = 20_000_000 # bytes
+
+allow_registration = true
+allow_federation = true
+
+trusted_servers = ["matrix.org"]
+
+address = "127.0.0.1"
