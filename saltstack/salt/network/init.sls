@@ -24,6 +24,7 @@ network_pkgs:
       - nebula # TODO FIXME need nebula for Debian as well
 {% endif %}
       - nethogs
+      - nmap
 {% if grains['os_family'] == 'Arch' %}
       - openbsd-netcat
 {% else %}
