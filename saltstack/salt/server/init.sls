@@ -10,6 +10,7 @@ server_pkgs:
 
       - goaccess
 
+      # - gotosocial # TODO FIXME
       # - matrix-conduit # TODO FIXME
 
       - nginx
@@ -52,6 +53,7 @@ server_pkgs:
         root: {{ site.root }}
         www:  {{ site.www | default(False) }}
         matrix:  {{ site.matrix | default(False) }}
+        ap:  {{ site.ap | default(False) }}
         main_domain: "bismuth.arkanosis.net"
     - mode: 644
 
@@ -174,3 +176,51 @@ conduit:
     - enable: True
     - require:
       - user: conduit
+
+/usr/lib/systemd/system/gotosocial.service:
+  file.managed:
+    - source: salt://gotosocial.service
+    - mode: 644
+
+/etc/gotosocial:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+    - require:
+      - user: gotosocial
+
+/etc/gotosocial/arkanosis.net.yaml:
+  file.managed:
+    - source: salt://gotosocial.yaml
+    - mode: 644
+
+/var/lib/gotosocial/arkanosis.net/storage:
+  file.directory:
+    - user: gotosocial
+    - group: gotosocial
+    - mode: 700
+    - makedirs: True
+    - require:
+      - user: gotosocial
+
+gotosocial:
+  user.present:
+    - system: True
+    - shell: /bin/false
+    - uid: 897
+    - gid: 897
+    - groups:
+      - gotosocial
+    - require:
+      - group: gotosocial
+  group.present:
+    - system: True:
+    - gid: 897
+
+gotosocial:
+  service.running:
+    - enable: True
+    - require:
+      - user: gotosocial
