@@ -35,6 +35,7 @@ compile_pkgs:
       - qmk
       - rust-analyzer
       - rustup
+      - rz-cutter
       - typescript
 {% else %}
       - pkg-config
