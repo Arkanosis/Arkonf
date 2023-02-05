@@ -32,9 +32,9 @@ DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
 BACKUP="${HOST}_$(date +%Y-%m-%d-%H-%M-%S)"
 
-if [ -z "$DRIVE" ] || [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ]; then
+if [ -z "$DRIVE" ] || [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ] || [ "x$DRIVE" = 'xAgwe' ]; then
     BACKEND='borg'
-elif [ "x$DRIVE" = 'xSusanoo' ]; then
+elif [ "x$DRIVE" = 'xSusanoo' ] || [ "x$DRIVE" = 'xSedna' ]; then
     BACKEND='restic'
 elif [ "x$DRIVE" = 'xNeptune' ] || [ "x$DRIVE" = 'xPoseidon' ] || [ "x$DRIVE" = 'xTyphon' ] || [ "x$DRIVE" = 'xAegir' ]; then
     BACKEND='rsnapshot'
