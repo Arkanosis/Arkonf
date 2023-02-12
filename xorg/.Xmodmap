@@ -191,6 +191,36 @@ keycode 134 = Multi_key
 !! Menu
 keycode 135 = Multi_key
 
+!! a a á
+keycode 191 = a A aacute
+
+!! a a ä
+keycode 192 = a A adiaeresis
+
+!! ë Ë
+keycode 193 = e e ediaeresis
+
+!! í Í
+keycode 194 = i i iacute
+
+!! ï Ï
+keycode 195 = i i idiaeresis
+
+!! û Û
+keycode 196 = u u ucircumflex
+
+!! ü Ü
+keycode 198 = u u udiaeresis
+
+!! ô Ô
+keycode 199 = o o ocircumflex
+
+!! ö Ö
+keycode 200 = o o odiaeresis
+
+!! c C ç Ç
+keycode 201 = c C ccedilla
+
 clear shift
 clear lock
 clear control
