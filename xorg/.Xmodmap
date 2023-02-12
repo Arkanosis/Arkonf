@@ -146,35 +146,35 @@ keycode  65 = space space nobreakspace
 !!
 keycode  66 = BackSpace Delete Delete Delete
 
-!! 7 ⁷
-keycode  79 = 7 U2077
+!! 7 ⁷ ₇
+keycode  79 = 7 U2077 U2087
 
-!! 8 ⁸
-keycode  80 = 8 U2078
+!! 8 ⁸ ₈
+keycode  80 = 8 U2078 U2088
 
-!! 9 ⁹
-keycode  81 = 9 U2079
+!! 9 ⁹ ₉
+keycode  81 = 9 U2079 U2089
 
-!! 4 ⁴
-keycode  83 = 4 U2074
+!! 4 ⁴ ₄
+keycode  83 = 4 U2074 U2084
 
-!! 5 ⁵
-keycode  84 = 5 U2075
+!! 5 ⁵ ₅
+keycode  84 = 5 U2075 U2085
 
-!! 6 ⁶
-keycode  85 = 6 U2076
+!! 6 ⁶ ₆
+keycode  85 = 6 U2076 U2086
 
-!! 1 ¹
-keycode  87 = 1 U00B9
+!! 1 ¹ ₁
+keycode  87 = 1 U00B9 U2081
 
-!! 2 ²
-keycode  88 = 2 U00B2
+!! 2 ² ₂
+keycode  88 = 2 U00B2 U2082
 
-!! 3 ³
-keycode  89 = 3 U00B3
+!! 3 ³ ₃
+keycode  89 = 3 U00B3 U2083
 
-!! 0 ⁰
-keycode  90 = 0 U2070
+!! 0 ⁰ ₀
+keycode  90 = 0 U2070 U2080
 
 !! < > “ ”
 keycode  94 = less greater U201C U201D
@@ -191,29 +191,32 @@ keycode 134 = Multi_key
 !! Menu
 keycode 135 = Multi_key
 
-!! a a á
-keycode 191 = a A aacute
+!! ↙ ⇙ á
+keycode 191 = U2199 U21D9 aacute
 
-!! a a ä
-keycode 192 = a A adiaeresis
+!! ↔ ⇔ ä
+keycode 192 = U2194 U21D4 adiaeresis
 
-!! ë Ë
-keycode 193 = e e ediaeresis
+!! ↘ ⇘ ë Ë
+keycode 193 = U2198 U21D8 ediaeresis
 
-!! í Í
-keycode 194 = i i iacute
+!! ← ⇐ í Í
+keycode 194 = U2190 U21D0 iacute
 
-!! ï Ï
-keycode 195 = i i idiaeresis
+!! ↓ ⇓ ï Ï
+keycode 195 = U2193 U21D3 idiaeresis
 
-!! û Û
-keycode 196 = u u ucircumflex
+!! → ⇒ û Û
+keycode 196 = U2192 U21D2 ucircumflex
 
-!! ü Ü
-keycode 198 = u u udiaeresis
+!! ↖ ⇖ ù Ù
+keycode 197 = U2196 U21D6 ugrave
 
-!! ô Ô
-keycode 199 = o o ocircumflex
+!! ↑ ⇑ ü Ü
+keycode 198 = U2191 U21D1 udiaeresis
+
+!! ↗ ⇗ ô Ô
+keycode 199 = U2197 U21D7 ocircumflex
 
 !! ö Ö
 keycode 200 = o o odiaeresis
