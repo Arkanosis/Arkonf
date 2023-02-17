@@ -1,6 +1,16 @@
 #!/bin/sh
 
-if [ "x$(hostname)" = "xgossamer" ]; then
+if [ "x$(hostname)" = "xEdelweiss" ]; then
+    xrandr \
+        --output DP-3 \
+             --mode 3440x1440 \
+             --scale 1x1 \
+             --pos 0x1080 \
+        --output HDMI-1 \
+             --mode 1920x1080 \
+             --scale 1x1 \
+             --pos 760x0
+elif [ "x$(hostname)" = "xgossamer" ]; then
     xrandr --setprovideroutputsource modesetting NVIDIA-0
     xrandr --auto
     xrandr --dpi 96
@@ -32,7 +42,11 @@ if [ "x$USER" = "xnonfreegaming" ]; then
     # Steam
     steam -silent &
     # xlunch
-    xlunch --config "$HOME/.config/xlunch/xlunch.conf" &
+    if [ "x$(hostname)" = "xEdelweiss" ]; then
+        xlunch --config "$HOME/.config/xlunch/xlunch.conf" -x 0 -y 1080 -w 3440 -h 1440 &
+    else
+        xlunch --config "$HOME/.config/xlunch/xlunch.conf" &
+    fi
 else
     # File synchronization
     if [ "x$(hostname)" != "xtaz" ]; then

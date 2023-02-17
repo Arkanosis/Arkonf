@@ -602,6 +602,8 @@ awful.rules.rules = {
 
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = "web" } },
+    { rule = { class = "Chromium" },
+      properties = { screen = 1, tag = "web" } },
     { rule = { class = "URxvt" },
       properties = { size_hints_honor = false } },
 }
@@ -625,3 +627,8 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+if os.getenv("USER") == "nonfreegaming" and screen[1].geometry.width == 3440 then
+   awful.util.spawn("firefox", { screen = 1, maximized = true })
+   awful.util.spawn("chromium", { screen = 1, maximized = true })
+end
