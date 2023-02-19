@@ -115,6 +115,7 @@ if [ "x$HOST" = 'xgossamer' ]; then
             cd / && \
             sudo restic \
                  -r "$TARGET" \
+                 --pack-size 128 \
                  --verbose \
                  backup ./ \
                  --exclude-file "$APPDIR/hadduck.exclude" \
@@ -138,6 +139,7 @@ elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelwei
         cd / && \
         sudo restic \
              -r "$TARGET" \
+             --pack-size 128 \
              --verbose \
              backup ./ \
              --exclude-file "$APPDIR/hadduck.exclude" \
