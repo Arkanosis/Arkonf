@@ -62,6 +62,8 @@ else
         PORT=2214
     elif [ "x$HOST" = 'xMimosa' ]; then
         PORT=2228
+    elif [ "x$HOST" = 'xBruyere' ]; then
+        PORT=2218
     elif [ "x$HOST" = 'xbismuth' ]; then
         PORT=2222
     else
@@ -124,7 +126,7 @@ if [ "x$HOST" = 'xgossamer' ]; then
         echo "Unsupported backend '$BACKEND', exiting" >&2
         exit 1
     fi
-elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelweiss' ] || [ "x$HOST" = 'xCyclamen' ] || [ "x$HOST" = 'xMimosa' ]; then
+elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelweiss' ] || [ "x$HOST" = 'xCyclamen' ] || [ "x$HOST" = 'xMimosa' ] || [ "x$HOST" = 'xBruyere' ]; then
     if [ "x$BACKEND" = 'xborg' ]; then
         cd / && \
             sudo borg create \
