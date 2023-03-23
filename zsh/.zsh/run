@@ -81,6 +81,26 @@ lxc-boot() {
                 distribution=debian
                 release=buster
             ;;
+            -bullseye)
+                shift
+                distribution=debian
+                release=bullseye
+            ;;
+            -bookworm)
+                shift
+                distribution=debian
+                release=bookworm
+            ;;
+            -r8)
+                shift
+                distribution=rockylinux
+                release=8
+            ;;
+            -r9)
+                shift
+                distribution=rockylinux
+                release=9
+            ;;
             -custom)
                 distribution=$2
                 release=$3
