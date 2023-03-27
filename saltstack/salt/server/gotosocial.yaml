@@ -15,6 +15,7 @@ storage-local-base-path: "/var/lib/gotosocial/arkanosis.net/storage"
 
 instance-expose-peers: false
 instance-expose-suspended: false
+instance-expose-suspended-web: false
 
 accounts-registration-open: false
 
