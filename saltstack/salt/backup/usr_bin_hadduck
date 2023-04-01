@@ -1,12 +1,12 @@
 #! /bin/sh
 
 # hadduck backup
-# (C) 2021-2022 Jérémie Roquet <jroquet@arkanosis.net>
+# (C) 2021-2023 Jérémie Roquet <jroquet@arkanosis.net>
 # Released under the ISC license
 
 set -e
 
-VERSION='v0.1.0'
+VERSION='v0.2.0'
 
 APPDIR="$(dirname "$(readlink -f "$0")")"
 
@@ -32,11 +32,19 @@ DRIVE="$(echo "$1" | sed 's/@.*//')"
 REMOTE="$(echo "$1" | sed -n 's/[^@]*@\([^@]\+\)\?$/\1/p')"
 BACKUP="${HOST}_$(date +%Y-%m-%d-%H-%M-%S)"
 
-if [ -z "$DRIVE" ] || [ "x$DRIVE" = 'xGymir' ] || [ "x$DRIVE" = 'xNjord' ] || [ "x$DRIVE" = 'xVaruna' ] || [ "x$DRIVE" = 'xAgwe' ]; then
+if [ -z "$DRIVE" ] ||
+   [ "x$DRIVE" = 'xGymir' ] ||
+   [ "x$DRIVE" = 'xNjord' ] ||
+   [ "x$DRIVE" = 'xVaruna' ] ||
+   [ "x$DRIVE" = 'xAgwe' ]; then
     BACKEND='borg'
-elif [ "x$DRIVE" = 'xSusanoo' ] || [ "x$DRIVE" = 'xSedna' ]; then
+elif [ "x$DRIVE" = 'xSusanoo' ] ||
+     [ "x$DRIVE" = 'xSedna' ]; then
     BACKEND='restic'
-elif [ "x$DRIVE" = 'xNeptune' ] || [ "x$DRIVE" = 'xPoseidon' ] || [ "x$DRIVE" = 'xTyphon' ] || [ "x$DRIVE" = 'xAegir' ]; then
+elif [ "x$DRIVE" = 'xNeptune' ] ||
+     [ "x$DRIVE" = 'xPoseidon' ] ||
+     [ "x$DRIVE" = 'xTyphon' ] ||
+     [ "x$DRIVE" = 'xAegir' ]; then
     BACKEND='rsnapshot'
 else
     echo "Unknown drive '$DRIVE', exiting" >&2
@@ -76,57 +84,42 @@ if [ "x$BACKEND" = 'xborg' ]; then
     TARGET="$TARGET/borgbackup/$HOST/"
 elif [ "x$BACKEND" = 'xrestic' ]; then
     TARGET="$TARGET/resticbackup"
+elif [ "x$BACKEND" = 'xrsnapshot' ]; then
+    TARGET="$TARGET/rsnapshot/$HOST/"
 else
     echo "Unsupported backend '$BACKEND', exiting" >&2
     exit 1
 fi
 
-if [ "x$HOST" = 'xgossamer' ]; then
-    for username in 'arkanosis' 'nonfreegaming'; do
-        if ! [ -d "/home/$username/.local" ]; then
-            echo "'/home/$username' is not decrypted, exiting" >&2
+if [ "x$HOST" = 'xgossamer' ] ||
+   [ "x$HOST" = 'xmarvin' ] ||
+   [ "x$HOST" = 'xtaz' ] ||
+   [ "x$HOST" = 'xEdelweiss' ] ||
+   [ "x$HOST" = 'xCyclamen' ] ||
+   [ "x$HOST" = 'xMimosa' ] ||
+   [ "x$HOST" = 'xBruyere' ]; then
+    if [ "x$HOST" = 'xgossamer' ]; then
+        for username in 'arkanosis' 'nonfreegaming'; do
+            if ! [ -d "/home/$username/.local" ]; then
+                echo "'/home/$username' is not decrypted, exiting" >&2
+                exit 1
+            fi
+        done
+        if ! [ -d '/mnt/hdd' ]; then
+            echo "'/mnt/hdd' is not mounted, exiting" >&2
             exit 1
         fi
-    done
-    if ! [ -d '/mnt/hdd' ]; then
-        echo "'/mnt/hdd' is not mounted, exiting" >&2
-        exit 1
-    fi
-    for directory in /mnt/*; do
-        if [ "x$directory" != 'x/mnt/hdd' ]; then
-            echo "Unexpected directory '$directory', exiting" >&2
-            exit 1
-        fi
-    done
-
-    if [ "x$BACKEND" = 'xborg' ]; then
+        for directory in /mnt/*; do
+            if [ "x$directory" != 'x/mnt/hdd' ]; then
+                echo "Unexpected directory '$directory', exiting" >&2
+                exit 1
+            fi
+        done
         cd && \
-            mount.ecryptfs_private Sauvegardes && \
-            cd / && \
-            sudo borg create \
-                 --stats \
-                 --progress \
-                 --compress lz4 \
-                 "$TARGET::$BACKUP" \
-                 ./ \
-                 --exclude-from "$APPDIR/hadduck.exclude" \
-                 --exclude-caches
-    elif [ "x$BACKEND" = 'xrestic' ]; then
-        cd && \
-            mount.ecryptfs_private Sauvegardes && \
-            cd / && \
-            sudo restic \
-                 -r "$TARGET" \
-                 --pack-size 128 \
-                 --verbose \
-                 backup ./ \
-                 --exclude-file "$APPDIR/hadduck.exclude" \
-                 --exclude-caches
-    else
-        echo "Unsupported backend '$BACKEND', exiting" >&2
-        exit 1
+            mount.ecryptfs_private Sauvegardes
+    elif [ "x$HOST" = 'xbismuth' ]; then
+       TARGET="ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/"
     fi
-elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelweiss' ] || [ "x$HOST" = 'xCyclamen' ] || [ "x$HOST" = 'xMimosa' ] || [ "x$HOST" = 'xBruyere' ]; then
     if [ "x$BACKEND" = 'xborg' ]; then
         cd / && \
             sudo borg create \
@@ -146,25 +139,9 @@ elif [ "x$HOST" = 'xmarvin' ] || [ "x$HOST" = 'xtaz' ] || [ "x$HOST" = 'xEdelwei
              backup ./ \
              --exclude-file "$APPDIR/hadduck.exclude" \
              --exclude-caches
-    else
-        echo "Unsupported backend '$BACKEND', exiting" >&2
-        exit 1
-    fi
-elif [ "x$HOST" = 'xbismuth' ]; then
-    TARGET="ssh://borgbackup@localhost:$PORT/home/borgbackup/backups/$HOST/"
-    if [ "x$BACKEND" = 'xborg' ]; then
-        cd / && \
-            sudo borg create \
-                 --stats \
-                 --progress \
-                 --compress lz4 \
-                 "$TARGET::$BACKUP" \
-                 ./ \
-                 --exclude-from "$APPDIR/hadduck.exclude" \
-                 --exclude-caches
-    else
-        echo "Unsupported backend '$BACKEND', exiting" >&2
-        exit 1
+    elif [ "x$BACKEND" = 'xrsnapshot' ]; then
+        rsnapshot -c "/etc/rsnapshot.$DRIVE.conf" sync &&
+            rsnapshot -c "/etc/rsnapshot.$DRIVE.conf" manual
     fi
 else
     echo "Unknown host '$HOST' to backup" >&2
