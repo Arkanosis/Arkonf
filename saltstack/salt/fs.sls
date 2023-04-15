@@ -2,7 +2,7 @@ fs_pkgs:
   pkg.installed:
     - pkgs:
       - gparted
-      - exfat-utils
+      - exfatprogs
       - ntfs-3g
 
 {% if grains['mem_total'] > 7000 %}
