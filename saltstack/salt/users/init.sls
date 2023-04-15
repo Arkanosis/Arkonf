@@ -111,6 +111,7 @@ users_pkgs:
 /var/lib/systemd/linger/{{ user.login }}:
   file.managed:
     - makedirs: True
+    - replace: False
 {% endif %}
 
 {% if user.arkonf | default(False) %}
@@ -185,3 +186,4 @@ make -C /home/{{ user.login }}/Arkonf install:
 /etc/shadow:
   file.managed:
     - mode: 640
+    - replace: False
