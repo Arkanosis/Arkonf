@@ -158,12 +158,10 @@ nebula:
     - require:
       - group: nebula
   group.present:
-    - system: True:
+    - system: True
     - gid: 899
-
 # TODO FIXME need nebula for Debian as well
 {% if grains['os_family'] == 'Arch' %}
-nebula:
   service.running:
     - enable: True
     - require:
