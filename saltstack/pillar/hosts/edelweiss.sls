@@ -10,6 +10,10 @@ local_users:
   - nonfreegaming
   - rssht-user
 
+local_groups:
+  - amis
+  - famille
+
 smart_drives:
   - sda
   - sdb

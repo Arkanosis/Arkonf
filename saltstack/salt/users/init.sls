@@ -31,6 +31,18 @@ users_pkgs:
     - mode: 755
     - makedirs: True
 
+{% for group in pillar['groups'] %}
+
+{% if group.name in pillar['local_groups'] %}
+
+{{ group.name }}:
+  group.present:
+    - gid: {{ group.id }}
+
+{% endif %}
+
+{% endfor %}
+
 {% for user in pillar['users'] %}
 
 {% if user.login in pillar['local_users'] %}

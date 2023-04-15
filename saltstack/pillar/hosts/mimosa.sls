@@ -7,5 +7,8 @@ local_users:
   - Daniel
   - Annette
 
+local_groups:
+  - famille
+
 smart_drives:
   - sda

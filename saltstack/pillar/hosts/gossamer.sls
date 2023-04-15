@@ -10,6 +10,10 @@ local_users:
   - nonfreegaming
   - rssht-user
 
+local_groups:
+  - amis
+  - famille
+
 encrypted_homes:
   - arkanosis
   - asdp

@@ -9,6 +9,10 @@ local_users:
   - nonfreegaming
   - rssht-user
 
+local_groups:
+  - amis
+  - famille
+
 domains:
   - studio1094.arkanosis.net
 
