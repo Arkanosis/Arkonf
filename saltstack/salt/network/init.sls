@@ -151,6 +151,14 @@ systemd-resolved:
     - source: salt://network/nebula-config.yml
     - mode: 644
 
+/etc/nebula/host.crt:
+  file.symlink:
+    - target: {{ grains['host'] }}.crt
+
+/etc/nebula/host.key:
+  file.symlink:
+    - target: {{ grains['host'] }}.key
+
 nebula:
   user.present:
     - system: True
