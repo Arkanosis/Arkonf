@@ -2,11 +2,6 @@ vm_pkgs:
   pkg.installed:
     - pkgs:
       - dnsmasq
-{% if grains['os_family'] == 'Arch' %}
-      - docker
-{% else %}
-      - docker.io
-{% endif %}
       - lxc
 {% if grains['os_family'] == 'Arch' %}
       - podman
