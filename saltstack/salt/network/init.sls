@@ -146,7 +146,7 @@ systemd-resolved:
 # TODO FIXME set lighthouse.am_lighthouse and lighthouse.hosts correctly on the lighthouses
 /etc/nebula/config.yml:
   file.managed:
-    - source: salt;//network/nebula-config.yml
+    - source: salt://network/nebula-config.yml
     - mode: 644
 
 nebula:
