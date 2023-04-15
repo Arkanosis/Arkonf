@@ -53,3 +53,12 @@ xorg_pkgs:
   file.managed:
     - source: salt://xorg/sxlock.service
     - mode: 644
+
+{% if grains['os_family'] == 'Debian' %}
+
+/etc/sddm.conf:
+  file.managed:
+    - source: salt://xorg/sddm.conf
+    - mode: 644
+
+{% endif %}
