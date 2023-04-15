@@ -114,6 +114,7 @@ systemd-networkd:
   service.running:
     - enable: True
 
+{% if grains['os_family'] == 'Arch' %}
 /etc/systemd/resolved.conf:
   file.managed:
     - source: salt://network/resolved.conf
@@ -128,6 +129,7 @@ systemd-networkd:
 systemd-resolved:
   service.running:
     - enable: True
+{% endif %}
 
 /usr/lib/systemd/system/nebula.service:
   file.managed:
