@@ -74,6 +74,7 @@ postfix:
 
 /var/db/dkim:
   file.directory:
+    - makedirs: True
     - require:
       - pkg: mail_pkgs
 
@@ -97,6 +98,7 @@ opendkim:
 /usr/bin/mail:
   file.managed:
     - source: salt://mail/mail
+    - template: jinja
     - mode: 755
 
 /usr/bin/mailx:
@@ -108,4 +110,5 @@ opendkim:
 /etc/environment:
   file.managed:
     - source: salt://mail/environment
+    - template: jinja
     - mode: 644
