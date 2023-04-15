@@ -37,13 +37,13 @@ public:
 {% if grains['host'] == 'bismuth' %}
       - http
       - https
-      - ssh # mostly for rssht / sftp from hosts that are not using Wireguard
+      - ssh # mostly for rssht / sftp from hosts that are not using Nebula
 {% else %}
-      - ssh # TODO remove once all hosts are reachable through Wireguard (use the home zone for sftp)
-      - syncthing # TODO remove once all hosts are reachable through Wireguard
+      - ssh # TODO remove once all hosts are reachable through Nebula (use the home zone for sftp)
+      - syncthing # TODO remove once all hosts are reachable through Nebula
 {% endif %}
     - ports:
-      - 4242/udp # wireguard
+      - 4242/udp # Nebula
 {% if grains['host'] == 'bismuth' %}
       - 8448/tcp # matrix
 {% endif %}
@@ -62,13 +62,13 @@ home:
       #  - => no need for a specific qrcp service, everything passes through the https service (restricted to the home zone)
       - https # mostly for qrcp
       - mdns # for local link hostname resolution
-      - rpcbind # for NFS
+      - rpc-bind # for NFS
       - samba-client
-      - ssh # mostly for sftp from hosts that are not using Wireguard
-      - syncthing # TODO remove once all hosts are reachable through Wireguard
+      - ssh # mostly for sftp from hosts that are not using Nebula
+      - syncthing # TODO remove once all hosts are reachable through Nebula
 {% endif %}
     - ports:
-      - 4242/udp
+      - 4242/udp # Nebula
 
 trusted:
   firewalld.present:
