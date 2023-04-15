@@ -1,3 +1,3 @@
 Package: *
-Pin: release a=bullseye-backports
+Pin: release a=bookworm-backports
 Pin-Priority: -1

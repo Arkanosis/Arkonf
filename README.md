@@ -52,7 +52,11 @@ pacman -Syu
 ### On Debian
 
 ```sh
+wget https://repo.saltproject.io/salt/py3/debian/11/amd64/latest/salt-archive-keyring.gpg -O /usr/share/keyrings/salt-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/salt/py3/debian/11/amd64/latest bullseye main" > /etc/apt/sources.list.d/salt.list
+apt update
 apt install salt-minion git
+systemctl disable --now salt-minion
 git clone https://github.com/Arkanosis/Arkonf.git /root/Arkonf
 ln -s /root/Arkonf/saltstack/salt /srv/salt
 ln -s /root/Arkonf/saltstack/pillar /srv/pillar
@@ -82,7 +86,7 @@ applying the highstate.
 
 ## Copyright
 
-Arkonf is copyright (C) 2001-2022 Jérémie Roquet <jroquet@arkanosis.net> and
+Arkonf is copyright (C) 2001-2023 Jérémie Roquet <jroquet@arkanosis.net> and
 all code except code written by third-parties licensed under the ISC license.
 
 See the [LICENSE](/LICENSE) file for more details.

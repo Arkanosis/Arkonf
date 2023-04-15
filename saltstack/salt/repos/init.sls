@@ -1,31 +1,44 @@
-{% if grains['oscodename'] == 'bullseye' %}
+{% if grains['oscodename'] == 'bookworm' %}
 
 /etc/apt/preferences:
   file.managed:
     - source: salt://repos/apt-preferences
     - mode: 644
 
-# TODO FIXME personal apt repository for packages missing in Debian Bullseye
+# TODO FIXME personal apt repository for packages missing in Debian Bookworm
 
-deb http://deb.debian.org/debian bullseye contrib:
+deb http://deb.debian.org/debian bookworm contrib:
   pkgrepo.managed:
-    - dist: bullseye
+    - dist: bookworm
     - file: /etc/apt/sources.list.d/contrib.list
 
-deb http://deb.debian.org/debian bullseye non-free:
+deb http://deb.debian.org/debian bookworm non-free:
   pkgrepo.managed:
-    - dist: bullseye
+    - dist: bookworm
     - file: /etc/apt/sources.list.d/non-free.list
 
-deb http://ftp.debian.org/debian bullseye-backports main:
+deb http://ftp.debian.org/debian bookworm-backports main:
   pkgrepo.managed:
-    - dist: bullseye-backports
+    - dist: bookworm-backports
     - file: /etc/apt/sources.list.d/backports.list
 
-deb http://security.debian.org/ bullseye-security main:
+wget https://repo.saltproject.io/salt/py3/debian/11/amd64/latest/salt-archive-keyring.gpg -O /usr/share/keyrings/salt-archive-keyring.gpg:
+  cmd.run:
+    - unless: test -f /usr/share/keyrings/salt-archive-keyring.gpg
+
+deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/salt/py3/debian/11/amd64/latest bullseye main:
   pkgrepo.managed:
-    - dist: bullseye-security
-    - file: /etc/apt/sources.list.d/security.list
+    - dist: bullseye
+    - file: /etc/apt/sources.list.d/salt.list
+
+wget https://syncthing.net/release-key.gpg -O /usr/share/keyrings/syncthing-archive-keyring.gpg:
+  cmd.run:
+    - unless: test -f /usr/share/keyrings/syncthing-archive-keyring.gpg
+
+deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable:
+  pkgrepo.managed:
+    - dist: syncthing
+    - file: /etc/apt/sources.list.d/syncthing.list
 
 {% elif grains['os_family'] == 'Arch' %}
 
