@@ -43,7 +43,11 @@ xorg_pkgs:
 /etc/X11/Xwrapper.config:
   file.managed:
     - contents:
+{% if grains['os_family'] == 'Arch' %}
         - needs_root_rights = no
+{% else %}
+        - allowed_users = console
+{% endif %}
 
 /etc/systemd/system/sxlock.service:
   file.managed:
