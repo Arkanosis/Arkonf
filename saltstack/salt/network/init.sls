@@ -20,9 +20,7 @@ network_pkgs:
       #- knemo
       - mitmproxy
       - mtr
-{% if grains['os_family'] == 'Arch' %}
-      - nebula # TODO FIXME need nebula for Debian as well
-{% endif %}
+      - nebula
       - nethogs
       - nmap
 {% if grains['os_family'] == 'Arch' %}
@@ -133,7 +131,7 @@ systemd-resolved:
 
 /usr/lib/systemd/system/nebula.service:
   file.managed:
-    - source: salt://nebula.service
+    - source: salt://network/nebula.service
     - mode: 644
 
 /etc/nebula:
@@ -145,7 +143,11 @@ systemd-resolved:
     - require:
       - user: nebula
 
-# TODO add nebula config from $ARKONF_DIR/nebula/config.yml
+# TODO FIXME set lighthouse.am_lighthouse and lighthouse.hosts correctly on the lighthouses
+/etc/nebula/config.yml:
+  file.managed:
+    - source: salt;//network/nebula-config.yml
+    - mode: 644
 
 nebula:
   user.present:
@@ -160,10 +162,7 @@ nebula:
   group.present:
     - system: True
     - gid: 899
-# TODO FIXME need nebula for Debian as well
-{% if grains['os_family'] == 'Arch' %}
   service.running:
     - enable: True
     - require:
       - user: nebula
-{% endif %}
