@@ -1,11 +1,7 @@
 term_pkgs:
   pkg.installed:
     - pkgs:
-{% if grains['os_family'] == 'Arch' %}
       - rxvt-unicode
-{% else %}
-      - rxvt-unicode-256color
-{% endif %}
 {% if grains['os_family'] != 'Arch' %}
       - yakuake
 {% endif %}
