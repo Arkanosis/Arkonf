@@ -68,6 +68,15 @@ users_pkgs:
     - require:
       - user: {{ user.login }}
 
+/home/{{ user.login }}/.ssh:
+  file.directory:
+    - user: {{ user.login }}
+    - group: {{ user.login }}
+    - mode: 700
+    - makedirs: True
+    - require:
+      - user: {{ user.login }}
+
 /home/{{ user.login }}/.ssh/authorized_keys:
   file.symlink:
     - target: /home/.ssh/{{ user.login }}
