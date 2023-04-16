@@ -61,6 +61,7 @@ users:
     id: 1006
     groups:
       - famille
+    linger: True
   - login: asdp
 #    fullname: 'Anne-Sophie Denommé-Pichon'
     id: 1201
