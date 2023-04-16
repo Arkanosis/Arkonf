@@ -33,3 +33,4 @@ run
 sys
 tmp
 var/cache/pacman/pkg
+var/cache/apt
