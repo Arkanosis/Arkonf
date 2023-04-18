@@ -73,7 +73,7 @@ else
     elif [ "x$HOST" = 'xBruyere' ]; then
         PORT=2218
     elif [ "x$HOST" = 'xbismuth' ]; then
-        PORT=2222
+        PORT=2202
     else
         echo "Host '$HOST' not supported for remote backup"
     fi
@@ -97,7 +97,8 @@ if [ "x$HOST" = 'xgossamer' ] ||
    [ "x$HOST" = 'xEdelweiss' ] ||
    [ "x$HOST" = 'xCyclamen' ] ||
    [ "x$HOST" = 'xMimosa' ] ||
-   [ "x$HOST" = 'xBruyere' ]; then
+   [ "x$HOST" = 'xBruyere' ] ||
+   [ "x$HOST" = 'xbismuth' ]; then
     if [ "x$HOST" = 'xgossamer' ]; then
         for username in 'arkanosis' 'nonfreegaming'; do
             if ! [ -d "/home/$username/.local" ]; then
