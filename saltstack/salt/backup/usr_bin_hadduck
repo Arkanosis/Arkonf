@@ -145,8 +145,9 @@ fi
     echo "End: $(date)"
     echo "Host: $HOST"
     echo "Drive: $DRIVE"
+    echo "Remote: $REMOTE"
     echo "Backend: $BACKEND"
-) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE effectuée avec succès" arkanosis@gmail.com
+) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE@$REMOTE effectuée avec succès" arkanosis@gmail.com
 
 echo 'Backup finished'
 
