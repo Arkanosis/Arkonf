@@ -65,6 +65,7 @@ if [ -z "$REMOTE" ]; then
         echo "'$TARGET' is not mounted, exiting" >&2
         exit 1
     fi
+    RSH='ssh'
 else
     RSH="ssh -o 'ProxyCommand socat - UNIX-CLIENT:$HOME/.ssh/reverse-arkanosis@$REMOTE' -o 'User borgbackup'"
     TARGET="ssh://$REMOTE/run/media/arkanosis/$DRIVE"
