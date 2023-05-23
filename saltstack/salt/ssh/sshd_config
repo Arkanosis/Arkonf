@@ -36,6 +36,7 @@ PrintLastLog yes
 TCPKeepAlive yes
 ClientAliveInterval 30
 ClientAliveCountMax 3
+StreamLocalBindUnlink yes
 
 AcceptEnv LANG LC_*
 
