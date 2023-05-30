@@ -11,6 +11,7 @@ utilities_pkgs:
       - fzf
       - hexyl
       - kdialog
+      - inotify-tools
       - lsb-release
       - man-db
       - mlocate
