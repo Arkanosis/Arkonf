@@ -30,6 +30,25 @@ setxkbmap us
 xmodmap "$HOME/.Xmodmap"
 xset r 66
 
+# Watch for additional keyboard
+already_plugged=false
+while true; do
+    if $already_plugged; then
+        inotifywait -qq -e delete /dev/input
+        sleep 1
+        if ! [ -h "/dev/input/by-id/usb-raychengy_Fifi-event-kbd" ]; then
+            already_plugged=false
+        fi
+    else
+        inotifywait -qq -e create /dev/input
+        sleep 1
+        if [ -h "/dev/input/by-id/usb-raychengy_Fifi-event-kbd" ]; then
+            xmodmap "$HOME/.Xmodmap"
+            already_plugged=true
+        fi
+    fi
+done &
+
 # Touchpad
 syndaemon -t -K -R -i .5 -d
 
