@@ -10,6 +10,7 @@ profile_pkgs:
         - linux-tools-generic
 {% endif %}
         - valgrind
+        - visualvm
 
 {% if grains['os_family'] == 'Arch' %}
 profile_pkgs_group:
