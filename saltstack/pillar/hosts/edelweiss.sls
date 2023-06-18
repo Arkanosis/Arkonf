@@ -19,6 +19,7 @@ smart_drives:
   - sdb
   - sdc
   - sdd
+  - sde
 
 network_interfaces:
   wired:
