@@ -16,6 +16,7 @@ mnt/hdd/.Sauvegardes
 mnt/hdd/Téléchargements/Distributions
 mnt/hdd/lost+found
 mnt/Heimdal
+mnt/lssd
 mnt/ssd/boot
 mnt/ssd/dev
 mnt/ssd/home/arkanosis/.cache
