@@ -32,8 +32,18 @@ else
     }
 fi
 
-if !which bat >& /dev/null; then
+if which bat >& /dev/null; then
+    bath() {
+        bat --language=help --style=plain
+    }
+
+    alias -g -- --help='--help | bath'
+else
     bat() {
+        less $@
+    }
+
+    bath() {
         less $@
     }
 fi
