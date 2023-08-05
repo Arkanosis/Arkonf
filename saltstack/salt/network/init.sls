@@ -43,6 +43,7 @@ network_pkgs:
 {% endif %}
       - wget
       - whois
+      - wireguard-tools
 {% if grains['os_family'] == 'Arch' %}
       - wireshark-cli
       - wireshark-qt
