@@ -18,6 +18,8 @@ backup_pkgs:
 {% endif %}
       - syncthing
 
+# AUR restic-rest-server
+
 {% if grains['host'] == 'Cyclamen' %}
 /usr/bin/sauvegarde:
   file.managed:
