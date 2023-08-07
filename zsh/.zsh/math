@@ -40,6 +40,14 @@ EOF
     $(which dmd2) -run $file
 }
 
+lbkg() {
+    units ${1}lbs kg
+}
+
+kglb() {
+    units ${1}kg lbs
+}
+
 setopt c_bases
 setopt octal_zeroes
 
