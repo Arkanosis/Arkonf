@@ -245,11 +245,13 @@ If region contains less than 2 lines, lines are left untouched."
 
 (setq org-todo-keywords
   '((sequence "TODO(t)" "STRT(s)" "|" "DONE(d)")
+    (sequence "WAIT(w)" "|")
     (sequence "|" "ABRT(a)")))
 
 (setq org-todo-keyword-faces
   '(("TODO" . org-todo)
     ("STRT" . "yellow")
+    ("WAIT" . "orange")
     ("DONE" . org-done)
     ("ABRT" . "grey")))
 
