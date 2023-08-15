@@ -1,14 +1,9 @@
-relayhost = [{{ pillar['smtp_host'] }}]:{{ pillar['smtp_port'] }}
 mydomain = {{ pillar['smtp_domain'] }}
 myorigin = $mydomain
 masquerade_domains = $mydomain
 sender_canonical_maps = hash:/etc/postfix/sender_canonical
-smtp_use_tls = yes
-smtp_tls_wrappermode = yes
-smtp_tls_security_level = encrypt
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/etc/postfix/passwd
-smtp_sasl_security_options = noanonymous
+smtp_tls_security_level = may
+smtp_tls_policy_maps = hash:/etc/postfix/tls_policy
 smtp_header_checks = regexp:/etc/postfix/header_checks
 inet_interfaces = 127.0.0.1
 non_smtpd_milters = inet:localhost:8891

@@ -1,1 +1,0 @@
-[{{ pillar['smtp_host'] }}]:{{ pillar['smtp_port'] }} {{ pillar['smtp_user'] }}:{{ pillar['smtp_password'] }}

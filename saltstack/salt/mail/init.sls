@@ -15,15 +15,15 @@ mail_pkgs:
     - template: jinja
     - mode: 644
 
-/etc/postfix/passwd:
+/etc/postfix/tls_policy:
   file.managed:
-    - source: salt://mail/postfix_passwd
+    - source: salt://mail/postfix_tls_policy
     - template: jinja
     - mode: 600
   cmd.run:
-    - name: postmap /etc/postfix/passwd
+    - name: postmap /etc/postfix/tls_policy
     - onchanges:
-      - file: /etc/postfix/passwd
+      - file: /etc/postfix/tls_policy
     - require:
       - pkg: mail_pkgs
 
@@ -56,7 +56,7 @@ postfix:
     - enable: True
     - watch:
       - file: /etc/postfix/main.cf
-      - cmd: /etc/postfix/passwd
+      - cmd: /etc/postfix/tls_policy
       - cmd: /etc/postfix/sender_canonical
       - cmd: /etc/postfix/header_checks
     - require:
