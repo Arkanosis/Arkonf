@@ -54,7 +54,7 @@ server_pkgs:
         www:  {{ site.www | default(False) }}
         matrix:  {{ site.matrix | default(False) }}
         ap:  {{ site.ap | default(False) }}
-        main_domain: "bismuth.arkanosis.net"
+        main_domain: {{ grains['fqdn'] }}
     - mode: 644
 
 /etc/nginx/sites-enabled/{{ site.domain }}:
@@ -67,14 +67,14 @@ server_pkgs:
 {% endfor %}
 
 # TODO enable sites based on domains
-/etc/nginx/sites-enabled/bismuth.arkanosis.net:
+/etc/nginx/sites-enabled/{{ grains['fqdn'] }}:
   file.symlink:
     - makedirs: True
-    - target: ../sites-available/bismuth.arkanosis.net
+    - target: ../sites-available/{{ grains['fqdn'] }}
 
-certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --expand --domain bismuth.arkanosis.net {% for domain in pillar['domains'] %} --domain {{ domain }} {% endfor %} {% for site in pillar['sites'] %}{% if site.domain in pillar['domains'] and site.get('www', False) %} --domain www.{{ site.domain }} {% endif %}{% endfor %}:
+certbot run --non-interactive --agree-tos --email {{ pillar['recipient_email'] }} --nginx --expand --domain {{ grains['fqdn'] }} {% for domain in pillar['domains'] %} --domain {{ domain }} {% endfor %} {% for site in pillar['sites'] %}{% if site.domain in pillar['domains'] and site.get('www', False) %} --domain www.{{ site.domain }} {% endif %}{% endfor %}:
   cmd.run:
-    - unless: test -f /etc/letsencrypt/live/bismuth.arkanosis.net/fullchain.pem
+    - unless: test -f /etc/letsencrypt/live/{{ grains['fqdn'] }}/fullchain.pem
 
 {% endif %}
 
