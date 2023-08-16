@@ -77,6 +77,18 @@ trusted:
     - interfaces:
         - lxcbr0
 
+{% if grains['host'] == 'bismuth' %}
+vpn:
+  firewalld.present:
+    - name: vpn
+    - default: False
+    - services:
+        - smtp
+        - ssh
+    - interfaces:
+        - nebula0
+{% endif %}
+
 {% if grains['os_family'] != 'Arch' %}
 /etc/cron-apt/config:
   file.managed:

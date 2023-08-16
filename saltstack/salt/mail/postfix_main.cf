@@ -2,9 +2,21 @@ mydomain = {{ pillar['smtp_domain'] }}
 myorigin = $mydomain
 masquerade_domains = $mydomain
 sender_canonical_maps = hash:/etc/postfix/sender_canonical
+smtp_header_checks = regexp:/etc/postfix/header_checks
+{% if pillar.services is defined and pillar.services.get('mail', False) %}
 smtp_tls_security_level = may
 smtp_tls_policy_maps = hash:/etc/postfix/tls_policy
-smtp_header_checks = regexp:/etc/postfix/header_checks
+inet_interfaces = 127.0.0.1 10.27.0.2
+mynetworks = 127.0.0.0/8 10.27.0.0/24
+smtpd_client_restrictions = permit_mynetworks reject
+smtpd_relay_restrictions = permit_mynetworks reject
+smtpd_tls_cert_file = /etc/letsencrypt/live/{{ grains['fqdn'] }}/fullchain.pem
+smtpd_tls_key_file = /etc/letsencrypt/live/{{ grains['fqdn'] }}/privkey.pem
+smtpd_tls_security_level = encrypt
+{% else %}
+smtp_tls_security_level = encrypt
 inet_interfaces = 127.0.0.1
+relayhost = {{ pillar['smtp_relay'] }}
+{% endif %}
 non_smtpd_milters = inet:localhost:8891
 milter_default_action = accept

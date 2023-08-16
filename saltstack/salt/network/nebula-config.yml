@@ -18,10 +18,12 @@ static_host_map:
   "10.27.0.40": ["192.168.0.40:4242"]
 
 lighthouse:
-  am_lighthouse: false
+  am_lighthouse: {{ pillar.services is defined and pillar.services.get('lighthouse', False) }}
   interval: 60
-  hosts: # lighthouse hosts this node should report to and query from (SHOULD BE EMPTY ON LIGHTHOUSE NODES)
+{% if pillar.services is not defined or not pillar.services.get('lighthouse', False) %}
+  hosts:
     - "10.27.0.2"
+{% endif %}
 
 listen:
   host: 0.0.0.0
@@ -71,3 +73,13 @@ firewall:
     - port: 22
       proto: tcp
       group: laptop
+
+{% if pillar.services is defined and pillar.services.get('mail', False) %}
+    - port: 25
+      proto: tcp
+      group: desktop
+
+    - port: 25
+      proto: tcp
+      group: laptop
+{% endif %}

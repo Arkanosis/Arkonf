@@ -35,3 +35,7 @@ domains:
   - genetique.info
 
   - www.microstatus.org
+
+services:
+  lighthouse: True
+  mail: True

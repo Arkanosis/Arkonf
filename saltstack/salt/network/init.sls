@@ -150,6 +150,7 @@ systemd-resolved:
 /etc/nebula/config.yml:
   file.managed:
     - source: salt://network/nebula-config.yml
+    - template: jinja
     - mode: 644
 
 /etc/nebula/host.crt:
