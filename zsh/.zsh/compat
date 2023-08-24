@@ -18,6 +18,16 @@ if which batcat >& /dev/null; then
     }
 fi
 
+if which batman >& /dev/null; then
+    man() {
+        batman $@ || $1 --help
+    }
+else
+    man() {
+        command man $@ || $1 --help
+    }
+fi
+
 if which gsed >& /dev/null; then
     sed() {
         gsed $@

@@ -135,10 +135,6 @@ umnt() {
     udisksctl unmount -b $@
 }
 
-man() {
-    command man $@ || $1 --help
-}
-
 if [[ $OS =~ 'Windows' ]]; then
     scp() {
         rsync -aAzz --info=progress2 --partial-dir=.rsync-partial $@

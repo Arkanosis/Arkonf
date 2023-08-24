@@ -2,6 +2,9 @@ editor_pkgs:
   pkg.installed:
     - pkgs:
       - bat
+{% if grains['os_family'] == 'Arch' %}
+      - bat-extras
+{% endif %}
       - dhex
       - emacs
 {% if grains['os_family'] == 'Arch' %}
