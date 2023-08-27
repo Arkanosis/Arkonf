@@ -760,7 +760,7 @@ If region contains less than 2 lines, lines are left untouched."
 (tool-bar-mode nil)
 (transient-mark-mode t)
 
-(which-func-mode t)
+(which-function-mode t)
 
 (global-display-line-numbers-mode t)
 (set-face-attribute 'line-number-current-line nil :background "#222" :foreground "goldenrod" :weight 'bold)
