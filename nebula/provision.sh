@@ -27,5 +27,6 @@ mkdir -m 700 -p "$DIR"
     sign 'Mimosa' 28 'desktop'
     sign 'One' 31 'smartphone'
     sign 'Two' 32 'smartphone'
+    sign 'Three' 33 'smartphone'
     sign 'Serval' 40
 )

@@ -12,6 +12,7 @@ nameof() {
     28) echo 'Mimosa' ;;
     31) echo 'One' ;;
     32) echo 'Two' ;;
+    33) echo 'Three' ;;
     40) echo 'Serval' ;;
     *) echo 'Unknown host' ;;
   esac
@@ -54,7 +55,7 @@ if [ "$PAM_TYPE" != "close_session" ]; then
     echo "Date: $(date)"
     echo "Details: $DETAILS"
   } | (
-    mail -Sttycharset=utf8 -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $RHOSTNAME ($PAM_RHOST, $DETAILS)" jroquet@arkanosis.net ||
-    mail -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $RHOSTNAME ($PAM_RHOST)" jroquet@arkanosis.net
+    mail -Sttycharset=utf8 -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $RHOSTNAME ($PAM_RHOST, $DETAILS)" arkanosis@gmail.com ||
+    mail -s "$PAM_SERVICE login on $(hostname): $PAM_USER from $RHOSTNAME ($PAM_RHOST)" arkanosis@gmail.com
   )
 fi
