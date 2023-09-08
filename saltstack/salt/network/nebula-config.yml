@@ -82,4 +82,8 @@ firewall:
     - port: 25
       proto: tcp
       group: laptop
+
+    - port: 25
+      proto: tcp
+      host: Bruyere
 {% endif %}
