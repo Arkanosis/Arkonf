@@ -4,10 +4,11 @@ utilities_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
       - broot
+      - eza
 {% else %}
       - sysvbanner
-{% endif %}
       - exa
+{% endif %}
       - fzf
       - hexyl
       - kdialog
