@@ -108,6 +108,12 @@ vpn:
     - mode: 755
 {% endif %}
 
+/etc/logwatch/conf/logwatch.conf:
+  file.managed:
+    - source: salt://security/logwatch.conf
+    - template: jinja
+    - mode: 755
+
 /etc/fail2ban/jail.local:
   file.managed:
     - source: salt://security/fail2ban-jail.local
