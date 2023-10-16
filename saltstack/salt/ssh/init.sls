@@ -11,6 +11,7 @@ ssh_pkgs:
       - putty-tools
 {% endif %}
       - sshfs
+      - ssh-audit
 
 /etc/ssh/sshd_config:
   file.managed:
