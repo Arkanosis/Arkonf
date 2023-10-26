@@ -23,3 +23,46 @@ xtfhd() {
 	--output eDP1 --mode 3200x1800 --scale 1x1 --pos 0x1836 \
 	--output HDMI1 --mode 1920x1080 --scale 1.7x1.7 --fb 3264x3636 --pos 0x0
 }
+
+xuwqhd() {
+    xrandr \
+        --output DisplayPort-2 \
+          --mode 3440x1440 \
+          --scale 1x1 \
+          --pos 0x0 \
+        --output HDMI-A-0 \
+          --off \
+        --output DisplayPort-0 \
+          --off
+}
+
+xuwqhdtfhd() {
+    xrandr \
+        --output DisplayPort-2 \
+          --mode 3440x1440 \
+          --scale 1x1 \
+          --pos 0x1080 \
+        --output HDMI-A-0 \
+          --mode 1920x1080 \
+          --scale 1x1 \
+          --pos 760x0 \
+        --output DisplayPort-0 \
+          --off
+}
+
+
+xuwqhdtfhdbfhd() {
+    xrandr \
+        --output DisplayPort-2 \
+          --mode 3440x1440 \
+          --scale 1x1 \
+          --pos 0x1080 \
+        --output HDMI-A-0 \
+          --mode 1920x1080 \
+          --scale 1x1 \
+          --pos 760x0 \
+        --output DisplayPort-0 \
+          --mode 1024x600 \
+          --scale 1x1 \
+          --pos 1028x2520
+}
