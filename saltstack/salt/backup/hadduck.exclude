@@ -18,10 +18,15 @@ mnt/hdd/lost+found
 mnt/Heimdal
 mnt/lssd
 mnt/ssd/boot
+mnt/ssd/cdrom
 mnt/ssd/dev
 mnt/ssd/home/arkanosis/.cache
 mnt/ssd/home/arkanosis/.cargo/registry
 mnt/ssd/home/arkanosis/Téléchargements/Distributions
+mnt/ssd/home/Annette/.cache
+mnt/ssd/home/Daniel/.cache
+mnt/ssd/home/Sandrine/.cache
+mnt/ssd/home/nonfreegaming/.cache
 mnt/ssd/lost+found
 mnt/ssd/media
 mnt/ssd/mnt
@@ -29,6 +34,8 @@ mnt/ssd/proc
 mnt/ssd/run
 mnt/ssd/sys
 mnt/ssd/tmp
+mnt/ssd/var/cache/pacman/pkg
+mnt/ssd/var/cache/apt
 proc
 run
 sys
