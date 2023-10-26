@@ -10,7 +10,6 @@ image_pkgs:
       - fbida # provides exiftran
 {% endif %}
       - flameshot
-      - jhead
       - gimp
       - gimp-help-fr
 {% if grains['os_family'] != 'Arch' %}

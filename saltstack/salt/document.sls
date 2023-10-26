@@ -23,6 +23,7 @@ document_pkgs:
       - libreoffice
 {% endif %}
       - odt2txt
+      # AUR openboardview-git
       - pdftk
       - ruby-ronn
       - zathura

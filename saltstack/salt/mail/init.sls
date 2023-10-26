@@ -81,6 +81,8 @@ postfix:
 opendkim-genkey -r -s {{ grains['host'] }} -d {{ pillar['smtp_domain'] }} -D /var/db/dkim:
   cmd.run:
     - unless: test -f /var/db/dkim/{{ grains['host'] }}.private
+    - require:
+      - pkg: mail_pkgs
 
 opendkim:
   service.running:

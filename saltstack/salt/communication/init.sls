@@ -4,6 +4,7 @@ communication_pkgs:
       - mutt
       - pidgin
 {% if grains['os_family'] == 'Arch' %}
+      - signal-desktop
       - teamspeak3
 {% endif %}
       - thunderbird

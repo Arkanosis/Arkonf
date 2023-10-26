@@ -33,7 +33,7 @@ media_pkgs:
       - v4l-utils
       - v4l2loopback-dkms
       - vlc
-      - youtube-dl
+      - yt-dlp
       - zvbi
 
 dragonplayer:

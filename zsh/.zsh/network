@@ -70,10 +70,10 @@ ydl() {
 
 ydla() {
     if ((# > 0)); then
-        youtube-dl -f bestaudio $@ ||
-            youtube-dl -x --audio-format best $@
+        yt-dlp -f bestaudio $@ ||
+            yt-dlp -x --audio-format best $@
     else
-        youtube-dl -f bestaudio $(xsel -o -b) ||
-            youtube-dl -x --audio-format best $(xsel -o -b)
+        yt-dlp -f bestaudio $(xsel -o -b) ||
+            yt-dlp -x --audio-format best $(xsel -o -b)
     fi
 }

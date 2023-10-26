@@ -52,7 +52,7 @@ pacman -Syu
 ### On Debian
 
 ```sh
-wget https://repo.saltproject.io/salt/py3/debian/11/amd64/latest/salt-archive-keyring.gpg -O /usr/share/keyrings/salt-archive-keyring.gpg
+wget https://repo.saltproject.io/salt/py3/debian/11/amd64/latest/SALT-PROJECT-GPG-PUBKEY-2023.gpg -O /usr/share/keyrings/salt-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/salt/py3/debian/11/amd64/latest bullseye main" > /etc/apt/sources.list.d/salt.list
 apt update
 apt install salt-minion git

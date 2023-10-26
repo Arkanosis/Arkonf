@@ -20,3 +20,4 @@ audio_pkgs:
 {% else %}
       - pulseaudio
 {% endif %}
+      - rosegarden
