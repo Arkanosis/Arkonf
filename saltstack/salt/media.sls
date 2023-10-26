@@ -8,6 +8,7 @@ media_pkgs:
       - gpxsee
 {% endif %}
       - kdenlive
+      - k3b
 {% if grains['os_family'] == 'Arch' %}
       - libvdpau-va-gl
       - linux-headers

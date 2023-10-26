@@ -26,6 +26,7 @@ document_pkgs:
       # AUR openboardview-git
       - pdftk
       - ruby-ronn
+      - skanlite
       - zathura
       - zathura-djvu
       - zathura-ps
