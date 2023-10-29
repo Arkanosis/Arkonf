@@ -6,6 +6,9 @@ document_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - git-delta
 {% endif %}
+{% if grains['host'] in ['Cyclamen', 'Mimosa'] %}
+      - hplip
+{% endif %}
       - kdiff3
 {% if grains['os_family'] == 'Arch' %}
       - libreoffice-fresh
@@ -26,7 +29,15 @@ document_pkgs:
       # AUR openboardview-git
       - pdftk
       - ruby-ronn
+{% if grains['host'] in ['Cyclamen', 'Mimosa'] %}
       - skanlite
+{% endif %}
       - zathura
       - zathura-djvu
       - zathura-ps
+
+{% if grains['host'] in ['Cyclamen', 'Mimosa'] %}
+hp-setup -i -a -x && touch /root/.hp-setup-done:
+  cmd.run:
+    - unless: test -f /root/.hp-setup-done
+{% endif %}
