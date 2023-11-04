@@ -136,7 +136,7 @@ backup_pkgs:
     - source: salt://backup/hadduck@.timer
     - mode: 644
 
-hadduck@Edelweiss.nebula
+hadduck@@Edelweiss.nebula.timer:
   service.running:
     - enable: True
 {% endif %}
