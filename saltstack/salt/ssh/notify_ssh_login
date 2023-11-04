@@ -2,6 +2,8 @@
 
 nameof() {
   case "$2" in
+    1) echo 'Tantale' ;;
+    2) echo 'Bismuth' ;;
     12) echo 'taz' ;;
     13) echo 'Edelweiss' ;;
     14) echo 'Cyclamen' ;;
