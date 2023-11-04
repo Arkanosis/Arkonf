@@ -67,8 +67,16 @@ if [ -z "$REMOTE" ]; then
     fi
     RSH='ssh'
 else
-    RSH="ssh -o 'ProxyCommand socat - UNIX-CLIENT:$HOME/.ssh/reverse-arkanosis@$REMOTE' -o 'User borgbackup'"
+    if [ "$(echo "$REMOTE" | sed 's/^[^\.]\+//')" = '.nebula' ]; then
+        RSH="ssh -o 'User borgbackup'"
+    else
+        RSH="ssh -o 'ProxyCommand socat - UNIX-CLIENT:$HOME/.ssh/reverse-arkanosis@$REMOTE' -o 'User borgbackup'"
+    fi
     TARGET="ssh://$REMOTE/run/media/arkanosis/$DRIVE"
+    PASSPHRASE_FILE="/etc/borgbackup/passphrase/$REMOTE"
+    if [ -f "$PASSPHRASE_FILE" ]; then
+        export BORG_PASSCOMMAND="cat $PASSPHRASE_FILE"
+    fi
 fi
 
 if [ "x$BACKEND" = 'xborg' ]; then

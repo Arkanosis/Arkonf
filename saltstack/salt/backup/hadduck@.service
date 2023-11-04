@@ -1,0 +1,9 @@
+[Unit]
+Description=Hadduck remote backup to %I
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hadduck %I
+
+[Install]
+WantedBy=default.target

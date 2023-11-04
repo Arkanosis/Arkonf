@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily hadduck remote backup
+
+[Timer]
+OnCalendar=daily
+
+[Install]
+WantedBy=timers.target

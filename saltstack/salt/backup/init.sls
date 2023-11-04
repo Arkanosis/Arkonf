@@ -115,10 +115,30 @@ backup_pkgs:
 {% endif %}
 
 {% if grains['host'] == 'bismuth' %}
-/usr/bin/bismuth_backup:
+/usr/bin/hadduck:
   file.managed:
-    - source: salt://backup/usr_bin_bismuth_backup
-    - mode: 700
+    - source: salt://backup/usr_bin_hadduck
+    - mode: 755
+
+# TODO put the exclude file in /etc instead
+/usr/bin/hadduck.exclude:
+  file.managed:
+    - source: salt://backup/hadduck.exclude
+    - mode: 644
+
+/usr/lib/systemd/system/hadduck@.service:
+  file.managed:
+    - source: salt://backup/hadduck@.service
+    - mode: 644
+
+/usr/lib/systemd/system/hadduck@.timer:
+  file.managed:
+    - source: salt://backup/hadduck@.timer
+    - mode: 644
+
+hadduck@Edelweiss.nebula
+  service.running:
+    - enable: True
 {% endif %}
 
 # TODO duplicati user service for Sandrine

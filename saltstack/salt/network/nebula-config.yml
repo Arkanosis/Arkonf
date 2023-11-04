@@ -74,6 +74,10 @@ firewall:
       proto: tcp
       group: laptop
 
+    - port: 22
+      proto: tcp
+      host: Bismuth
+
 {% if pillar.services is defined and pillar.services.get('mail', False) %}
     - port: 25
       proto: tcp
