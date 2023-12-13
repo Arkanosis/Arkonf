@@ -56,6 +56,10 @@ wttr() {
     esac | head -n -2
 }
 
+eol() {
+    curl -s "https://endoflife.date/api/$1.json" | jq .
+}
+
 exp() {
     whois $1 | grep -i 'expir[^ ]*'
 }
