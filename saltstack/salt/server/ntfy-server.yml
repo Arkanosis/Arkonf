@@ -1,0 +1,13 @@
+log-level: info
+
+base-url: "https://up.arkanosis.net"
+
+listen-http: "127.0.0.1:6300"
+behind-proxy: true
+keepalive-interval: "60s"
+
+cache-file: "/var/cache/ntfy/cache.db"
+cache-duration: "168h"
+
+auth-file: "/var/lib/ntfy/user.db"
+auth-default-access: "deny-all"

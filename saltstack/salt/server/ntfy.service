@@ -1,0 +1,16 @@
+[Unit]
+Description=ntfy server
+After=network.target
+
+[Service]
+User=ntfy
+Group=ntfy
+SyslogIdentifier=ntfy
+RuntimeDirectory=ntfy
+ConfigurationDirectory=ntfy
+Restart=always
+ExecStart=/usr/bin/ntfy serve --no-log-dates
+ExecReload=/bin/kill --signal HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

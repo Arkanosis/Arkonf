@@ -26,6 +26,7 @@ sites:
     www: True
     matrix: True
     ap: True
+    up: True
 
   - domain: alpha.arkanosis.net
     root: /var/sftp/sftp-arkanosis-net/alpha.arkanosis.net
