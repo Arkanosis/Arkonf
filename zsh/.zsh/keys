@@ -30,6 +30,10 @@ bindkey "^[OF" end-of-line
 # Insert pour ecraser
 bindkey '^[[2~' overwrite-mode
 
+# Undo / redo
+bindkey '^_' undo
+bindkey '^[_' redo
+
 # Pageup/pagedown pour naviguer dans l'historique
 bindkey '^[[6~' history-search-forward
 bindkey '^[[5~' history-search-backward

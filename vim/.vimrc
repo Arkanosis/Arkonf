@@ -49,6 +49,10 @@ if &diff
 endif
 
 " Raccourcis clavier
+map <C-_> :undo<CR>
+imap <C-_> <Esc>:undo<CR>i
+map <A-_> :redo<CR>
+imap <A-_> <Esc>:redo<CR>i
 map <C-t> :tabnew .<CR>
 imap <C-t> <Esc>:tabnew .<CR>i
 map <C-S-tab> :tabprevious<CR>
