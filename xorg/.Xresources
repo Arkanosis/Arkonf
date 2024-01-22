@@ -58,3 +58,6 @@ URxvt.matcher.rend.0: -Uline
 
 URxvt.keysym.Undo: \037
 URxvt.keysym.Redo: \033\137
+URxvt.keysym.XF86Cut: \027
+URxvt.keysym.XF86Copy: \033\127
+URxvt.keysym.XF86Paste: \031
