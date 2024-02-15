@@ -322,6 +322,46 @@ globalkeys = gears.table.join(
             end
         end,
         {description = "Snap window on the right", group = "client"}),
+    awful.key({ modkey, "Shift"    }, "Left",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.left
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.74})
+            end
+        end,
+        {description = "Snap window on the left with 16/9 ratio", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "Right",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.right
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.74})
+            end
+        end,
+        {description = "Snap window on the right with 16/9 ratio", group = "client"}),
+    awful.key({ modkey, "Shift"    }, "Home",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.left
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.26})
+            end
+        end,
+        {description = "Snap window on the left to complement a 16/9 ratio", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "End",
+        function ()
+            if client.focus then
+                local f = awful.placement.scale
+                        + awful.placement.right
+                        + awful.placement.maximize_vertically
+                f(client.focus, {honor_workarea=true, to_percent = 0.26})
+            end
+        end,
+        {description = "Snap window on the right to complement 16/9 ratio", group = "client"}),
     awful.key({ modkey,           }, "Up",
         function ()
             if client.focus then
