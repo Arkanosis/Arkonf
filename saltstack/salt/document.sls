@@ -2,6 +2,9 @@ document_pkgs:
   pkg.installed:
     - pkgs:
       - calibre
+{% if grains['os_family'] == 'Arch' %}
+      - difftastic
+{% endif %}
       - docx2txt
 {% if grains['os_family'] == 'Arch' %}
       - git-delta
