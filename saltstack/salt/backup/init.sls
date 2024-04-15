@@ -17,6 +17,7 @@ backup_pkgs:
       - rsnapshot
 {% endif %}
       - syncthing
+      - testdisk
 
 # AUR restic-rest-server
 
