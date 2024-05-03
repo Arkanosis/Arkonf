@@ -1,11 +1,11 @@
 mydomain = {{ pillar['smtp_domain'] }}
 myorigin = $mydomain
 masquerade_domains = $mydomain
-sender_canonical_maps = hash:/etc/postfix/sender_canonical
+sender_canonical_maps = lmdb:/etc/postfix/sender_canonical
 smtp_header_checks = regexp:/etc/postfix/header_checks
 {% if pillar.services is defined and pillar.services.get('mail', False) %}
 smtp_tls_security_level = may
-smtp_tls_policy_maps = hash:/etc/postfix/tls_policy
+smtp_tls_policy_maps = lmdb:/etc/postfix/tls_policy
 inet_interfaces = 127.0.0.1 10.27.0.2
 mynetworks = 127.0.0.0/8 10.27.0.0/24
 smtpd_client_restrictions = permit_mynetworks reject
