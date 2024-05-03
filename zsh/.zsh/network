@@ -66,9 +66,9 @@ exp() {
 
 ydl() {
     if ((# > 0)); then
-        youtube-dl $@
+        yt-dlp $@
     else
-        youtube-dl -f best $(xsel -o -b)
+        yt-dlp -f best $(xsel -o -b)
     fi
 }
 
