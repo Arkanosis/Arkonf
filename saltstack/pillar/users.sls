@@ -17,6 +17,7 @@ users:
     groups:
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
+      - i2c # access to DP / HDMI monitors with DDC
       - optical # access to /dev/cdrom
       - video # access to /dev/video* for OBS
       - wireshark

@@ -3,6 +3,7 @@ xorg_pkgs:
     - pkgs:
       - barrier
       - brightnessctl
+      - ddcutil
       - sxhkd
 {% if grains['os_family'] == 'Arch' %}
       - tigervnc
