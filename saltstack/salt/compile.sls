@@ -26,6 +26,9 @@ compile_pkgs:
       - golang-go
       - golang-golang-x-tools
 {% endif %}
+      - kicad
+      - kicad-library
+      - kicad-library-3d
       - libtool
 {% if grains['os_family'] == 'Arch' %}
       - namcap
