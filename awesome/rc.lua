@@ -302,6 +302,31 @@ globalkeys = gears.table.join(
         {description = "focus previous by index", group = "client"}
     ),
 
+    awful.key({ modkey, "Mod1"    }, "Left",
+        function ()
+            awful.client.focus.bydirection("left")
+        end,
+        {description = "focus left", group = "client"}
+    ),
+    awful.key({ modkey, "Mod1"    }, "Right",
+        function ()
+            awful.client.focus.bydirection("right")
+        end,
+        {description = "focus right", group = "client"}
+    ),
+    awful.key({ modkey, "Mod1"    }, "Up",
+        function ()
+            awful.client.focus.bydirection("up")
+        end,
+        {description = "focus up", group = "client"}
+    ),
+    awful.key({ modkey, "Mod1"    }, "Down",
+        function ()
+            awful.client.focus.bydirection("down")
+        end,
+        {description = "focus down", group = "client"}
+    ),
+
     awful.key({ modkey,           }, "Left",
         function ()
             if client.focus then
@@ -328,7 +353,7 @@ globalkeys = gears.table.join(
                 local f = awful.placement.scale
                         + awful.placement.left
                         + awful.placement.maximize_vertically
-                f(client.focus, {honor_workarea=true, to_percent = 0.74})
+                f(client.focus, {honor_workarea=true, to_percent = 0.73})
             end
         end,
         {description = "Snap window on the left with 16/9 ratio", group = "client"}),
@@ -338,7 +363,7 @@ globalkeys = gears.table.join(
                 local f = awful.placement.scale
                         + awful.placement.right
                         + awful.placement.maximize_vertically
-                f(client.focus, {honor_workarea=true, to_percent = 0.74})
+                f(client.focus, {honor_workarea=true, to_percent = 0.73})
             end
         end,
         {description = "Snap window on the right with 16/9 ratio", group = "client"}),
@@ -348,7 +373,7 @@ globalkeys = gears.table.join(
                 local f = awful.placement.scale
                         + awful.placement.left
                         + awful.placement.maximize_vertically
-                f(client.focus, {honor_workarea=true, to_percent = 0.26})
+                f(client.focus, {honor_workarea=true, to_percent = 0.27})
             end
         end,
         {description = "Snap window on the left to complement a 16/9 ratio", group = "client"}),
@@ -358,7 +383,7 @@ globalkeys = gears.table.join(
                 local f = awful.placement.scale
                         + awful.placement.right
                         + awful.placement.maximize_vertically
-                f(client.focus, {honor_workarea=true, to_percent = 0.26})
+                f(client.focus, {honor_workarea=true, to_percent = 0.27})
             end
         end,
         {description = "Snap window on the right to complement 16/9 ratio", group = "client"}),
