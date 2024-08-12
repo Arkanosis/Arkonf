@@ -3,6 +3,7 @@ cdrom
 dev
 home/.ecryptfs
 home/arkanosis/.cache
+home/arkanosis/.ccache
 home/arkanosis/.cargo/registry
 home/arkanosis/Téléchargements/Distributions
 home/Annette/.cache
