@@ -24,3 +24,4 @@ smart_drives:
 network_interfaces:
   wired:
     - enp0s31f6
+    - enp5s0u1 # smartphone
