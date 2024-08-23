@@ -109,6 +109,12 @@ bindkey '^[H' finer-backward-delete-word
 # Alt + h pour supprimer ce qui précède
 bindkey '^[h' backward-delete-word
 
+# Standard ctrl + whatever
+bindkey '^H' backward-delete-word
+bindkey '^[[3;5~' delete-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 # Alt + shift + f pour avancer, mais moins que sans shift
 bindkey '^[F' finer-forward-word
 
