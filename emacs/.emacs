@@ -471,9 +471,10 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package dockerfile-mode
   :mode "Dockerfile$")
 
-(use-package auto-complete-config
+(use-package auto-complete
   :diminish auto-complete-mode
   :config
+  (require 'auto-complete-config)
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (ac-config-default))
 
