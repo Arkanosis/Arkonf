@@ -2,7 +2,7 @@
 Description=Daily hadduck remote backup
 
 [Timer]
-OnCalendar=daily
+OnCalendar=*-*-* 00:10:00
 
 [Install]
 WantedBy=timers.target
