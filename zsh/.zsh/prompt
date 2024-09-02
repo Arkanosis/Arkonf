@@ -1,7 +1,7 @@
 # "-*- sh -*-"
 
 if [[ $sarch != AIX ]]; then
-    reset=$(print "\e(B\e)B\e*B\e+B")
+    reset=$(print "\e(B\e)B\e*B\e+B\e[?1000l")
     gray=$(print "\e[90m")
 fi
 
