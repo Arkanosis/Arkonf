@@ -64,6 +64,8 @@ if which emacs >& /dev/null; then
             e $@ src/index.(html|js|jsx|ts|tsx) --eval '(setq compile-command "cd '"$(pwd)"' && yarn run dev")'
         elif [[ -f Makefile ]]; then
             e $@ Makefile --eval '(setq compile-command "cd '"$(pwd)"' && make")'
+        elif [[ -f mkdocs.yml ]]; then
+            e $@ mkdocs.yml --eval '(setq compile-command "cd '"$(pwd)"' && mkdocs serve -a 127.0.0.1:8080")'
         fi
     }
 else
