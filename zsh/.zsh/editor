@@ -49,7 +49,7 @@ if which emacs >& /dev/null; then
         if [[ -f Cargo.toml ]]; then
             e $@ Cargo.toml src/main.rs --eval '(setq compile-command "cd '"$(pwd)"' && cargo run -- --version")'
         elif [[ -f pyproject.toml ]]; then
-            poetry run emacs -nw $@ pyproject.toml $(basename $(pwd)) --eval '(setq compile-command "cd '"$(pwd)"' && poetry run ./'"$(basename $(pwd))"' -- --version")'
+            poetry run emacs -nw $@ pyproject.toml $(basename $(pwd))/__main__.py --eval '(setq compile-command "cd '"$(pwd)"' && poetry run python -m '"$(sed -n 's@name\s*=\s*"\([^"]\+\)"@\1@p' "$(pwd)/pyproject.toml")"' -- --version")'
         elif [[ -f main.go || -f lib.go ]]; then
 	    if [[ -f Makefile ]]; then
 		e $@ Makefile (main|lib).go --eval '(setq compile-command "cd '"$(pwd)"' && make")'
