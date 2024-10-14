@@ -469,6 +469,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "/", function () awful.spawn("sxiv -b -g 1200  -sw " .. os.getenv("HOME").. "/Images/miryoku-fresdevi-reference.png") end,
               {description = "open keyboard reference", group = "launcher"}),
 
+    awful.key({ modkey,           }, "c", function () awful.spawn.with_shell("xcolor | tr -d '\n' | xclip -selection clipboard") end,
+              {description = "open color picker", group = "launcher"}),
     awful.key({                   }, "Print", function () awful.spawn("flameshot gui") end,
               {description = "open keyboard reference", group = "launcher"}),
     awful.key({ modkey,           }, "Print", function () awful.spawn("flameshot launcher") end,

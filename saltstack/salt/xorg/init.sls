@@ -13,6 +13,7 @@ xorg_pkgs:
 {% endif %}
       - wmctrl
       - x11vnc
+      - xcolor
       - xdotool
       - xpra
       - xsel
