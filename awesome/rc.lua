@@ -283,7 +283,7 @@ globalkeys = gears.table.join(
 	      {description = "lock screen", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "l", function () awful.util.spawn("sudo systemctl suspend") end,
 	      {description = "lock screen and suspend", group = "awesome"}),
-    awful.key({ modkey,           }, "p", function ()
+    awful.key({ modkey,           }, "k", function ()
 		 local matcher = function (c)
 		    return awful.rules.match(c, {class = pass_class})
 		 end
@@ -314,12 +314,12 @@ globalkeys = gears.table.join(
         end,
         {description = "focus next by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
+--    awful.key({ modkey,           }, "k",
+--        function ()
+--            awful.client.focus.byidx(-1)
+--        end,
+--        {description = "focus previous by index", group = "client"}
+--    ),
 
     awful.key({ modkey, "Mod1"    }, "Left",
         function ()
