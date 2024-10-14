@@ -5,7 +5,11 @@ XF86MonBrightness{Down,Up}
 
 # TODO change external screen configuration
 
-# TODO previous / next / play / pause / stop for media in VLC / MPV / MPD
+XF86Audio{Play,Stop}
+	playerctl {play-pause,stop}
+
+XF86Audio{Prev,Next}
+	playerctl {previous,next}
 
 XF86AudioMute
 	pactl set-sink-mute 0 toggle
