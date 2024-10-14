@@ -1,8 +1,11 @@
-root ALL=(ALL) ALL
-%wheel	ALL=(ALL) ALL
+Defaults!/usr/bin/visudo env_keep += "SUDO_EDITOR EDITOR VISUAL"
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin"
+
+root ALL=(ALL:ALL) ALL
+%wheel	ALL=(ALL:ALL) ALL
 
 arkanosis ALL=NOPASSWD: /usr/bin/systemctl suspend
 arkanosis ALL=NOPASSWD: /usr/bin/systemctl start bluetooth.service
 nonfreegaming ALL=NOPASSWD: /usr/bin/systemctl start bluetooth.service
 
-#includedir /etc/sudoers.d
+@includedir /etc/sudoers.d
