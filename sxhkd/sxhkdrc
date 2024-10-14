@@ -18,7 +18,7 @@ XF86Audio{Lower,Raise}Volume
 	pactl set-sink-volume 0 {-,+}5%
 
 Print
-	spectacle || maim -s | xclip -selection clipboard -t image/png
+	flameshot || spectacle || maim -s | xclip -selection clipboard -t image/png
 
 shift + Print
 	sh -c 'screenshot="/tmp/screenshots/$(date --iso-8601=seconds).jpg" && mkdir -p $(dirname "$screenshot") && maim -m 10 $screenshot && gimp $screenshot'

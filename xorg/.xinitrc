@@ -52,6 +52,9 @@ done &
 # Touchpad
 syndaemon -t -K -R -i .5 -d
 
+# Screenshots (otherwise, without that first launch, clipboard won't work from CLI)
+flameshot &
+
 # Multimedia
 if [ "x$(hostname)" != "xtaz" ]; then
     playerctld daemon
