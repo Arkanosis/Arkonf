@@ -139,3 +139,66 @@ lxc-boot() {
         -v LANG=C \
         -v LC_ALL=C
 }
+
+VMS_ROOT=/mnt/lssd/VMs
+
+vm-init() {
+    if ((# < 2)); then
+        echo 'Usage: vm-init <name> <image.iso>' >&2
+        return 1
+    fi
+
+    qemu-img create \
+        -f qcow2 \
+	$VMS_ROOT/$1.disk \
+	50G
+
+    cp /usr/share/edk2/x64/OVMF_VARS.4m.fd $VMS_ROOT/$1.efi
+
+    qemu-system-x86_64 \
+	-enable-kvm \
+	-machine q35 \
+	-device intel-iommu \
+	-cpu host \
+	-smp cores=3 \
+	-m 12G \
+	-cdrom $2 \
+	-drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd \
+	-drive if=pflash,format=raw,file=$VMS_ROOT/$1.efi \
+	-drive file=$VMS_ROOT/$1.disk \
+	-boot order=d &
+
+    while ! nc -z localhost 5900; do
+	sleep 1
+    done
+
+    vncviewer localhost:5900 &
+
+    wait
+}
+
+vm-start() {
+    if ((# < 1)); then
+        echo 'Usage: vm-start <name>' >&2
+        return 1
+    fi
+
+    qemu-system-x86_64 \
+	-enable-kvm \
+	-machine q35 \
+	-device intel-iommu \
+	-cpu host \
+	-smp cores=3 \
+	-m 12G \
+	-drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd \
+	-drive if=pflash,format=raw,file=$VMS_ROOT/$1.efi \
+	-drive file=$VMS_ROOT/$1.disk &
+
+    while ! nc -z localhost 5900; do
+	sleep 1
+    done
+
+    vncviewer localhost:5900 &
+
+    wait
+}
