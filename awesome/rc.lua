@@ -165,12 +165,31 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    if s.index == 1 then
-       awful.tag({ "web", "code 1", "code 2", "code 3", "code 4" }, s, awful.layout.layouts[1])
-    elseif s.index == 2 then
-       awful.tag({ "mail", "code A", "code B", "code C", "code D" }, s, awful.layout.layouts[1])
+    if os.getenv("USER") == "nonfreegaming" and screen[1].geometry.width == 3440 then
+       if s.index == 1 then
+	  awful.tag({ "game", "stream" }, s, awful.layout.layouts[1])
+       elseif s.index == 2 then
+	  awful.tag.add("web", {
+             screen = s,
+	     layout = awful.layout.layouts[1],
+          })
+	  awful.tag.add("monitor", {
+             screen = s,
+	     layout = awful.layout.suit.tile,
+	     master_width_factor = 0.67,
+	     selected = true
+          })
+       else
+	  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+       end
     else
-       awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+       if s.index == 1 then
+	  awful.tag({ "web", "code 1", "code 2", "code 3", "code 4" }, s, awful.layout.layouts[1])
+       elseif s.index == 2 then
+	  awful.tag({ "mail", "code A", "code B", "code C", "code D" }, s, awful.layout.layouts[1])
+       else
+	  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+       end
     end
 
     -- Create a promptbox for each screen
@@ -702,6 +721,39 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 if os.getenv("USER") == "nonfreegaming" and screen[1].geometry.width == 3440 then
-   awful.util.spawn("firefox", { screen = 1, maximized = true })
-   awful.util.spawn("chromium", { screen = 1, maximized = true })
+   -- awful.util.spawn("xrandr" ..
+   -- "    --output DP-3" ..
+   -- "         --mode 3440x1440" ..
+   -- "         --scale 1x1" ..
+   -- "         --pos 0x1080" ..
+   -- "    --output HDMI-1" ..
+   -- "         --mode 1920x1080" ..
+   -- "         --scale 1x1" ..
+   -- "         --pos 760x0")
+   awful.util.spawn("steam -silent", {
+      screen = 1,
+      maximized = false
+   })
+   awful.util.spawn("pavucontrol", {
+      screen = 1,
+      maximized = false,
+      placement = awful.placement.bottom_right
+   })
+   awful.util.spawn("firefox https://aoe2.arkanosis.net/overlay/#1573664", {
+      screen = 2,
+      tag = "monitor",
+      maximized = false
+   }, function()
+      awful.util.spawn("firefox -new-window https://www.twitch.tv/directory/category/age-of-empires-ii", {
+         screen = 2,
+	 tag = "monitor",
+	 maximized = false
+      }, function()
+         awful.util.spawn("firefox https://discord.com/channels/919681139101282344/919681139101282347", {
+            screen = 2,
+	    tag = "monitor",
+	    maximized = false
+         })
+      end)
+   end)
 end
