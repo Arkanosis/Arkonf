@@ -28,7 +28,7 @@ server {
 
 	charset UTF-8;
 
-	root /usr/shar/nginx/html;
+	root /usr/share/nginx/html;
 	index index.html index.htm;
 
 	ssl on;
