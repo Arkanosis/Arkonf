@@ -222,9 +222,16 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     local right_widgets = { -- Right widgets
-	layout = wibox.layout.fixed.horizontal,
-	wibox.widget.systray(),
-	mytextclock
+        layout = wibox.layout.fixed.horizontal,
+        wibox.widget.systray(),
+        awful.widget.watch('test -h /dev/input/by-id/usb-raychengy_Fifi-event-kbd', 1, function(widget, stdout, stderr, exitreason, exitcode)
+            if exitcode == 0 then
+                widget:set_markup('<span bgcolor="green">KM</span>')
+            else
+                widget:set_markup('<span bgcolor="red">KM</span>')
+            end
+        end),
+        mytextclock
     }
     right_widgets[#right_widgets + 1] = require("battery-widget") {}
     right_widgets[#right_widgets + 1] = s.mylayoutbox
