@@ -4,6 +4,7 @@ utilities_pkgs:
 {% if grains['os_family'] == 'Arch' %}
       - banner
       - broot
+      - cyme
       - eza
 {% else %}
       - sysvbanner

@@ -28,6 +28,24 @@ else
     }
 fi
 
+if which cyme >& /dev/null; then
+    lu() {
+        cyme --headings -b=bus-number -b=device-number -b=manufacturer -b=name -b=driver -b=speed -v -b=vendor-id -b=product-id -b=vendor-name -b=product-name
+    }
+
+    lut() {
+        cyme -t -b=device-number -b=manufacturer -b=name -b=driver -b=speed -v -b=vendor-id -b=product-id -b=vendor-name -b=product-name
+    }
+else
+    lu() {
+        lsusb
+    }
+
+    lut() {
+        lsusb && echo '======================================================' && lsusb -tv
+    }
+fi
+
 if which gsed >& /dev/null; then
     sed() {
         gsed $@
