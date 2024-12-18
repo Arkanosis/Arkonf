@@ -243,6 +243,14 @@ If region contains less than 2 lines, lines are left untouched."
 (setq calendar-week-start-day 1)
 (add-hook 'org-archive-hook #'org-save-all-org-buffers)
 
+; m m m m B D (postpone 1 day)
+; m m m m C-U -1 B D (prepone 1 day)
+(add-to-list
+ 'org-agenda-bulk-custom-functions
+ '(?D
+   (lambda ()
+     (call-interactively 'org-agenda-date-later))))
+
 (setq org-todo-keywords
   '((sequence "TODO(t)" "STRT(s)" "|" "DONE(d)")
     (sequence "WAIT(w)" "|")
@@ -507,9 +515,9 @@ If region contains less than 2 lines, lines are left untouched."
   (add-hook 'exa-mode-hook 'my-exa-hook)
   :mode "\\.exa$")
 
-(use-package pyjab
-  :config
-  (define-key global-map "\C-cns" 'pyjab_send))
+;(use-package pyjab
+;  :config
+;  (define-key global-map "\C-cns" 'pyjab_send))
 
 (use-package ansi-color
   :config
@@ -661,10 +669,13 @@ If region contains less than 2 lines, lines are left untouched."
 
 ;; Deal with org-mode conflicts
 (setq org-replace-disputed-keys t)
+(setq system-time-locale "C")
 
 (add-hook 'org-mode-hook
   (lambda ()
     (local-set-key (kbd "C-c a") 'org-show-agenda)
+    (local-set-key (kbd "C-c t") 'org-insert-todo-heading-respect-content)
+    (local-set-key (kbd "C-c x") 'org-insert-todo-heading)
     (local-set-key "[1;5D" 'org-promote-subtree)
     (local-set-key "[1;5C" 'org-demote-subtree)
     (local-set-key "[1;5A" 'org-move-subtree-up)
@@ -672,7 +683,9 @@ If region contains less than 2 lines, lines are left untouched."
 
 (add-hook 'org-agenda-mode-hook
   (lambda ()
-    (local-set-key "r" 'org-agenda-refresh)))
+    (local-set-key "r" 'org-agenda-refresh)
+    (local-set-key "[d" 'org-agenda-do-date-earlier)
+    (local-set-key "[c" 'org-agenda-do-date-later)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Abbrev
