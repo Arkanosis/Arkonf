@@ -228,3 +228,17 @@ EOF
 ricl() {
     echo $(($(ric $@ | sed 's/ //g' | wc -c) - 1))
 }
+
+days() {
+    python <<EOF
+import datetime
+
+d1 = "$1".split('-')
+d2 = "$2".split('-')
+
+d1 = datetime.date(int(d1[0]), int(d1[1]), int(d1[2]))
+d2 = datetime.date(int(d2[0]), int(d2[1]), int(d2[2]))
+
+print((d2 - d1).days)
+EOF
+}
