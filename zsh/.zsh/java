@@ -1,0 +1,21 @@
+# "-*- sh -*-"
+
+import_ca() {
+    local pem
+
+    if [[ -f $2 ]]; then
+	pem=$2
+    else
+	pem=$(mktemp)
+	openssl s_client \
+            -connect "$2:443" \
+	    -showcerts </dev/null 2>/dev/null |
+	    sed -n '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' >| $pem
+    fi
+
+    $1/bin/keytool \
+	-importcert \
+	-file $pem \
+	-keystore $1/lib/security/cacerts \
+	-alias $(pwgen 20 1)
+}
