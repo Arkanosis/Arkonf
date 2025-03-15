@@ -105,7 +105,7 @@ keycode  48 = apostrophe quotedbl U2019 U2030
 
 !! ` ~ ` ´
 keycode  9 = Escape asciitilde dead_grave dead_acute
-keycode  49 = Escape asciitilde dead_grave dead_acute
+keycode  49 = grave asciitilde dead_grave dead_acute
 
 !! \ | ↖ ↑
 keycode  51 = backslash bar U2196 uparrow
@@ -137,8 +137,8 @@ keycode  59 = comma less lessthanequal leftarrow
 !! . > ≥ →
 keycode  60 = period greater greaterthanequal rightarrow
 
-!! / ? ↗ ↓
-keycode  61 = slash question U2197 downarrow
+!! / ? “ ”
+keycode  61 = slash question U201C U201D
 
 !!   
 keycode  65 = space space nobreakspace
