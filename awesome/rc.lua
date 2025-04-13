@@ -86,7 +86,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-				    { "hotkeys", function() return false, hotkeys_popup.show_help end},
+                                    { "hotkeys", function() return false, hotkeys_popup.show_help end},
                                     { "open terminal", "zmux" }
                                   }
                         })
@@ -167,41 +167,41 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     if os.getenv("USER") == "nonfreegaming" and screen[1].geometry.width == 3440 then
        if s.index == 1 then
-	  awful.tag({ "game", "stream" }, s, awful.layout.layouts[1])
+          awful.tag({ "game", "stream" }, s, awful.layout.layouts[1])
        elseif s.index == 2 then
-	  awful.tag.add("web", {
+          awful.tag.add("web", {
              screen = s,
-	     layout = awful.layout.layouts[1],
+             layout = awful.layout.layouts[1],
           })
-	  awful.tag.add("monitor", {
+          awful.tag.add("monitor", {
              screen = s,
-	     layout = awful.layout.suit.tile,
-	     master_width_factor = 0.67,
-	     selected = true
+             layout = awful.layout.suit.tile,
+             master_width_factor = 0.67,
+             selected = true
           })
        else
-	  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+          awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
        end
     else
        if s.index == 1 then
-	  awful.tag({ "web", "code 1", "code 2", "code 3", "code 4" }, s, awful.layout.layouts[1])
+          awful.tag({ "web", "code 1", "code 2", "code 3", "code 4" }, s, awful.layout.layouts[1])
        elseif s.index == 2 then
-	  awful.tag({ "mail", "code A", "code B", "code C", "code D" }, s, awful.layout.layouts[1])
+          awful.tag({ "mail", "code A", "code B", "code C", "code D" }, s, awful.layout.layouts[1])
        else
-	  awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+          awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
        end
     end
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt {
        hooks = {
-	  {{}, "Return", function(command)
-	      if os.getenv("USER") ~= "nonfreegaming" and (command == "steam" or command == "teamspeak3") then
-		 naughty.notify{ text = "Currently logged in as '".. os.getenv("USER") .."', consider using the 'nonfreegaming' account instead" }
-	      else
-		 return command
-	      end
-	  end}
+          {{}, "Return", function(command)
+              if os.getenv("USER") ~= "nonfreegaming" and (command == "steam" or command == "teamspeak3") then
+                 naughty.notify{ text = "Currently logged in as '".. os.getenv("USER") .."', consider using the 'nonfreegaming' account instead" }
+              else
+                 return command
+              end
+          end}
        }
     }
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
@@ -287,25 +287,25 @@ end
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "l", function () awful.util.spawn(lock) end,
-	      {description = "lock screen", group = "awesome"}),
+              {description = "lock screen", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "l", function () awful.util.spawn("sudo systemctl suspend") end,
-	      {description = "lock screen and suspend", group = "awesome"}),
+              {description = "lock screen and suspend", group = "awesome"}),
     awful.key({ modkey,           }, "k", function ()
-		 local matcher = function (c)
-		    return awful.rules.match(c, {class = pass_class})
-		 end
-		 awful.client.run_or_raise(pass, matcher)
-	       end,
-	      {description = "password manager", group = "launcher"}),
+                 local matcher = function (c)
+                    return awful.rules.match(c, {class = pass_class})
+                 end
+                 awful.client.run_or_raise(pass, matcher)
+               end,
+              {description = "password manager", group = "launcher"}),
     awful.key({ modkey,           }, "v", function ()
-		 local matcher = function (c)
-		    return awful.rules.match(c, {class = "Pavucontrol"})
-		 end
-		 awful.client.run_or_raise("pavucontrol", matcher)
-	       end,
-	      {description = "password manager", group = "launcher"}),
+                 local matcher = function (c)
+                    return awful.rules.match(c, {class = "pavucontrol"})
+                 end
+                 awful.client.run_or_raise("pavucontrol", matcher)
+               end,
+              {description = "password manager", group = "launcher"}),
     awful.key({ "Control", "Shift"}, "Escape", function () awful.util.spawn("/usr/bin/urxvt -e /usr/bin/htop", { maximized = true }) end,
-	      {description = "manage tasks", group = "awesome"}),
+              {description = "manage tasks", group = "awesome"}),
     awful.key({ modkey,           }, "?",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey, "Control" }, "Left",   awful.tag.viewprev,
@@ -483,7 +483,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Print", function () awful.spawn("flameshot launcher") end,
               {description = "open keyboard reference", group = "launcher"}),
 
-    awful.key({ modkey,           }, ";", function () awful.spawn("org-console") end,
+    awful.key({ modkey,           }, ";", function ()
+                 local matcher = function (c)
+                    return awful.rules.match(c, {instance = "org-console"})
+                 end
+                 awful.client.run_or_raise("org-console", matcher)
+              end,
               {description = "open a task list", group = "launcher"}),
 
     awful.key({ modkey,           }, "#87", function () awful.spawn("zsh -i -c 'edifier'") end,
@@ -663,50 +668,93 @@ root.keys(globalkeys)
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+   {
+      rule = { },
+      properties = {
+         border_width = beautiful.border_width,
+         border_color = beautiful.border_normal,
+         focus = awful.client.focus.filter,
+         raise = true,
+         keys = clientkeys,
+         buttons = clientbuttons,
+         screen = awful.screen.preferred,
+         placement = awful.placement.no_overlap+awful.placement.no_offscreen
+      }
     },
 
     -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-        },
-        class = {
-          "Arandr",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Wpa_gui",
-          "pinentry",
-          "veromix",
-          "xtightvncviewer"},
-
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = "web" } },
-    { rule = { class = "Chromium" },
-      properties = { screen = 1, tag = "web" } },
-    { rule = { class = "URxvt" },
-      properties = { size_hints_honor = false } },
+   {
+      rule_any = {
+         instance = {
+            "DTA",  -- Firefox addon DownThemAll.
+            "copyq",  -- Includes session name in class.
+         },
+         class = {
+            "Arandr",
+            "Gpick",
+            "Kruler",
+            "MessageWin",  -- kalarm.
+            "Sxiv",
+            "Wpa_gui",
+            "pinentry",
+            "veromix",
+            "xtightvncviewer",
+         },
+         name = {
+            "Event Tester",  -- xev.
+         },
+         role = {
+            "AlarmWindow",  -- Thunderbird's calendar.
+            "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+         }
+      },
+      properties = {
+         floating = true
+      }
+   },
+   {
+      rule = {
+         class = "URxvt"
+      },
+      properties = {
+         size_hints_honor = false
+      }
+   },
+   {
+      rule_any = {
+         class = {
+            "Firefox",
+            "Chromium",
+         }
+      },
+      properties = {
+         screen = 1,
+         tag = "web",
+         placement = awful.placement.left,
+         width = screen[1].workarea.width * 0.73,
+         maximized_vertical = true
+      }
+   },
+   {
+      rule_any = {
+         class = {
+            "KeePassXC",
+            "pavucontrol",
+         },
+         instance = {
+            "org-console",
+         },
+      },
+      properties = {
+         screen = 1,
+         tag = "web",
+         placement = awful.placement.right,
+         width = screen[1].workarea.width * 0.27,
+         maximized_horizontal = false,
+         maximized_vertical = true,
+         skip_taskbar = true
+      }
+   },
 }
 -- }}}
 
@@ -755,13 +803,13 @@ if os.getenv("USER") == "nonfreegaming" and screen[1].geometry.width == 3440 the
    }, function()
       awful.util.spawn("firefox -new-window https://www.twitch.tv/directory/category/age-of-empires-ii", {
          screen = 2,
-	 tag = "monitor",
-	 maximized = false
+         tag = "monitor",
+         maximized = false
       }, function()
          awful.util.spawn("firefox https://discord.com/channels/919681139101282344/919681139101282347", {
             screen = 2,
-	    tag = "monitor",
-	    maximized = false
+            tag = "monitor",
+            maximized = false
          })
       end)
    end)
