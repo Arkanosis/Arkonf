@@ -1,0 +1,27 @@
+# "-*- sh -*-"
+
+go_to_sleep() {
+    sleep 60
+    ~/Musique/
+    cvlc --play-and-exit --no-video \
+	silence.opus \
+	$@ &!
+    sleep 1
+    set_output_volume.sh iec958-stereo 100%
+    set_input_volume.sh application.name VLC 50%
+    xset dpms force off
+    exit
+}
+
+go_to_nap() {
+    sleep 60
+    ~/Musique/
+    cvlc --play-and-exit --no-video \
+	silence.opus \
+	$@ &!
+    sleep 1
+    set_output_volume.sh iec958-stereo 100%
+    set_input_volume.sh application.name VLC 80%
+    xset dpms force off
+    exit
+}

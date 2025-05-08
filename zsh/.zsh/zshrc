@@ -28,6 +28,7 @@ source less
 source ln
 source ls
 source math
+source media
 source mkdir
 #source monitor
 source mv
