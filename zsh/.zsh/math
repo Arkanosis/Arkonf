@@ -48,6 +48,14 @@ kglb() {
     units ${1}kg lbs
 }
 
+mkm() {
+    units ${1}miles km
+}
+
+kmm() {
+    units ${1}km miles
+}
+
 setopt c_bases
 setopt octal_zeroes
 
