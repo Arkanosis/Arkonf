@@ -16,7 +16,7 @@ ZARKONF_TODO="$HOME/.ztodo"
 MONITORED_PAGES=(
 )
 
-pushd "$ZARKONF_DIR/.zsh" > /dev/null
+pushd "$ZARKONF_DIR/.zsh" >& /dev/null
 
 source ./zshrc
 
