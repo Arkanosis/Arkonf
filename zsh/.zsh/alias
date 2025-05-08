@@ -116,7 +116,9 @@ fu() {
     elif which apt >& /dev/null; then
         sudo apt update && sudo apt upgrade
     elif which pacman >& /dev/null; then
-        sudo pacman -Syu && sudo pacdiff
+        LC_ALL=C sudo pacman -Sy --needed archlinux-keyring && \
+        LC_ALL=C sudo pacman -Syu && \
+	sudo pacdiff
     else
         echo 'Package manager is unknown' >&2
         return 1
