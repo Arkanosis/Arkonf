@@ -1,10 +1,5 @@
 {% if grains['oscodename'] == 'bookworm' %}
 
-/etc/apt/preferences:
-  file.managed:
-    - source: salt://repos/apt-preferences
-    - mode: 644
-
 # TODO FIXME personal apt repository for packages missing in Debian Bookworm
 
 deb http://deb.debian.org/debian bookworm contrib:
@@ -16,11 +11,6 @@ deb http://deb.debian.org/debian bookworm non-free:
   pkgrepo.managed:
     - dist: bookworm
     - file: /etc/apt/sources.list.d/non-free.list
-
-deb http://ftp.debian.org/debian bookworm-backports main:
-  pkgrepo.managed:
-    - dist: bookworm-backports
-    - file: /etc/apt/sources.list.d/backports.list
 
 wget https://repo.saltproject.io/salt/py3/debian/11/amd64/latest/salt-archive-keyring.gpg -O /usr/share/keyrings/salt-archive-keyring.gpg:
   cmd.run:

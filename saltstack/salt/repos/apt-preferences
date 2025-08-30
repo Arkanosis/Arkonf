@@ -1,3 +1,0 @@
-Package: *
-Pin: release a=bookworm-backports
-Pin-Priority: -1
