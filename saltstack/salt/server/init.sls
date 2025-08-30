@@ -4,6 +4,7 @@ include:
 server_pkgs:
   pkg.installed:
     - pkgs:
+      - apache2-utils
       - certbot
       - curl
       - rsync
