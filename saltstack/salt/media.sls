@@ -34,6 +34,9 @@ media_pkgs:
       - v4l-utils
       - v4l2loopback-dkms
       - vlc
+{% if grains['os_family'] == 'Arch' %}
+      - vlc-plugins-all
+{% endif %}
       - yt-dlp
       - zvbi
 
