@@ -72,7 +72,7 @@ if [ "x$USER" = "xnonfreegaming" ]; then
 else
     # File synchronization
     if [ "x$(hostname)" != "xtaz" ]; then
-        syncthing -no-browser -no-restart & > /dev/null 2>&1
+        syncthing --no-browser --no-restart & > /dev/null 2>&1
     fi
 
     # Lock
