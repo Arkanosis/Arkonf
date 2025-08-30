@@ -16,6 +16,7 @@ CONFIGS= \
 	lxc \
 	mbsync \
 	mercurial \
+	mintty \
 	python \
 	pyjab \
 	pywikibot \
@@ -147,6 +148,10 @@ mbsync: ~/.mbsyncrc
 mercurial: ~/.hgrc
 ~/.hgrc:
 	ln -s "$(ROOT)mercurial/$(notdir $@)" "$@"
+
+mintty: ~/.minttyrc
+~/.minttyrc:
+	ln -s "$(ROOT)mintty/$(notdir $@)" "$@"
 
 python: ~/.pythonrc.py ~/.config/pudb/pudb.cfg ~/.ptpython/config.py ~/.pydistutils.cfg
 ~/.pythonrc.py:
