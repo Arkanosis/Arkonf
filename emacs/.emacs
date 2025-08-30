@@ -47,6 +47,9 @@
 ; - Suppression du mot qui suit / précède *sans copier*
 ; - Support du open-file-at-point
 
+; Prevent customize from taking over the configuration
+(setq custom-file null-device)
+
 (package-initialize)
 
 ;; Désactiver le gc le temps du chargement de la configuration
@@ -325,7 +328,24 @@ If region contains less than 2 lines, lines are left untouched."
 (custom-set-variables
  '(lsp-rust-server 'rust-analyzer)
  '(package-selected-packages
-   '(auto-complete company dap-mode dash dash-functional deadgrep diminish elixir-mode flycheck git-gutter lsp-java lsp-mode magit rustic undo-tree use-package yasnippet-snippets)))
+   '(auto-complete
+     company
+     dap-mode
+     dash
+     dash-functional
+     deadgrep
+     devdocs
+     diminish
+     elixir-mode
+     flycheck
+     git-gutter
+     lsp-java
+     lsp-mode
+     magit
+     rustic
+     undo-tree
+     use-package
+     yasnippet-snippets)))
 (package-install-selected-packages)
 
 (require 'use-package)
@@ -851,13 +871,6 @@ If region contains less than 2 lines, lines are left untouched."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Couleurs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; TODO use variables
-
-(custom-set-faces
- ; Comments
-; '(font-lock-comment-face ((t (:foreground "Firebrick"))))
-)
 
 (defun my-change-window-divider ()
   (let ((display-table
