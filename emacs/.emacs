@@ -490,12 +490,10 @@ If region contains less than 2 lines, lines are left untouched."
 
 (use-package mediawiki
   :config
-  (custom-set-variables
+  (setq
     '(mediawiki-site-alist
       (quote
-        (("ACU" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Blog commun")
-         ("ACU-wip" "http://arkanosis.fr/acu/" "Jérémie Roquet" "" "Rtfb/Lesser known C++ constructs")
-	 ("Wikipedia-Arkanosis" "http://fr.wikipedia.org/w/" "Arkanosis" "" "Wikipédia:Accueil principal")
+	 (("Wikipedia-Arkanosis" "http://fr.wikipedia.org/w/" "Arkanosis" "" "Wikipédia:Accueil principal")
 	 ("Wikipedia-Arktest" "http://fr.wikipedia.org/w/" "Arktest" "" "Wikipédia:Accueil principal")
 	 ("Wikipedia-Arkbot" "http://fr.wikipedia.org/w/" "Arkbot" "" "Wikipédia:Accueil principal")))))
   (defun mw()
