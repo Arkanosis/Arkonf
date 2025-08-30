@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Arkonf for Emacs                                                    ;
-;  (C) 2006-2020 - Jérémie Roquet                                      ;
+;  (C) 2006-2025 - Jérémie Roquet                                      ;
 ;  jroquet@arkanosis.net                                               ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -235,7 +235,7 @@ If region contains less than 2 lines, lines are left untouched."
         (cons "index6" (svnpath "platform/index6/trunk"))
         (cons "semantic" (svnpath "platform/semantic/trunk"))))
 
-(setq org-agenda-files '("~/Documents/Org" "~/Documents/Org/Notes" "~/Documents/Org/Exalead"))
+(setq org-agenda-files '("~/Documents/Org" "~/Documents/Org/Notes"))
 
 (setq org-agenda-start-day "-2d")
 (setq org-agenda-span 15)
@@ -414,6 +414,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package lua-mode
   :mode "\\.lua$")
 (use-package java-mode
+  :defer t
   :init
   (use-package company)
   (add-hook 'java-mode-hook (lambda ()
@@ -461,6 +462,7 @@ If region contains less than 2 lines, lines are left untouched."
 (use-package hexl-mode
   :mode "\\.bin$")
 (use-package ob-sparql
+  :defer t
   :init
   (org-babel-do-load-languages
    'org-babel-load-languages
