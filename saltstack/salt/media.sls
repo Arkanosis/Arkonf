@@ -8,6 +8,7 @@ media_pkgs:
       - gpxsee
 {% endif %}
       - kdenlive
+      - kimageformats
       - k3b
 {% if grains['os_family'] == 'Arch' %}
       - libvdpau-va-gl
