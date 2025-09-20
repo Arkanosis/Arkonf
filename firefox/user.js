@@ -18,6 +18,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.startup.upgradeDialog.enabled", false);
+user_pref("browser.tabs.allowTabDetach", false);
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
