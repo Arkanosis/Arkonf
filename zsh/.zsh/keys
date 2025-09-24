@@ -140,6 +140,9 @@ bindkey "^[M" insert-files
 bindkey "^[+" incarg
 #bindkey "^[-" decarg
 
+# Don't freeze on ctrl + s (completely useless, and we use it for forward search)
+stty -ixon
+
 kbd() {
     setxkbmap us
     xmodmap ~/.Xmodmap
