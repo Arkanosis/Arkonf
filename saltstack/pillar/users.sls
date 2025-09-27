@@ -15,6 +15,7 @@ users:
     email: jroquet@arkanosis.net
     id: 1301
     groups:
+      - audio # access to /dev/snd/seq* for smhkd
       - dialout # access to /dev/tty* for (g|w)ammu
       - docker
       - i2c # access to DP / HDMI monitors with DDC
@@ -77,6 +78,8 @@ users:
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDuu5Cz6ww5srWFCSQmcKSWLR4G5G1N5sxrpl3tWPPJ5lj7CffBeDsacqt+kFk8fsnsfZ1NT+GOpXGyIOXgAvIIz5cd4Z5PKBL3Y24AqLWGiXAxayPPEzJ1rBDwR8hpSlVw+EepznN/d4zqoAR8sGT0zbcU1Sud8kpV03wxFcJsAkfaC0bnP78RCouEmk0p1Q4Nm9sQtV1Q3xsIsj+TFx6qKIowIf5TF1XnNkQ86vaNoko5VAB5VWFZtWvlrA3dKZO4O6iKJREY8sVBBg3aWIMzmsZTsf0fS9p1OPExHBfPM0cdfCPQPQ8/Sv+ruJHyhW/H031IurERz8V7s85yaiVln4grVZl2lzOs6+MGnm4eLfjnDYVrUf0HZe3bdbr2g64fdbf4UFrSYe2oEMoPufEX9DXt9C+gAfSrVLhySfLORLTV7Whnv3bqY6QZMmV1atXKPISU4sZvfLvd4HNGAQhFzHfh3PFz9ea8xnnThrW3FbCQ76gSYSpscPsxPuxvfNPif6ha9CzIMyf6yDoZPEWUGMhCJuKfOhB7RJtG/k7yN/YESRvN45ZE/6wWNWngTwdoK1N0XKxiOB8l3Ovr6J1hd7h0OeKIL6wzS610E/9oBm0nmPuv0alBv/B8INaGjcQF1b2svKtl3gEXM7/Fp8mc2U28ow26maiqizinfWUxew== asdp@G0ARO11
   - login: nonfreegaming
     id: 1901
+    groups:
+      - audio # access to /dev/snd/seq* for smhkd
     arkonf: True
   - login: sftp-denomme-fr
     id: 1211
