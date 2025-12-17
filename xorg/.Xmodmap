@@ -215,11 +215,11 @@ keycode 198 = U2191 U21D1 udiaeresis
 !! ↗ ⇗ ô Ô
 keycode 199 = U2197 U21D7 ocircumflex
 
-!! ö Ö
+!! o O ö Ö
 keycode 200 = o o odiaeresis
 
-!! c C ç Ç
-keycode 201 = c C ccedilla
+!! o O ò Ò
+keycode 201 = o o ograve
 
 clear shift
 clear lock
