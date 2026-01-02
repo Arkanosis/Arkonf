@@ -16,6 +16,8 @@ media_pkgs:
 {% else %}
       - linux-headers-amd64
 {% endif %}
+      - mediainfo
+      - mpv
       - obs-studio
 {% if grains['os_family'] == 'Arch' %}
       - opusfile
@@ -23,7 +25,6 @@ media_pkgs:
       - libopusfile0
 {% endif %}
       - opus-tools
-      - mpv
       - playerctl
 {% if grains['os_family'] == 'Arch' %}
       - sdl2
