@@ -3,6 +3,7 @@ image_pkgs:
     - pkgs:
       - blender
       - darktable
+      - exiftool
 {% if grains['os_family'] != 'Arch' %}
       - exiftran
 {% else %}
