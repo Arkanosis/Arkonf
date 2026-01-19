@@ -723,7 +723,7 @@ awful.rules.rules = {
    {
       rule_any = {
          class = {
-            "Firefox",
+            "firefox",
             "Chromium",
          }
       },
@@ -732,6 +732,7 @@ awful.rules.rules = {
          tag = "web",
          placement = awful.placement.left,
          width = screen[1].workarea.width * 0.73,
+         maximized_horizontal = false,
          maximized_vertical = true
       }
    },
@@ -748,7 +749,7 @@ awful.rules.rules = {
       properties = {
          screen = 1,
          tag = "web",
-         placement = awful.placement.right,
+         placement = function(...) return awful.placement.right(...) end,
          width = screen[1].workarea.width * 0.27,
          maximized_horizontal = false,
          maximized_vertical = true,
