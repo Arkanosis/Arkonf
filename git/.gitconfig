@@ -39,6 +39,7 @@ pager = delta
 line-numbers = true
 side-by-side = true
 wrap-max-lines = unlimited
+true-color = never
 
 [diff]
 tool = vimdiff
