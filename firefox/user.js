@@ -9,6 +9,7 @@ user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
 user_pref("browser.ml.chat.enabled", false);
 user_pref("browser.ml.enable", false);
+user_pref("browser.ml.linkPreview.enabled", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
