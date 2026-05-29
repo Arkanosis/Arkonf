@@ -10,8 +10,8 @@ IMAPAccount arkanosis@live.com
 Host outlook.office365.com
 User arkanosis@live.com
 PassCmd "read -s -p 'Password for arkanosis@live.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.2 TLSv1.3
+TLSType IMAPS
+TLSVersions +1.2 +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore arkanosis@live.com-remote
@@ -34,8 +34,8 @@ IMAPAccount high_b_thunderdrone@hotmail.com
 Host outlook.office365.com
 User high_b_thunderdrone@hotmail.com
 PassCmd "read -s -p 'Password for high_b_thunderdrone@hotmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.2 TLSv1.3
+TLSType IMAPS
+TLSVersions +1.2 +1.3
 
 IMAPStore high_b_thunderdrone@hotmail.com-remote
 Account high_b_thunderdrone@hotmail.com
@@ -57,8 +57,8 @@ IMAPAccount jeremie.roquet@gmail.com
 Host imap.gmail.com
 User jeremie.roquet@gmail.com
 PassCmd "read -s -p 'Password for jeremie.roquet@gmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore jeremie.roquet@gmail.com-remote
@@ -81,8 +81,8 @@ IMAPAccount simonne.roquet@gmail.com
 Host imap.gmail.com
 User simonne.roquet@gmail.com
 PassCmd "read -s -p 'Password for simonne.roquet@gmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore simonne.roquet@gmail.com-remote
@@ -105,8 +105,8 @@ IMAPAccount annette.menguy@gmail.com
 Host imap.gmail.com
 User annette.menguy@gmail.com
 PassCmd "read -s -p 'Password for annette.menguy@gmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore annette.menguy@gmail.com-remote
@@ -129,8 +129,8 @@ IMAPAccount dani.roquet@gmail.com
 Host imap.gmail.com
 User dani.roquet@gmail.com
 PassCmd "read -s -p 'Password for dani.roquet@gmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore dani.roquet@gmail.com-remote
@@ -153,8 +153,8 @@ IMAPAccount arkanosis@gmail.com
 Host imap.gmail.com
 User arkanosis@gmail.com
 PassCmd "read -s -p 'Password for arkanosis@gmail.com: ' pass && echo $pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions +1.3
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore arkanosis@gmail.com-remote
