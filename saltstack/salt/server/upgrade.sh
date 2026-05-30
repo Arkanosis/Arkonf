@@ -33,6 +33,7 @@ fi
 
 PACKAGE="$1"
 VERSION="$2"
+START="$(date)"
 BACKUPS="backups/$(date --iso-8601)"
 
 verify() {
@@ -152,3 +153,10 @@ case "$PACKAGE" in
 esac
 
 echo "Finished upgrading '$PACKAGE' to version $VERSION"
+
+(
+    echo "Start: $START"
+    echo "End: $(date)"
+    echo "Package: $PACKAGE"
+    echo "Version: $VERSION"
+) | mail -Sttycharset=utf8 -s "Mise à jour de $PACKAGE en version $VERSION effectuée avec succès" arkanosis@gmail.com
