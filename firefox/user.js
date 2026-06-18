@@ -19,6 +19,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.system.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.widgets.weather.enabled", false);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.startup.upgradeDialog.enabled", false);
