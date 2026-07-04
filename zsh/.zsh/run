@@ -202,3 +202,29 @@ vm-start() {
 
     wait
 }
+
+xbox() {
+    if ((# < 1)); then
+        echo 'Usage: xbox <command>' >&2
+        return 1
+    fi
+
+    # TODO use overlayfs to persist created data / share with host
+    bwrap \
+        --unshare-all \
+        --new-session \
+        --ro-bind /usr /usr \
+        --setenv PATH /usr/bin \
+        --ro-bind /lib /lib \
+        --ro-bind /lib64 /lib64 \
+        --dev-bind /dev/null /dev/null \
+        --proc /proc \
+        --tmpfs /tmp \
+        --tmpfs $HOME \
+        --ro-bind $HOME/.Xauthority $HOME/.Xauthority \
+        --ro-bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
+        --setenv DISPLAY :0 \
+        --ro-bind $(pwd) /app \
+        --chdir /app \
+        "$@"
+}
