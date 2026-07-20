@@ -16,8 +16,7 @@ network_pkgs:
 {% if grains['os_family'] != 'Arch' %}
       - iptables-persistent
 {% endif %}
-      #- kdeconnect
-      #- knemo
+      - kdeconnect
       - mitmproxy
       - mtr
       - nebula
