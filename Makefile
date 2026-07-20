@@ -7,6 +7,7 @@ CONFIGS= \
 	dhex \
 	dotfiles \
 	emacs \
+	flameshot \
 	gdb \
 	git \
 	gnupg \
@@ -92,6 +93,11 @@ emacs: ~/.emacs ~/.emacs.d
 	ln -s "$(ROOT)emacs/$(notdir $@)" "$@"
 ~/.emacs.d:
 	ln -s "$(ROOT)emacs/$(notdir $@)" "$@"
+
+flameshot: ~/.config/flameshot/flameshot.ini
+~/.config/flameshot/flameshot.ini:
+	mkdir -p "$(dir $@)"
+	ln -s "$(ROOT)flameshot/$(notdir $@)" "$@"
 
 gdb: ~/.gdbinit
 ~/.gdbinit:
