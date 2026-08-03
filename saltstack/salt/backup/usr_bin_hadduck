@@ -158,6 +158,11 @@ fi
     echo "Drive: $DRIVE"
     echo "Remote: $REMOTE"
     echo "Backend: $BACKEND"
+    df \
+	--human-readable \
+	--exclude-type=tmpfs \
+	--exclude-type=devtmpfs \
+	--exclude-type=efivarfs
 ) | mail -Sttycharset=utf8 -s "Sauvegarde de $HOST sur $DRIVE@$REMOTE effectuée avec succès" arkanosis@gmail.com
 
 echo 'Backup finished'
