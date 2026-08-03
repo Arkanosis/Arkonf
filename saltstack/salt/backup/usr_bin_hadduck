@@ -122,6 +122,7 @@ if [ "x$HOST" = 'xgossamer' ] ||
        TARGET="ssh://$REMOTE/home/borgbackup/backups/$HOST/"
     fi
     if [ "x$BACKEND" = 'xborg' ]; then
+        export BORG_USE_CHUNKS_ARCHIVE=no
         cd / && \
             sudo borg create \
                  --stats \
