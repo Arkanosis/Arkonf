@@ -5,12 +5,15 @@ media_pkgs:
       - flac
       - ffmpeg
 {% if grains['os_family'] == 'Arch' %}
+      - ffmpegthumbs
       - gpxsee
+      - kdegraphics-thumbnailer
 {% endif %}
       - kdenlive
       - kimageformats
       - k3b
 {% if grains['os_family'] == 'Arch' %}
+      - kio-extras
       - libvdpau-va-gl
       - linux-headers
 {% else %}
