@@ -49,7 +49,7 @@ else
 fi
 
 dm() {
-    LC_NUMERIC=C datamash $@
+    LC_ALL=C datamash $@
 }
 
 pf() {

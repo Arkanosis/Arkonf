@@ -1,8 +1,25 @@
 # "-*- sh -*-"
 
+playlist_duration() {
+    for track in $@; do
+	ffprobe \
+	    -loglevel quiet \
+	    -show_entries format=duration \
+	    -output_format csv=print_section=0 \
+	    $track
+    done |
+	dm sum 1 |
+	sed 's/^/@/' |
+	date \
+	    --file=- \
+	    --utc \
+	    +%T
+}
+
 go_to_sleep() {
+    cd ~/Musique/
+    echo "Playlist duration: $(playlist_duration $@)"
     sleep 60
-    ~/Musique/
     cvlc --play-and-exit --no-video \
 	silence.opus \
 	$@ &!
@@ -14,8 +31,9 @@ go_to_sleep() {
 }
 
 go_to_nap() {
+    cd ~/Musique/
+    echo "Playlist duration: $(playlist_duration $@)"
     sleep 60
-    ~/Musique/
     cvlc --play-and-exit --no-video \
 	silence.opus \
 	$@ &!
