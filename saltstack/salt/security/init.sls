@@ -37,6 +37,7 @@ public:
 {% if grains['host'] == 'bismuth' %}
       - http
       - https
+      - http3
       - ssh # mostly for rssht / sftp from hosts that are not using Nebula
 {% else %}
       - ssh # TODO remove once all hosts are reachable through Nebula (use the home zone for sftp)
@@ -61,6 +62,7 @@ home:
       #  - configure nginx to reverse-proxify with https (for now on the same fixed port, see qrcp#169)
       #  - => no need for a specific qrcp service, everything passes through the https service (restricted to the home zone)
       - https # mostly for qrcp
+      - http3
       - mdns # for local link hostname resolution
       - rpc-bind # for NFS
       - samba-client

@@ -20,7 +20,7 @@ server_pkgs:
 
       - make
 
-      - python-certbot-nginx
+      - python3-certbot-nginx
 
 {% if pillar['domains'] %}
 
