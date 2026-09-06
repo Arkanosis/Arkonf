@@ -14,7 +14,6 @@ usage() {
     echo 'Usage: upgrade.sh cinny <version>'
     echo '       upgrade.sh conduit <version>'
     echo '       upgrade.sh gotosocial <version>'
-    echo '       upgrade.sh nebula <version>'
     echo '       upgrade.sh ntfy <version>'
     echo '       upgrade.sh -h | --help'
     echo '       upgrade.sh --version'
@@ -118,25 +117,6 @@ case "$PACKAGE" in
             sudo cp -i '/var/lib/gotosocial/arkanosis.net/sqlite.db' "$backup/sqlite.db" && \
             sudo systemctl start gotosocial && \
             sudo systemctl status gotosocial
-    ;;
-    'nebula')
-        file="nebula-linux-amd64.tar.gz"
-        wget "https://github.com/slackhq/nebula/releases/download/v$VERSION/$file"
-        verify "$file"
-        tar tvzf "$file"
-        rm "$file"
-        directory="$(basename -s .tar.gz "$file")"
-        backup="$BACKUPS/$PACKAGE"
-        mkdir -p "$backup"
-        tree \
-           "$directory" \
-           "$backup"
-        exit 42
-        sudo cp -i '/usr/bin/nebula' "$backup/" && \
-            sudo systemctl stop nebula && \
-            sudo cp -f "$directory/nebula" '/usr/bin/nebula' && \
-            sudo systemctl start nebula && \
-            sudo systemctl status nebula
     ;;
     'ntfy')
         file="ntfy_${VERSION}_linux_amd64.tar.gz"
