@@ -87,6 +87,7 @@ case "$PACKAGE" in
             sudo systemctl start conduit && \
             sudo systemctl status conduit
         rm "$binary"
+        rmdir 'usr/sbin' 'usr'
         echo 'Server information after ugrade:'
         sleep 10
         curl 'https://arkanosis.net:8448/_matrix/client/versions' |
@@ -98,23 +99,30 @@ case "$PACKAGE" in
         file="gotosocial_${VERSION}_linux_amd64.tar.gz"
         wget "https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v$VERSION/$file"
         verify "$file"
-        tar tvzf "$file"
+        tar xvzf "$file" 'gotosocial' 'web'
         rm "$file"
-        directory="$(basename -s .tar.gz "$file")"
         backup="$BACKUPS/$PACKAGE"
         mkdir -p "$backup"
         tree \
-           "$directory" \
+           "gotosocial" \
+           "web" \
            "$backup"
-        exit 42
+        echo 'Server information before ugrade:'
+        curl 'https://ap.arkanosis.net/nodeinfo/2.1' |
+            jq
         sudo cp -i '/usr/bin/gotosocial' "$backup/" && \
             sudo systemctl stop gotosocial && \
-            sudo cp -f "$directory/gotosocial" '/usr/bin/gotosocial' && \
+            sudo cp -f 'gotosocial' '/usr/bin/gotosocial' && \
             sudo mv -i '/var/lib/gotosocial/arkanosis.net/web' "$backup/" && \
-            sudo -u gotosocial cp -a "$directory/web" '/var/lib/gotosocial/arkanosis.net/' && \
+            sudo -u gotosocial cp -a 'web' '/var/lib/gotosocial/arkanosis.net/' && \
             sudo cp -i '/var/lib/gotosocial/arkanosis.net/sqlite.db' "$backup/sqlite.db" && \
             sudo systemctl start gotosocial && \
             sudo systemctl status gotosocial
+        rm -r 'gotosocial' 'web'
+        echo 'Server information after ugrade:'
+        sleep 60
+        curl 'https://ap.arkanosis.net/nodeinfo/2.1' |
+            jq
     ;;
     *)
         echo "Unknown package '$PACKAGE'" >&2
