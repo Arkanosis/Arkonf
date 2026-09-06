@@ -123,6 +123,7 @@ fu() {
         echo 'Package manager is unknown' >&2
         return 1
     fi
+    echo "Mise à jour de $HOST terminée" | mail -Sttycharset=utf8 -s "Mise à jour de $HOST terminée" arkanosis@gmail.com
 }
 
 tig() {
