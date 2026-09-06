@@ -221,8 +221,11 @@ xbox() {
         --proc /proc \
         --tmpfs /tmp \
         --tmpfs $HOME \
+        --ro-bind $HOME/.config $HOME/.config \
+        --ro-bind $HOME/.local $HOME/.local \
         --ro-bind $HOME/.Xauthority $HOME/.Xauthority \
         --ro-bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
+        --ro-bind $XDG_RUNTIME_DIR/pulse  $XDG_RUNTIME_DIR/pulse \
         --setenv DISPLAY :0 \
         --ro-bind $(pwd) /app \
         --chdir /app \
