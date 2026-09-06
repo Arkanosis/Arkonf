@@ -41,114 +41,125 @@ verify() {
     sha256sum "$file"
     read -p 'Verify checksum [y/N]' verified
     if [ "x$verified" != 'xy' ] && [ "x$verified" != 'xY' ]; then
-	echo 'Checksum not verified, aborting'
-	exit 2
+        echo 'Checksum not verified, aborting'
+        exit 2
     fi
 }
 
 case "$PACKAGE" in
     'cinny')
-	directory="/tmp/cinny-v${VERSION}-selfbuilt-dist"
-	read -p "Self-compile and rsync to '$directory' [y/N]" compiled
-	if [ "x$compiled" != 'xy' ] && [ "x$compiled" != 'xY' ]; then
-	    echo 'Not self-compiled, aborting'
-	    exit 2
-	fi
-	backup="$BACKUPS/$PACKAGE"
-	mkdir -p "$backup"
-	tree \
-	   "$directory" \
-	   "$backup"
-	exit 42
-	sudo mv -i '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' "$backup/" && \
-	    sudo -u sftp-arkanosis-net cp -a "$directory" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' && \
-	    sudo cp "$backup/cinny/config.json" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny/config.json'
+        directory="/tmp/cinny-v${VERSION}-selfbuilt-dist"
+        read -p "Self-compile and rsync to '$directory' [y/N]" compiled
+        if [ "x$compiled" != 'xy' ] && [ "x$compiled" != 'xY' ]; then
+            echo 'Not self-compiled, aborting'
+            exit 2
+        fi
+        backup="$BACKUPS/$PACKAGE"
+        mkdir -p "$backup"
+        tree \
+           "$directory" \
+           "$backup"
+        exit 42
+        sudo mv -i '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' "$backup/" && \
+            sudo -u sftp-arkanosis-net cp -a "$directory" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' && \
+            sudo cp "$backup/cinny/config.json" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny/config.json'
     ;;
     'conduit')
-	file="conduit_x86_64-unknown-linux-musl.deb"
-	wget 'https://gitlab.com/api/v4/projects/famedly%2Fconduit/jobs/artifacts/master/raw/x86_64-unknown-linux-musl.deb?job=artifacts' -O "$file"
-	verify "$file"
-	ar xv "$file"
-	rm "$file"
-	tar tvzf 'data.tar.gz'
-	rm 'data.tar.gz'
-	directory="$(basename -s .tar.gz "$file")"
-	backup="$BACKUPS/$PACKAGE"
-	mkdir -p "$backup"
-	tree \
-	   "$directory" \
-	   "$backup"
-	exit 42
-	sudo cp -i '/usr/bin/conduit' "$backup/" && \
-	    sudo systemctl stop conduit && \
-	    sudo cp "$directory/usr/sbin/matrix-conduit" '/usr/bin/conduit' && \
-	    sudo chmod 755 '/usr/bin/conduit' && \
-	    sudo systemctl start conduit && \
-	    sudo systemctl status conduit
+        file="conduit_x86_64-unknown-linux-musl.deb"
+        wget 'https://gitlab.com/api/v4/projects/famedly%2Fconduit/jobs/artifacts/master/raw/x86_64-unknown-linux-musl.deb?job=artifacts' -O "$file"
+        verify "$file"
+        ar xv "$file"
+        rm "$file"
+        binary='usr/sbin/matrix-conduit'
+        tar xvJf 'data.tar.xz' "$binary"
+        rm 'data.tar.xz' 'control.tar.xz' 'debian-binary'
+        backup="$BACKUPS/$PACKAGE"
+        mkdir -p "$backup"
+        tree \
+           "usr" \
+           "$backup"
+        echo 'Server information before ugrade:'
+        curl 'https://arkanosis.net:8448/_matrix/client/versions' |
+            jq
+        curl 'https://arkanosis.net:8448/_matrix/federation/v1/version' |
+            jq
+        sudo cp -i '/usr/bin/conduit' "$backup/" && \
+            sudo systemctl stop conduit && \
+            sudo cp "$binary" '/usr/bin/conduit' && \
+            sudo chmod 755 '/usr/bin/conduit' && \
+            sudo systemctl start conduit && \
+            sudo systemctl status conduit
+        rm "$binary"
+        echo 'Server information after ugrade:'
+        sleep 10
+        curl 'https://arkanosis.net:8448/_matrix/client/versions' |
+            jq
+        curl 'https://arkanosis.net:8448/_matrix/federation/v1/version' |
+            jq
     ;;
     'gotosocial')
-	file="gotosocial_${VERSION}_linux_amd64.tar.gz"
-	wget "https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v$VERSION/$file"
-	verify "$file"
-	tar tvzf "$file"
-	rm "$file"
-	directory="$(basename -s .tar.gz "$file")"
-	backup="$BACKUPS/$PACKAGE"
-	mkdir -p "$backup"
-	tree \
-	   "$directory" \
-	   "$backup"
-	exit 42
-	sudo cp -i '/usr/bin/gotosocial' "$backup/" && \
-	    sudo systemctl stop gotosocial && \
-	    sudo cp -f "$directory/gotosocial" '/usr/bin/gotosocial' && \
-	    sudo mv -i '/var/lib/gotosocial/arkanosis.net/web' "$backup/" && \
-	    sudo -u gotosocial cp -a "$directory/web" '/var/lib/gotosocial/arkanosis.net/' && \
-	    sudo cp -i '/var/lib/gotosocial/arkanosis.net/sqlite.db' "$backup/sqlite.db" && \
-	    sudo systemctl start gotosocial && \
-	    sudo systemctl status gotosocial
+        file="gotosocial_${VERSION}_linux_amd64.tar.gz"
+        wget "https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v$VERSION/$file"
+        verify "$file"
+        tar tvzf "$file"
+        rm "$file"
+        directory="$(basename -s .tar.gz "$file")"
+        backup="$BACKUPS/$PACKAGE"
+        mkdir -p "$backup"
+        tree \
+           "$directory" \
+           "$backup"
+        exit 42
+        sudo cp -i '/usr/bin/gotosocial' "$backup/" && \
+            sudo systemctl stop gotosocial && \
+            sudo cp -f "$directory/gotosocial" '/usr/bin/gotosocial' && \
+            sudo mv -i '/var/lib/gotosocial/arkanosis.net/web' "$backup/" && \
+            sudo -u gotosocial cp -a "$directory/web" '/var/lib/gotosocial/arkanosis.net/' && \
+            sudo cp -i '/var/lib/gotosocial/arkanosis.net/sqlite.db' "$backup/sqlite.db" && \
+            sudo systemctl start gotosocial && \
+            sudo systemctl status gotosocial
     ;;
     'nebula')
-	file="nebula-linux-amd64.tar.gz"
-	wget "https://github.com/slackhq/nebula/releases/download/v$VERSION/$file"
-	verify "$file"
-	tar tvzf "$file"
-	rm "$file"
-	directory="$(basename -s .tar.gz "$file")"
-	backup="$BACKUPS/$PACKAGE"
-	mkdir -p "$backup"
-	tree \
-	   "$directory" \
-	   "$backup"
-	exit 42
-	sudo cp -i '/usr/bin/nebula' "$backup/" && \
-	    sudo systemctl stop nebula && \
-	    sudo cp -f "$directory/nebula" '/usr/bin/nebula' && \
-	    sudo systemctl start nebula && \
-	    sudo systemctl status nebula
+        file="nebula-linux-amd64.tar.gz"
+        wget "https://github.com/slackhq/nebula/releases/download/v$VERSION/$file"
+        verify "$file"
+        tar tvzf "$file"
+        rm "$file"
+        directory="$(basename -s .tar.gz "$file")"
+        backup="$BACKUPS/$PACKAGE"
+        mkdir -p "$backup"
+        tree \
+           "$directory" \
+           "$backup"
+        exit 42
+        sudo cp -i '/usr/bin/nebula' "$backup/" && \
+            sudo systemctl stop nebula && \
+            sudo cp -f "$directory/nebula" '/usr/bin/nebula' && \
+            sudo systemctl start nebula && \
+            sudo systemctl status nebula
     ;;
     'ntfy')
-	file="ntfy_${VERSION}_linux_amd64.tar.gz"
-	wget "https://github.com/binwiederhier/ntfy/releases/download/v$VERSION/$file"
-	verify "$file"
-	tar tvzf "$file"
-	rm "$file"
-	directory="$(basename -s .tar.gz "$file")"
-	backup="$BACKUPS/$PACKAGE"
-	mkdir -p "$backup"
-	tree \
-	   "$directory" \
-	   "$backup"
-	exit 42
-	sudo cp -i '/usr/bin/ntfy' "$backup/" && \
-	    sudo systemctl stop ntfy && \
-	    sudo cp -f "$directory/ntfy" '/usr/bin/ntfy' && \
-	    sudo systemctl start ntfy && \
-	    sudo systemctl status ntfy
+        file="ntfy_${VERSION}_linux_amd64.tar.gz"
+        wget "https://github.com/binwiederhier/ntfy/releases/download/v$VERSION/$file"
+        verify "$file"
+        tar tvzf "$file"
+        rm "$file"
+        directory="$(basename -s .tar.gz "$file")"
+        backup="$BACKUPS/$PACKAGE"
+        mkdir -p "$backup"
+        tree \
+           "$directory" \
+           "$backup"
+        exit 42
+        sudo cp -i '/usr/bin/ntfy' "$backup/" && \
+            sudo systemctl stop ntfy && \
+            sudo cp -f "$directory/ntfy" '/usr/bin/ntfy' && \
+            sudo systemctl start ntfy && \
+            sudo systemctl status ntfy
     ;;
     *)
-	echo "Unknown package '$PACKAGE'" >&2
-	exit 1
+        echo "Unknown package '$PACKAGE'" >&2
+        exit 1
     ;;
 esac
 
