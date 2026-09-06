@@ -13,7 +13,7 @@ server_pkgs:
 
       # - gotosocial # TODO FIXME
       # - matrix-conduit # TODO FIXME
-      # - ntfy # TODO FIXME
+      - ntfy
 
       - nginx
       - nginx-extras
@@ -228,10 +228,6 @@ gotosocial:
     - require:
       - user: gotosocial
 
-/usr/lib/systemd/system/ntfy.service:
-  file.managed:
-    - source: salt://ntfy.service
-    - mode: 644
 
 /etc/ntfy:
   file.directory:
@@ -239,8 +235,6 @@ gotosocial:
     - group: root
     - mode: 755
     - makedirs: True
-    - require:
-      - user: ntfy
 
 /etc/ntfy/server.yml:
   file.managed:
@@ -249,40 +243,24 @@ gotosocial:
 
 /var/cache/ntfy/attachments:
   file.directory:
-    - user: ntfy
-    - group: ntfy
+    - user: _ntfy
+    - group: _ntfy
     - mode: 700
     - makedirs: True
     - require:
-      - user: ntfy
+      - user: _ntfy
 
 /var/lib/ntfy:
   file.directory:
-    - user: ntfy
-    - group: ntfy
+    - user: _ntfy
+    - group: _ntfy
     - mode: 700
     - makedirs: True
     - require:
-      - user: ntfy
-
-ntfy:
-  user.present:
-    - system: True
-    - shell: /bin/false
-    - uid: 896
-    - gid: 896
-    - groups:
-      - ntfy
-    - require:
-      - group: ntfy
-  group.present:
-    - system: True:
-    - gid: 896
+      - user: _ntfy
 
 ntfy:
   service.running:
     - enable: True
-    - require:
-      - user: ntfy
 
 # TODO create ntfy users / roles / topics

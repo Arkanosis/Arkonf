@@ -14,7 +14,6 @@ usage() {
     echo 'Usage: upgrade.sh cinny <version>'
     echo '       upgrade.sh conduit <version>'
     echo '       upgrade.sh gotosocial <version>'
-    echo '       upgrade.sh ntfy <version>'
     echo '       upgrade.sh -h | --help'
     echo '       upgrade.sh --version'
 }
@@ -117,25 +116,6 @@ case "$PACKAGE" in
             sudo cp -i '/var/lib/gotosocial/arkanosis.net/sqlite.db' "$backup/sqlite.db" && \
             sudo systemctl start gotosocial && \
             sudo systemctl status gotosocial
-    ;;
-    'ntfy')
-        file="ntfy_${VERSION}_linux_amd64.tar.gz"
-        wget "https://github.com/binwiederhier/ntfy/releases/download/v$VERSION/$file"
-        verify "$file"
-        tar tvzf "$file"
-        rm "$file"
-        directory="$(basename -s .tar.gz "$file")"
-        backup="$BACKUPS/$PACKAGE"
-        mkdir -p "$backup"
-        tree \
-           "$directory" \
-           "$backup"
-        exit 42
-        sudo cp -i '/usr/bin/ntfy' "$backup/" && \
-            sudo systemctl stop ntfy && \
-            sudo cp -f "$directory/ntfy" '/usr/bin/ntfy' && \
-            sudo systemctl start ntfy && \
-            sudo systemctl status ntfy
     ;;
     *)
         echo "Unknown package '$PACKAGE'" >&2
