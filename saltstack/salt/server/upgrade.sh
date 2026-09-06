@@ -47,9 +47,9 @@ verify() {
 case "$PACKAGE" in
     'cinny')
         directory="/tmp/cinny-v${VERSION}-selfbuilt-dist"
-        read -p "Self-compile and rsync to '$directory' [y/N]" compiled
+        read -p "Self-build and rsync to '$directory' (using build_cinny.sh) [y/N]" compiled
         if [ "x$compiled" != 'xy' ] && [ "x$compiled" != 'xY' ]; then
-            echo 'Not self-compiled, aborting'
+            echo 'Not self-built, aborting'
             exit 2
         fi
         backup="$BACKUPS/$PACKAGE"
@@ -57,10 +57,9 @@ case "$PACKAGE" in
         tree \
            "$directory" \
            "$backup"
-        exit 42
         sudo mv -i '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' "$backup/" && \
             sudo -u sftp-arkanosis-net cp -a "$directory" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny' && \
-            sudo cp "$backup/cinny/config.json" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny/config.json'
+            sudo -u sftp-arkanosis-net cp -a "$backup/cinny/config.json" '/var/sftp/sftp-arkanosis-net/arkanosis.net/cinny/config.json'
     ;;
     'conduit')
         file="conduit_x86_64-unknown-linux-musl.deb"
