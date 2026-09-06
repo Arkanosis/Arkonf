@@ -3,7 +3,6 @@
 monitoring_pkgs:
   pkg.installed:
     - pkgs:
-      - dstat
       - htop
       - iotop
 {% if grains['os_family'] != 'Arch' %}
@@ -16,6 +15,7 @@ monitoring_pkgs:
       - lsof
       - nvme-cli
       - nvtop
+      - pcp
       - powertop
       - pv
 {% if salt['grains.get']('gpus:vendor') == 'intel' %}
