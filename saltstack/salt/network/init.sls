@@ -131,7 +131,7 @@ systemd-resolved:
     - enable: True
 {% endif %}
 
-/usr/lib/systemd/system/nebula.service:
+/etc/systemd/system/nebula.service:
   file.managed:
     - source: salt://network/nebula.service
     - mode: 644
