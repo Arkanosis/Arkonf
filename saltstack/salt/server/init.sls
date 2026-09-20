@@ -132,7 +132,7 @@ ntp:
 # TODO clone sites content
 # TODO create symlinks in sites-available
 
-/usr/lib/systemd/system/conduit.service:
+/etc/systemd/system/conduit.service:
   file.managed:
     - source: salt://conduit.service
     - mode: 644
@@ -180,7 +180,7 @@ conduit:
     - require:
       - user: conduit
 
-/usr/lib/systemd/system/gotosocial.service:
+/etc/systemd/system/gotosocial.service:
   file.managed:
     - source: salt://gotosocial.service
     - mode: 644

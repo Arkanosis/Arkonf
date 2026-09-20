@@ -127,12 +127,12 @@ backup_pkgs:
     - source: salt://backup/hadduck.exclude
     - mode: 644
 
-/usr/lib/systemd/system/hadduck@.service:
+/etc/systemd/system/hadduck@.service:
   file.managed:
     - source: salt://backup/hadduck@.service
     - mode: 644
 
-/usr/lib/systemd/system/hadduck@.timer:
+/etc/systemd/system/hadduck@.timer:
   file.managed:
     - source: salt://backup/hadduck@.timer
     - mode: 644
