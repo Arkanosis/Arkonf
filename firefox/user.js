@@ -21,6 +21,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.system.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.widgets.weather.enabled", false);
 user_pref("browser.rights.3.shown", true);
+user_pref("browser.nova.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.startup.upgradeDialog.enabled", false);
 user_pref("browser.tabs.allowTabDetach", false);
@@ -58,6 +59,7 @@ user_pref("permissions.default.desktop-notification", 2);
 
 user_pref("privacy.donottrackheader.enabled", true);
 
+user_pref("sidebar.revamp", false);
 user_pref("signon.rememberSignons", false);
 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
